@@ -1,7 +1,8 @@
-networkx==2.4
+networkx
 pytest
 pytest-benchmark
+pytest-cov
 flake8
 black
-#shapely
+coveralls
 Jinja2
