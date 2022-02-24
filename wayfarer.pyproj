@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>f8ac0630-98af-462b-b7ee-5688d6183c85</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>tests\test_splitting.py</StartupFile>
+    <StartupFile>tests\test_routing.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -15,7 +15,7 @@
     <SccProvider>SAK</SccProvider>
     <SccAuxPath>SAK</SccAuxPath>
     <SccLocalPath>SAK</SccLocalPath>
-    <InterpreterId>MSBuild|wayfarer-venv|$(MSBuildProjectFullPath)</InterpreterId>
+    <InterpreterId>MSBuild|wayfarer|$(MSBuildProjectFullPath)</InterpreterId>
     <LaunchProvider>Standard Python launcher</LaunchProvider>
     <EnableNativeCodeDebugging>False</EnableNativeCodeDebugging>
     <Environment>PATH=./data/mod_spatialite-4.3.0a-win-amd64;%PATH%</Environment>
@@ -32,37 +32,12 @@
     <Compile Include="scripts\benchmarking.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="scripts\crt\2_create_snapped_features.py">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="scripts\crt\4_get_split_path.py">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="scripts\crt\1_load_crt_network.py" />
-    <Compile Include="scripts\crt\full_network.py">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="scripts\distance_example.py">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="scripts\load_osm_network.py">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="scripts\crt\3_split_network.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="scripts\ordered_path.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="scripts\segment_ends.py">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="scripts\workshop3\2_load_crt_network.py" />
-    <Compile Include="scripts\workshop3\3_split_network.py" />
-    <Compile Include="scripts\workshop3\4_merge_networks.py">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="scripts\workshop3\1_create_snapped_features.py" />
     <Compile Include="setup.py" />
     <Compile Include="tests\helper.py">
       <SubType>Code</SubType>
@@ -91,84 +66,40 @@
     <Compile Include="wayfarer\__init__.py" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="data\meath\" />
-    <Folder Include="data\mod_spatialite-NG-win-amd64\" />
-    <Folder Include="data\workshop3\" />
+    <Folder Include=".github\" />
+    <Folder Include=".github\workflows\" />
     <Folder Include="docs\" />
     <Folder Include="data\" />
     <Folder Include="scripts\" />
-    <Folder Include="scripts\crt\" />
-    <Folder Include="scripts\workshop3\" />
     <Folder Include="tests\" />
     <Folder Include="wayfarer\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="data\crt_subset.sqlite" />
-    <Content Include="data\crt_towpaths.dat" />
-    <Content Include="data\crt_towpaths_split.dat" />
+    <Content Include=".github\dependabot.yml" />
+    <Content Include=".github\workflows\main.yml" />
     <Content Include="data\gis_osm_roads_free_1.cpg" />
     <Content Include="data\gis_osm_roads_free_1.dbf" />
     <Content Include="data\gis_osm_roads_free_1.prj" />
     <Content Include="data\gis_osm_roads_free_1.shp" />
     <Content Include="data\gis_osm_roads_free_1.shx" />
-    <Content Include="data\meath\meath_201909_SplitsMissingEdgesUpdates_637213492303800075_full.txt" />
-    <Content Include="data\meath\meath_201909_SplitsMissingEdgesUpdates_637213492303800075_rs.txt" />
-    <Content Include="data\mod_spatialite-NG-win-amd64\libfreexl-1.dll" />
-    <Content Include="data\mod_spatialite-NG-win-amd64\libgcc_s_seh-1.dll" />
-    <Content Include="data\mod_spatialite-NG-win-amd64\libgeos-3-6-2.dll" />
-    <Content Include="data\mod_spatialite-NG-win-amd64\libgeos_c-1.dll" />
-    <Content Include="data\mod_spatialite-NG-win-amd64\libiconv-2.dll" />
-    <Content Include="data\mod_spatialite-NG-win-amd64\liblzma-5.dll" />
-    <Content Include="data\mod_spatialite-NG-win-amd64\libproj-13.dll" />
-    <Content Include="data\mod_spatialite-NG-win-amd64\librttopo-1.dll" />
-    <Content Include="data\mod_spatialite-NG-win-amd64\libsqlite3-0.dll" />
-    <Content Include="data\mod_spatialite-NG-win-amd64\libstdc++-6.dll" />
-    <Content Include="data\mod_spatialite-NG-win-amd64\libwinpthread-1.dll" />
-    <Content Include="data\mod_spatialite-NG-win-amd64\libxml2-2.dll" />
-    <Content Include="data\mod_spatialite-NG-win-amd64\mod_spatialite.dll" />
-    <Content Include="data\mod_spatialite-NG-win-amd64\sqlite3.exe" />
-    <Content Include="data\mod_spatialite-NG-win-amd64\zlib1.dll" />
     <Content Include="data\osm_ireland.dat" />
     <Content Include="data\osm_ireland_no_lookup.dat" />
     <Content Include="data\tipperary.txt" />
-    <Content Include="data\workshop3\crt_subset.sqlite" />
     <Content Include="docs\introduction.rst" />
     <Content Include="docs\network_loading.rst" />
     <Content Include="docs\self_loops.rst">
       <SubType>Code</SubType>
     </Content>
     <Content Include="README.rst" />
-    <Content Include="requirements.txt">
-      <SubType>Code</SubType>
-    </Content>
-    <Content Include="scripts\ogr.ps1">
-      <SubType>Code</SubType>
-    </Content>
-    <Content Include="scripts\workshop3\create_point_table.sql" />
-    <Content Include="scripts\workshop3\create_line_table.sql" />
-    <Content Include="scripts\workshop3\notes.rst">
-      <SubType>Code</SubType>
-    </Content>
-    <Content Include="scripts\workshop3\snap_point_to_point.sql" />
-    <Content Include="scripts\workshop3\snap_point_to_line.sql" />
-    <Content Include="setup.ps1">
+    <Content Include="requirements-dev.txt">
       <SubType>Code</SubType>
     </Content>
   </ItemGroup>
   <ItemGroup>
     <Interpreter Include="C:\VirtualEnvs\wayfarer\">
       <Id>wayfarer</Id>
-      <Version>2.7</Version>
-      <Description>wayfarer (Python 2.7 (64-bit))</Description>
-      <InterpreterPath>Scripts\python.exe</InterpreterPath>
-      <WindowsInterpreterPath>Scripts\pythonw.exe</WindowsInterpreterPath>
-      <PathEnvironmentVariable>PYTHONPATH</PathEnvironmentVariable>
-      <Architecture>X64</Architecture>
-    </Interpreter>
-    <Interpreter Include="wayfarer-venv\">
-      <Id>wayfarer-venv</Id>
-      <Version>3.7</Version>
-      <Description>wayfarer-venv (Python 3.7 (64-bit))</Description>
+      <Version>3.10</Version>
+      <Description>wayfarer (Python 3.10 (64-bit))</Description>
       <InterpreterPath>Scripts\python.exe</InterpreterPath>
       <WindowsInterpreterPath>Scripts\pythonw.exe</WindowsInterpreterPath>
       <PathEnvironmentVariable>PYTHONPATH</PathEnvironmentVariable>
