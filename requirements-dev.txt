@@ -1,4 +1,4 @@
-networkx==2.4
+networkx==2.6.3
 pytest
 pytest-benchmark
 flake8
