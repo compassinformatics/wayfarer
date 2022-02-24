@@ -1,0 +1,7 @@
+networkx==2.4
+pytest
+pytest-benchmark
+flake8
+black
+#shapely
+Jinja2
