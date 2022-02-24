@@ -16,7 +16,7 @@ def test_get_path_ends():
 
     ordered_edges = routing.find_ordered_path(edges)
     start_node, end_node = routing.get_path_ends(ordered_edges)
-    assert (start_node, end_node) == (0, 3)
+    assert sorted((start_node, end_node)) == sorted((0, 3))
 
     # assert 2, 0 == (2,4) # WARNING will always return True! As interpreted as assert (2, 0) # True
 
@@ -35,7 +35,7 @@ def test_get_path_ends2():
 
     ordered_edges = routing.find_ordered_path(edges)
     start_node, end_node = routing.get_path_ends(ordered_edges)
-    assert (start_node, end_node) == (0, 3)
+    assert sorted((start_node, end_node)) == sorted((0, 3))
 
 
 def test_get_path_ends3():
@@ -53,7 +53,7 @@ def test_get_path_ends3():
     ordered_edges = routing.find_ordered_path(edges)
     start_node, end_node = routing.get_path_ends(ordered_edges)
     print((start_node, end_node))
-    assert (start_node, end_node) == (0, 3)
+    assert sorted((start_node, end_node)) == sorted((0, 3))
 
 
 if __name__ == "__main__":
