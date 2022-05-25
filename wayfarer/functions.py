@@ -433,7 +433,7 @@ def get_source_edges(net):
 def get_edges(net, nodes):
     """
     Get all the edges in the network that touch the nodes in the
-    nodes list
+    nodes list. Note only works with DiGraph or MultiDiGraph.
 
     Args:
         net (object): a networkx network
