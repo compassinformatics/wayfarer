@@ -132,13 +132,19 @@ def load_network(
     length_field=LENGTH_FIELD,
     use_reverse_lookup=True,
     graph_type=networkx.MultiGraph,
+    skip_errors=False,
+    strip_properties=False
 ):
     """
     Load a network into a networkx network object
     from recs of type __geo_interface__
+
+    strip_properties can be used to reduce the size of the network file by only
+    retaining the properties required to run routing
     """
 
     net = create_graph(use_reverse_lookup, graph_type)
+    error_count = 0
 
     for r in recs:
 
@@ -147,11 +153,15 @@ def load_network(
         coords = geom["coordinates"]
 
         if geom["type"] != "LineString":
-            raise ValueError(
-                "The geometry type {} is not supported - only LineString can be used".format(
-                    geom["type"]
+            if skip_errors == True:
+                error_count += 1
+                continue
+            else:
+                raise ValueError(
+                    "The geometry type {} is not supported - only LineString can be used".format(
+                        geom["type"]
+                    )
                 )
-            )
 
         properties = r["properties"]
 
@@ -178,8 +188,17 @@ def load_network(
             NODEID_TO_FIELD: end_node,
         }
 
-        properties.update(network_attributes)
+        # only use fields required for routing
+        if strip_properties == True:
+            properties = network_attributes
+        else:
+            properties.update(network_attributes)
 
         add_edge(net, properties)
+
+    if error_count > 0:
+        logging.warning(
+            "{} MultiLineString features were ignored".format(error_count)
+        )
 
     return net
