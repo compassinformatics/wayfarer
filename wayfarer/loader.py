@@ -153,7 +153,7 @@ def load_network(
         coords = geom["coordinates"]
 
         if geom["type"] != "LineString":
-            if skip_errors == True:
+            if skip_errors is True:
                 error_count += 1
                 continue
             else:
@@ -189,7 +189,7 @@ def load_network(
         }
 
         # only use fields required for routing
-        if strip_properties == True:
+        if strip_properties is True:
             properties = network_attributes
         else:
             properties.update(network_attributes)
