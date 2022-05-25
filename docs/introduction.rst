@@ -26,3 +26,7 @@ Additional "keys" dict associated with the graph
 Places in code to check for this and keep it updated:
 
         if "keys" in net.graph.keys():
+
+Use Cases
+---------
+
