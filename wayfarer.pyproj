@@ -34,6 +34,7 @@
     <Compile Include="scripts\benchmarking.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="scripts\convert_to_linestring.py" />
     <Compile Include="scripts\load_osm_network.py">
       <SubType>Code</SubType>
     </Compile>
