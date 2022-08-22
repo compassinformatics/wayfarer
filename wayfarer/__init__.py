@@ -27,3 +27,6 @@ if PY37:
 else:
     Edge = namedtuple("Edge", fields)
     Edge.__new__.__defaults__ = (None,) * len(Edge._fields)
+
+def to_edges(edges):
+    return [Edge(start_node=edge[0], end_node=edge[1], key=edge[2][EDGE_ID_FIELD], attributes=edge[2]) for edge in edges]

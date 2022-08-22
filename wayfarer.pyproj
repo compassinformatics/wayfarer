@@ -19,6 +19,7 @@
     <LaunchProvider>Standard Python launcher</LaunchProvider>
     <EnableNativeCodeDebugging>False</EnableNativeCodeDebugging>
     <Environment>PATH=./data/mod_spatialite-4.3.0a-win-amd64;%PATH%</Environment>
+    <SuppressConfigureTestFrameworkPrompt>true</SuppressConfigureTestFrameworkPrompt>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -29,9 +30,11 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="docs\examples\ptals.py" />
     <Compile Include="scripts\benchmarking.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="scripts\convert_to_linestring.py" />
     <Compile Include="scripts\load_osm_network.py">
       <SubType>Code</SubType>
     </Compile>
@@ -70,6 +73,7 @@
     <Folder Include=".github\workflows\" />
     <Folder Include="docs\" />
     <Folder Include="data\" />
+    <Folder Include="docs\examples\" />
     <Folder Include="scripts\" />
     <Folder Include="tests\" />
     <Folder Include="wayfarer\" />
@@ -77,6 +81,7 @@
   <ItemGroup>
     <Content Include=".github\dependabot.yml" />
     <Content Include=".github\workflows\main.yml" />
+    <Content Include="CONTRIBUTING.rst" />
     <Content Include="data\gis_osm_roads_free_1.cpg" />
     <Content Include="data\gis_osm_roads_free_1.dbf" />
     <Content Include="data\gis_osm_roads_free_1.prj" />
