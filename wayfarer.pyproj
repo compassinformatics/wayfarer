@@ -85,26 +85,17 @@
     <Content Include="data\osm_ireland.dat" />
     <Content Include="data\osm_ireland_no_lookup.dat" />
     <Content Include="data\tipperary.txt" />
+    <Content Include="docs\examples.rst" />
     <Content Include="docs\introduction.rst" />
     <Content Include="docs\network_loading.rst" />
     <Content Include="docs\self_loops.rst">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="docs\talk.rst" />
     <Content Include="README.rst" />
     <Content Include="requirements-dev.txt">
       <SubType>Code</SubType>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Interpreter Include="C:\VirtualEnvs\wayfarer\">
-      <Id>wayfarer</Id>
-      <Version>3.10</Version>
-      <Description>wayfarer (Python 3.10 (64-bit))</Description>
-      <InterpreterPath>Scripts\python.exe</InterpreterPath>
-      <WindowsInterpreterPath>Scripts\pythonw.exe</WindowsInterpreterPath>
-      <PathEnvironmentVariable>PYTHONPATH</PathEnvironmentVariable>
-      <Architecture>X64</Architecture>
-    </Interpreter>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
