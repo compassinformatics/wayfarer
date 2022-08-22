@@ -12,6 +12,9 @@ from wayfarer import functions
 import pickle
 
 
+log = logging.getLogger("wayfarer")
+
+
 class UniqueDict(dict):
     """
     A subclass of dict to ensure all keys are unique
@@ -107,7 +110,7 @@ def load_network_from_records(
             end_node = r[to_field]
             len_ = r[length_field]
         except KeyError:
-            logging.error("Available properties: {}".format(",".join(r.keys())))
+            log.error("Available properties: {}".format(",".join(r.keys())))
             raise
 
         network_attributes = {
@@ -173,7 +176,7 @@ def load_network(
         try:
             key = int(properties[key_field])
         except KeyError:
-            logging.error(
+            log.error(
                 "Available properties: {}".format(",".join(properties.keys()))
             )
             raise
@@ -197,7 +200,7 @@ def load_network(
         add_edge(net, properties)
 
     if error_count > 0:
-        logging.warning(
+        log.warning(
             "{} MultiLineString features were ignored".format(error_count)
         )
 

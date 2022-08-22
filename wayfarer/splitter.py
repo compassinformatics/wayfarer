@@ -1,3 +1,7 @@
+"""
+This module handles splitting existing edges, and creating new nodes
+to join the split edges
+"""
 import logging
 import uuid
 from collections import defaultdict, OrderedDict
@@ -54,7 +58,8 @@ def split_with_points(
     Join a list of point records to a network, creating a new "join"
     edge
 
-    recs in the form [{"EDGE_ID": 1, "POINT_ID": 1, "MEASURE": 10.0}]
+    recs is a list of dict objects that should have at a minimum the following
+    fields [{"EDGE_ID": 1, "POINT_ID": 1, "MEASURE": 10.0}]
     Any additional fields will be added as properties to the new line
     """
 

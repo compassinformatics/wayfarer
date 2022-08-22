@@ -91,6 +91,7 @@
     <Content Include="data\osm_ireland_no_lookup.dat" />
     <Content Include="data\tipperary.txt" />
     <Content Include="docs\introduction.rst" />
+    <Content Include="docs\network_comparison.rst" />
     <Content Include="docs\network_loading.rst" />
     <Content Include="docs\self_loops.rst">
       <SubType>Code</SubType>
