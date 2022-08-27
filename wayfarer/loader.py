@@ -136,7 +136,7 @@ def load_network(
     use_reverse_lookup=True,
     graph_type=networkx.MultiGraph,
     skip_errors=False,
-    strip_properties=False
+    strip_properties=False,
 ):
     """
     Load a network into a networkx network object
@@ -176,9 +176,7 @@ def load_network(
         try:
             key = int(properties[key_field])
         except KeyError:
-            log.error(
-                "Available properties: {}".format(",".join(properties.keys()))
-            )
+            log.error("Available properties: {}".format(",".join(properties.keys())))
             raise
 
         start_node = coords[0]
@@ -200,8 +198,6 @@ def load_network(
         add_edge(net, properties)
 
     if error_count > 0:
-        log.warning(
-            "{} MultiLineString features were ignored".format(error_count)
-        )
+        log.warning("{} MultiLineString features were ignored".format(error_count))
 
     return net
