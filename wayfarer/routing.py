@@ -15,7 +15,7 @@ def solve_shortest_path(
     Solve the shortest path between two nodes, returning a list of Edge objects
     """
     nodes = solve_shortest_path_from_nodes(net, [start_node, end_node], weight)
-    return functions.get_edges_from_nodes(net, nodes, with_direction=with_direction)
+    return functions.get_edges_from_nodes(net, nodes, with_direction=with_direction, length_field=weight)
 
 
 def solve_shortest_path_from_nodes(net, node_list, weight=LENGTH_FIELD):

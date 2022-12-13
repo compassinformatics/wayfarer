@@ -103,6 +103,17 @@
       <SubType>Code</SubType>
     </Content>
   </ItemGroup>
+  <ItemGroup>
+    <Interpreter Include="C:\VirtualEnvs\wayfarer\">
+      <Id>wayfarer</Id>
+      <Version>3.10</Version>
+      <Description>wayfarer (Python 3.10 (64-bit))</Description>
+      <InterpreterPath>Scripts\python.exe</InterpreterPath>
+      <WindowsInterpreterPath>Scripts\pythonw.exe</WindowsInterpreterPath>
+      <PathEnvironmentVariable>PYTHONPATH</PathEnvironmentVariable>
+      <Architecture>X64</Architecture>
+    </Interpreter>
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
        Visual Studio and specify your pre- and post-build commands in
