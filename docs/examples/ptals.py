@@ -1,4 +1,4 @@
-"""
+r"""
 C:\VirtualEnvs\wayfarer\Scripts\activate
 
 pip install numpy
@@ -14,7 +14,7 @@ Preprocessing to convert MultiLineStrings to LineStrings
 """
 import os
 import wayfarer
-from wayfarer import loader, routing, functions, Edge, EDGE_ID_FIELD
+from wayfarer import loader, routing, functions, Edge
 import fiona
 import networkx
 
@@ -58,7 +58,7 @@ def analyse_network(net):
         print("subgraph {} has {} nodes".format(i, len(nodes)))
 
         if len(nodes) < 1000:
-            edges = net.edges(nodes, data=True)
+            edges = net.edges(nodes, keys=True, data=True)
             edges = wayfarer.to_edges(edges)
             edge_ids = [edge.key for edge in edges]
             print(edge_ids)

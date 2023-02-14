@@ -4,7 +4,7 @@ from collections import namedtuple
 
 PY37 = sys.version_info.major == 3 and sys.version_info.minor >= 7
 
-__version__ = "0.8.5"
+__version__ = "0.9.0"
 
 LENGTH_FIELD = "LEN_"
 EDGE_ID_FIELD = "EDGE_ID"
@@ -21,21 +21,50 @@ SPLIT_MEASURE_FIELD = "MEASURE"
 # the Edge class
 
 fields = ("start_node", "end_node", "key", "attributes")
-defaults = (None,) * len(fields)
-if PY37:
-    Edge = namedtuple("Edge", fields, defaults=(None,) * len(fields))
-else:
-    Edge = namedtuple("Edge", fields)
-    Edge.__new__.__defaults__ = (None,) * len(Edge._fields)
+
+Edge = namedtuple("Edge", fields, defaults=(None,) * len(fields))
 
 
-def to_edges(edges):
-    return [
-        Edge(
-            start_node=edge[0],
-            end_node=edge[1],
-            key=edge[2][EDGE_ID_FIELD],
-            attributes=edge[2],
-        )
-        for edge in edges
-    ]
+def to_edge(edge: tuple) -> Edge:
+    """
+    Convert a tuple into an Edge namedtuple
+
+    >>> to_edge((0, 1, 1, {"LEN_": 10}))
+    Edge(start_node=0, end_node=1, key=1, attributes={'LEN_': 10})
+
+    >>> to_edge((0, 1, 1))
+    Edge(start_node=0, end_node=1, key=1, attributes=None)
+    """
+    assert len(edge) >= 3  # edges must have at least a key
+
+    # attributes will be None if tuple is 3 in length
+    if len(edge) == 3:
+        attributes = None
+    else:
+        attributes = edge[3]
+
+    return Edge(
+        start_node=edge[0],
+        end_node=edge[1],
+        key=edge[2],
+        attributes=attributes,
+    )
+
+
+def to_edges(edges: tuple) -> list[Edge]:
+    """
+    Convert a list of tuples to a list of Edges
+
+    >>> tuples = [(0, 1, 1, {"LEN_": 10}), (1, 2, 2, {"LEN_": 20})]
+    >>> to_edges(tuples)
+    [Edge(start_node=0, end_node=1, key=1, attributes={'LEN_': 10}), \
+Edge(start_node=1, end_node=2, key=2, attributes={'LEN_': 20})]
+    """
+    return [to_edge(edge) for edge in edges]
+
+
+if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
+    print("Done!")

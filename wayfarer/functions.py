@@ -1,8 +1,12 @@
+"""
+This module contains functions related to networks and routing
+"""
 import itertools
 import copy
 import logging
 from collections import OrderedDict
 import networkx
+from wayfarer import loops
 
 
 from wayfarer import (
@@ -13,27 +17,44 @@ from wayfarer import (
     Edge,
 )
 
-try:
-    from itertools import izip as zip
-except ImportError:  # will be 3.x series
-    pass
-
 
 log = logging.getLogger("wayfarer")
 
 
-def pairwise(iterable):
+def pairwise(iterable) -> tuple:
     """
     Loops through the iterable, returning adjacent pairs
     each time. Useful for returning point coordinates.
-    "s -> (s0,s1), (s1,s2), (s2, s3), ..."
+
+    >>> list(pairwise((0, 10, 20, 30)))
+    [(0, 10), (10, 20), (20, 30)]
     """
     a, b = itertools.tee(iterable)
     next(b, None)
     return zip(a, b)
 
 
-def add_edge(net, start_node, end_node, key, attributes):
+def edges_to_graph(edges: list[Edge]) -> networkx.MultiGraph:
+    """
+    Utility function to create a new MultiGrpah based on a list of edges
+
+    edges = [Edge(0, 1), Edge(1, 2)]
+    net = functions.edges_to_graph(edges)
+    """
+    net = networkx.MultiGraph()
+
+    for edge in edges:
+        if len(edge) > 2:
+            key = edge[2]
+        else:
+            key = None
+
+        net.add_edge(edge[0], edge[1], key=key)
+
+    return net
+
+
+def add_edge(net, start_node, end_node, key, attributes) -> None:
     """
     When adding an edge to a network, nodes are automatically
     added
@@ -45,7 +66,9 @@ def add_edge(net, start_node, end_node, key, attributes):
         net.graph["keys"][key] = (start_node, end_node)
 
 
-def get_edge_by_key(net, key, with_data=True, with_direction=False):
+def get_edge_by_key(
+    net, key, with_data: bool = True, with_direction: bool = False
+) -> Edge:
     """
     Go through all edge property dicts until the relevant key is found
     Iterator faster than list comprehension
@@ -81,7 +104,7 @@ def get_edge_by_key(net, key, with_data=True, with_direction=False):
     return edge
 
 
-def get_edge_by_attribute(net, value, attribute_field):
+def get_edge_by_attribute(net, attribute_field: str, value) -> Edge:
     """
     Go through all edge property dicts until the relevant attribute is found
     Return an iterator
@@ -341,7 +364,7 @@ def get_unattached_node(net, edge):
     elif end_degrees == 1:
         unattached_node = end_node
     else:
-        if has_loop(net):
+        if loops.has_loop(net):
             log.debug("The network is a loop")
             # return arbitrary node in this case
             unattached_node = start_node
@@ -350,18 +373,6 @@ def get_unattached_node(net, edge):
             unattached_node = None
 
     return unattached_node
-
-
-def has_loop(net):
-    """
-    Check if the network is a loop
-    """
-
-    try:
-        networkx.algorithms.cycles.find_cycle(net)
-        return True
-    except networkx.exception.NetworkXNoCycle:
-        return False
 
 
 def get_sink_nodes(net):
@@ -454,3 +465,67 @@ def get_edges(net, nodes):
             end_edges.update(edges)
 
     return end_edges
+
+
+def get_ordered_end_nodes(edges: list[Edge], end_nodes: list):
+    """
+    Ensures the end nodes are returned in the same order as the input edges
+
+    >>> edges = [Edge(1 , 2), Edge(1, 0)]
+    >>> nodes = [0, 1]
+    >>> get_ordered_end_nodes(edges, nodes)
+    [1, 0]
+    """
+
+    # create a list of nodes from edges
+    edge_nodes = [(e[0], e[1]) for e in edges]
+    edge_nodes = list(sum(edge_nodes, ()))
+
+    # sort the end nodes by their index in this list
+    end_nodes.sort(key=lambda n: edge_nodes.index(n))
+    return end_nodes
+
+
+def get_end_nodes(edges, ordered: bool = True) -> list:
+    """
+    Find the end nodes of a graph
+
+    >>> edges = [Edge(0 , 1), Edge(1, 2)]
+    >>> get_end_nodes(edges)
+    [0, 2]
+    """
+
+    net = edges_to_graph(edges)
+    out_degree = dict(net.degree())
+
+    for n in net.nodes():
+        log.debug(("Node connections for {}: {}".format(n, out_degree[n])))
+
+    end_nodes = [n for n in out_degree if out_degree[n] == 1]
+
+    if ordered:
+        end_nodes = get_ordered_end_nodes(edges, end_nodes)
+
+    return end_nodes
+
+
+def get_multiconnected_nodes(edges, connections=2):
+    """
+    Get all nodes which have at least n connections
+
+    >>> edges = [Edge(0 , 1), Edge(1, 2)]
+    >>> get_multiconnected_nodes(edges, connections=2)
+    [1]
+    """
+
+    net = edges_to_graph(edges)
+    out_degree = dict(net.degree())
+    multiconnected_nodes = [n for n in out_degree if out_degree[n] >= connections]
+    return multiconnected_nodes
+
+
+if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
+    print("Done!")

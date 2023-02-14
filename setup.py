@@ -19,8 +19,6 @@ setup(
         # See https://pypi.python.org/pypi?%3Aaction=list_classifiers
         "Development Status :: 4 - Beta",
         "License :: OSI Approved :: MIT License",
-        "Programming Language :: Python :: 2.7",
-        "Programming Language :: Python :: 3.6",
         "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
@@ -31,6 +29,6 @@ setup(
     author_email="sgirvin@compass.ie",
     license="MIT",
     packages=["wayfarer"],
-    install_requires=["networkx>=2.2"],
+    install_requires=["networkx>=3.0"],
     zip_safe=False,
 )

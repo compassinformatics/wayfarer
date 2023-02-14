@@ -30,7 +30,7 @@ def test_split_network_edge(use_reverse_lookup):
     assert len(net.edges()) == 4
 
     # the split edges no longer have the EdgeId as a key
-    split_edges = functions.get_edge_by_attribute(net, edge_id_to_split, "EDGE_ID")
+    split_edges = functions.get_edge_by_attribute(net, "EDGE_ID", edge_id_to_split)
     split_edges = list(split_edges)
     assert len(split_edges) == 2
 

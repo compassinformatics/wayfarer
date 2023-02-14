@@ -4,7 +4,7 @@ pytest -v tests/test_functions.py
 
 import logging
 import pytest
-from wayfarer import loader, functions
+from wayfarer import loader, functions, Edge
 import networkx
 
 
@@ -39,7 +39,7 @@ def test_get_multiple_edges_by_attribute():
     net.add_edge(0, 0, key=1, **{"EDGE_ID": 1, "LEN_": 100})
     net.add_edge(0, 0, key=2, **{"EDGE_ID": 1, "LEN_": 100})
 
-    edges = list(functions.get_edge_by_attribute(net, 1, "EDGE_ID"))
+    edges = list(functions.get_edge_by_attribute(net, "EDGE_ID", 1))
     assert edges == [
         (0, 0, 1, {"EDGE_ID": 1, "LEN_": 100}),
         (0, 0, 2, {"EDGE_ID": 1, "LEN_": 100}),
@@ -251,8 +251,22 @@ def test_get_unattached_node2():
     assert n == 3
 
 
+def test_get_multiconnected_nodes():
+
+    edges = [Edge(0, 1), Edge(1, 2)]
+    nodes = functions.get_multiconnected_nodes(edges, connections=2)
+    assert nodes == [1]
+
+
+def testget_ordered_end_nodes():
+
+    edges = [Edge(1, 2), Edge(0, 1)]
+    nodes = [0, 1]
+    end_nodes = functions.get_ordered_end_nodes(edges, nodes)
+    assert end_nodes == [1, 0]
+
+
 if __name__ == "__main__":
     logging.basicConfig(level=logging.DEBUG)
-    # test_get_edge_by_key(True)
-    test_get_unattached_node2()
+    testget_ordered_end_nodes()
     print("Done!")

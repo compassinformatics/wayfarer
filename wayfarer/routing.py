@@ -1,7 +1,7 @@
 import logging
 import itertools
 import networkx
-from wayfarer import functions, LENGTH_FIELD
+from wayfarer import functions, LENGTH_FIELD, Edge
 from networkx.algorithms import eulerian_path
 
 
@@ -9,16 +9,18 @@ log = logging.getLogger("wayfarer")
 
 
 def solve_shortest_path(
-    net, start_node, end_node, with_direction=True, weight=LENGTH_FIELD
+    net, start_node, end_node, with_direction: bool = True, weight: str = LENGTH_FIELD
 ):
     """
     Solve the shortest path between two nodes, returning a list of Edge objects
     """
     nodes = solve_shortest_path_from_nodes(net, [start_node, end_node], weight)
-    return functions.get_edges_from_nodes(net, nodes, with_direction=with_direction, length_field=weight)
+    return functions.get_edges_from_nodes(
+        net, nodes, with_direction=with_direction, length_field=weight
+    )
 
 
-def solve_shortest_path_from_nodes(net, node_list, weight=LENGTH_FIELD):
+def solve_shortest_path_from_nodes(net, node_list, weight: str = LENGTH_FIELD):
     """
     Return a list of nodes found by solving from each node in node_list to
     the next
@@ -42,8 +44,12 @@ def solve_shortest_path_from_nodes(net, node_list, weight=LENGTH_FIELD):
     return nodes_in_path
 
 
+def solve_shortest_path_from_edges():
+    pass
+
+
 def solve_matching_path(
-    net, start_node, end_node, distance=0, cutoff=10, include_key=None
+    net, start_node, end_node, distance: int = 0, cutoff: int = 10, include_key=None
 ):
     """
     Return the path between the nodes that best matches the
@@ -98,7 +104,7 @@ def solve_matching_path(
     return edges
 
 
-def solve_matching_path_from_nodes(net, node_list, distance):
+def solve_matching_path_from_nodes(net, node_list, distance: (float | int)):
     """
     From a list of unordered nodes find the longest path that connects all nodes
     Then rerun the solve from the start to the end of the path getting a path
@@ -136,16 +142,16 @@ def solve_matching_path_from_nodes(net, node_list, distance):
     return solve_matching_path(net, start_node, end_node, distance)
 
 
-def create_subnet(edges):
-    """
-    Create a subnetwork from an edge list
-    """
-    subnet = networkx.MultiGraph()
+# def create_subnet(edges) -> networkx.MultiGraph:
+#    """
+#    Create a subnetwork from an edge list
+#    """
+#    subnet = networkx.MultiGraph()
 
-    for edge in edges:
-        subnet.add_edge(edge.start_node, edge.end_node, edge.key)
+#    for edge in edges:
+#        subnet.add_edge(edge.start_node, edge.end_node, edge.key)
 
-    return subnet
+#    return subnet
 
 
 def get_path_ends(edges):
@@ -159,7 +165,7 @@ def get_path_ends(edges):
         single_edge = edges[0]
         return single_edge.start_node, single_edge.end_node
 
-    subnet = create_subnet(edges)
+    subnet = functions.edges_to_graph(edges)
 
     start_edge = edges[0]
     end_edge = edges[-1]
@@ -170,7 +176,7 @@ def get_path_ends(edges):
     return start_node, end_node
 
 
-def solve_all_simple_paths(net, start_node, end_node, cutoff=10):
+def solve_all_simple_paths(net, start_node, end_node, cutoff: int = 10) -> list:
     """
     A simple path does not have any repeated nodes
     Cut-off will limit how many nodes to search for
@@ -231,7 +237,7 @@ def solve_all_shortest_paths(net, start_node, end_node):
     return all_shortest_paths
 
 
-def find_ordered_path(edges, start_node=None):
+def find_ordered_path(edges: list[Edge], start_node=None, with_direction: bool = True):
     """
      Given a collection of randomly ordered connected edges, find the full
      path, covering all edges, from one end to the other.
@@ -241,7 +247,7 @@ def find_ordered_path(edges, start_node=None):
      function from networkx
     """
 
-    subnet = create_subnet(edges)
+    subnet = functions.edges_to_graph(edges)
 
     try:
         ordered_path = list(eulerian_path(subnet, source=None, keys=True))
@@ -277,20 +283,11 @@ def find_ordered_path(edges, start_node=None):
     for p in ordered_path:
         edge_key = p[2]
         edge = next(e for e in edges if e.key == edge_key)
-        functions.add_direction_flag(p[0], p[1], edge.attributes)
+        if with_direction:
+            functions.add_direction_flag(p[0], p[1], edge.attributes)
         ordered_edges.append(edge)
 
     return ordered_edges
-
-
-def find_self_loop(net, node_id):
-    """
-    For a node_id check to see if any edges start
-    and end at this node
-    """
-    return functions.get_edges_from_nodes(
-        net, [(node_id, node_id)], with_direction=True
-    )
 
 
 if __name__ == "__main__":

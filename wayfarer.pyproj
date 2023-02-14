@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>f8ac0630-98af-462b-b7ee-5688d6183c85</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>tests\test_routing.py</StartupFile>
+    <StartupFile>tests\test_routing_ordered_path.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -35,6 +35,8 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="scripts\convert_to_linestring.py" />
+    <Compile Include="scripts\create_network_images.py" />
+    <Compile Include="scripts\dynamic_splitting.py" />
     <Compile Include="scripts\load_osm_network.py">
       <SubType>Code</SubType>
     </Compile>
@@ -45,10 +47,11 @@
     <Compile Include="tests\helper.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="tests\test_routing.py" />
+    <Compile Include="tests\networks.py" />
     <Compile Include="tests\test_functions.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="tests\test_routing_ordered_path.py" />
     <Compile Include="tests\test_splitting.py">
       <SubType>Code</SubType>
     </Compile>
@@ -74,11 +77,13 @@
     <Folder Include="docs\" />
     <Folder Include="data\" />
     <Folder Include="docs\examples\" />
+    <Folder Include="docs\images\" />
     <Folder Include="scripts\" />
     <Folder Include="tests\" />
     <Folder Include="wayfarer\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include=".flake8" />
     <Content Include=".github\dependabot.yml" />
     <Content Include=".github\workflows\main.yml" />
     <Content Include="CONTRIBUTING.rst" />
@@ -98,8 +103,10 @@
       <SubType>Code</SubType>
     </Content>
     <Content Include="docs\talk.rst" />
+    <Content Include="dev_setup.ps1" />
+    <Content Include="run_local.ps1" />
     <Content Include="README.rst" />
-    <Content Include="requirements-dev.txt">
+    <Content Include="requirements.txt">
       <SubType>Code</SubType>
     </Content>
   </ItemGroup>
