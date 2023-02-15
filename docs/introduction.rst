@@ -37,3 +37,9 @@ Edge Class
 
     >>> to_edge((0, 1, 1, {"LEN_": 10}))
     Edge(start_node=0, end_node=1, key=1, attributes={'LEN_': 10})
+
+
+Requires Python 3.10
+Use of annotations:
+
+| was added in python 3.10, so not available in python 3.8.

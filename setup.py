@@ -19,8 +19,7 @@ setup(
         # See https://pypi.python.org/pypi?%3Aaction=list_classifiers
         "Development Status :: 4 - Beta",
         "License :: OSI Approved :: MIT License",
-        "Programming Language :: Python :: 3.9",  # minimum required due to use of annotations
-        "Programming Language :: Python :: 3.10",
+        "Programming Language :: Python :: 3.10",  # minimum required due to use of annotations
         "Intended Audience :: Developers",
     ],
     url="http://www.compass.ie",
