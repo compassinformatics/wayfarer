@@ -3,6 +3,11 @@ import itertools
 import networkx
 from wayfarer import functions, LENGTH_FIELD, Edge
 from networkx.algorithms import eulerian_path
+from networkx import NetworkXNoPath
+
+
+class MultipleEnds(Exception):
+    pass
 
 
 log = logging.getLogger("wayfarer")
@@ -44,8 +49,83 @@ def solve_shortest_path_from_nodes(net, node_list, weight: str = LENGTH_FIELD):
     return nodes_in_path
 
 
-def solve_shortest_path_from_edges():
-    pass
+def solve_shortest_path_from_edges(net, edge_id_list):
+    """
+    Return a path routing from edge to edge, rather than
+    from node to node
+    """
+
+    log.debug(f"Edge ids used for path solve: {edge_id_list}")
+
+    # remove any duplicates
+    edge_id_list = functions.get_unique_ordered_list(edge_id_list)
+
+    edges = []
+    previous_edge_nodes = []
+
+    for edge_id in edge_id_list:
+        edge = functions.get_edge_by_key(net, edge_id)
+
+        end_nodes = [edge.start_node, edge.end_node]
+
+        if previous_edge_nodes:
+            node_list = previous_edge_nodes + end_nodes
+        else:
+            node_list = end_nodes
+
+        # set the edge_id in the list to have a length of 0 to ensure it is
+        # part of the route if there are alternative paths
+
+        original_length = edge.attributes[LENGTH_FIELD]
+        edge.attributes[LENGTH_FIELD] = 0
+        log.debug(
+            f"Updated edge id {edge_id} to have length 0 from {original_length:.2f}"
+        )
+
+        if edge.start_node == edge.end_node:
+            # self-loop
+            edges += functions.get_edges_from_nodes(net, end_nodes)
+        else:
+            try:
+                nodes = solve_shortest_path_from_nodes(net, node_list)
+            except NetworkXNoPath as ex:
+                log.warning(f"No path found using node_list: {node_list}")
+                log.warning(ex)
+                raise
+
+            # reset original length - note not in original implementation
+            edge.attributes[LENGTH_FIELD] = original_length
+            edges += functions.get_edges_from_nodes(net, nodes)
+
+        if sorted(previous_edge_nodes) == sorted(end_nodes):
+            # a loop of two edges - get all edges between the nodes
+            loop_edges = functions.get_edges_from_node_pair(
+                net, edge.start_node, edge.end_node
+            )
+            for loop_edge in loop_edges:
+                edges.append(loop_edge)
+
+        previous_edge_nodes = end_nodes
+
+    # edge ids are not unique at this step - due to the case with doubling-back see test_simple_reversed
+    unique_edge_ids = functions.get_unique_ordered_list((e.key for e in edges))
+
+    assert len(unique_edge_ids) <= len(edges)
+
+    # the solve should have <= all edges clicked on
+    assert len(edge_id_list) <= len(unique_edge_ids)
+    # all edges the user clicked on should be returned in the solve
+    assert set(edge_id_list).issubset(unique_edge_ids)
+
+    solved_edges = []
+
+    for edge_id in unique_edge_ids:
+        edge = [e for e in edges if e.key == edge_id][
+            0
+        ]  # get the first edge from full list of edges
+        solved_edges.append(edge)
+
+    return find_ordered_path(solved_edges)
 
 
 def solve_matching_path(
@@ -237,7 +317,9 @@ def solve_all_shortest_paths(net, start_node, end_node):
     return all_shortest_paths
 
 
-def find_ordered_path(edges: list[Edge], start_node=None, with_direction: bool = True):
+def find_ordered_path(
+    edges: list[Edge], start_node=None, with_direction: bool = True
+) -> list[Edge]:
     """
      Given a collection of randomly ordered connected edges, find the full
      path, covering all edges, from one end to the other.

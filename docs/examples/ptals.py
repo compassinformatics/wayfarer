@@ -14,7 +14,7 @@ Preprocessing to convert MultiLineStrings to LineStrings
 """
 import os
 import wayfarer
-from wayfarer import loader, routing, functions, Edge
+from wayfarer import loader, routing, functions
 import fiona
 import networkx
 

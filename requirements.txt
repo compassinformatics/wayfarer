@@ -6,3 +6,4 @@ black
 coveralls
 Jinja2
 matplotlib
+mypi

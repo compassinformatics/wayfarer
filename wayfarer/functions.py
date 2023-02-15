@@ -34,6 +34,13 @@ def pairwise(iterable) -> tuple:
     return zip(a, b)
 
 
+def get_unique_ordered_list(items: list):
+    """
+    An order-preserving function to get a unique list of edges
+    """
+    return list(dict.fromkeys(items))
+
+
 def edges_to_graph(edges: list[Edge]) -> networkx.MultiGraph:
     """
     Utility function to create a new MultiGrpah based on a list of edges
@@ -228,7 +235,7 @@ def get_path_length(path_edges):
     return sum([edge.attributes[LENGTH_FIELD] for edge in path_edges])
 
 
-def get_edges_from_node_pair(net, start_node, end_node):
+def get_edges_from_node_pair(net, start_node: (int | str), end_node: (int | str)):
     """
     Get all edges between two nodes
 
@@ -247,8 +254,12 @@ def get_edges_from_node_pair(net, start_node, end_node):
 
 
 def get_edges_from_nodes(
-    net, node_list, with_direction=False, length_field=LENGTH_FIELD, return_unique=True
-):
+    net,
+    node_list,
+    with_direction: bool = False,
+    length_field: str = LENGTH_FIELD,
+    return_unique: bool = True,
+) -> list[Edge]:
     """
     From a list of nodes, create pairs and then get the shortest edge between the two nodes
     Set with_direction to add a new attribute to the edge to show if it is matching the

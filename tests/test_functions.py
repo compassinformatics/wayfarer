@@ -4,7 +4,7 @@ pytest -v tests/test_functions.py
 
 import logging
 import pytest
-from wayfarer import loader, functions, Edge
+from wayfarer import loader, functions, Edge, WITH_DIRECTION_FIELD
 import networkx
 
 
@@ -258,7 +258,7 @@ def test_get_multiconnected_nodes():
     assert nodes == [1]
 
 
-def testget_ordered_end_nodes():
+def test_get_ordered_end_nodes():
 
     edges = [Edge(1, 2), Edge(0, 1)]
     nodes = [0, 1]
@@ -266,7 +266,41 @@ def testget_ordered_end_nodes():
     assert end_nodes == [1, 0]
 
 
+def test_get_edges_from_nodes():
+
+    net = networkx.MultiGraph()
+
+    net.add_edge(0, 1, key="A", **{"EDGE_ID": "A", "LEN_": 100})
+    net.add_edge(
+        1, 2, key="B", **{"EDGE_ID": "B", "LEN_": 100, "NODEID_FROM": 1, "NODEID_TO": 2}
+    )
+    net.add_edge(2, 3, key="C", **{"EDGE_ID": "C", "LEN_": 100})
+
+    node_list = [1, 2]
+    edges = functions.get_edges_from_nodes(net, node_list)
+    assert len(edges) == 1
+    edges[0].key == "B"
+
+    edges = functions.get_edges_from_nodes(net, [2, 1], with_direction=True)
+    assert len(edges) == 1
+    assert edges[0].key == "B"
+    assert edges[0].attributes[WITH_DIRECTION_FIELD] is False
+
+
+def test_edges_to_graph():
+
+    edges = []
+    net = functions.edges_to_graph(edges)
+    assert len(net.edges()) == 0
+
+    edges = [Edge(0, 1, key=1), Edge(1, 2, key=2)]
+    net = functions.edges_to_graph(edges)
+    assert len(net.edges()) == 2
+    assert list(net.edges(keys=True)) == [(0, 1, 1), (1, 2, 2)]
+
+
 if __name__ == "__main__":
     logging.basicConfig(level=logging.DEBUG)
-    testget_ordered_end_nodes()
+    test_get_edges_from_nodes()
+    test_edges_to_graph()
     print("Done!")

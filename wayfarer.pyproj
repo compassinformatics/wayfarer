@@ -48,6 +48,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="tests\networks.py" />
+    <Compile Include="tests\test_loops.py" />
     <Compile Include="tests\test_functions.py">
       <SubType>Code</SubType>
     </Compile>
@@ -61,6 +62,7 @@
     <Compile Include="wayfarer\functions.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="wayfarer\loops.py" />
     <Compile Include="wayfarer\merger.py">
       <SubType>Code</SubType>
     </Compile>
@@ -86,6 +88,7 @@
     <Content Include=".flake8" />
     <Content Include=".github\dependabot.yml" />
     <Content Include=".github\workflows\main.yml" />
+    <Content Include=".mypy.ini" />
     <Content Include="CONTRIBUTING.rst" />
     <Content Include="data\gis_osm_roads_free_1.cpg" />
     <Content Include="data\gis_osm_roads_free_1.dbf" />
@@ -96,6 +99,17 @@
     <Content Include="data\osm_ireland_no_lookup.dat" />
     <Content Include="data\tipperary.txt" />
     <Content Include="docs\examples.rst" />
+    <Content Include="docs\images\circle_network.png" />
+    <Content Include="docs\images\double_loop_network.png" />
+    <Content Include="docs\images\dual_path_network.png" />
+    <Content Include="docs\images\loop_middle_network.png" />
+    <Content Include="docs\images\p_network.png" />
+    <Content Include="docs\images\reversed_loop_network.png" />
+    <Content Include="docs\images\reverse_network.png" />
+    <Content Include="docs\images\simple_network.png" />
+    <Content Include="docs\images\single_edge_loop_network.png" />
+    <Content Include="docs\images\triple_loop_network.png" />
+    <Content Include="docs\images\t_network.png" />
     <Content Include="docs\introduction.rst" />
     <Content Include="docs\network_comparison.rst" />
     <Content Include="docs\network_loading.rst" />
