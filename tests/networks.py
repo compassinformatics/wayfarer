@@ -162,6 +162,7 @@ def bottle_network():
     """
     Create a bottle-shaped network
     For testing creating a specific "loop" segment (lollipop route)
+    Same as dual_network above
     """
 
     data = [

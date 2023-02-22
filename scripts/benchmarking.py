@@ -1,6 +1,8 @@
 r"""
 Load a large file and check performance
 Uses pytest-benchmark
+First requires the test dat files to be created by unzipping gis_osm_roads_free_1.zip
+and running load_osm_network.py
 
 cd D:/Github/Python/wayfarer
 ./wayfarer-venv/Scripts/activate.ps1

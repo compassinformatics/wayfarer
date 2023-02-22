@@ -23,9 +23,13 @@ jobs:
           pip install .
       - name: Lint with flake8
         run: |
-          flake8 wayfarer --max-line-length=160
-          flake8 scripts --max-line-length=160
-          flake8 --ignore=E501,E121,E122,E123,E126,E127,E128 tests
+          flake8 .
+      - name: Check types with mypy
+        run: |
+          mypy wayfarer tests
+      - name: Test doctests with pytest
+        run: |
+          pytest --doctest-modules
       - name: Test with pytest
         run: |
           pytest --cov wayfarer --cov-report= tests/

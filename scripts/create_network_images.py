@@ -54,6 +54,7 @@ def create_network_images(out_folder):
         "loop_middle_network": networks.loop_middle_network,
         "triple_loop_network": networks.triple_loop_network,
         "reversed_loop_network": networks.reversed_loop_network,
+        "bottle_network": networks.bottle_network,
     }
 
     for name, func in network_functions.items():

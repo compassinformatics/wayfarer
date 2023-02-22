@@ -288,7 +288,7 @@ def test_circle_network():
     assert [e.key for e in edges] == [2, 3, 4, 1]
 
 
-def xtest_dual_path():
+def test_dual_path():
 
     net = networks.dual_path_network()
     edges = wayfarer.to_edges(net.edges(keys=True, data=True))
@@ -309,10 +309,12 @@ def xtest_dual_path():
     print([e.key for e in edges])
     assert [e.key for e in edges] == [1, 2]
 
-    edge_id_list = [1, 3]
-    edges = routing.solve_shortest_path_from_edges(net, edge_id_list)
-    print([e.key for e in edges])
-    assert [e.key for e in edges] == [1, 2]
+    # TODO fix cases below
+
+    # edge_id_list = [1, 3]
+    # edges = routing.solve_shortest_path_from_edges(net, edge_id_list)
+    # print([e.key for e in edges])
+    # assert [e.key for e in edges] == [1, 2]
 
     # edge_id_list = [1, 2, 3]
     # edges = routing.solve_shortest_path_from_edges(net, edge_id_list)
@@ -346,6 +348,64 @@ def test_loop_middle_network():
     assert [e.key for e in edges] == [1, 2, 3, 4, 5]
 
 
+def test_triple_loop_network():
+
+    net = networks.triple_loop_network()
+    edges = wayfarer.to_edges(net.edges(keys=True, data=True))
+
+    loop_nodes = loops.get_loop_nodes(edges)
+    assert loop_nodes[1] == [1, 2, 3]
+    assert loop_nodes[4] == [4, 5, 6]
+    assert loop_nodes[7] == [7, 8, 9]
+
+    end_nodes = functions.get_end_nodes(edges)
+    assert end_nodes == []
+
+    edges = routing.find_ordered_path(edges)
+    assert [edge.key for edge in edges] == [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+
+    edges = routing.solve_shortest_path(net, start_node=5, end_node=8)
+    assert [edge.key for edge in edges] == [5, 8, 9]
+
+    edge_id_list = [2, 8, 10]
+    edges = routing.solve_shortest_path_from_edges(net, edge_id_list)
+    assert [e.key for e in edges] == [2, 3, 4, 8, 9, 10]
+
+
+def test_bottle_network():
+
+    net = networks.bottle_network()
+    edges = wayfarer.to_edges(net.edges(keys=True, data=True))
+
+    loop_nodes = loops.get_loop_nodes(edges)
+    # no loops (self-loops on one node are not included)
+    assert len(loop_nodes) == 0
+
+    end_nodes = functions.get_end_nodes(edges)
+    assert end_nodes == [1]
+
+    edges = routing.find_ordered_path(edges)
+    # print([e.key for e in edges])
+    assert [edge.key for edge in edges] == [1, 2, 3]
+
+    edge_id_list = [1, 3]
+    edges = routing.solve_shortest_path_from_edges(net, edge_id_list)
+    print([e.key for e in edges])
+    assert [e.key for e in edges] == [1, 3]
+
+    # TODO fix cases below
+
+    # edge_id_list = [1, 3]
+    # edges = routing.solve_shortest_path_from_edges(net, edge_id_list)
+    # print([e.key for e in edges])
+    # assert [e.key for e in edges] == [1, 2]
+
+    # edge_id_list = [1, 2, 3]
+    # edges = routing.solve_shortest_path_from_edges(net, edge_id_list)
+    # print([e.key for e in edges])
+    # assert [e.key for e in edges] == [1, 2, 3]
+
+
 if __name__ == "__main__":
     logging.basicConfig(level=logging.DEBUG)
     # test_get_path_ends()
@@ -358,6 +418,8 @@ if __name__ == "__main__":
     # test_p_network()
     # test_double_loop_network()
     # test_circle_network()
-    test_dual_path()
+    # test_dual_path()
     # test_loop_middle_network()
+    # test_triple_loop_network()
+    test_bottle_network()
     print("Done!")

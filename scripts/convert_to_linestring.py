@@ -1,5 +1,6 @@
 """
-A script to convert MultiLineStrings to LineStrings
+wayfarer can only use LineStrings for its networks
+This helper script converts MultiLineStrings to LineStrings
 """
 
 from shapely.geometry import shape

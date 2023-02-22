@@ -2,7 +2,7 @@
 pip install numpy
 pip install fiona --extra-index-url ...
 
-REM run from root of project
+Run from root of project
 python scripts/load_osm_network.py
 """
 import fiona
