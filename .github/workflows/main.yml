@@ -1,5 +1,9 @@
 name: Test Python package
 
+# see https://stackoverflow.com/a/56422603/179520
+env:
+    PY_IGNORE_IMPORTMISMATCH: 1
+
 on: [push]
 
 jobs:
