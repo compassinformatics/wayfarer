@@ -30,7 +30,7 @@ def test_get_unique_lists():
 
 def test_get_loop_nodes():
 
-    edges = [Edge(0, 1), Edge(1, 2), Edge(2, 0)]
+    edges = [Edge(0, 1, "A", {}), Edge(1, 2, "B", {}), Edge(2, 0, "C", {})]
     loop_nodes = loops.get_loop_nodes(edges)
     assert loop_nodes == {0: [0, 1, 2]}
 

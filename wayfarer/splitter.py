@@ -106,7 +106,7 @@ def get_split_attributes(
 
     >>> atts = {"OFFSET": 10, "LEN_": 100}
     >>> get_split_attributes(atts, 50, 70)
-    {'LEN_': 20, 'OFFSET': 60}
+    {'OFFSET': 60, 'LEN_': 20}
     """
     atts = original_attributes.copy()
     atts[LENGTH_FIELD] = to_m - from_m

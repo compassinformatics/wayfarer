@@ -1,5 +1,5 @@
 import sys
-from collections import namedtuple
+from typing import NamedTuple
 
 
 PY37 = sys.version_info.major == 3 and sys.version_info.minor >= 7
@@ -20,9 +20,18 @@ SPLIT_MEASURE_FIELD = "MEASURE"
 
 # the Edge class
 
-fields = ("start_node", "end_node", "key", "attributes")
+# fields = ("start_node", "end_node", "key", "attributes")
 
-Edge = namedtuple("Edge", fields, defaults=(None,) * len(fields))
+# Edge = namedtuple("Edge", fields, defaults=(None,) * len(fields))
+
+# https://mypy.readthedocs.io/en/stable/kinds_of_types.html#named-tuples
+
+
+class Edge(NamedTuple):
+    start_node: (int | str)
+    end_node: (int | str)
+    key: (int | str)
+    attributes: dict
 
 
 def to_edge(edge: tuple) -> Edge:
@@ -33,13 +42,13 @@ def to_edge(edge: tuple) -> Edge:
     Edge(start_node=0, end_node=1, key=1, attributes={'LEN_': 10})
 
     >>> to_edge((0, 1, 1))
-    Edge(start_node=0, end_node=1, key=1, attributes=None)
+    Edge(start_node=0, end_node=1, key=1, attributes={})
     """
     assert len(edge) >= 3  # edges must have at least a key
 
     # attributes will be None if tuple is 3 in length
     if len(edge) == 3:
-        attributes = None
+        attributes = {}
     else:
         attributes = edge[3]
 

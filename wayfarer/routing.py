@@ -76,7 +76,7 @@ def solve_shortest_path_from_edges(net, edge_id_list):
         # set the edge_id in the list to have a length of 0 to ensure it is
         # part of the route if there are alternative paths
 
-        original_length = edge.attributes[LENGTH_FIELD]
+        original_length = float(edge.attributes[LENGTH_FIELD])
         edge.attributes[LENGTH_FIELD] = 0
         log.debug(
             f"Updated edge id {edge_id} to have length 0 from {original_length:.2f}"
@@ -99,23 +99,28 @@ def solve_shortest_path_from_edges(net, edge_id_list):
 
         if sorted(previous_edge_nodes) == sorted(end_nodes):
             # a loop of two edges - get all edges between the nodes
-            loop_edges = functions.get_edges_from_node_pair(
-                net, edge.start_node, edge.end_node
+            loop_edges = functions.get_edges_from_nodes(
+                net, [edge.start_node, edge.end_node]
             )
-            for loop_edge in loop_edges:
-                edges.append(loop_edge)
+            if loop_edges:
+                edges += loop_edges
 
         previous_edge_nodes = end_nodes
 
     # edge ids are not unique at this step - due to the case with doubling-back see test_simple_reversed
     unique_edge_ids = functions.get_unique_ordered_list((e.key for e in edges))
-
     assert len(unique_edge_ids) <= len(edges)
 
     # the solve should have <= all edges clicked on
     assert len(edge_id_list) <= len(unique_edge_ids)
     # all edges the user clicked on should be returned in the solve
-    assert set(edge_id_list).issubset(unique_edge_ids)
+    try:
+        assert set(edge_id_list).issubset(unique_edge_ids)
+    except AssertionError:
+        # this can occur where there are 2 edges looping on to the same node
+        # see test_dual_path
+        log.debug(f"edge_id_list: {edge_id_list} unique_edge_ids: {unique_edge_ids}")
+        raise
 
     solved_edges = []
 
@@ -125,7 +130,11 @@ def solve_shortest_path_from_edges(net, edge_id_list):
         ]  # get the first edge from full list of edges
         solved_edges.append(edge)
 
-    return find_ordered_path(solved_edges)
+    # start_key = edge_id_list[0]
+    # start_edge = functions.get_edge_by_key(net, start_key)
+    # start_node = start_edge.start_node
+
+    return find_ordered_path(solved_edges, start_node=None)
 
 
 def solve_matching_path(
@@ -184,7 +193,7 @@ def solve_matching_path(
     return edges
 
 
-def solve_matching_path_from_nodes(net, node_list, distance: (float | int)):
+def solve_matching_path_from_nodes(net, node_list, distance: int):
     """
     From a list of unordered nodes find the longest path that connects all nodes
     Then rerun the solve from the start to the end of the path getting a path
@@ -206,14 +215,14 @@ def solve_matching_path_from_nodes(net, node_list, distance: (float | int)):
     all_node_combinations = itertools.combinations(node_list, 2)
 
     for n1, n2 in all_node_combinations:
-        path_nodes = solve_shortest_path(net, [n1, n2])
+        path_nodes = solve_shortest_path(net, start_node=n1, end_node=n2)
         path_edges = functions.get_edges_from_nodes(net, path_nodes)
         if path_edges:
             all_edges.append(path_edges)
 
-    all_edges = itertools.chain(*all_edges)
+    all_edges_generator = itertools.chain(*all_edges)
     # get a unique list of edges based on key
-    unique_edges = list({v.key: v for v in all_edges}.values())
+    unique_edges = list({v.key: v for v in all_edges_generator}.values())
 
     # TODO following will not work if there is a closed loop
     full_path = find_ordered_path(unique_edges)
@@ -318,7 +327,9 @@ def solve_all_shortest_paths(net, start_node, end_node):
 
 
 def find_ordered_path(
-    edges: list[Edge], start_node=None, with_direction: bool = True
+    edges: list[Edge],
+    start_node: (int | str | None) = None,
+    with_direction: bool = True,
 ) -> list[Edge]:
     """
      Given a collection of randomly ordered connected edges, find the full
@@ -349,7 +360,7 @@ def find_ordered_path(
         end_edge = ordered_path[-1]
         end_nodes = [end_edge[0], end_edge[1]]
         if start_node in end_nodes:
-            ordered_path = reversed(ordered_path)
+            ordered_path = list(reversed(ordered_path))
         else:
             start_edge = ordered_path[0]
             start_nodes = [start_edge[0], start_edge[1]]

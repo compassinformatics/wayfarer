@@ -10,7 +10,6 @@ import networkx
 
 @pytest.mark.parametrize("use_reverse_lookup", [(True), (False)])
 def test_get_edge_by_key(use_reverse_lookup):
-
     recs = [{"EDGE_ID": 1, "LEN_": 100, "NODEID_FROM": 0, "NODEID_TO": 100}]
     net = loader.load_network_from_records(recs, use_reverse_lookup=use_reverse_lookup)
 
@@ -20,7 +19,7 @@ def test_get_edge_by_key(use_reverse_lookup):
 
     edge = functions.get_edge_by_key(net, 1, with_data=False)
 
-    assert edge == (0, 100, 1, None)
+    assert edge == (0, 100, 1, {})
 
     edge = functions.get_edge_by_key(net, 1, with_data=True)
 
@@ -33,7 +32,6 @@ def test_get_edge_by_key(use_reverse_lookup):
 
 
 def test_get_multiple_edges_by_attribute():
-
     net = networkx.MultiGraph()
 
     net.add_edge(0, 0, key=1, **{"EDGE_ID": 1, "LEN_": 100})
@@ -47,7 +45,6 @@ def test_get_multiple_edges_by_attribute():
 
 
 def test_get_single_path_from_nodes():
-
     net = networkx.MultiGraph()
 
     net.add_edge(0, 1, key=1, **{"EDGE_ID": 1, "LEN_": 100})
@@ -58,7 +55,6 @@ def test_get_single_path_from_nodes():
 
 
 def test_get_all_paths_from_nodes():
-
     net = networkx.MultiGraph()
 
     net.add_edge(0, 1, key=1, **{"EDGE_ID": 1, "LEN_": 100})
@@ -116,7 +112,6 @@ def test_get_all_complex_paths3():
 
 
 def test_get_all_paths_from_nodes_loop():
-
     net = networkx.MultiGraph()
 
     net.add_edge(0, 1, key="A", **{"EDGE_ID": "A", "LEN_": 100})
@@ -128,7 +123,6 @@ def test_get_all_paths_from_nodes_loop():
 
 
 def test_get_all_paths_from_nodes_loop2():
-
     net = networkx.MultiGraph()
 
     net.add_edge(0, 0, key="A", **{"EDGE_ID": "A", "LEN_": 100})
@@ -142,7 +136,6 @@ def test_get_all_paths_from_nodes_loop2():
 
 
 def test_get_all_paths_from_nodes_loop3():
-
     net = networkx.MultiGraph()
 
     net.add_edge(0, 1, key="A", **{"EDGE_ID": "A", "LEN_": 100})
@@ -195,7 +188,6 @@ def test_get_all_paths_from_nodes_roundabout():
 
 
 def test_get_all_paths_from_roundabout_with_loops():
-
     net = networkx.MultiGraph()
 
     net.add_edge(0, 0, key="AA", **{"EDGE_ID": "AA", "LEN_": 100})
@@ -215,7 +207,6 @@ def test_get_all_paths_from_roundabout_with_loops():
 
 
 def test_get_unattached_node():
-
     net = networkx.MultiGraph()
     edge1 = (0, 1)
     edge2 = (1, 2)
@@ -231,7 +222,6 @@ def test_get_unattached_node():
 
 
 def test_get_unattached_node2():
-
     net = networkx.MultiGraph()
     edge1 = (0, 1)
     edge2 = (1, 2)
@@ -252,22 +242,19 @@ def test_get_unattached_node2():
 
 
 def test_get_multiconnected_nodes():
-
-    edges = [Edge(0, 1), Edge(1, 2)]
+    edges = [Edge(0, 1, "A", {}), Edge(1, 2, "B", {})]
     nodes = functions.get_multiconnected_nodes(edges, connections=2)
     assert nodes == [1]
 
 
 def test_get_ordered_end_nodes():
-
-    edges = [Edge(1, 2), Edge(0, 1)]
+    edges = [Edge(1, 2, "A", {}), Edge(0, 1, "B", {})]
     nodes = [0, 1]
     end_nodes = functions.get_ordered_end_nodes(edges, nodes)
     assert end_nodes == [1, 0]
 
 
 def test_get_edges_from_nodes():
-
     net = networkx.MultiGraph()
 
     net.add_edge(0, 1, key="A", **{"EDGE_ID": "A", "LEN_": 100})
@@ -288,19 +275,64 @@ def test_get_edges_from_nodes():
 
 
 def test_edges_to_graph():
-
     edges = []
     net = functions.edges_to_graph(edges)
     assert len(net.edges()) == 0
 
-    edges = [Edge(0, 1, key=1), Edge(1, 2, key=2)]
+    edges = [Edge(0, 1, key=1, attributes={}), Edge(1, 2, key=2, attributes={})]
     net = functions.edges_to_graph(edges)
     assert len(net.edges()) == 2
     assert list(net.edges(keys=True)) == [(0, 1, 1), (1, 2, 2)]
 
 
+def test_get_shortest_edge():
+    edges = {
+        "A": {"EDGE_ID": "A", "LEN_": 100, "NODEID_FROM": 1, "NODEID_TO": 2},
+        "B": {"EDGE_ID": "B", "LEN_": 20, "NODEID_FROM": 2, "NODEID_TO": 3},
+    }
+    res = functions.get_shortest_edge(edges)
+    assert res[0] == "B"
+
+
+def test_get_shortest_edge_identical():
+    """
+    If two edges have identical lengths always
+    return the higher value of the two keys
+    """
+    edges = {
+        -1: {"EDGE_ID": 2, "LEN_": 100},
+        1: {"EDGE_ID": 1, "LEN_": 100},
+    }
+    res = functions.get_shortest_edge(edges)
+    assert res[0] == 1
+
+
+def test_get_unique_ordered_list():
+
+    lst = [2, 2, 1, 1, 4, 4, 1, 2, 3]
+    res = functions.get_unique_ordered_list(lst)
+    print(res)
+    assert res == [2, 1, 4, 3]
+
+
+def test_get_edges_from_node_pair():
+    net = networkx.MultiGraph()
+
+    net.add_edge(0, 1, key="A", val="foo")
+    net.add_edge(0, 1, key="B", val="bar")
+
+    tpls = functions.get_edges_from_node_pair(net, start_node=0, end_node=1)
+    assert tpls == {"A": {"val": "foo"}, "B": {"val": "bar"}}
+
+
 if __name__ == "__main__":
     logging.basicConfig(level=logging.DEBUG)
+    # test_get_edges_from_nodes()
+    # test_edges_to_graph()
     test_get_edges_from_nodes()
-    test_edges_to_graph()
+    # test_edges_to_graph()
+    # test_get_shortest_edge()
+    # test_get_shortest_edge_identical()
+    # test_get_unique_ordered_list()
+    test_get_edges_from_node_pair()
     print("Done!")

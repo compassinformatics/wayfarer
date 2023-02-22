@@ -37,12 +37,15 @@
     <Compile Include="scripts\convert_to_linestring.py" />
     <Compile Include="scripts\create_network_images.py" />
     <Compile Include="scripts\dynamic_splitting.py" />
+    <Compile Include="scripts\isochrones.py" />
+    <Compile Include="scripts\load_osmx_network.py" />
     <Compile Include="scripts\load_osm_network.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="scripts\ordered_path.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="scripts\pms_network.py" />
     <Compile Include="setup.py" />
     <Compile Include="tests\helper.py">
       <SubType>Code</SubType>
@@ -66,6 +69,7 @@
     <Compile Include="wayfarer\merger.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="wayfarer\osmnx_compat.py" />
     <Compile Include="wayfarer\routing.py" />
     <Compile Include="wayfarer\splitter.py">
       <SubType>Code</SubType>
@@ -113,6 +117,7 @@
     <Content Include="docs\introduction.rst" />
     <Content Include="docs\network_comparison.rst" />
     <Content Include="docs\network_loading.rst" />
+    <Content Include="docs\osmnx.rst" />
     <Content Include="docs\self_loops.rst">
       <SubType>Code</SubType>
     </Content>

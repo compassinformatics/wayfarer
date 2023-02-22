@@ -64,6 +64,7 @@ def dual_path_network():
     Network has 3 edges, 2 of which are between the same nodes
     Cannot make DOT file
     http://stackoverflow.com/questions/35007046/how-to-draw-parallel-edges-in-networkx-graphviz
+    and image doesn't show both edges
     """
 
     data = [

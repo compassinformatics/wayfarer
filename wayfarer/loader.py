@@ -38,13 +38,13 @@ def distance(p1, p2):
     return hypot(x2 - x1, y2 - y1)
 
 
-def save_network_to_file(net, filename):
+def save_network_to_file(net, filename: str):
 
     with open(filename, "wb") as f:
         pickle.dump(net, f, protocol=pickle.HIGHEST_PROTOCOL)
 
 
-def load_network_from_file(filename):
+def load_network_from_file(filename: str):
 
     with open(filename, "rb") as f:
         return pickle.load(f)

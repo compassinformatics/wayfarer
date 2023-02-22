@@ -43,3 +43,8 @@ Requires Python 3.10
 Use of annotations:
 
 | was added in python 3.10, so not available in python 3.8.
+
+
+
++ Doc tests with examples
++ Test suite and networks

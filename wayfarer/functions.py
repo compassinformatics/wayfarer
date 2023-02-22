@@ -7,6 +7,7 @@ import logging
 from collections import OrderedDict
 import networkx
 from wayfarer import loops
+from typing import Iterable
 
 
 from wayfarer import (
@@ -21,7 +22,7 @@ from wayfarer import (
 log = logging.getLogger("wayfarer")
 
 
-def pairwise(iterable) -> tuple:
+def pairwise(iterable) -> Iterable[tuple]:
     """
     Loops through the iterable, returning adjacent pairs
     each time. Useful for returning point coordinates.
@@ -36,7 +37,7 @@ def pairwise(iterable) -> tuple:
 
 def get_unique_ordered_list(items: list):
     """
-    An order-preserving function to get a unique list of edges
+    An order-preserving function to get a unique list of edges or nodes
     """
     return list(dict.fromkeys(items))
 
@@ -104,14 +105,14 @@ def get_edge_by_key(
         atts = net[u][v][key]
         edge = Edge(u, v, key, atts)
     else:
-        edge = Edge(u, v, key, None)
+        edge = Edge(u, v, key, {})
 
     if with_direction:
         add_direction_flag(**edge._asdict())
     return edge
 
 
-def get_edge_by_attribute(net, attribute_field: str, value) -> Edge:
+def get_edge_by_attribute(net, attribute_field: str, value) -> Iterable[Edge]:
     """
     Go through all edge property dicts until the relevant attribute is found
     Return an iterator
@@ -235,12 +236,20 @@ def get_path_length(path_edges):
     return sum([edge.attributes[LENGTH_FIELD] for edge in path_edges])
 
 
-def get_edges_from_node_pair(net, start_node: (int | str), end_node: (int | str)):
+def get_edges_from_node_pair(
+    net, start_node: (int | str), end_node: (int | str)
+) -> (networkx.classes.coreviews.AtlasView | None):
     """
     Get all edges between two nodes
 
     This function can return multiple edges when there is more than
     one edge between two nodes
+
+    >>> net = networkx.MultiGraph()
+    >>> net.add_edges_from([(0, 1, "A", {'val': 'foo'}), (0, 1, "B", {'val': 'bar'})])
+    ['A', 'B']
+    >>> get_edges_from_node_pair(net, start_node=0, end_node=1)
+    AtlasView({'A': {'val': 'foo'}, 'B': {'val': 'bar'}})
     """
 
     try:
@@ -287,16 +296,18 @@ def get_edges_from_nodes(
         return edge_list
 
 
-def get_shortest_edge(edges, length_field=LENGTH_FIELD):
+def get_shortest_edge(edges: dict, length_field=LENGTH_FIELD):
     """
     From a dictionary of edges, get the shortest edge
     by its length
+    If two edges have identical lengths then the edge with the higher Id
+    will be returned
     """
 
     if not edges:
         raise ValueError("The edge list is empty")
     return min(
-        edges.items(), key=lambda x: x[1][length_field]
+        sorted(edges.items(), reverse=True), key=lambda x: x[1][length_field]
     )  # py3 can add default=None
 
 
@@ -478,11 +489,11 @@ def get_edges(net, nodes):
     return end_edges
 
 
-def get_ordered_end_nodes(edges: list[Edge], end_nodes: list):
+def get_ordered_end_nodes(edges: list[Edge], end_nodes: list) -> list[int]:
     """
     Ensures the end nodes are returned in the same order as the input edges
 
-    >>> edges = [Edge(1 , 2), Edge(1, 0)]
+    >>> edges = [Edge(1 , 2, "A", {}), Edge(1, 0, "B", {})]
     >>> nodes = [0, 1]
     >>> get_ordered_end_nodes(edges, nodes)
     [1, 0]
@@ -490,10 +501,10 @@ def get_ordered_end_nodes(edges: list[Edge], end_nodes: list):
 
     # create a list of nodes from edges
     edge_nodes = [(e[0], e[1]) for e in edges]
-    edge_nodes = list(sum(edge_nodes, ()))
+    edge_nodes_list = list(sum(edge_nodes, ()))
 
     # sort the end nodes by their index in this list
-    end_nodes.sort(key=lambda n: edge_nodes.index(n))
+    end_nodes.sort(key=lambda n: edge_nodes_list.index(n))
     return end_nodes
 
 
@@ -501,7 +512,7 @@ def get_end_nodes(edges, ordered: bool = True) -> list:
     """
     Find the end nodes of a graph
 
-    >>> edges = [Edge(0 , 1), Edge(1, 2)]
+    >>> edges = [Edge(0 , 1, "A", {}), Edge(1, 2, "B", {})]
     >>> get_end_nodes(edges)
     [0, 2]
     """
@@ -524,7 +535,7 @@ def get_multiconnected_nodes(edges, connections=2):
     """
     Get all nodes which have at least n connections
 
-    >>> edges = [Edge(0 , 1), Edge(1, 2)]
+    >>> edges = [Edge(0 , 1, "A", {}), Edge(1, 2, "B", {})]
     >>> get_multiconnected_nodes(edges, connections=2)
     [1]
     """

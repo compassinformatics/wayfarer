@@ -5,6 +5,7 @@ import networkx
 from networkx import cycles
 from wayfarer import Edge, functions
 import logging
+from typing import Iterable
 
 
 log = logging.getLogger("wayfarer")
@@ -22,7 +23,7 @@ def has_loop(net):
         return False
 
 
-def get_unique_lists(all_lists: list) -> list:
+def get_unique_lists(all_lists: Iterable) -> list:
     """
     Returns a unique list of lists, and preserves order
 
@@ -61,7 +62,7 @@ def get_loop_nodes(edges: list[Edge]) -> dict:
     The order of the nodes in the list is sorted by node key, otherwise this is nondeterministic
     If an edge starts and ends at the same node it is not included as a loop here
 
-    >>> edges = [Edge(0, 1), Edge(1, 2), Edge(2, 0)]
+    >>> edges = [Edge(0, 1, "A", {}), Edge(1, 2, "B", {}), Edge(2, 0, "C", {})]
     >>> get_loop_nodes(edges)
     {0: [0, 1, 2]}
     """

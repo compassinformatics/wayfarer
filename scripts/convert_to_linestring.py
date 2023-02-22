@@ -8,7 +8,7 @@ import fiona
 from wayfarer import loader
 
 
-def load_network_with_conversion(fgdb_path, layer_name):
+def load_network_with_conversion(fgdb_path, layer_name, key_field="LINK_ID"):
 
     linestring_recs = []
 
@@ -24,11 +24,13 @@ def load_network_with_conversion(fgdb_path, layer_name):
                     r["geometry"] = mapping(shapely_geom.geoms[0])
                     linestring_recs.append(r)
 
-    net = loader.load_network(linestring_recs, key_field="LINK_ID", skip_errors=True)
+    net = loader.load_network(linestring_recs, key_field=key_field, skip_errors=True)
     return net
 
 
-layer_name = "Accessibility_2015Net"
-fgdb_path = r"C:\Data\NTA_Network_Datasets\Nta_Network.gdb"
+if __name__ == "__main__":
 
-load_network_with_conversion(fgdb_path, layer_name)
+    layer_name = "ExampleLayer"
+    fgdb_path = r"./data/network.gdb"
+
+    load_network_with_conversion(fgdb_path, layer_name)
