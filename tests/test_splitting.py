@@ -139,12 +139,12 @@ def test_split_with_points(use_reverse_lookup):
 
     # run a test solve to the newly added point
     point_id = "B"
-    edges = routing.solve_shortest_path(net, (0, 0), point_id, with_direction=True)
+    edges = routing.solve_shortest_path(net, (0, 0), point_id, with_direction_flag=True)
     # print(edges)
     assert len(edges) == 4
 
     # run a solve from start to finish across the original (now split) edges
-    edges = routing.solve_shortest_path(net, (0, 0), (300, 0), with_direction=True)
+    edges = routing.solve_shortest_path(net, (0, 0), (300, 0), with_direction_flag=True)
     # print(edges)
     assert len(edges) == 6
 

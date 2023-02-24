@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>f8ac0630-98af-462b-b7ee-5688d6183c85</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>tests\test_routing_ordered_path.py</StartupFile>
+    <StartupFile>tests\test_functions.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -30,13 +30,13 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="docs\conf.py" />
     <Compile Include="docs\examples\ptals.py" />
     <Compile Include="scripts\benchmarking.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="scripts\convert_to_linestring.py" />
     <Compile Include="scripts\create_network_images.py" />
-    <Compile Include="scripts\dynamic_splitting.py" />
     <Compile Include="scripts\isochrones.py" />
     <Compile Include="scripts\load_osmx_network.py" />
     <Compile Include="scripts\load_osm_network.py">
@@ -75,6 +75,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="wayfarer\loader.py" />
+    <Compile Include="wayfarer\validator.py" />
     <Compile Include="wayfarer\__init__.py" />
   </ItemGroup>
   <ItemGroup>
@@ -94,18 +95,13 @@
     <Content Include=".github\workflows\main.yml" />
     <Content Include=".mypy.ini" />
     <Content Include="CONTRIBUTING.rst" />
-    <Content Include="data\gis_osm_roads_free_1.cpg" />
-    <Content Include="data\gis_osm_roads_free_1.dbf" />
-    <Content Include="data\gis_osm_roads_free_1.prj" />
-    <Content Include="data\gis_osm_roads_free_1.shp" />
-    <Content Include="data\gis_osm_roads_free_1.shx" />
-    <Content Include="data\osm_ireland.dat" />
-    <Content Include="data\osm_ireland_no_lookup.dat" />
     <Content Include="data\tipperary.txt" />
     <Content Include="docs\examples.rst" />
+    <Content Include="docs\images\bottle_network.png" />
     <Content Include="docs\images\circle_network.png" />
     <Content Include="docs\images\double_loop_network.png" />
     <Content Include="docs\images\dual_path_network.png" />
+    <Content Include="docs\images\dual_path_network_manual.png" />
     <Content Include="docs\images\loop_middle_network.png" />
     <Content Include="docs\images\p_network.png" />
     <Content Include="docs\images\reversed_loop_network.png" />
@@ -114,6 +110,7 @@
     <Content Include="docs\images\single_edge_loop_network.png" />
     <Content Include="docs\images\triple_loop_network.png" />
     <Content Include="docs\images\t_network.png" />
+    <Content Include="docs\index.rst" />
     <Content Include="docs\introduction.rst" />
     <Content Include="docs\network_comparison.rst" />
     <Content Include="docs\network_loading.rst" />
@@ -123,6 +120,7 @@
     </Content>
     <Content Include="docs\talk.rst" />
     <Content Include="dev_setup.ps1" />
+    <Content Include="build_docs.ps1" />
     <Content Include="run_local.ps1" />
     <Content Include="README.rst" />
     <Content Include="requirements.txt">

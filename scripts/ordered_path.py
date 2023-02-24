@@ -12,7 +12,7 @@ edges = []
 edge_ids = [1393622, 1414298, 1425617, 1457705, 1464289, 1548367, 1573235]
 
 for edge_id in edge_ids:
-    edge = functions.get_edge_by_key(net, edge_id, with_data=True, with_direction=True)
+    edge = functions.get_edge_by_key(net, edge_id, with_data=True)
     edges.append(edge)
 
 ordered_edges = routing.find_ordered_path(edges)

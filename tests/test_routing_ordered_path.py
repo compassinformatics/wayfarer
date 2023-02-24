@@ -18,7 +18,7 @@ def test_get_path_ends():
         Edge(2, 3, key="C", attributes={"EDGE_ID": "C", "LEN_": 100}),
     ]
 
-    ordered_edges = routing.find_ordered_path(edges, with_direction=False)
+    ordered_edges = routing.find_ordered_path(edges, with_direction_flag=False)
     start_node, end_node = routing.get_path_ends(ordered_edges)
     assert start_node == 0
     assert end_node == 3
@@ -38,7 +38,7 @@ def test_get_path_ends2():
         Edge(3, 1, key="D", attributes={"EDGE_ID": "D", "LEN_": 100}),
     ]
 
-    ordered_edges = routing.find_ordered_path(edges, with_direction=False)
+    ordered_edges = routing.find_ordered_path(edges, with_direction_flag=False)
     start_node, end_node = routing.get_path_ends(ordered_edges)
 
     assert start_node == 0
@@ -57,7 +57,7 @@ def test_get_path_ends3():
         Edge(3, 1, key="D", attributes={"EDGE_ID": "D", "LEN_": 100}),
     ]
 
-    ordered_edges = routing.find_ordered_path(edges, with_direction=False)
+    ordered_edges = routing.find_ordered_path(edges, with_direction_flag=False)
     start_node, end_node = routing.get_path_ends(ordered_edges)
 
     assert start_node == 0

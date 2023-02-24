@@ -4,6 +4,7 @@ pytest -v tests/test_functions.py
 
 import logging
 import pytest
+import wayfarer
 from wayfarer import loader, functions, Edge, WITH_DIRECTION_FIELD
 import networkx
 
@@ -29,6 +30,30 @@ def test_get_edge_by_key(use_reverse_lookup):
         1,
         {"NODEID_FROM": 0, "LEN_": 100, "EDGE_ID": 1, "NODEID_TO": 100},
     )
+
+
+def test_get_edge_by_key_missing():
+
+    recs = [{"EDGE_ID": 1, "LEN_": 100, "NODEID_FROM": 0, "NODEID_TO": 100}]
+    net = loader.load_network_from_records(recs)
+
+    with pytest.raises(KeyError):
+        functions.get_edge_by_key(net, -1)
+
+
+def test_to_edge():
+
+    edge = wayfarer.to_edge((0, 1, 1, {"LEN_": 10}))
+    assert edge == Edge(start_node=0, end_node=1, key=1, attributes={"LEN_": 10})
+
+
+def test_to_edge_no_attributes():
+    """
+    If no attributes are supplied in a tuple then an empty dict is returned
+    """
+
+    edge = wayfarer.to_edge((0, 1, 1))
+    assert edge == Edge(start_node=0, end_node=1, key=1, attributes={})
 
 
 def test_get_multiple_edges_by_attribute():
@@ -64,6 +89,32 @@ def test_get_all_paths_from_nodes():
     paths = functions.get_all_paths_from_nodes(net, [0, 1, 2, 3])
     key_list = [[e.key for e in p] for p in paths]
     assert key_list == [[1, 2, 3]]
+
+
+def test_get_all_paths_from_nodes_with_direction():
+    net = networkx.MultiGraph()
+
+    net.add_edge(
+        0, 1, key=1, **{"EDGE_ID": 1, "LEN_": 100, "NODEID_FROM": 0, "NODEID_TO": 1}
+    )
+    # add a reversed edge in the middle of the path
+    net.add_edge(
+        1, 2, key=2, **{"EDGE_ID": 2, "LEN_": 100, "NODEID_FROM": 2, "NODEID_TO": 1}
+    )
+    net.add_edge(
+        2, 3, key=3, **{"EDGE_ID": 3, "LEN_": 100, "NODEID_FROM": 2, "NODEID_TO": 3}
+    )
+
+    paths = list(
+        functions.get_all_paths_from_nodes(net, [0, 1, 2, 3], with_direction_flag=True)
+    )
+    path = paths[0]
+
+    key_list = [e.key for e in path]
+    assert key_list == [1, 2, 3]
+    assert path[0].attributes["WITH_DIRECTION"] is True
+    assert path[1].attributes["WITH_DIRECTION"] is False
+    assert path[2].attributes["WITH_DIRECTION"] is True
 
 
 def test_get_all_complex_paths():
@@ -268,7 +319,7 @@ def test_get_edges_from_nodes():
     assert len(edges) == 1
     edges[0].key == "B"
 
-    edges = functions.get_edges_from_nodes(net, [2, 1], with_direction=True)
+    edges = functions.get_edges_from_nodes(net, [2, 1], with_direction_flag=True)
     assert len(edges) == 1
     assert edges[0].key == "B"
     assert edges[0].attributes[WITH_DIRECTION_FIELD] is False
@@ -283,6 +334,15 @@ def test_edges_to_graph():
     net = functions.edges_to_graph(edges)
     assert len(net.edges()) == 2
     assert list(net.edges(keys=True)) == [(0, 1, 1), (1, 2, 2)]
+
+
+def test_edges_to_graph_no_keys():
+
+    tuples = [(0, 1), (1, 2)]
+    net = functions.edges_to_graph(tuples)
+    assert len(net.edges()) == 2
+    # when no keys are set networkx uses 0 for all keys
+    assert list(net.edges(keys=True)) == [(0, 1, 0), (1, 2, 0)]
 
 
 def test_get_shortest_edge():
@@ -325,14 +385,26 @@ def test_get_edges_from_node_pair():
     assert tpls == {"A": {"val": "foo"}, "B": {"val": "bar"}}
 
 
+def test_get_path_length():
+
+    edges = [Edge(0, 1, "A", {"LEN_": 5}), Edge(1, 2, "B", {"LEN_": 5})]
+    assert functions.get_path_length(edges) == 10
+
+
 if __name__ == "__main__":
     logging.basicConfig(level=logging.DEBUG)
     # test_get_edges_from_nodes()
     # test_edges_to_graph()
-    test_get_edges_from_nodes()
+    # test_get_edges_from_nodes()
     # test_edges_to_graph()
     # test_get_shortest_edge()
     # test_get_shortest_edge_identical()
     # test_get_unique_ordered_list()
-    test_get_edges_from_node_pair()
+    # test_get_edges_from_node_pair()
+    # test_to_edge()
+    # test_to_edge_no_attributes()
+    # test_edges_to_graph_no_keys()
+    # test_get_edge_by_key_missing()
+    test_get_all_paths_from_nodes_with_direction()
+    # test_get_path_length()
     print("Done!")

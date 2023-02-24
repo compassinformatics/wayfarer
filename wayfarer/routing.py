@@ -14,14 +14,18 @@ log = logging.getLogger("wayfarer")
 
 
 def solve_shortest_path(
-    net, start_node, end_node, with_direction: bool = True, weight: str = LENGTH_FIELD
+    net,
+    start_node,
+    end_node,
+    with_direction_flag: bool = True,
+    weight: str = LENGTH_FIELD,
 ):
     """
     Solve the shortest path between two nodes, returning a list of Edge objects
     """
     nodes = solve_shortest_path_from_nodes(net, [start_node, end_node], weight)
     return functions.get_edges_from_nodes(
-        net, nodes, with_direction=with_direction, length_field=weight
+        net, nodes, with_direction_flag=with_direction_flag, length_field=weight
     )
 
 
@@ -162,7 +166,7 @@ def solve_matching_path(
     for path_nodes in all_shortest_paths:
 
         all_paths = functions.get_all_paths_from_nodes(
-            net, path_nodes, with_direction=True
+            net, path_nodes, with_direction_flag=True
         )
 
         for path_edges in all_paths:
@@ -329,7 +333,7 @@ def solve_all_shortest_paths(net, start_node, end_node):
 def find_ordered_path(
     edges: list[Edge],
     start_node: (int | str | None) = None,
-    with_direction: bool = True,
+    with_direction_flag: bool = True,
 ) -> list[Edge]:
     """
      Given a collection of randomly ordered connected edges, find the full
@@ -376,7 +380,7 @@ def find_ordered_path(
     for p in ordered_path:
         edge_key = p[2]
         edge = next(e for e in edges if e.key == edge_key)
-        if with_direction:
+        if with_direction_flag:
             functions.add_direction_flag(p[0], p[1], edge.attributes)
         ordered_edges.append(edge)
 

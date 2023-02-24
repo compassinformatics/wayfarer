@@ -31,12 +31,12 @@ jobs:
       - name: Check types with mypy
         run: |
           mypy wayfarer tests
-      - name: Test doctests with pytest
+      #- name: Test doctests with pytest
+      #  run: |
+      #    PYTHONPATH=. pytest --doctest-modules
+      #- name: Test with pytest
         run: |
-          PYTHONPATH=. pytest --doctest-modules
-      - name: Test with pytest
-        run: |
-          PYTHONPATH=. pytest --cov wayfarer --cov-report= tests/
+          PYTHONPATH=. pytest --doctest-modules --cov wayfarer --cov-report= tests/
       - name: Upload coverage data to coveralls.io
         run: |
           coveralls

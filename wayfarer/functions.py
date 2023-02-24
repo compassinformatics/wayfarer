@@ -44,7 +44,7 @@ def get_unique_ordered_list(items: list):
 
 def edges_to_graph(edges: list[Edge]) -> networkx.MultiGraph:
     """
-    Utility function to create a new MultiGrpah based on a list of edges
+    Utility function to create a new MultiGraph based on a list of edges
 
     edges = [Edge(0, 1), Edge(1, 2)]
     net = functions.edges_to_graph(edges)
@@ -53,11 +53,10 @@ def edges_to_graph(edges: list[Edge]) -> networkx.MultiGraph:
 
     for edge in edges:
         if len(edge) > 2:
-            key = edge[2]
+            net.add_edge(edge[0], edge[1], key=edge[2])
         else:
-            key = None
-
-        net.add_edge(edge[0], edge[1], key=key)
+            # when no key is provided networkx uses a 0 value for the key
+            net.add_edge(edge[0], edge[1])
 
     return net
 
@@ -74,30 +73,29 @@ def add_edge(net, start_node, end_node, key, attributes) -> None:
         net.graph["keys"][key] = (start_node, end_node)
 
 
-def get_edge_by_key(
-    net, key, with_data: bool = True, with_direction: bool = False
-) -> Edge:
+def get_edge_by_key(net, key, with_data: bool = True) -> Edge:
     """
     Go through all edge property dicts until the relevant key is found
-    Iterator faster than list comprehension
+    Using an iterator faster than list comprehension
     See https://stackoverflow.com/a/36413569/179520 answer from networkx dev
 
     https://networkx.github.io/documentation/stable/reference/classes/generated/networkx.Graph.edges.html
 
     400ns with reverse lookup
     1.16 seconds with generators
-
-    The WITH_DIRECTION flag will always be true here - it simply creates the key in the attributes
     """
 
     if "keys" in net.graph:
+        # this uses the reverse lookup approach of storing a dict containing the keys
+        # as part of the graph
         nodes = net.graph["keys"].get(key, None)
     else:
+        # otherwise we loop through all edges until the key is found
         gen = ((u, v) for u, v, k in net.edges(keys=True) if k == key)
         nodes = next(gen, None)  # min 1.17s
 
     if nodes is None:
-        raise KeyError("The edge with key {} was not found in the network".format(key))
+        raise KeyError(f"The edge with key {key} was not found in the network")
 
     u, v = nodes
 
@@ -107,8 +105,6 @@ def get_edge_by_key(
     else:
         edge = Edge(u, v, key, {})
 
-    if with_direction:
-        add_direction_flag(**edge._asdict())
     return edge
 
 
@@ -169,7 +165,7 @@ def get_all_complex_paths(net, node_list):
     return paths
 
 
-def get_all_paths_from_nodes(net, node_list, with_direction=False):
+def get_all_paths_from_nodes(net, node_list, with_direction_flag=False):
     """
     Get all combinations of edges along a set of nodes, rather
     than just the shortest edges
@@ -191,7 +187,7 @@ def get_all_paths_from_nodes(net, node_list, with_direction=False):
         if len(set(np)) > 2:
             sn, en = np[0], np[-1]
             if sn != en:
-                edges = get_edges_from_node_pair(net, sn, en)
+                edges = get_edges_from_node_pair(net, sn, en, hide_log_output=True)
                 if edges:
                     # there is an edge between the start and end of the path
                     # possible loop
@@ -214,7 +210,7 @@ def get_all_paths_from_nodes(net, node_list, with_direction=False):
                     # affecting the original edge dict
                     atts_copy = copy.deepcopy(attributes)
                     edge = Edge(start_node=u, end_node=v, key=key, attributes=atts_copy)
-                    if with_direction:
+                    if with_direction_flag:
                         add_direction_flag(
                             **edge._asdict()
                         )  # unpack namedtuple to **kwargs
@@ -237,7 +233,7 @@ def get_path_length(path_edges):
 
 
 def get_edges_from_node_pair(
-    net, start_node: (int | str), end_node: (int | str)
+    net, start_node: (int | str), end_node: (int | str), hide_log_output: bool = False
 ) -> (networkx.classes.coreviews.AtlasView | None):
     """
     Get all edges between two nodes
@@ -252,10 +248,13 @@ def get_edges_from_node_pair(
     AtlasView({'A': {'val': 'foo'}, 'B': {'val': 'bar'}})
     """
 
+    if start_node == end_node:  # do not warn when checking for loops
+        hide_log_output = True
+
     try:
         edges = net[start_node][end_node]
     except KeyError:
-        if start_node != end_node:  # do not warn when checking for loops
+        if hide_log_output is False:
             log.debug("Could not find edge (%s, %s)", start_node, end_node)
         edges = None
 
@@ -265,13 +264,13 @@ def get_edges_from_node_pair(
 def get_edges_from_nodes(
     net,
     node_list,
-    with_direction: bool = False,
+    with_direction_flag: bool = False,
     length_field: str = LENGTH_FIELD,
     return_unique: bool = True,
 ) -> list[Edge]:
     """
     From a list of nodes, create pairs and then get the shortest edge between the two nodes
-    Set with_direction to add a new attribute to the edge to show if it is matching the
+    Set with_direction_flag to add a new attribute to the edge to show if it is matching the
     direction of the path
     """
     edge_list = []
@@ -285,7 +284,7 @@ def get_edges_from_nodes(
             atts_copy = copy.deepcopy(attributes)
             edge = Edge(start_node=u, end_node=v, key=key, attributes=atts_copy)
 
-            if with_direction:
+            if with_direction_flag:
                 add_direction_flag(**edge._asdict())  # unpack namedtuple to **kwargs
 
             edge_list.append(edge)

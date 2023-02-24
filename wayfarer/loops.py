@@ -94,7 +94,7 @@ def find_self_loop(net, node_id):
     and end at this node
     """
     return functions.get_edges_from_nodes(
-        net, [(node_id, node_id)], with_direction=True
+        net, [(node_id, node_id)], with_direction_flag=True
     )
 
 
