@@ -35,7 +35,7 @@ def pairwise(iterable) -> Iterable[tuple]:
     return zip(a, b)
 
 
-def get_unique_ordered_list(items: list):
+def get_unique_ordered_list(items: Iterable):
     """
     An order-preserving function to get a unique list of edges or nodes
     """

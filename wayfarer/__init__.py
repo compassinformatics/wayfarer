@@ -20,14 +20,14 @@ SPLIT_MEASURE_FIELD = "MEASURE"
 
 # the Edge class
 
-# fields = ("start_node", "end_node", "key", "attributes")
-
-# Edge = namedtuple("Edge", fields, defaults=(None,) * len(fields))
-
 # https://mypy.readthedocs.io/en/stable/kinds_of_types.html#named-tuples
 
 
 class Edge(NamedTuple):
+    """
+    A class representing a network edge
+    """
+
     start_node: (int | str)
     end_node: (int | str)
     key: (int | str)

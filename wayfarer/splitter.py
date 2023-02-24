@@ -190,3 +190,10 @@ def split_network_edge(net, key, measures):
     functions.add_edge(net, prev_node, original_edge.end_node, split_key, atts)
 
     return net
+
+
+if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
+    print("Done!")

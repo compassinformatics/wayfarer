@@ -11,9 +11,9 @@ from typing import Iterable
 log = logging.getLogger("wayfarer")
 
 
-def has_loop(net):
+def has_loop(net: (networkx.MultiGraph | networkx.MultiDiGraph)) -> bool:
     """
-    Check if the network is a loop
+    Check if the network has a loop
     """
 
     try:
@@ -88,7 +88,9 @@ def get_loop_nodes(edges: list[Edge]) -> dict:
     return loop_nodes
 
 
-def find_self_loop(net, node_id):
+def find_self_loop(
+    net: (networkx.MultiGraph | networkx.MultiDiGraph), node_id: (str | int)
+):
     """
     For a node_id check to see if any edges start
     and end at this node

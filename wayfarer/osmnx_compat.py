@@ -2,10 +2,12 @@
 Helper module to convert between wayfarer and osmnx networks
 """
 import wayfarer
-from osmnx import utils  # , settings
 import networkx as nx
 from shapely import wkb
 import osmnx as ox
+import logging
+import datetime as dt
+
 
 from wayfarer import (
     LENGTH_FIELD,
@@ -14,22 +16,46 @@ from wayfarer import (
 )
 
 
-def to_osmnx(net, geometry_field: str = "Geometry4326", crs: str = "epsg:4326"):
+log = logging.getLogger("wayfarer")
+
+
+def to_osmnx(
+    net: (nx.MultiGraph | nx.MultiDiGraph),
+    geometry_field: str = "Geometry4326",
+    crs: str = "epsg:4326",
+) -> nx.MultiDiGraph:
     """
     Convert a wayfarer network into a osmnx network
+    default_crs in osmnx is in settings.default_crs and is epsg:4326
     """
+
+    # for timestamp see code from https://github.com/gboeing/osmnx/blob/3822ed659f1cc9f426a990c02dd8ca6b3f4d56d7/osmnx/utils.py#L50
+    template = "{:%Y-%m-%d %H:%M:%S}"
+    ts = template.format(dt.datetime.now())
+
     metadata = {
-        "created_date": utils.ts(),
+        "created_date": ts,
         "created_with": f"OSMnx {ox.__version__}",
-        "crs": crs,  # settings.default_crs, # epsg:4326
+        "crs": crs,
     }
-    G = nx.MultiDiGraph(**metadata)  # wayfarer typically uses MultiGraph
+
+    G = nx.MultiDiGraph(**metadata)  # wayfarer typically uses MultiGraph networks
 
     for tpl in net.edges(data=True, keys=True):
 
         edge = wayfarer.to_edge(tpl)
 
-        edge_geometry = wkb.loads(edge.attributes[geometry_field])
+        try:
+            edge_wkb = edge.attributes[geometry_field]
+        except KeyError:
+            keys = list(edge.attributes.keys())
+            log.error(
+                f"The attribute '{geometry_field}' was not found in the edge attributes: {keys}"
+            )
+            raise
+
+        edge_geometry = wkb.loads(edge_wkb)
+
         G.add_node(
             edge.start_node, x=edge_geometry.coords[0][0], y=edge_geometry.coords[0][1]
         )
@@ -60,11 +86,15 @@ def to_osmnx(net, geometry_field: str = "Geometry4326", crs: str = "epsg:4326"):
                 NODEID_TO_FIELD: edge.start_node,
             }
         )
-        # reversed_properties["reversed"] = True
-        # reversed_properties["NODE_ID_FROM"] = edge.end_node
-        # reversed_properties["NODE_ID_FROM"] = edge.start_node
         key = edge.key * -1
 
         G.add_edge(edge.end_node, edge.start_node, key=key, **reversed_properties)
 
     return G
+
+
+if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
+    print("Done!")

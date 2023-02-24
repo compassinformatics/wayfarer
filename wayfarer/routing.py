@@ -14,9 +14,9 @@ log = logging.getLogger("wayfarer")
 
 
 def solve_shortest_path(
-    net,
-    start_node,
-    end_node,
+    net: (networkx.MultiGraph | networkx.MultiDiGraph),
+    start_node: (str | int),
+    end_node: (str | int),
     with_direction_flag: bool = True,
     weight: str = LENGTH_FIELD,
 ):
@@ -29,7 +29,11 @@ def solve_shortest_path(
     )
 
 
-def solve_shortest_path_from_nodes(net, node_list, weight: str = LENGTH_FIELD):
+def solve_shortest_path_from_nodes(
+    net: (networkx.MultiGraph | networkx.MultiDiGraph),
+    node_list: list[str | int],
+    weight: str = LENGTH_FIELD,
+) -> list[str | int]:
     """
     Return a list of nodes found by solving from each node in node_list to
     the next
@@ -53,7 +57,9 @@ def solve_shortest_path_from_nodes(net, node_list, weight: str = LENGTH_FIELD):
     return nodes_in_path
 
 
-def solve_shortest_path_from_edges(net, edge_id_list):
+def solve_shortest_path_from_edges(
+    net: (networkx.MultiGraph | networkx.MultiDiGraph), edge_id_list: list[str | int]
+):
     """
     Return a path routing from edge to edge, rather than
     from node to node
@@ -65,7 +71,7 @@ def solve_shortest_path_from_edges(net, edge_id_list):
     edge_id_list = functions.get_unique_ordered_list(edge_id_list)
 
     edges = []
-    previous_edge_nodes = []
+    previous_edge_nodes = []  # type: list[str | int]
 
     for edge_id in edge_id_list:
         edge = functions.get_edge_by_key(net, edge_id)
@@ -388,4 +394,7 @@ def find_ordered_path(
 
 
 if __name__ == "__main__":
-    pass
+    import doctest
+
+    doctest.testmod()
+    print("Done!")

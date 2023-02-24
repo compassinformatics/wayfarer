@@ -10,6 +10,7 @@ from wayfarer import (
 )
 from wayfarer import functions
 import pickle
+from typing import Iterable
 
 
 log = logging.getLogger("wayfarer")
@@ -27,10 +28,15 @@ class UniqueDict(dict):
             raise KeyError("The key {} already exists. Keys must be unique".format(key))
 
 
-def distance(p1, p2):
+def distance(
+    p1: tuple[(int | float), (int | float)], p2: tuple[(int | float), (int | float)]
+) -> float:
     """
     Return the Euclidean distance between two points
     Ignore any Z values associated with the points
+
+    >>> distance((0, 0), (10, 10))
+    14.142135623730951
     """
 
     x1, y1 = p1[0], p1[1]
@@ -38,19 +44,35 @@ def distance(p1, p2):
     return hypot(x2 - x1, y2 - y1)
 
 
-def save_network_to_file(net, filename: str):
+def save_network_to_file(
+    net: (networkx.MultiGraph | networkx.MultiDiGraph), filename: str
+):
+    """
+    Save a network to a Python pickle file
+    Note these cannot be shared between different versions of Python
+    """
 
     with open(filename, "wb") as f:
         pickle.dump(net, f, protocol=pickle.HIGHEST_PROTOCOL)
 
 
-def load_network_from_file(filename: str):
-
+def load_network_from_file(
+    filename: str,
+) -> (networkx.MultiGraph | networkx.MultiDiGraph):
+    """
+    Return a network previously saved to a pickle file
+    """
     with open(filename, "rb") as f:
         return pickle.load(f)
 
 
-def add_edge(net, properties):
+def add_edge(
+    net: (networkx.MultiGraph | networkx.MultiDiGraph), properties: dict
+) -> (str | int):
+    """
+    Add a new edge to a network based on a dict containing
+    the required wayfarer fields
+    """
 
     key = properties[EDGE_ID_FIELD]
     start_node = properties[NODEID_FROM_FIELD]
@@ -66,9 +88,17 @@ def add_edge(net, properties):
     if "keys" in net.graph.keys():
         net.graph["keys"][key] = (start_node, end_node)
 
+    return key
 
-def create_graph(use_reverse_lookup, graph_type=networkx.MultiGraph):
 
+def create_graph(
+    use_reverse_lookup: bool,
+    graph_type: (networkx.MultiGraph | networkx.MultiDiGraph) = networkx.MultiGraph,
+) -> (networkx.MultiGraph | networkx.MultiDiGraph):
+    """
+    Create a new networkx graph, with an optional dictionary to store unique keys
+    for fast edge lookups
+    """
     if graph_type not in (networkx.MultiDiGraph, networkx.MultiGraph):
         raise ValueError(
             "The graph type {} unsupported. Only MultiGraph and MultiDiGraph are supported".format(
@@ -89,14 +119,18 @@ def create_graph(use_reverse_lookup, graph_type=networkx.MultiGraph):
 
 
 def load_network_from_records(
-    recs,
-    key_field=EDGE_ID_FIELD,
-    length_field=LENGTH_FIELD,
-    from_field=NODEID_FROM_FIELD,
-    to_field=NODEID_TO_FIELD,
-    use_reverse_lookup=True,
-    graph_type=networkx.MultiGraph,
-):
+    recs: Iterable,
+    key_field: str = EDGE_ID_FIELD,
+    length_field: str = LENGTH_FIELD,
+    from_field: str = NODEID_FROM_FIELD,
+    to_field: str = NODEID_TO_FIELD,
+    use_reverse_lookup: bool = True,
+    graph_type: (networkx.MultiGraph | networkx.MultiDiGraph) = networkx.MultiGraph,
+) -> (networkx.MultiGraph | networkx.MultiDiGraph):
+    """
+    Create a new networkX graph based on a list of dictionary objects
+    containing the required wayfarer properties
+    """
 
     # simple dict type record
 
@@ -130,17 +164,17 @@ def load_network_from_records(
 
 
 def load_network(
-    recs,
-    key_field=EDGE_ID_FIELD,
-    length_field=LENGTH_FIELD,
-    use_reverse_lookup=True,
-    graph_type=networkx.MultiGraph,
-    skip_errors=False,
-    strip_properties=False,
-):
+    recs: Iterable,
+    key_field: str = EDGE_ID_FIELD,
+    length_field: str = LENGTH_FIELD,
+    use_reverse_lookup: bool = True,
+    graph_type: (networkx.MultiGraph | networkx.MultiDiGraph) = networkx.MultiGraph,
+    skip_errors: bool = False,
+    strip_properties: bool = False,
+) -> (networkx.MultiGraph | networkx.MultiDiGraph):
     """
-    Load a network into a networkx network object
-    from recs of type __geo_interface__
+    Create a new networkX graph using a list of recs of type __geo_interface__
+    This allows networks to be created using libraries such as Fiona
 
     strip_properties can be used to reduce the size of the network file by only
     retaining the properties required to run routing
@@ -201,3 +235,10 @@ def load_network(
         log.warning("{} MultiLineString features were ignored".format(error_count))
 
     return net
+
+
+if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
+    print("Done!")

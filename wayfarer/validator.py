@@ -3,12 +3,16 @@ A collection of functions to help validate a network
 """
 
 from collections import Counter
+import networkx
 
 
-def duplicate_keys(net):
+def duplicate_keys(
+    net: (networkx.MultiGraph | networkx.MultiDiGraph),
+) -> list[str | int]:
     """
     Find any duplicate keys in the network
     Keys must be unique for routing to function correctly
+
     """
 
     keys = []
@@ -20,7 +24,7 @@ def duplicate_keys(net):
     return duplicates
 
 
-def valid_reverse_lookup(net):
+def valid_reverse_lookup(net: (networkx.MultiGraph | networkx.MultiDiGraph)):
     """
     Check if the reverse lookup dictionary
     has the same count as edges in the network
@@ -28,9 +32,9 @@ def valid_reverse_lookup(net):
     return len(net.graph["keys"]) == len(net.edges())
 
 
-def recalculate_keys(net):
+def recalculate_keys(net: (networkx.MultiGraph | networkx.MultiDiGraph)):
     """
-    Recalculate keys in the reverse lookup dict
+    Recalculate keys in the reverse lookup dictionary
     These can become out-of-synch following a merge of networks e.g. with
     the compose_all function
     """
@@ -40,7 +44,9 @@ def recalculate_keys(net):
         net.graph["keys"][key] = (start_node, end_node)
 
 
-def edge_attributes(net, with_sample_data=False):
+def edge_attributes(
+    net: (networkx.MultiGraph | networkx.MultiDiGraph), with_sample_data: bool = False
+) -> list:
     """
     Return the list of attributes for the edges
     in the network
@@ -60,3 +66,10 @@ def edge_attributes(net, with_sample_data=False):
         return attributes_with_data
     else:
         return attributes
+
+
+if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
+    print("Done!")
