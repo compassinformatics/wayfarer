@@ -3,6 +3,7 @@ from wayfarer import loader, functions, Edge
 import networkx
 import pytest
 import logging
+import tempfile
 
 
 def test_add_edge():
@@ -180,6 +181,41 @@ def test_load_network_from_invalid_geometries_missing_key():
         loader.load_network_from_geometries(recs)
 
 
+def test_uniquedict():
+
+    ud = loader.UniqueDict()
+    ud[1] = "foo"
+    ud[2] = "bar"
+
+    assert ud == {1: "foo", 2: "bar"}
+
+
+def test_uniquedict_error():
+
+    ud = loader.UniqueDict()
+    ud[1] = "foo"
+
+    with pytest.raises(KeyError):
+        ud[1] = "bar"
+
+
+def test_pickling():
+
+    net = loader.create_graph()
+    loader.add_edge(net, {"EDGE_ID": 1, "NODEID_FROM": 1, "NODEID_TO": 1})
+    assert net.graph["keys"][1] == (1, 1)
+    assert len(net.edges()) == 1
+
+    f = tempfile.NamedTemporaryFile(delete=False)
+    fn = f.name
+
+    loader.save_network_to_file(net, fn)
+
+    net2 = loader.load_network_from_file(fn)
+    assert net2.graph["keys"][1] == (1, 1)
+    assert len(net2.edges()) == 1
+
+
 def test_doctest():
     import doctest
 
@@ -202,4 +238,7 @@ if __name__ == "__main__":
     test_load_network_from_invalid_geometries()
     test_load_network_from_invalid_geometries_skip()
     test_load_network_from_invalid_geometries_missing_key()
+    test_uniquedict()
+    test_uniquedict_error()
+    test_pickling()
     print("Done!")
