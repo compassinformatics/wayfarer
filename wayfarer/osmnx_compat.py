@@ -91,10 +91,3 @@ def to_osmnx(
         G.add_edge(edge.end_node, edge.start_node, key=key, **reversed_properties)
 
     return G
-
-
-if __name__ == "__main__":
-    import doctest
-
-    doctest.testmod()
-    print("Done!")

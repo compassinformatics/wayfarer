@@ -25,7 +25,9 @@ def load_network_with_conversion(fgdb_path, layer_name, key_field="LINK_ID"):
                     r["geometry"] = mapping(shapely_geom.geoms[0])
                     linestring_recs.append(r)
 
-    net = loader.load_network(linestring_recs, key_field=key_field, skip_errors=True)
+    net = loader.load_network_from_geometries(
+        linestring_recs, key_field=key_field, skip_errors=True
+    )
     return net
 
 

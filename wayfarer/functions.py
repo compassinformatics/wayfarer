@@ -585,10 +585,3 @@ def get_multiconnected_nodes(edges, connections=2):
     out_degree = dict(net.degree())
     multiconnected_nodes = [n for n in out_degree if out_degree[n] >= connections]
     return multiconnected_nodes
-
-
-if __name__ == "__main__":
-    import doctest
-
-    doctest.testmod()
-    print("Done!")

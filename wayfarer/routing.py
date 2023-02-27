@@ -391,10 +391,3 @@ def find_ordered_path(
         ordered_edges.append(edge)
 
     return ordered_edges
-
-
-if __name__ == "__main__":
-    import doctest
-
-    doctest.testmod()
-    print("Done!")

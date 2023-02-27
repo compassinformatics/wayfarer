@@ -25,5 +25,5 @@ def simple_features():
 
 if __name__ == "__main__":
     feats = simple_features()
-    net = loader.load_network(feats, use_reverse_lookup=True)
+    net = loader.load_network_from_geometries(feats, use_reverse_lookup=True)
     print("Done!")

@@ -98,10 +98,3 @@ def find_self_loop(
     return functions.get_edges_from_nodes(
         net, [(node_id, node_id)], with_direction_flag=True
     )
-
-
-if __name__ == "__main__":
-    import doctest
-
-    doctest.testmod()
-    print("Done!")

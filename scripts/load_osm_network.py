@@ -15,7 +15,7 @@ def main(shp):
     164 MB with lookup
     """
     recs = fiona.open(shp, "r")
-    net = loader.load_network(recs, key_field="osm_id")
+    net = loader.load_network_from_geometries(recs, key_field="osm_id")
 
     print(net.name)
     print(net.graph["keys"][618090637])
@@ -33,7 +33,9 @@ def main(shp):
     assert edge1[0] == edge2.start_node
     assert edge1[1] == edge2.end_node
 
-    net = loader.load_network(recs, key_field="osm_id", use_reverse_lookup=False)
+    net = loader.load_network_from_geometries(
+        recs, key_field="osm_id", use_reverse_lookup=False
+    )
     output_file = "./data/osm_ireland_no_lookup.dat"
     loader.save_network_to_file(net, output_file)
     net = loader.load_network_from_file(output_file)

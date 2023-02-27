@@ -66,10 +66,3 @@ def edge_attributes(
         return attributes_with_data
     else:
         return attributes
-
-
-if __name__ == "__main__":
-    import doctest
-
-    doctest.testmod()
-    print("Done!")

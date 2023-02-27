@@ -8,7 +8,8 @@ Wayfarer
    self
    examples.rst
    solver.rst
-   api.rst
+   api/functions.rst
+   api/loader.rst
 
 ..
     Indices and tables

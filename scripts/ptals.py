@@ -29,7 +29,9 @@ def get_network(fgdb_path, output_file, layer_name, key_field="OBJECTID"):
     else:
         with fiona.open(fgdb_path, driver="FileGDB", layer=layer_name) as recs:
             # strip_properties reduces the size of the network from over 1GB to 67MB
-            net = loader.load_network(recs, key_field, strip_properties=True)
+            net = loader.load_network_from_geometries(
+                recs, key_field, strip_properties=True
+            )
 
         print(
             "Saving new network file {} containing {} edges".format(

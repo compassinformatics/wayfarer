@@ -30,7 +30,7 @@ jobs:
           flake8 .
       - name: Check types with mypy
         run: |
-          mypy wayfarer tests
+          mypy wayfarer tests scripts
       #- name: Test doctests with pytest
       #  run: |
       #    PYTHONPATH=. pytest --doctest-modules
