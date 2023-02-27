@@ -11,7 +11,7 @@ from tests.helper import simple_features
 def test_split_network_edge(use_reverse_lookup):
 
     feats = simple_features()
-    net = loader.load_network(feats, use_reverse_lookup=use_reverse_lookup)
+    net = loader.load_network_from_geometries(feats, use_reverse_lookup=use_reverse_lookup)
 
     assert len(net.nodes()) == 4
     assert len(net.edges()) == 3
@@ -53,7 +53,7 @@ def test_split_network_edge(use_reverse_lookup):
 def test_multiple_split_network_edge(use_reverse_lookup):
 
     feats = simple_features()
-    net = loader.load_network(feats, use_reverse_lookup=use_reverse_lookup)
+    net = loader.load_network_from_geometries(feats, use_reverse_lookup=use_reverse_lookup)
 
     # split the second edge multiple times
     edge_id_to_split = 2
@@ -71,7 +71,7 @@ def test_multiple_split_network_edge(use_reverse_lookup):
 @pytest.mark.parametrize("use_reverse_lookup", [(True), (False)])
 def test_double_split_network_edge(use_reverse_lookup):
     feats = simple_features()
-    net = loader.load_network(feats, use_reverse_lookup=use_reverse_lookup)
+    net = loader.load_network_from_geometries(feats, use_reverse_lookup=use_reverse_lookup)
 
     # split the second edge multiple times
     edge_id_to_split = 2
@@ -95,7 +95,7 @@ def test_double_split_network_edge(use_reverse_lookup):
 def test_split_invalid_measure(use_reverse_lookup):
 
     feats = simple_features()
-    net = loader.load_network(feats, use_reverse_lookup=use_reverse_lookup)
+    net = loader.load_network_from_geometries(feats, use_reverse_lookup=use_reverse_lookup)
     error = False
 
     try:
@@ -111,7 +111,7 @@ def test_split_invalid_measure(use_reverse_lookup):
 def test_split_invalid_measure2(use_reverse_lookup):
 
     feats = simple_features()
-    net = loader.load_network(feats, use_reverse_lookup=use_reverse_lookup)
+    net = loader.load_network_from_geometries(feats, use_reverse_lookup=use_reverse_lookup)
     error = False
 
     try:
@@ -127,7 +127,7 @@ def test_split_invalid_measure2(use_reverse_lookup):
 def test_split_with_points(use_reverse_lookup):
 
     feats = simple_features()
-    net = loader.load_network(feats, use_reverse_lookup=use_reverse_lookup)
+    net = loader.load_network_from_geometries(feats, use_reverse_lookup=use_reverse_lookup)
 
     recs = [
         {"EDGE_ID": 1, "POINT_ID": "A", "MEASURE": 50, "LEN_": 12},
