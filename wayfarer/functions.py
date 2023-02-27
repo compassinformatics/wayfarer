@@ -50,7 +50,7 @@ def get_unique_ordered_list(items: Iterable) -> list:
     return list(dict.fromkeys(items))
 
 
-def edges_to_graph(edges: list[Edge | tuple]) -> networkx.MultiGraph:
+def edges_to_graph(edges: (list[Edge] | list[tuple])) -> networkx.MultiGraph:
     """
     Utility function to create a new MultiGraph based on a list of edges
 
