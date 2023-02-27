@@ -38,6 +38,8 @@ PMS routing
 Edge Class
 ----------
 
+.. sourcecode:: python
+
     >>> to_edge((0, 1, 1, {"LEN_": 10}))
     Edge(start_node=0, end_node=1, key=1, attributes={'LEN_': 10})
 

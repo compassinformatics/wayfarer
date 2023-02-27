@@ -3,11 +3,12 @@ Wayfarer
 
 .. toctree::
    :maxdepth: 2
-   :hidden:
    :caption: Contents:
 
    self
    examples.rst
+   solver.rst
+   api.rst
 
 ..
     Indices and tables

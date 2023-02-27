@@ -391,6 +391,12 @@ def test_get_path_length():
     assert functions.get_path_length(edges) == 10
 
 
+def test_doctest():
+    import doctest
+
+    print(doctest.testmod(functions))
+
+
 if __name__ == "__main__":
     logging.basicConfig(level=logging.DEBUG)
     # test_get_edges_from_nodes()
@@ -405,6 +411,7 @@ if __name__ == "__main__":
     # test_to_edge_no_attributes()
     # test_edges_to_graph_no_keys()
     # test_get_edge_by_key_missing()
-    test_get_all_paths_from_nodes_with_direction()
+    # test_get_all_paths_from_nodes_with_direction()
     # test_get_path_length()
+    test_doctest()
     print("Done!")

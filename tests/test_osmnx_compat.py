@@ -51,6 +51,12 @@ def test_to_osmnx():
     ]
 
 
+def test_doctest():
+    import doctest
+
+    print(doctest.testmod(osmnx_compat))
+
+
 if __name__ == "__main__":
     logging.basicConfig(level=logging.DEBUG)
     test_to_osmnx()

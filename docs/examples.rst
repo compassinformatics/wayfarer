@@ -1,6 +1,9 @@
+Examples
+========
 
 Casting results into a named tuple:
 
+.. sourcecode:: python
 
     from wayfarer import Edge
     edges = net.edges(nbunch=upstream_nodes_ids, data=True)
@@ -17,10 +20,12 @@ Now we can take advantage of using properties rather than indexes and strings.
 
 :-( above doesn't work as Edge expects a key..
 
-Edge(start_node=105545731, end_node=104677819, key={'EDGE_ID': 103472683, 'LEN_': 1
+``Edge(start_node=105545731, end_node=104677819, key={'EDGE_ID': 103472683, 'LEN_': 1``
 
 
 Would have to do..
+
+.. sourcecode:: python
 
     edges = [Edge(e[0], e[1], attributes=e[2]) for e in edges]
     edge_ids = [e.attributes["EDGE_ID"] for e in edges]

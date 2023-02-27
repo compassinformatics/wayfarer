@@ -406,6 +406,12 @@ def test_bottle_network():
     # assert [e.key for e in edges] == [1, 2, 3]
 
 
+def test_doctest():
+    import doctest
+
+    print(doctest.testmod(routing))
+
+
 if __name__ == "__main__":
     logging.basicConfig(level=logging.DEBUG)
     # test_get_path_ends()

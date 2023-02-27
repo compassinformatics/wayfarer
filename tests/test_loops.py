@@ -35,6 +35,12 @@ def test_get_loop_nodes():
     assert loop_nodes == {0: [0, 1, 2]}
 
 
+def test_doctest():
+    import doctest
+
+    print(doctest.testmod(loops))
+
+
 if __name__ == "__main__":
     logging.basicConfig(level=logging.DEBUG)
     # test_get_unique_lists()

@@ -35,25 +35,40 @@ def pairwise(iterable) -> Iterable[tuple]:
     return zip(a, b)
 
 
-def get_unique_ordered_list(items: Iterable):
+def get_unique_ordered_list(items: Iterable) -> list:
     """
     An order-preserving function to get a unique list of edges or nodes
+
+    >>> get_unique_ordered_list([1, 1, 2, 3, 4, 5, 6, 5])
+    [1, 2, 3, 4, 5, 6]
+
+    Args:
+        items: Any iterable
+    Returns:
+        A list of unique values
     """
     return list(dict.fromkeys(items))
 
 
-def edges_to_graph(edges: list[Edge]) -> networkx.MultiGraph:
+def edges_to_graph(edges: list[Edge | tuple]) -> networkx.MultiGraph:
     """
     Utility function to create a new MultiGraph based on a list of edges
 
-    edges = [Edge(0, 1), Edge(1, 2)]
-    net = functions.edges_to_graph(edges)
+    Args:
+        edges: A list of Edge named tuples, or simply tuples
+    Returns:
+        A new network
+
+    >>> edges = [Edge(0, 1, "A", {}), Edge(1, 2, "B", {})]
+    >>> net = edges_to_graph(edges)
+    >>> print(net)
+    MultiGraph with 3 nodes and 2 edges
     """
     net = networkx.MultiGraph()
 
     for edge in edges:
         if len(edge) > 2:
-            net.add_edge(edge[0], edge[1], key=edge[2])
+            net.add_edge(edge[0], edge[1], key=edge[2], attributes=edge[3])
         else:
             # when no key is provided networkx uses a 0 value for the key
             net.add_edge(edge[0], edge[1])
@@ -61,10 +76,28 @@ def edges_to_graph(edges: list[Edge]) -> networkx.MultiGraph:
     return net
 
 
-def add_edge(net, start_node, end_node, key, attributes) -> None:
+def add_edge(
+    net: (networkx.MultiGraph | networkx.MultiDiGraph),
+    start_node: (int | str),
+    end_node: (int | str),
+    key: (int | str),
+    attributes: dict,
+) -> None:
     """
-    When adding an edge to a network, nodes are automatically
+    Add an edge to a network. When adding an edge to a network, nodes are automatically
     added
+
+    Args:
+        net: A network
+        start_node: The start node of the edge
+        end_node: The end node of the edge
+        key: The unique key of the edge
+        attributes: Any attributes associated with the edge
+
+    >>> net = networkx.MultiGraph()
+    >>> add_edge(net, 1, 2, "A", {"LEN_": 10})
+    >>> print(net)
+    MultiGraph with 2 nodes and 1 edges
     """
     net.add_edge(start_node, end_node, key=key, **attributes)
 
@@ -73,7 +106,11 @@ def add_edge(net, start_node, end_node, key, attributes) -> None:
         net.graph["keys"][key] = (start_node, end_node)
 
 
-def get_edge_by_key(net, key, with_data: bool = True) -> Edge:
+def get_edge_by_key(
+    net: (networkx.MultiGraph | networkx.MultiDiGraph),
+    key: (int | str),
+    with_data: bool = True,
+) -> Edge:
     """
     Go through all edge property dicts until the relevant key is found
     Using an iterator faster than list comprehension
@@ -83,6 +120,11 @@ def get_edge_by_key(net, key, with_data: bool = True) -> Edge:
 
     400ns with reverse lookup
     1.16 seconds with generators
+
+    >>> edges = [Edge(0, 1, "A", {}), Edge(1, 2, "B", {"LEN_": 10})]
+    >>> net = edges_to_graph(edges)
+    >>> get_edge_by_key(net, "B", with_data=True)
+    Edge(start_node=1, end_node=2, key='B', attributes={'attributes': {'LEN_': 10}})
     """
 
     if "keys" in net.graph:
@@ -469,7 +511,7 @@ def get_edges(net, nodes):
 
     Args:
         net (object): a networkx network
-        nodes: (list):  a list of network nodes e.g. [(224966, 437657), (225195, 437940)]
+        nodes: (list):  a list of network nodes e.g. ``[(224966, 437657), (225195, 437940)]``
 
     Returns:
         end_edges (dict): a dict containing segment codes and their associated network edge

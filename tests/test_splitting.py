@@ -149,6 +149,12 @@ def test_split_with_points(use_reverse_lookup):
     assert len(edges) == 6
 
 
+def test_doctest():
+    import doctest
+
+    print(doctest.testmod(splitter))
+
+
 if __name__ == "__main__":
     logging.basicConfig(level=logging.DEBUG)
     test_multiple_split_network_edge(True)
