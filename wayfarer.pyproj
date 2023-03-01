@@ -31,7 +31,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="docs\conf.py" />
-    <Compile Include="docs\examples\ptals.py" />
+    <Compile Include="scripts\web.py" />
+    <Compile Include="scripts\ptals.py" />
     <Compile Include="scripts\benchmarking.py">
       <SubType>Code</SubType>
     </Compile>
@@ -51,6 +52,8 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="tests\networks.py" />
+    <Compile Include="tests\test_loader.py" />
+    <Compile Include="tests\test_osmnx_compat.py" />
     <Compile Include="tests\test_loops.py" />
     <Compile Include="tests\test_functions.py">
       <SubType>Code</SubType>
@@ -83,7 +86,7 @@
     <Folder Include=".github\workflows\" />
     <Folder Include="docs\" />
     <Folder Include="data\" />
-    <Folder Include="docs\examples\" />
+    <Folder Include="docs\api\" />
     <Folder Include="docs\images\" />
     <Folder Include="scripts\" />
     <Folder Include="tests\" />
@@ -93,9 +96,12 @@
     <Content Include=".flake8" />
     <Content Include=".github\dependabot.yml" />
     <Content Include=".github\workflows\main.yml" />
+    <Content Include=".gitignore" />
     <Content Include=".mypy.ini" />
     <Content Include="CONTRIBUTING.rst" />
     <Content Include="data\tipperary.txt" />
+    <Content Include="docs\api\loader.rst" />
+    <Content Include="docs\api\functions.rst" />
     <Content Include="docs\examples.rst" />
     <Content Include="docs\images\bottle_network.png" />
     <Content Include="docs\images\circle_network.png" />
@@ -118,6 +124,7 @@
     <Content Include="docs\self_loops.rst">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="docs\solver.rst" />
     <Content Include="docs\talk.rst" />
     <Content Include="dev_setup.ps1" />
     <Content Include="build_docs.ps1" />

@@ -33,7 +33,6 @@ def test_get_edge_by_key(use_reverse_lookup):
 
 
 def test_get_edge_by_key_missing():
-
     recs = [{"EDGE_ID": 1, "LEN_": 100, "NODEID_FROM": 0, "NODEID_TO": 100}]
     net = loader.load_network_from_records(recs)
 
@@ -42,7 +41,6 @@ def test_get_edge_by_key_missing():
 
 
 def test_to_edge():
-
     edge = wayfarer.to_edge((0, 1, 1, {"LEN_": 10}))
     assert edge == Edge(start_node=0, end_node=1, key=1, attributes={"LEN_": 10})
 
@@ -325,6 +323,23 @@ def test_get_edges_from_nodes():
     assert edges[0].attributes[WITH_DIRECTION_FIELD] is False
 
 
+def test_get_edges_from_nodes_non_unique():
+    net = networkx.MultiGraph()
+
+    net.add_edge(1, 2, key="A", **{"EDGE_ID": "A", "LEN_": 100})
+    net.add_edge(1, 2, key="B", **{"EDGE_ID": "B", "LEN_": 100})
+
+    node_list = [1, 2, 1]
+    edges = functions.get_edges_from_nodes(net, node_list, return_unique=True)
+    assert len(edges) == 1
+    edges[0].key == "B"
+
+    edges = functions.get_edges_from_nodes(net, node_list, return_unique=False)
+    assert len(edges) == 2
+    edges[0].key == "B"
+    edges[1].key == "B"
+
+
 def test_edges_to_graph():
     edges = []
     net = functions.edges_to_graph(edges)
@@ -337,7 +352,6 @@ def test_edges_to_graph():
 
 
 def test_edges_to_graph_no_keys():
-
     tuples = [(0, 1), (1, 2)]
     net = functions.edges_to_graph(tuples)
     assert len(net.edges()) == 2
@@ -368,7 +382,6 @@ def test_get_shortest_edge_identical():
 
 
 def test_get_unique_ordered_list():
-
     lst = [2, 2, 1, 1, 4, 4, 1, 2, 3]
     res = functions.get_unique_ordered_list(lst)
     print(res)
@@ -386,7 +399,6 @@ def test_get_edges_from_node_pair():
 
 
 def test_get_path_length():
-
     edges = [Edge(0, 1, "A", {"LEN_": 5}), Edge(1, 2, "B", {"LEN_": 5})]
     assert functions.get_path_length(edges) == 10
 
@@ -413,5 +425,6 @@ if __name__ == "__main__":
     # test_get_edge_by_key_missing()
     # test_get_all_paths_from_nodes_with_direction()
     # test_get_path_length()
-    test_doctest()
+    # test_doctest()
+    test_get_edges_from_nodes_non_unique()
     print("Done!")

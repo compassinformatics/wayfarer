@@ -4,7 +4,7 @@ cd D:\GitHub\wayfarer
 black .
 flake8 .
 
-mypy wayfarer tests
+mypy wayfarer tests scripts
 
 pytest --doctest-modules
 

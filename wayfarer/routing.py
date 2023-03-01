@@ -31,9 +31,9 @@ def solve_shortest_path(
 
 def solve_shortest_path_from_nodes(
     net: (networkx.MultiGraph | networkx.MultiDiGraph),
-    node_list: list[str | int],
+    node_list: list[int | str],
     weight: str = LENGTH_FIELD,
-) -> list[str | int]:
+) -> list[int | str]:
     """
     Return a list of nodes found by solving from each node in node_list to
     the next
@@ -58,7 +58,7 @@ def solve_shortest_path_from_nodes(
 
 
 def solve_shortest_path_from_edges(
-    net: (networkx.MultiGraph | networkx.MultiDiGraph), edge_id_list: list[str | int]
+    net: (networkx.MultiGraph | networkx.MultiDiGraph), edge_id_list: list[int | str]
 ):
     """
     Return a path routing from edge to edge, rather than
@@ -71,7 +71,7 @@ def solve_shortest_path_from_edges(
     edge_id_list = functions.get_unique_ordered_list(edge_id_list)
 
     edges = []
-    previous_edge_nodes = []  # type: list[str | int]
+    previous_edge_nodes = []  # type: list[int | str]
 
     for edge_id in edge_id_list:
         edge = functions.get_edge_by_key(net, edge_id)
@@ -103,9 +103,11 @@ def solve_shortest_path_from_edges(
                 log.warning(ex)
                 raise
 
-            # reset original length - note not in original implementation
-            edge.attributes[LENGTH_FIELD] = original_length
             edges += functions.get_edges_from_nodes(net, nodes)
+
+            # reset original length - note not in original implementation
+            # ensure this is only reset after get_edges_from_nodes has been called
+            edge.attributes[LENGTH_FIELD] = original_length
 
         if sorted(previous_edge_nodes) == sorted(end_nodes):
             # a loop of two edges - get all edges between the nodes

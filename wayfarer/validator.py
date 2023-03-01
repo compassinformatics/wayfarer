@@ -8,7 +8,7 @@ import networkx
 
 def duplicate_keys(
     net: (networkx.MultiGraph | networkx.MultiDiGraph),
-) -> list[str | int]:
+) -> list[int | str]:
     """
     Find any duplicate keys in the network
     Keys must be unique for routing to function correctly

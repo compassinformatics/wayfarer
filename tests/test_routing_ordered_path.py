@@ -276,8 +276,13 @@ def test_circle_network():
     edges = routing.solve_shortest_path(net, start_node=1, end_node=3)
     assert [edge.key for edge in edges] == [1, 2]
 
+    edge_id_list = [1, 2, 3, 4]
+    edges = routing.solve_shortest_path_from_edges(net, edge_id_list)
+    assert [e.key for e in edges] == [1, 2, 3, 4]
+
     edge_id_list = [4, 3, 2, 1]
     edges = routing.solve_shortest_path_from_edges(net, edge_id_list)
+    # print([e.key for e in edges])
     # 4, 3, 2, 1 is equally valid, but the eulerian_path returns them in this order
     assert [e.key for e in edges] == [4, 1, 2, 3]
 
@@ -306,20 +311,19 @@ def test_dual_path():
 
     edge_id_list = [1, 2]
     edges = routing.solve_shortest_path_from_edges(net, edge_id_list)
-    print([e.key for e in edges])
     assert [e.key for e in edges] == [1, 2]
 
-    # TODO fix cases below
+    edge_id_list = [1, 3]
+    edges = routing.solve_shortest_path_from_edges(net, edge_id_list)
+    assert [e.key for e in edges] == [1, 3]
 
-    # edge_id_list = [1, 3]
-    # edges = routing.solve_shortest_path_from_edges(net, edge_id_list)
-    # print([e.key for e in edges])
-    # assert [e.key for e in edges] == [1, 2]
+    edge_id_list = [1, 2]
+    edges = routing.solve_shortest_path_from_edges(net, edge_id_list)
+    assert [e.key for e in edges] == [1, 2]
 
-    # edge_id_list = [1, 2, 3]
-    # edges = routing.solve_shortest_path_from_edges(net, edge_id_list)
-    # print([e.key for e in edges])
-    # assert [e.key for e in edges] == [1, 2, 3]
+    edge_id_list = [1, 2, 3]
+    edges = routing.solve_shortest_path_from_edges(net, edge_id_list)
+    assert [e.key for e in edges] == [1, 2, 3]
 
 
 def test_loop_middle_network():
@@ -390,20 +394,19 @@ def test_bottle_network():
 
     edge_id_list = [1, 3]
     edges = routing.solve_shortest_path_from_edges(net, edge_id_list)
-    print([e.key for e in edges])
     assert [e.key for e in edges] == [1, 3]
 
-    # TODO fix cases below
+    edge_id_list = [1, 3]
+    edges = routing.solve_shortest_path_from_edges(net, edge_id_list)
+    assert [e.key for e in edges] == [1, 3]
 
-    # edge_id_list = [1, 3]
-    # edges = routing.solve_shortest_path_from_edges(net, edge_id_list)
-    # print([e.key for e in edges])
-    # assert [e.key for e in edges] == [1, 2]
+    edge_id_list = [1, 2]
+    edges = routing.solve_shortest_path_from_edges(net, edge_id_list)
+    assert [e.key for e in edges] == [1, 2]
 
-    # edge_id_list = [1, 2, 3]
-    # edges = routing.solve_shortest_path_from_edges(net, edge_id_list)
-    # print([e.key for e in edges])
-    # assert [e.key for e in edges] == [1, 2, 3]
+    edge_id_list = [1, 2, 3]
+    edges = routing.solve_shortest_path_from_edges(net, edge_id_list)
+    assert [e.key for e in edges] == [1, 2, 3]
 
 
 def test_doctest():
@@ -423,9 +426,9 @@ if __name__ == "__main__":
     # test_t_network()
     # test_p_network()
     # test_double_loop_network()
-    # test_circle_network()
+    test_circle_network()
     # test_dual_path()
     # test_loop_middle_network()
     # test_triple_loop_network()
-    test_bottle_network()
+    # test_bottle_network()
     print("Done!")
