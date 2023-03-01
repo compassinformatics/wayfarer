@@ -1,5 +1,6 @@
 from wayfarer import loops, Edge
 import logging
+from tests import networks
 
 
 def test_get_root_node():
@@ -35,6 +36,16 @@ def test_get_loop_nodes():
     assert loop_nodes == {0: [0, 1, 2]}
 
 
+def test_is_loop():
+
+    assert loops.is_loop(networks.circle_network()) is True
+
+
+def test_is_not_loop():
+
+    assert loops.is_loop(networks.triple_loop_network()) is False
+
+
 def test_doctest():
     import doctest
 
@@ -45,5 +56,7 @@ if __name__ == "__main__":
     logging.basicConfig(level=logging.DEBUG)
     # test_get_unique_lists()
     # test_get_root_node()
-    test_get_loop_nodes()
+    # test_get_loop_nodes()
+    # test_is_loop()
+    test_is_not_loop()
     print("Done!")

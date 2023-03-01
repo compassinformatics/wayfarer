@@ -11,6 +11,21 @@ from typing import Iterable
 log = logging.getLogger("wayfarer")
 
 
+def is_loop(net: (networkx.MultiGraph | networkx.MultiDiGraph)) -> bool:
+    """
+    Check if the entire network is a loop
+    """
+
+    try:
+        edges = networkx.algorithms.cycles.find_cycle(net)
+        if len(edges) == len(net.edges()):
+            return True
+        else:
+            return False
+    except networkx.exception.NetworkXNoCycle:
+        return False
+
+
 def has_loop(net: (networkx.MultiGraph | networkx.MultiDiGraph)) -> bool:
     """
     Check if the network has a loop
