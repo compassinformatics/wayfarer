@@ -7,3 +7,9 @@ flake8 .
 mypy wayfarer tests
 
 pytest --doctest-modules
+
+
+# web app
+C:\VirtualEnvs\wayfarer\Scripts\activate.ps1
+cd D:\GitHub\wayfarer\scripts
+uvicorn web:app --reload --port 8020  --log-level 'debug'
