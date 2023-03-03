@@ -45,7 +45,6 @@ def test_split_network_edge(use_reverse_lookup):
     assert split_edge.attributes["OFFSET"] == 0
 
     split_edge_id = splitter.create_split_key(edge_id_to_split, 100)
-
     split_edge = functions.get_edge_by_key(net, split_edge_id, with_data=True)
     assert split_edge.attributes["LEN_"] == 50
     assert split_edge.attributes["OFFSET"] == 50
@@ -169,11 +168,12 @@ def test_doctest():
 
 if __name__ == "__main__":
     logging.basicConfig(level=logging.DEBUG)
-    test_multiple_split_network_edge(True)
-    test_split_invalid_measure(True)
-    test_split_invalid_measure2(True)
-    test_multiple_split_network_edge(True)
-    test_multiple_split_network_edge(True)
-    test_double_split_network_edge(True)
-    test_split_with_points(True)
+    # test_multiple_split_network_edge(True)
+    # test_split_invalid_measure(True)
+    # test_split_invalid_measure2(True)
+    # test_multiple_split_network_edge(True)
+    # test_multiple_split_network_edge(True)
+    # test_double_split_network_edge(True)
+    # test_split_with_points(True)
+    test_split_network_edge(True)
     print("Done!")

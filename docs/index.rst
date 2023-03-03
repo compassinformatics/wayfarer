@@ -2,7 +2,7 @@ Wayfarer
 ========
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
    :caption: Contents:
 
    self
@@ -10,6 +10,7 @@ Wayfarer
    solver.rst
    api/functions.rst
    api/loader.rst
+   api/routing.rst
 
 ..
     Indices and tables

@@ -4,6 +4,7 @@ cd D:\GitHub\wayfarer
 black .
 flake8 .
 
+mypy --install-types
 mypy wayfarer tests scripts
 
 pytest --doctest-modules

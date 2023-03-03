@@ -18,6 +18,8 @@ WITH_DIRECTION_FIELD = "WITH_DIRECTION"
 SPLIT_POINT_ID_FIELD = "POINT_ID"
 SPLIT_MEASURE_FIELD = "MEASURE"
 
+SPLIT_FLAG = "IS_SPLIT"
+
 # the Edge class
 
 # https://mypy.readthedocs.io/en/stable/kinds_of_types.html#named-tuples

@@ -3,7 +3,7 @@ import itertools
 import networkx
 from wayfarer import functions, LENGTH_FIELD, Edge
 from networkx.algorithms import eulerian_path
-from networkx import NetworkXNoPath
+from networkx import NetworkXNoPath, NodeNotFound
 
 
 class MultipleEnds(Exception):
@@ -205,7 +205,11 @@ def solve_matching_path(
     return edges
 
 
-def solve_matching_path_from_nodes(net, node_list, distance: int):
+def solve_matching_path_from_nodes(
+    net: (networkx.MultiGraph | networkx.MultiDiGraph),
+    node_list: list[int | str],
+    distance: int,
+):
     """
     From a list of unordered nodes find the longest path that connects all nodes
     Then rerun the solve from the start to the end of the path getting a path
@@ -243,18 +247,6 @@ def solve_matching_path_from_nodes(net, node_list, distance: int):
     return solve_matching_path(net, start_node, end_node, distance)
 
 
-# def create_subnet(edges) -> networkx.MultiGraph:
-#    """
-#    Create a subnetwork from an edge list
-#    """
-#    subnet = networkx.MultiGraph()
-
-#    for edge in edges:
-#        subnet.add_edge(edge.start_node, edge.end_node, edge.key)
-
-#    return subnet
-
-
 def get_path_ends(edges):
     """
     For a list of connected edges find the end nodes
@@ -277,22 +269,32 @@ def get_path_ends(edges):
     return start_node, end_node
 
 
-def solve_all_simple_paths(net, start_node, end_node, cutoff: int = 10) -> list:
+def solve_all_simple_paths(
+    net: (networkx.MultiGraph | networkx.MultiDiGraph),
+    start_node: (int | str),
+    end_node: (int | str),
+    cutoff: int = 10,
+) -> list:
     """
+    Find all simple paths between the two nodes on the network.
     A simple path does not have any repeated nodes
-    Cut-off will limit how many nodes to search for
-    Returns an iterator of a list of list of nodes
-    [[0, 1, 3], [0, 2, 3], [0, 3]]
-    See https://networkx.github.io/documentation/stable/reference/algorithms/generated/networkx.algorithms.simple_paths.all_simple_paths.html
+    A wrapper function for `all_simple_paths <
+    https://networkx.github.io/documentation/stable/reference/algorithms/generated/networkx.algorithms.simple_paths.all_simple_paths.html>`_
+    TODO add ``has_path`` check prior to running
 
-    net = networkx.MultiGraph()
-    net.add_edge("A","B",1)
-    net.add_edge("B","C",2)
-    net.add_edge("C","B",3)
-    net.add_edge("C","D",4)
-    pths = networkx.all_simple_paths(net, source="A", target="D")
+    Args:
+        net: The network
+        start_node: The node Id of the start node
+        end_node: The node Id of the end node
+        cutoff: The maximum number of edges to search for before stopping the search
+    Returns:
+        An iterator of a list of list of nodes
 
-    print(list(pths)) # [['A', 'B', 'C', 'D'], ['A', 'B', 'C', 'D']]
+    >>> edges = [Edge(0, 1, "A", {}), Edge(1, 2, "B", {"LEN_": 10}), Edge(2, 1, "C", {"LEN_": 10})]
+    >>> net = functions.edges_to_graph(edges)
+    >>> pths = solve_all_simple_paths(net, 0, 2)
+    >>> print(list(pths))
+    [[0, 1, 2], [0, 1, 2]]
     """
 
     all_shortest_paths = []
@@ -302,27 +304,37 @@ def solve_all_simple_paths(net, start_node, end_node, cutoff: int = 10) -> list:
         all_shortest_paths = networkx.all_simple_paths(
             net, source=start_node, target=end_node, cutoff=cutoff
         )
-    except KeyError:
+    except NodeNotFound as ex:
+        log.error(ex)  # target node 99 not in graph
         raise
 
     return all_shortest_paths
 
 
-def solve_all_shortest_paths(net, start_node, end_node):
+def solve_all_shortest_paths(
+    net: (networkx.MultiGraph | networkx.MultiDiGraph),
+    start_node: (int | str),
+    end_node: (int | str),
+):
     """
-    Includes loops / repeated nodes
-    Returns an iterator of a list of list of nodes
-    [[0, 1, 3], [0, 2, 3], [0, 3]]
-    See https://networkx.github.io/documentation/stable/reference/algorithms/generated/networkx.algorithms.shortest_paths.generic.all_shortest_paths.html
+    Find all shortest paths between the two nodes on the network.
+    This includes loops and repeated nodes.
+    A wrapper function for `all_shortest_paths <
+    https://networkx.github.io/documentation/stable/reference/algorithms/generated/networkx.algorithms.shortest_paths.generic.all_shortest_paths.html>`_
+    Unsure why less results are returned in the example below than when using all_simple_paths
 
-    net = networkx.MultiGraph()
-    net.add_edge("A","B",1)
-    net.add_edge("B","C",2)
-    net.add_edge("C","B",3)
-    net.add_edge("C","D",4)
-    pths = networkx.all_shortest_paths(net, source="A", target="D")
+    Args:
+        net: The network
+        start_node: The node Id of the start node
+        end_node: The node Id of the end node
+    Returns:
+        An iterator of a list of list of nodes
 
-    print(list(pths)) # [['A', 'B', 'C', 'D']]
+    >>> edges = [Edge(0, 1, "A", {}), Edge(1, 2, "B", {"LEN_": 10}), Edge(2, 1, "C", {"LEN_": 10})]
+    >>> net = functions.edges_to_graph(edges)
+    >>> pths = solve_all_shortest_paths(net, 0, 2)
+    >>> print(list(pths))
+    [[0, 1, 2]]
     """
 
     all_shortest_paths = []
@@ -332,7 +344,8 @@ def solve_all_shortest_paths(net, start_node, end_node):
         all_shortest_paths = networkx.all_shortest_paths(
             net, source=start_node, target=end_node
         )
-    except KeyError:
+    except Exception as ex:
+        log.error(ex)  # errors only seem to be raised when the iterator is used
         raise
 
     return all_shortest_paths
@@ -348,8 +361,8 @@ def find_ordered_path(
      path, covering all edges, from one end to the other.
      A start_node can be provided to return the edges in a specific direction.
      Uses the
-    `Eulerian Path <https://networkx.github.io/documentation/stable/reference/algorithms/generated/networkx.algorithms.euler.eulerian_path.html>`_
-     function from networkx
+    `eulerian_path <https://networkx.github.io/documentation/stable/reference/algorithms/generated/networkx.algorithms.euler.eulerian_path.html>`_
+    function from networkx
     """
 
     subnet = functions.edges_to_graph(edges)
@@ -393,3 +406,9 @@ def find_ordered_path(
         ordered_edges.append(edge)
 
     return ordered_edges
+
+
+if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
