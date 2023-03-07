@@ -150,8 +150,13 @@ def solve_shortest_path_from_edges(
 
 
 def solve_matching_path(
-    net, start_node, end_node, distance: int = 0, cutoff: int = 10, include_key=None
-):
+    net: (networkx.MultiGraph | networkx.MultiDiGraph),
+    start_node: (str | int),
+    end_node: (str | int),
+    distance: int = 0,
+    cutoff: int = 10,
+    include_key: (str | int | None) = None,
+) -> (list[Edge] | None):
     """
     Return the path between the nodes that best matches the
     distance
@@ -209,7 +214,7 @@ def solve_matching_path_from_nodes(
     net: (networkx.MultiGraph | networkx.MultiDiGraph),
     node_list: list[int | str],
     distance: int,
-):
+) -> (list[Edge] | None):
     """
     From a list of unordered nodes find the longest path that connects all nodes
     Then rerun the solve from the start to the end of the path getting a path
@@ -247,10 +252,14 @@ def solve_matching_path_from_nodes(
     return solve_matching_path(net, start_node, end_node, distance)
 
 
-def get_path_ends(edges):
+def get_path_ends(edges: list[Edge]) -> tuple[(int | str), (int | str)]:
     """
-    For a list of connected edges find the end nodes
-    TODO check if the edges form a loop
+    For a list of connected edges find the (unattached) end nodes
+    TODO Check if the edges form a loop
+
+    >>> edges = [Edge(0, 1, 1, {}), Edge(1, 2, 1, {})]
+    >>> get_path_ends(edges)
+    (0, 2)
     """
 
     # first check the case where there is only a single edge
@@ -408,7 +417,6 @@ def find_ordered_path(
     return ordered_edges
 
 
-if __name__ == "__main__":
-    import doctest
-
-    doctest.testmod()
+# if __name__ == "__main__":
+#    import doctest
+#    doctest.testmod()

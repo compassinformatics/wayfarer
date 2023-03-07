@@ -22,7 +22,7 @@ setup(
         "Programming Language :: Python :: 3.10",  # minimum required due to use of annotations
         "Intended Audience :: Developers",
     ],
-    url="http://www.compass.ie",
+    url="https://github.com/compassinformatics/wayfarer/",
     author="Seth Girvin",
     author_email="sgirvin@compass.ie",
     license="MIT",

@@ -35,7 +35,7 @@ def valid_reverse_lookup(net: (networkx.MultiGraph | networkx.MultiDiGraph)):
 def recalculate_keys(net: (networkx.MultiGraph | networkx.MultiDiGraph)):
     """
     Recalculate keys in the reverse lookup dictionary
-    These can become out-of-synch following a merge of networks e.g. with
+    These can become out-of-sync following a merge of networks e.g. with
     the compose_all function
     """
 

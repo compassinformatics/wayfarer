@@ -3,7 +3,7 @@ Helper module to convert between wayfarer and osmnx networks
 """
 import wayfarer
 import networkx as nx
-from shapely import wkb
+from shapely import wkb, LineString
 import osmnx as ox
 import logging
 import datetime as dt
@@ -46,7 +46,7 @@ def to_osmnx(
         edge = wayfarer.to_edge(tpl)
 
         try:
-            edge_wkb = edge.attributes[geometry_field]
+            edge_geometry = edge.attributes[geometry_field]
         except KeyError:
             keys = list(edge.attributes.keys())
             log.error(
@@ -54,7 +54,8 @@ def to_osmnx(
             )
             raise
 
-        edge_geometry = wkb.loads(edge_wkb)
+        if not type(edge_geometry) is LineString:
+            edge_geometry = wkb.loads(edge_geometry)
 
         G.add_node(
             edge.start_node, x=edge_geometry.coords[0][0], y=edge_geometry.coords[0][1]

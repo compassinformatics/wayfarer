@@ -74,8 +74,8 @@ Edge(start_node=1, end_node=2, key=2, attributes={'LEN_': 20})]
     return [to_edge(edge) for edge in edges]
 
 
-if __name__ == "__main__":
-    import doctest
+# if __name__ == "__main__":
+#    import doctest
 
-    doctest.testmod()
-    print("Done!")
+#    doctest.testmod()
+#    print("Done!")
