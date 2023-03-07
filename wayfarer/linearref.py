@@ -458,7 +458,7 @@ def get_nearest_vertex(point: Point, line: LineString) -> tuple[Point, float]:
     line = remove_duplicates_in_line(line)
 
     nearest_point = None
-    min_dist = sys.maxsize
+    min_dist = float(sys.maxsize)
 
     # loop through pairs of points
     # slice slices list but returns an iterator
