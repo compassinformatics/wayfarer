@@ -10,6 +10,7 @@ Wayfarer
    solver.rst
    api/functions.rst
    api/loader.rst
+   api/linearref.rst
    api/routing.rst
 
 ..

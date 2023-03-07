@@ -52,6 +52,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="tests\networks.py" />
+    <Compile Include="tests\test_linearref.py" />
     <Compile Include="tests\test_loader.py" />
     <Compile Include="tests\test_osmnx_compat.py" />
     <Compile Include="tests\test_loops.py" />
@@ -68,6 +69,7 @@
     <Compile Include="wayfarer\functions.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="wayfarer\linearref.py" />
     <Compile Include="wayfarer\loops.py" />
     <Compile Include="wayfarer\merger.py">
       <SubType>Code</SubType>
@@ -100,6 +102,7 @@
     <Content Include=".mypy.ini" />
     <Content Include="CONTRIBUTING.rst" />
     <Content Include="data\tipperary.txt" />
+    <Content Include="docs\api\linearref.rst" />
     <Content Include="docs\api\loader.rst" />
     <Content Include="docs\api\functions.rst" />
     <Content Include="docs\examples.rst" />
