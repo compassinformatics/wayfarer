@@ -5,7 +5,7 @@ to join the split edges
 import logging
 import uuid
 from collections import defaultdict, OrderedDict
-from wayfarer import functions
+from wayfarer import functions, linearref
 import networkx
 from wayfarer import (
     LENGTH_FIELD,
@@ -16,6 +16,7 @@ from wayfarer import (
     SPLIT_MEASURE_FIELD,
     NODEID_FROM_FIELD,
     NODEID_TO_FIELD,
+    GEOMETRY_FIELD,
     Edge,
 )
 
@@ -136,6 +137,13 @@ def get_split_attributes(
 
     # now add a flag to indicate this edge has been split
     atts[SPLIT_FLAG] = True
+
+    # if geometry is being stored in the edge then create a new line
+    # based on the offset
+    if GEOMETRY_FIELD in atts:
+        ls = atts[GEOMETRY_FIELD]
+        atts[GEOMETRY_FIELD] = linearref.create_line(ls, atts[OFFSET_FIELD], ls.length)
+
     return atts
 
 
@@ -143,7 +151,7 @@ def create_split_key(key: (str | int), m: (float | int)) -> str:
     """
     Function to ensure a standard format for split keys
     using the key of an edge and a measure
-    E.g. (154.2, 123829)
+    E.g. "123829:154.2"
     """
     return f"{key}:{m:g}"
 
@@ -200,6 +208,7 @@ def split_network_edge(
         prev_node,
         original_edge.end_node,
     )
+
     split_key = create_split_key(key, original_length)
     functions.add_edge(net, prev_node, original_edge.end_node, split_key, atts)
 

@@ -2,7 +2,13 @@ r"""
 This module contains functions relating to linear referencing.
 Requires the Shapely module
 
-`Link text <https://domain.invalid/>`_
+Reference links:
+
++ https://pypi.org/project/ligeos/
++ https://www.gaia-gis.it/fossil/libspatialite/wiki?name=VirtualRouting
++ http://plugins.qgis.org/plugins/lrs/
++ http://blazek.github.io/lrs/release/help.1.2.0/index.html
++ `ogr2ogr_ZMs <https://gist.github.com/geographika/3ad5fe0c5459f1dae8d28a0ffc4b8459>`_
 
 """
 import logging
@@ -448,10 +454,17 @@ def get_nearest_vertex(point: Point, line: LineString) -> tuple[Point, float]:
     Get the point on the line that is closest to the input point
     Based on code from `gis.stackexchange.com <http://gis.stackexchange.com/questions/396/nearest-neighbor-between-a-point-layer-and-a-line-layer>`_
 
+    Args:
+        point: The input point to place along a line
+        line: The input line
+    Returns:
+        A tuple containing the snapped point along the line
+        and its distance from the original point
+
     >>> point = Point(2, 21)
     >>> line = LineString([(0, 0), (0, 50), (0, 100)])
     >>> get_nearest_vertex(point, line)
-    (<POINT (0 0)>, 0.0)
+    (<POINT (0 21)>, 2.0)
     """
 
     # remove duplicates or we will get errors with the magnitude function later on

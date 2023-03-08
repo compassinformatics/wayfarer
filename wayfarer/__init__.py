@@ -1,8 +1,5 @@
-import sys
 from typing import NamedTuple
 
-
-PY37 = sys.version_info.major == 3 and sys.version_info.minor >= 7
 
 __version__ = "0.9.0"
 
@@ -14,6 +11,8 @@ NODEID_FROM_FIELD = "NODEID_FROM"
 NODEID_TO_FIELD = "NODEID_TO"
 
 WITH_DIRECTION_FIELD = "WITH_DIRECTION"
+
+GEOMETRY_FIELD = "geometry"
 
 SPLIT_POINT_ID_FIELD = "POINT_ID"
 SPLIT_MEASURE_FIELD = "MEASURE"

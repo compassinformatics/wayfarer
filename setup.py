@@ -27,6 +27,6 @@ setup(
     author_email="sgirvin@compass.ie",
     license="MIT",
     packages=["wayfarer"],
-    install_requires=["networkx>=3.0"],
+    install_requires=["networkx>=3.0", "geojson"],
     zip_safe=False,
 )
