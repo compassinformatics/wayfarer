@@ -66,23 +66,12 @@ jobs:
         run: |
           sphinx-build -b html docs build/html/
 
-      - name: Commit documentation changes
-        run: |
-          git clone https://github.com/compassinformatics/wayfarer-docs.git --branch main --single-branch main
-          cd main
-          # remove all old files
-          git rm -r '*'
-          # add custom domain file back in
-          # git checkout HEAD -- CNAME
-          cp -r ../build/html/* .
-          touch .nojekyll
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          git add .
-          git commit -m "Update website" -a || true
-          # The above command will fail if no changes were present, so we ignore
-          # the return code.
-          git push https://github.com/compassinformatics/wayfarer-docs.git
+      - name: Deploy gh-pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./build/html
+          destination_dir: .
 
 
   # see https://github.com/marketplace/actions/coveralls-github-action
