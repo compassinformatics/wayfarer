@@ -5,12 +5,14 @@ First requires the test dat files to be created by unzipping gis_osm_roads_free_
 and running load_osm_network.py
 
 cd D:/Github/Python/wayfarer
-./wayfarer-venv/Scripts/activate.ps1
+#./wayfarer-venv/Scripts/activate.ps1
+
 pytest -v scripts/benchmarking.py
 
 """
 
 import pytest
+import copy
 from wayfarer import loader, functions
 
 
@@ -48,3 +50,22 @@ def get_edge_by_key():
     # mapping = {y:x for x,y in edges.items()}
     # edge = mapping[618090637]
     print(edge)  # ((-9.4357979, 51.9035691), (-9.4359127, 51.9036818), 618090637)
+
+
+def test_loading_network(benchmark):
+    """
+    125 ms
+    """
+    benchmark(loader.load_network_from_file, "./data/dublin.pickle")
+
+
+def clone_network(net):
+    copy.deepcopy(net)
+
+
+def test_cloning_network(benchmark):
+    """
+    971 ms seconds to clone - much slower than simply re-reading from disk
+    """
+    net = loader.load_network_from_file("./data/dublin.pickle")
+    benchmark(clone_network, net)
