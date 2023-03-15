@@ -179,7 +179,14 @@
               <div class="md-sidebar__inner">
                 
 <nav class="md-nav md-nav--secondary">
+    <label class="md-nav__title" for="__toc">Contents</label>
   <ul class="md-nav__list" data-md-scrollfix="">
+        <li class="md-nav__item"><a href="#index--page-root" class="md-nav__link">Wayfarer</a><nav class="md-nav">
+              <ul class="md-nav__list">
+        <li class="md-nav__item"><a href="#overview" class="md-nav__link">Overview</a>
+        </li></ul>
+            </nav>
+        </li>
   </ul>
 </nav>
               </div>
@@ -191,6 +198,38 @@
             
   <section id="wayfarer">
 <h1 id="index--page-root">Wayfarer<a class="headerlink" href="#index--page-root" title="Permalink to this heading">¶</a></h1>
+<section id="overview">
+<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permalink to this heading">¶</a></h2>
+<p>A Python library for creating and analysing geospatial networks using <a class="reference external" href="https://networkx.org/">NetworkX</a>.</p>
+<p>Uses shortest routes to provide a user interface quickly mark up linear features.</p>
+<p>For an overview presentation see <a class="reference external" href="https://compassinformatics.github.io/wayfarer-presentation/">https://compassinformatics.github.io/wayfarer-presentation/</a></p>
+<p>Focus on creating user interfaces for selecting linear features such as roads and rivers in a network.</p>
+<ul class="simple">
+<li><p>Works with any data source (database, flat files, dictionaries)</p></li>
+<li><p>Compatibility with osmnx</p></li>
+<li><p>Access to all of the NetworkX <a class="reference external" href="https://networkx.org/documentation/latest/reference/algorithms/index.html">Algorithms</a></p></li>
+</ul>
+<p>Allow an easy user interface for marking up features on linear referenced features.</p>
+<p>Linear referencing is a powerful technique used in Geographic Information Systems (GIS) to locate geographic features and events along a
+linear feature such as a road, river or pipeline.</p>
+<ul class="simple">
+<li><p>Easy analysis and reporting of data along linear features</p></li>
+<li><p>Efficient data storage - no need to duplicate linear features</p></li>
+</ul>
+<p>More familiar with Python than Postgres and SQL</p>
+<p>pgRouting:</p>
+<p>requires users to have a good understanding of SQL, PostGIS, and network analysis concepts. This can make it difficult for beginners to get started.
+PgRouting is designed to work with PostgreSQL and PostGIS, so users may need to convert their data to these formats before they can use the tool. This can be time-consuming and may require additional software or expertise.</p>
+<p>GraphHopper
+OSRM</p>
+<p>Network Analyst is an extension for ArcGIS</p>
+<p>networkx</p>
+<p><a class="reference external" href="https://pypi.org/project/pyroutelib3/">https://pypi.org/project/pyroutelib3/</a> - OSM data</p>
+<p>PyRoutelib: PyRoutelib is a Python library for network routing that is built on top of NetworkX. It includes a range of routing algorithms, including Dijkstra’s algorithm and A* search, as well as tools for working with routing profiles and generating directions. PyRoutelib is designed to be easy to use and can be integrated into other Python projects.
+osmnx: OSMnx is a Python library for working with OpenStreetMap data and generating street networks. It includes tools for routing and network analysis, including shortest-path algorithms and tools for calculating network measures such as centrality and betweenness. OSMnx can be used to generate routing networks for a range of use cases, including transportation planning and urban design.
+pandana: Pandana is a Python library for working with large-scale spatial networks, including road networks and public transit networks. It includes tools for network analysis and routing, as well as tools for generating spatial aggregates and conducting spatial queries. Pandana is designed to be fast and memory-efficient, making it well-suited for large-scale routing applications</p>
+<p><a class="reference external" href="https://pypi.org/project/pandana/">https://pypi.org/project/pandana/</a></p>
+<p>Dynamic splitting - accessibility scenarios. Changes to isochrones.</p>
 <div class="toctree-wrapper compound">
 <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
@@ -203,6 +242,7 @@
 <li class="toctree-l1"><a class="reference internal" href="api/routing.html">Routing Module</a></li>
 </ul>
 </div>
+</section>
 </section>
 
 
