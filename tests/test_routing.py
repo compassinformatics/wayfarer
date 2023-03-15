@@ -4,6 +4,7 @@ pytest -v tests/test_splitting.py
 import logging
 import pytest
 from wayfarer import routing, splitter, Edge, WITH_DIRECTION_FIELD
+from wayfarer.splitter import SPLIT_KEY_SEPARATOR
 from tests import networks
 from networkx import NetworkXNoPath, NodeNotFound
 
@@ -101,7 +102,14 @@ def test_solve_shortest_path_split_network():
 
     edge_ids = [edge.key for edge in edges]
     # print(edge_ids)
-    assert edge_ids == [1, 2, "3:2", "3:8", "3:10", 4]
+    assert edge_ids == [
+        1,
+        2,
+        f"3{SPLIT_KEY_SEPARATOR}2",
+        f"3{SPLIT_KEY_SEPARATOR}8",
+        f"3{SPLIT_KEY_SEPARATOR}10",
+        4,
+    ]
 
 
 def test_doctest():

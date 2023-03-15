@@ -49,6 +49,10 @@ def to_edge(edge: tuple) -> Edge:
 
     # attributes will be None if tuple is 3 in length
     if len(edge) == 3:
+        if type(edge[2]) is dict:
+            # ensure we don't allow edges which have data but are missing a key
+            # which can happen when selecting edges using ``edges(data=True, keys=False)``
+            raise ValueError(f"The edge tuple {edge} is missing a key value")
         attributes = {}
     else:
         attributes = edge[3]

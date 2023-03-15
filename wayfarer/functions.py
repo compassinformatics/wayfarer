@@ -82,7 +82,7 @@ def add_edge(
     end_node: (int | str),
     key: (int | str),
     attributes: dict,
-) -> None:
+) -> Edge:
     """
     Add an edge to a network. When adding an edge to a network, nodes are automatically
     added
@@ -99,11 +99,16 @@ def add_edge(
     >>> print(net)
     MultiGraph with 2 nodes and 1 edges
     """
-    net.add_edge(start_node, end_node, key=key, **attributes)
+    new_edge = Edge(start_node, end_node, key, attributes)
+    net.add_edge(
+        new_edge.start_node, new_edge.end_node, new_edge.key, **new_edge.attributes
+    )
 
     if "keys" in net.graph.keys():
         # we are using a reverse lookup dict so update this also
         net.graph["keys"][key] = (start_node, end_node)
+
+    return new_edge
 
 
 def get_edge_by_key(
@@ -176,7 +181,9 @@ def get_edge_by_attribute(net, attribute_field: str, value) -> Iterable[Edge]:
 #    )
 
 
-def get_all_complex_paths(net, node_list):
+def get_all_complex_paths(
+    net: (networkx.MultiGraph | networkx.MultiDiGraph), node_list
+):
     """
     For a node path, find any self-looping edges on a node
     and add these combinations to the possible path list
@@ -304,8 +311,8 @@ def get_edges_from_node_pair(
 
 
 def get_edges_from_nodes(
-    net,
-    node_list,
+    net: (networkx.MultiGraph | networkx.MultiDiGraph),
+    node_list: list[int | str],
     with_direction_flag: bool = False,
     length_field: str = LENGTH_FIELD,
     return_unique: bool = True,

@@ -6,6 +6,7 @@ from wayfarer import (
     LENGTH_FIELD,
     NODEID_FROM_FIELD,
     NODEID_TO_FIELD,
+    GEOMETRY_FIELD,
 )
 from wayfarer import functions
 import pickle
@@ -212,8 +213,10 @@ def load_network_from_geometries(
     graph_type: (MultiGraph | MultiDiGraph) = MultiGraph,
     skip_errors: bool = False,
     strip_properties: bool = False,
+    keep_geometry: bool = False,
     key_field: str = EDGE_ID_FIELD,
     length_field: str = LENGTH_FIELD,
+    rounding: int = 5,
 ) -> (MultiGraph | MultiDiGraph):
     """
     Create a new networkX graph using a list of recs of type ``__geo_interface__``
@@ -239,6 +242,10 @@ def load_network_from_geometries(
         length_field: The field in the geometry properties that contains a length. If not provided
                       then the length will be calculated from the geometry. It is assumed the geometry
                       is projected, as a simple planar distance will be calculated.
+        rounding: If no node fields are used then nodes will be created based on the start and end points of
+                  the input geometries. As node values must match exactly for edges to be connected rounding
+                  to a fixed number of decimal places avoids unconnected edges to to tiny differences in floats
+                  e.g. (-9.564484483347517, 52.421103202488965) and (-9.552925853749544, 52.41969110706263)
     Returns:
         A new network
     """
@@ -270,14 +277,27 @@ def load_network_from_geometries(
         else:
             length = sum([distance(*combo) for combo in functions.pairwise(coords)])
 
-        try:
-            key = int(properties[key_field])
-        except KeyError:
-            log.error("Available properties: {}".format(",".join(properties.keys())))
-            raise
+        if key_field == "id" and "id" in r:
+            key = int(r["id"])
+        else:
+            try:
+                key = int(properties[key_field])
+            except KeyError:
+                log.error(
+                    "Available properties: {}".format(",".join(properties.keys()))
+                )
+                raise
 
-        start_node = coords[0]
-        end_node = coords[-1]
+        # if we simply take the coordinates then often these differ due to rounding issues as they
+        # are floats e.g. (-9.564484483347517, 52.421103202488965) and (-9.552925853749544, 52.41969110706263)
+        # instead convert the coordinates to unique strings, apply rounding, and strip any z-values
+
+        start_node = "{}|{}".format(
+            round(coords[0][0], rounding), round(coords[0][1], rounding)
+        )
+        end_node = "{}|{}".format(
+            round(coords[-1][0], rounding), round(coords[-1][1], rounding)
+        )
 
         network_attributes = {
             EDGE_ID_FIELD: key,
@@ -291,6 +311,9 @@ def load_network_from_geometries(
             properties = network_attributes
         else:
             properties.update(network_attributes)
+
+        if keep_geometry:
+            properties[GEOMETRY_FIELD] = geom
 
         add_edge(net, properties)
 

@@ -14,3 +14,8 @@ pytest --doctest-modules
 C:\VirtualEnvs\wayfarer\Scripts\activate.ps1
 cd D:\GitHub\wayfarer\scripts
 uvicorn web:app --reload --port 8020  --log-level 'debug'
+
+
+C:\VirtualEnvs\wayfarer\Scripts\activate.ps1
+cd D:\GitHub\wayfarer\scripts
+uvicorn web2:app --reload --port 8021  --log-level 'debug'

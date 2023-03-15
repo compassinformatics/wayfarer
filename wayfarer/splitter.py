@@ -22,6 +22,8 @@ from wayfarer import (
 
 log = logging.getLogger("wayfarer")
 
+SPLIT_KEY_SEPARATOR = "::"
+
 
 def create_node_id(
     net: (networkx.MultiGraph | networkx.MultiDiGraph), point_id: (str | int)
@@ -141,8 +143,11 @@ def get_split_attributes(
     # if geometry is being stored in the edge then create a new line
     # based on the offset
     if GEOMETRY_FIELD in atts:
+        edge_id = atts[EDGE_ID_FIELD]
         ls = atts[GEOMETRY_FIELD]
-        atts[GEOMETRY_FIELD] = linearref.create_line(ls, atts[OFFSET_FIELD], ls.length)
+        log.debug(f"Creating split geometry from {from_m} to {to_m} on {edge_id}")
+        cut_line = linearref.create_line(ls, from_m, to_m)
+        atts[GEOMETRY_FIELD] = cut_line
 
     return atts
 
@@ -151,25 +156,42 @@ def create_split_key(key: (str | int), m: (float | int)) -> str:
     """
     Function to ensure a standard format for split keys
     using the key of an edge and a measure
-    E.g. "123829:154.2"
+    E.g. "123829::154.2"
+    The ``SPLIT_KEY_SEPARATOR`` can be used to find split keys
+    in the network
+
+    >>> SPLIT_KEY_SEPARATOR in "123829::154.2"
+    True
     """
-    return f"{key}:{m:g}"
+    return f"{key}{SPLIT_KEY_SEPARATOR}{m:g}"
 
 
 def split_network_edge(
     net: (networkx.MultiGraph | networkx.MultiDiGraph),
     key: (str | int),
     measures: list[int | float],
-) -> (networkx.MultiGraph | networkx.MultiDiGraph):
+) -> list[Edge]:
     """
-    Specify the key to be certain the correct edge is removed
-    Measures is a flat list
-    We can split a split edge but this relies on knowing the keys
-    Measures would be wrong as m values against original segment
+    Split a network edge based on a list of measures.
+    We can also split a split edge but this relies on knowing the key of the
+    split edge and measures would need to reflect the length of the new edge
+    rather than the original edge.
+
+    Args:
+        net (object): a networkx network
+        key: the key of the edge to be split
+        measures: a list of measures where the line should be split
+
+    Returns:
+        A list of the new edges created by splitting
     """
-    log.debug("Splitting line with %i points", len(measures))
+
+    new_edges = []
 
     original_edge = functions.get_edge_by_key(net, key, with_data=True)
+
+    log.debug(f"Splitting {original_edge.key} with {len(measures)} points")
+
     net.remove_edge(original_edge.start_node, original_edge.end_node, original_edge.key)
 
     if "keys" in net.graph.keys():
@@ -182,9 +204,7 @@ def split_network_edge(
     for m in measures:
         if m >= original_length:
             raise ValueError(
-                "Split measure {} is greater or equal to the edge length {}".format(
-                    m, original_length
-                )
+                f"Split measure {m} is greater or equal to the length {original_length} of edge {key}"
             )
         if m == 0:
             raise ValueError("Split measure is 0 - no need to split!")
@@ -197,7 +217,8 @@ def split_network_edge(
         atts = get_split_attributes(
             original_edge.attributes, from_m, to_m, prev_node, split_key
         )
-        functions.add_edge(net, prev_node, split_key, split_key, atts)
+        new_edge = functions.add_edge(net, prev_node, split_key, split_key, atts)
+        new_edges.append(new_edge)
         from_m, prev_node = to_m, split_key
 
     # add final part
@@ -210,6 +231,31 @@ def split_network_edge(
     )
 
     split_key = create_split_key(key, original_length)
-    functions.add_edge(net, prev_node, original_edge.end_node, split_key, atts)
+    new_edge = functions.add_edge(
+        net, prev_node, original_edge.end_node, split_key, atts
+    )
+    new_edges.append(new_edge)
 
-    return net
+    return new_edges
+
+
+def get_measure_for_point(line, pt):
+    snapped_input_point, dist = linearref.get_nearest_vertex(pt, line)
+    log.debug(f"Input point {dist:.5f} from line")
+    measure = linearref.get_measure_on_line(line, snapped_input_point)
+    return measure
+
+
+def get_split_node_for_measure(network_edge, length, measure):
+
+    if abs(length - measure) < 0.001:
+        # don't split at the end of the line
+        node_id = network_edge.end_node
+    elif abs(measure - 0) < 0.001:
+        # don't split at the start of the line
+        node_id = network_edge.start_node
+    else:
+        # a new split node is created
+        node_id = create_split_key(network_edge.key, measure)
+
+    return node_id

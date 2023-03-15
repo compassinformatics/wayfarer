@@ -91,18 +91,18 @@ def test_load_network_from_geometries():
     recs = [rec1, rec2]
 
     net = loader.load_network_from_geometries(recs)
-    assert net.graph["keys"] == {1: ((0, 0), (0, 1)), 2: ((0, 1), (0, 2))}
+    assert net.graph["keys"] == {1: ("0|0", "0|1"), 2: ("0|1", "0|2")}
 
     edge = functions.get_edge_by_key(net, 2)
     assert edge == Edge(
-        start_node=(0, 1),
-        end_node=(0, 2),
+        start_node="0|1",
+        end_node="0|2",
         key=2,
         attributes={
             "EDGE_ID": 2,
             "LEN_": 1,
-            "NODEID_FROM": (0, 1),
-            "NODEID_TO": (0, 2),
+            "NODEID_FROM": "0|1",
+            "NODEID_TO": "0|2",
         },
     )
 
@@ -120,18 +120,18 @@ def test_load_network_from_geometries_calculated_length():
     recs = [rec1, rec2]
 
     net = loader.load_network_from_geometries(recs)
-    assert net.graph["keys"] == {1: ((0, 0), (0, 1)), 2: ((0, 1), (0, 2))}
+    assert net.graph["keys"] == {1: ("0|0", "0|1"), 2: ("0|1", "0|2")}
 
     edge = functions.get_edge_by_key(net, 2)
     assert edge == Edge(
-        start_node=(0, 1),
-        end_node=(0, 2),
+        start_node="0|1",
+        end_node="0|2",
         key=2,
         attributes={
             "EDGE_ID": 2,
             "LEN_": 1,
-            "NODEID_FROM": (0, 1),
-            "NODEID_TO": (0, 2),
+            "NODEID_FROM": "0|1",
+            "NODEID_TO": "0|2",
         },
     )
 
