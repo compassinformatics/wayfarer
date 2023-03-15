@@ -15,7 +15,6 @@ log = logging.getLogger("wayfarer")
 
 def edge_to_feature(edge: Edge):
 
-    print(edge)
     try:
         line = edge.attributes[GEOMETRY_FIELD]
     except KeyError:
