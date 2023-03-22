@@ -226,6 +226,8 @@
         </li>
         <li class="md-nav__item"><a href="#wayfarer.functions.get_unique_ordered_list" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">get_unique_ordered_list()</span></code></a>
         </li>
+        <li class="md-nav__item"><a href="#wayfarer.functions.has_overlaps" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">has_overlaps()</span></code></a>
+        </li>
         <li class="md-nav__item"><a href="#wayfarer.functions.pairwise" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">pairwise()</span></code></a>
         </li></ul>
             </nav>
@@ -542,6 +544,23 @@ If the edge is attached at both ends then None is returned</p>
 <dd class="field-odd"><p>A list of unique values</p>
 </dd>
 </dl>
+</dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="wayfarer.functions.has_overlaps">
+<span class="sig-prename descclassname"><span class="pre">wayfarer.functions.</span></span><span class="sig-name descname"><span class="pre">has_overlaps</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">edges</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/wayfarer/functions.html#has_overlaps"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#wayfarer.functions.has_overlaps" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks if the provided list of edges has overlaps
+where the same edge id is repeated in the sequence.
+Edge ids can be adjacent e.g. 1,2,2,3 returns False
+and the same edge id can be found at the start and end of the sequence
+e.g. 1,2,3,1 returns False</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">edges</span> <span class="o">=</span> <span class="p">[</span><span class="n">Edge</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">"A"</span><span class="p">,</span> <span class="p">{</span><span class="s2">"EDGE_ID"</span><span class="p">:</span> <span class="mi">1</span><span class="p">}),</span> <span class="n">Edge</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">"B"</span><span class="p">,</span> <span class="p">{</span><span class="s2">"EDGE_ID"</span><span class="p">:</span> <span class="mi">2</span><span class="p">})]</span>
+<span class="go">:rtype: :py:class:`bool`</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">has_overlaps</span><span class="p">(</span><span class="n">edges</span><span class="p">)</span>
+<span class="go">False</span>
+</pre></div>
+</div>
 </dd></dl>
 <dl class="py function">
 <dt class="sig sig-object py" id="wayfarer.functions.pairwise">
