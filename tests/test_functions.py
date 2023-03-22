@@ -403,6 +403,29 @@ def test_get_path_length():
     assert functions.get_path_length(edges) == 10
 
 
+def test_has_overlaps():
+
+    edges = [
+        Edge(0, 1, "A", {"EDGE_ID": 1}),
+        Edge(1, 2, "B", {"EDGE_ID": 2}),
+        Edge(2, 3, "C", {"EDGE_ID": 3}),
+        Edge(2, 3, "C", {"EDGE_ID": 2}),
+        Edge(2, 3, "C", {"EDGE_ID": 4}),
+    ]
+    assert functions.has_overlaps(edges) is True
+
+
+def test_has_no_overlaps():
+
+    edges = [
+        Edge(0, 1, "A", {"EDGE_ID": 1}),
+        Edge(1, 2, "B", {"EDGE_ID": 2}),
+        Edge(2, 3, "C", {"EDGE_ID": 3}),
+        Edge(2, 3, "C", {"EDGE_ID": 4}),
+    ]
+    assert functions.has_overlaps(edges) is False
+
+
 def test_doctest():
     import doctest
 
@@ -426,5 +449,6 @@ if __name__ == "__main__":
     # test_get_all_paths_from_nodes_with_direction()
     # test_get_path_length()
     # test_doctest()
-    test_get_edges_from_nodes_non_unique()
+    # test_get_edges_from_nodes_non_unique()
+    test_has_no_overlaps()
     print("Done!")

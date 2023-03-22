@@ -1,19 +1,27 @@
 import geojson
 import math
 from wayfarer import Edge, GEOMETRY_FIELD
-
-import fiona
-from fiona.model import Geometry
-
-from shapely.geometry import shape
-from shapely.geometry import mapping
 import logging
-
 
 log = logging.getLogger("wayfarer")
 
+try:
+    import fiona
+    from fiona.model import Geometry
+except ImportError:
+    log.info("fiona is not available")
+
+try:
+    from shapely.geometry import shape
+    from shapely.geometry import mapping
+except ImportError:
+    log.info("shapely is not available")
+
 
 def edge_to_feature(edge: Edge):
+    """
+    Convert a wayfarer Edge to a GeoJSON feature
+    """
 
     try:
         line = edge.attributes[GEOMETRY_FIELD]
@@ -35,6 +43,10 @@ def edge_to_feature(edge: Edge):
 
 
 def edges_to_featurecollection(edges: list[Edge]):
+    """
+    Convert a list of wayfarer Edges to a GeoJSON feature collection
+    """
+
     features = [edge_to_feature(e) for e in edges]
     return geojson.FeatureCollection(features=features)
 

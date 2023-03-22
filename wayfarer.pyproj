@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>f8ac0630-98af-462b-b7ee-5688d6183c85</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>scripts\web.py</StartupFile>
+    <StartupFile>tests\test_functions.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -30,8 +30,15 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="demo\edges.py" />
+    <Compile Include="demo\isochrones.py" />
+    <Compile Include="demo\main.py" />
+    <Compile Include="demo\utils.py" />
+    <Compile Include="demo\__init__.py" />
     <Compile Include="docs\conf.py" />
-    <Compile Include="scripts\web.py" />
+    <Compile Include="scripts\rivers.py" />
+    <Compile Include="demo\rivers.py" />
+    <Compile Include="demo\routes.py" />
     <Compile Include="scripts\ptals.py" />
     <Compile Include="scripts\benchmarking.py">
       <SubType>Code</SubType>
@@ -59,6 +66,7 @@
     <Compile Include="tests\test_functions.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="tests\test_routing.py" />
     <Compile Include="tests\test_routing_ordered_path.py" />
     <Compile Include="tests\test_splitting.py">
       <SubType>Code</SubType>
@@ -69,6 +77,7 @@
     <Compile Include="wayfarer\functions.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="wayfarer\io.py" />
     <Compile Include="wayfarer\linearref.py" />
     <Compile Include="wayfarer\loops.py" />
     <Compile Include="wayfarer\merger.py">
@@ -90,6 +99,7 @@
     <Folder Include="data\" />
     <Folder Include="docs\api\" />
     <Folder Include="docs\images\" />
+    <Folder Include="demo\" />
     <Folder Include="scripts\" />
     <Folder Include="tests\" />
     <Folder Include="wayfarer\" />
@@ -105,6 +115,7 @@
     <Content Include="docs\api\linearref.rst" />
     <Content Include="docs\api\loader.rst" />
     <Content Include="docs\api\functions.rst" />
+    <Content Include="docs\api\routing.rst" />
     <Content Include="docs\examples.rst" />
     <Content Include="docs\images\bottle_network.png" />
     <Content Include="docs\images\circle_network.png" />
@@ -131,11 +142,13 @@
     <Content Include="docs\talk.rst" />
     <Content Include="dev_setup.ps1" />
     <Content Include="build_docs.ps1" />
+    <Content Include="LICENSE" />
     <Content Include="run_local.ps1" />
     <Content Include="README.rst" />
     <Content Include="requirements.txt">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="wayfarer\py.typed" />
   </ItemGroup>
   <ItemGroup>
     <Interpreter Include="C:\VirtualEnvs\wayfarer\">

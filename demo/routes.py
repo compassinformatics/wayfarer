@@ -12,7 +12,7 @@ import logging
 import json
 from shapely.geometry import shape
 from collections import defaultdict
-from . import utils
+from demo import utils
 
 log = logging.getLogger("web")
 
@@ -34,7 +34,7 @@ class ShortestPathPoints(BaseModel):
 
 @router.post("/solve_shortest_path_from_points")
 async def solve_shortest_path_from_points(
-    shortest_path_points: ShortestPathPoints, network_filename="../data/rivers.pickle"
+    shortest_path_points: ShortestPathPoints, network_filename="../data/stbrice.pickle"
 ):
     net = get_network(network_filename)
     points_geojson = json.loads(shortest_path_points.points)
@@ -58,7 +58,8 @@ async def solve_shortest_path_from_points(
             network_edge, line.length, measure
         )
         if SPLIT_KEY_SEPARATOR in str(node_id):
-            # a split should take place
+            # the node_id indicates a split should take place - if at the start or end
+            # then the node_id is simply a start or end node
             split_edge_keys[edge_id].append((index, node_id, measure))
         nodes.append((index, node_id))
 
@@ -73,7 +74,7 @@ async def solve_shortest_path_from_points(
     edges = functions.get_edges_from_nodes(net, route_nodes, with_direction_flag=True)
 
     for e in edges:
-        if e.attributes.get("IS_SPLIT", False):
+        if e.attributes.get("IS_SPLIT", False) is True:
             e.attributes["FROM_M"] = int(e.attributes["OFFSET"])
             e.attributes["TO_M"] = int(e.attributes["OFFSET"] + e.attributes["LEN_"])
         else:

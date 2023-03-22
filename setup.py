@@ -26,6 +26,7 @@ setup(
     author="Seth Girvin",
     author_email="sgirvin@compass.ie",
     license="MIT",
+    package_data={"wayfarer": ["py.typed"]},
     packages=["wayfarer"],
     install_requires=["networkx>=3.0", "geojson"],
     zip_safe=False,

@@ -11,6 +11,7 @@ from typing import Iterable
 
 
 from wayfarer import (
+    EDGE_ID_FIELD,
     LENGTH_FIELD,
     NODEID_FROM_FIELD,
     NODEID_TO_FIELD,
@@ -592,3 +593,32 @@ def get_multiconnected_nodes(edges, connections=2):
     out_degree = dict(net.degree())
     multiconnected_nodes = [n for n in out_degree if out_degree[n] >= connections]
     return multiconnected_nodes
+
+
+def has_overlaps(edges: list[Edge]) -> bool:
+    """
+    Checks if the provided list of edges has overlaps
+    where the same edge id is repeated in the sequence.
+    Edge ids can be adjacent e.g. 1,2,2,3 returns False
+    and the same edge id can be found at the start and end of the sequence
+    e.g. 1,2,3,1 returns False
+
+    >>> edges = [Edge(0, 1, "A", {"EDGE_ID": 1}), Edge(1, 2, "B", {"EDGE_ID": 2})]
+    >>> has_overlaps(edges)
+    False
+    """
+    # get the edge id from the attributes rather than the edge key in case
+    # there are split edges which will have modified keys
+
+    edge_ids = [e.attributes[EDGE_ID_FIELD] for e in edges]
+
+    grouped_edge_ids = [k for k, g in itertools.groupby(edge_ids)]
+    unique_edge_count = len(set(edge_ids))
+
+    if edge_ids[0] == edge_ids[-1]:
+        unique_edge_count += 1  # allow looping back onto start edge
+
+    if len(grouped_edge_ids) > unique_edge_count:
+        return True
+    else:
+        return False
