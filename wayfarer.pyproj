@@ -135,6 +135,7 @@
     <Content Include="docs\network_comparison.rst" />
     <Content Include="docs\network_loading.rst" />
     <Content Include="docs\osmnx.rst" />
+    <Content Include="docs\presentation.rst" />
     <Content Include="docs\self_loops.rst">
       <SubType>Code</SubType>
     </Content>
