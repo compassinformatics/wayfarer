@@ -97,6 +97,7 @@ def add_edge(
 
     >>> net = networkx.MultiGraph()
     >>> add_edge(net, 1, 2, "A", {"LEN_": 10})
+    Edge(start_node=1, end_node=2, key='A', attributes={'LEN_': 10})
     >>> print(net)
     MultiGraph with 2 nodes and 1 edges
     """
@@ -110,6 +111,17 @@ def add_edge(
         net.graph["keys"][key] = (start_node, end_node)
 
     return new_edge
+
+
+def remove_edge_by_key(
+    net: (networkx.MultiGraph | networkx.MultiDiGraph), key: (int | str)
+):
+    edge = get_edge_by_key(net, key, with_data=False)
+    net.remove_edge(edge.start_node, edge.end_node, key=edge.key)
+
+    # remove from the keys dictionary if it exists
+    if "keys" in net.graph.keys():
+        del net.graph["keys"][key]
 
 
 def get_edge_by_key(
@@ -156,16 +168,12 @@ def get_edge_by_key(
     return edge
 
 
-def get_edge_by_attribute(net, attribute_field: str, value) -> Iterable[Edge]:
+def get_edges_by_attribute(net, attribute_field: str, value) -> Iterable[Edge]:
     """
-    Go through all edge property dicts until the relevant attribute is found
-    Return an iterator
-    For getting data see
-    https://networkx.github.io/documentation/stable/reference/classes/generated/networkx.Graph.get_edge_data.html
-
-    TODO returns a generator so rename to get_edges_by_attribute or make this return the first instance?
-    If the attribute_field does not exist for a particular edge then it is ignored
-    Edges can have different attribute dicts
+    Go through all edge property dicts until the relevant attribute is found.
+    Edges can have different attribute dicts, so add a check that the key exists
+    If the attribute_field does not exist for a particular edge then it is ignored.
+    Returns an iterator
     """
 
     return (
@@ -246,7 +254,6 @@ def get_all_paths_from_nodes(net, node_list, with_direction_flag=False):
                     node_paths.append(extra_path)
 
     for node_path in node_paths:
-
         node_pairs = list(pairwise(node_path))
 
         path_list = []
@@ -278,13 +285,12 @@ def get_all_paths_from_nodes(net, node_list, with_direction_flag=False):
 
 
 def get_path_length(path_edges):
-
     return sum([edge.attributes[LENGTH_FIELD] for edge in path_edges])
 
 
 def get_edges_from_node_pair(
     net, start_node: (int | str), end_node: (int | str), hide_log_output: bool = False
-) -> (networkx.classes.coreviews.AtlasView | None):
+) -> networkx.classes.coreviews.AtlasView | None:
     """
     Get all edges between two nodes
 

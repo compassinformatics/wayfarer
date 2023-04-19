@@ -28,7 +28,6 @@ SPLIT_KEY_SEPARATOR = "::"
 def create_node_id(
     net: (networkx.MultiGraph | networkx.MultiDiGraph), point_id: (str | int)
 ):
-
     # if point_id in net.nodes():
     #    raise ValueError("The point ID {} already exists as a Node Id in the network".format(point_id))
     return point_id
@@ -43,7 +42,6 @@ def create_unique_join_node() -> str:
 
 
 def group_measures_by_edge(input):
-
     res = OrderedDict()
 
     for edge_id, measure in input:
@@ -75,7 +73,6 @@ def split_with_points(
     edge_splits = defaultdict(list)
 
     for r in recs:
-
         edge_id, point_id, measure = (
             r[edge_id_field],
             r[point_id_field],
@@ -152,7 +149,7 @@ def get_split_attributes(
     return atts
 
 
-def create_split_key(key: (str | int), m: (float | int)) -> str:
+def create_split_key(key: (str | int), m: (float | int), precision=3) -> str:
     """
     Function to ensure a standard format for split keys
     using the key of an edge and a measure
@@ -160,10 +157,146 @@ def create_split_key(key: (str | int), m: (float | int)) -> str:
     The ``SPLIT_KEY_SEPARATOR`` can be used to find split keys
     in the network
 
+    >>> create_split_key(123829, 154.22384972623, precision=3)
+    '123829::154.224'
+    >>> create_split_key(123829, 154.2)
+    '123829::154.2'
+    >>> create_split_key(123829, 154, precision=3)
+    '123829::154'
     >>> SPLIT_KEY_SEPARATOR in "123829::154.2"
     True
     """
-    return f"{key}{SPLIT_KEY_SEPARATOR}{m:g}"
+
+    # display with 3 decimal places, but remove any trailing zeros
+    # and decimal place if a round number
+    measure = f"{m:.{precision}f}".rstrip("0").rstrip(".")
+    return f"{key}{SPLIT_KEY_SEPARATOR}{measure}"
+
+
+def check_split_edges(split_edges: list[Edge]):
+    # all edges should have the split flag
+    is_split = [e.attributes[SPLIT_FLAG] for e in split_edges]
+    assert set(is_split) == {True}
+
+    # all edges should have the same original EdgeId
+    edge_ids = [e.attributes[EDGE_ID_FIELD] for e in split_edges]
+    assert len(set(edge_ids)) == 1
+
+    return True
+
+
+def get_split_nodes(split_edges: list[Edge]) -> list[int | str]:
+    """
+    Get the unique list of split nodes associated
+    with the collection of edges
+
+    Args:
+        split_edges: a list of split edges that make up a single full edge
+
+    Returns:
+        A unique list of split nodes
+    """
+    nodes = []
+    split_nodes = []
+
+    for split_edge in split_edges:
+        nodes += [split_edge.start_node, split_edge.end_node]
+
+    for n in set(nodes):
+        if SPLIT_KEY_SEPARATOR in str(n):
+            split_nodes.append(n)
+
+    return split_nodes
+
+
+def get_measures_from_split_edges(split_edges: list[Edge]):
+    """
+    From a collection of split edges, get all the measures
+    that the original edge was split
+    Split nodes are in the form '2::60' (using the ``SPLIT_KEY_SEPARATOR``)
+
+    Args:
+        split_edges: a list of split edges that make up a single full edge
+
+    Returns:
+        The measures used to split the original edge
+    """
+
+    check_split_edges(split_edges)
+    measures = []
+    split_nodes = get_split_nodes(split_edges)
+
+    for n in split_nodes:
+        m_val = float(str(n).split(SPLIT_KEY_SEPARATOR)[1])
+        measures.append(m_val)
+
+    return measures
+
+
+def unsplit_network_edges(
+    net: (networkx.MultiGraph | networkx.MultiDiGraph), split_edges: list[Edge]
+) -> Edge:
+    """
+    Take a list of split network edges and join them back together
+    to form the original edge. Split keys and nodes are removed from the network.
+    This function can be used to then resplit the edge in different locations
+    or add additional splits
+
+    Args:
+        net (object): a networkx network
+        split_edges: a list of split edges that make up a single full edge
+
+    Returns:
+        The unsplit edge
+
+    """
+
+    check_split_edges(split_edges)
+
+    # get all lengths
+    original_length = sum([e.attributes[LENGTH_FIELD] for e in split_edges])
+
+    # get first edge
+    first_edge = min(split_edges, key=lambda e: e.attributes[OFFSET_FIELD])
+    start_node = first_edge.attributes[NODEID_FROM_FIELD]
+    edge_id = first_edge.attributes[EDGE_ID_FIELD]
+
+    # get last edge
+    last_edge = max(split_edges, key=lambda e: e.attributes[OFFSET_FIELD])
+    end_node = last_edge.attributes[NODEID_TO_FIELD]
+
+    # remove the split edges from the network
+
+    for split_edge in split_edges:
+        functions.remove_edge_by_key(net, split_edge.key)
+
+    split_nodes = get_split_nodes(split_edges)
+
+    # clean-up the split nodes - removing a node however removes
+    # any connecting edges which will lead to errors, so check they are orphaned
+    for n in split_nodes:
+        if net.degree(n) == 0:
+            net.remove_node(n)
+
+    # copy across any attributes from the original edge
+    atts = first_edge.attributes.copy()
+
+    atts.update(
+        {
+            EDGE_ID_FIELD: edge_id,
+            LENGTH_FIELD: original_length,
+            NODEID_FROM_FIELD: start_node,
+            NODEID_TO_FIELD: end_node,
+        }
+    )
+
+    atts.pop(SPLIT_FLAG)
+    atts.pop(OFFSET_FIELD)
+
+    # the add_edge function takes care of adding the edge_id back to the keys
+    new_edge = functions.add_edge(net, start_node, end_node, edge_id, atts)
+
+    return new_edge
 
 
 def split_network_edge(
@@ -192,14 +325,8 @@ def split_network_edge(
 
     log.debug(f"Splitting {original_edge.key} with {len(measures)} points")
 
-    net.remove_edge(original_edge.start_node, original_edge.end_node, original_edge.key)
-
-    if "keys" in net.graph.keys():
-        del net.graph["keys"][key]
-
+    functions.remove_edge_by_key(net, original_edge.key)
     original_length = original_edge.attributes[LENGTH_FIELD]
-
-    # measures = sorted(measures)
 
     for m in measures:
         if m >= original_length:
@@ -247,7 +374,6 @@ def get_measure_for_point(line, pt):
 
 
 def get_split_node_for_measure(network_edge, length, measure):
-
     if abs(length - measure) < 0.001:
         # don't split at the end of the line
         node_id = network_edge.end_node

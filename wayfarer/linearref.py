@@ -45,7 +45,9 @@ def check_valid_m(m_value: float, length: float, tolerance: float = 0.00001) -> 
     True
 
     >>> check_valid_m(m_value=-0.213, length=20)
-    False
+    Traceback (most recent call last):
+    ...
+    ValueError: The m value (-0.213) must be a positive number
     """
 
     if m_value < 0:
@@ -183,8 +185,10 @@ def snap_to_ends(
         A tuple of the new snapped measures
 
     >>> ls = LineString([(0, 0), (0, 100)])
-    >>> snap_to_ends(ls, start_m=4, end_m=96, tolerance=3)
-    (0, 100)
+    >>> snap_to_ends(ls, start_m=4, end_m=96, tolerance=5)
+    (0, 100.0)
+    >>> snap_to_ends(ls, start_m=4, end_m=96, tolerance=4)
+    (4, 96)
     """
 
     check_valid_m(start_m, line.length, tolerance)
@@ -254,7 +258,7 @@ def get_measures(line: LineString, pt1: Point, pt2: Point) -> tuple[float, float
     >>> pt1 = Point(4, 0)
     >>> pt2 = Point(96, 0)
     >>> get_measures(ls, pt1, pt2)
-    (4, 96)
+    (4.0, 96.0)
     """
 
     m1 = line.project(pt1)
@@ -274,9 +278,10 @@ def get_measure_on_line(line: LineString, point: Point) -> float:
     Returns:
         The measure (m-value) of the point along the line
 
-    >>> ls = LineString([(0, 0), (100, 0)])
-    >>> pt1 = Point(50, 0)
-    50
+    >>> line = LineString([(0, 0), (100, 0)])
+    >>> point = Point(50, 0)
+    >>> get_measure_on_line(line, point)
+    50.0
     """
     return line.project(point)
 
@@ -298,9 +303,9 @@ def get_closest_point_to_measure(
     >>> ls = LineString([(0, 0), (0, 50), (0, 100)])
     >>> points = [Point(0, 10), Point(0, 55)]
     >>> get_closest_point_to_measure(ls, points, measure=20)
-    POINT (0 10)
+    <POINT (0 10)>
     >>> get_closest_point_to_measure(ls, points, measure=80)
-    POINT (0 55)
+    <POINT (0 55)>
     """
     measures_with_points = {}
 
@@ -360,8 +365,8 @@ def magnitude(pt1: Point, pt2: Point) -> float:
 
     >>> pt1 = Point(0, 0)
     >>> pt2 = Point(100, 100)
-    >>> magnitude(pt1, pt2)
-    100.0
+    >>> round(magnitude(pt1, pt2))
+    141
     """
     vect_x = pt2.x - pt1.x
     vect_y = pt2.y - pt1.y
@@ -380,7 +385,7 @@ def remove_duplicates_in_line(line: LineString):
 
     >>> ls = LineString([(0, 0), (1, 1), (1,1)])
     >>> remove_duplicates_in_line(ls)
-    LineString([(0, 0), (1,1)])
+    <LINESTRING (0 0, 1 1)>
     """
 
     if line.geom_type != "LineString":

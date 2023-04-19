@@ -60,7 +60,7 @@ def test_get_multiple_edges_by_attribute():
     net.add_edge(0, 0, key=1, **{"EDGE_ID": 1, "LEN_": 100})
     net.add_edge(0, 0, key=2, **{"EDGE_ID": 1, "LEN_": 100})
 
-    edges = list(functions.get_edge_by_attribute(net, "EDGE_ID", 1))
+    edges = list(functions.get_edges_by_attribute(net, "EDGE_ID", 1))
     assert edges == [
         (0, 0, 1, {"EDGE_ID": 1, "LEN_": 100}),
         (0, 0, 2, {"EDGE_ID": 1, "LEN_": 100}),
@@ -404,7 +404,6 @@ def test_get_path_length():
 
 
 def test_has_overlaps():
-
     edges = [
         Edge(0, 1, "A", {"EDGE_ID": 1}),
         Edge(1, 2, "B", {"EDGE_ID": 2}),
@@ -416,13 +415,23 @@ def test_has_overlaps():
 
 
 def test_has_no_overlaps():
-
     edges = [
         Edge(0, 1, "A", {"EDGE_ID": 1}),
         Edge(1, 2, "B", {"EDGE_ID": 2}),
         Edge(2, 3, "C", {"EDGE_ID": 3}),
         Edge(2, 3, "C", {"EDGE_ID": 4}),
     ]
+    assert functions.has_overlaps(edges) is False
+
+
+def test_has_no_overlaps_loop():
+    edges = [
+        Edge(0, 1, "A", {"EDGE_ID": 1}),
+        Edge(1, 2, "B", {"EDGE_ID": 2}),
+        Edge(2, 3, "C", {"EDGE_ID": 3}),
+        Edge(0, 1, "D", {"EDGE_ID": 1}),
+    ]
+
     assert functions.has_overlaps(edges) is False
 
 
@@ -450,5 +459,6 @@ if __name__ == "__main__":
     # test_get_path_length()
     # test_doctest()
     # test_get_edges_from_nodes_non_unique()
-    test_has_no_overlaps()
+    # test_has_no_overlaps()
+    test_has_no_overlaps_loop()
     print("Done!")

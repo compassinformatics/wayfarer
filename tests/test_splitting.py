@@ -9,7 +9,6 @@ from tests.helper import simple_features
 
 @pytest.mark.parametrize("use_reverse_lookup", [(True), (False)])
 def test_split_network_edge(use_reverse_lookup):
-
     feats = simple_features()
     net = loader.load_network_from_geometries(
         feats, use_reverse_lookup=use_reverse_lookup
@@ -32,7 +31,7 @@ def test_split_network_edge(use_reverse_lookup):
     assert len(net.edges()) == 4
 
     # the split edges no longer have the EdgeId as a key
-    split_edges = functions.get_edge_by_attribute(net, "EDGE_ID", edge_id_to_split)
+    split_edges = functions.get_edges_by_attribute(net, "EDGE_ID", edge_id_to_split)
     split_edges = list(split_edges)
     assert len(split_edges) == 2
 
@@ -52,7 +51,6 @@ def test_split_network_edge(use_reverse_lookup):
 
 @pytest.mark.parametrize("use_reverse_lookup", [(True), (False)])
 def test_multiple_split_network_edge(use_reverse_lookup):
-
     feats = simple_features()
     net = loader.load_network_from_geometries(
         feats, use_reverse_lookup=use_reverse_lookup
@@ -98,7 +96,6 @@ def test_double_split_network_edge(use_reverse_lookup):
 
 @pytest.mark.parametrize("use_reverse_lookup", [(True), (False)])
 def test_split_invalid_measure(use_reverse_lookup):
-
     feats = simple_features()
     net = loader.load_network_from_geometries(
         feats, use_reverse_lookup=use_reverse_lookup
@@ -116,7 +113,6 @@ def test_split_invalid_measure(use_reverse_lookup):
 
 @pytest.mark.parametrize("use_reverse_lookup", [(True), (False)])
 def test_split_invalid_measure2(use_reverse_lookup):
-
     feats = simple_features()
     net = loader.load_network_from_geometries(
         feats, use_reverse_lookup=use_reverse_lookup
@@ -134,7 +130,6 @@ def test_split_invalid_measure2(use_reverse_lookup):
 
 @pytest.mark.parametrize("use_reverse_lookup", [(True), (False)])
 def test_split_with_points(use_reverse_lookup):
-
     feats = simple_features()
     net = loader.load_network_from_geometries(
         feats, use_reverse_lookup=use_reverse_lookup
@@ -160,6 +155,46 @@ def test_split_with_points(use_reverse_lookup):
     assert len(edges) == 6
 
 
+def test_unsplit_network_edges():
+    """
+    Test splitting a network edge and then joining it back
+    together again
+    """
+    feats = simple_features()
+    net = loader.load_network_from_geometries(feats, use_reverse_lookup=True)
+
+    edge_id_to_split = 2
+
+    assert len((net.graph["keys"])) == 3
+    assert len(net.nodes()) == 4
+
+    original_edge = functions.get_edge_by_key(net, edge_id_to_split)
+    # custom fields should be persisted
+    original_edge.attributes["CUSTOM_FIELD"] = "CUSTOM_VALUE"
+    # print(original_edge)
+
+    # split the second edge multiple times
+
+    new_edges = splitter.split_network_edge(net, edge_id_to_split, [20, 40, 60])
+
+    assert len((net.graph["keys"])) == 6
+
+    for ne in new_edges:
+        print(ne)
+
+    network_edges = list(
+        functions.get_edges_by_attribute(net, "EDGE_ID", edge_id_to_split)
+    )
+    # for ne in network_edges: print(ne)
+
+    unsplit_edge = splitter.unsplit_network_edges(net, network_edges)
+
+    assert len((net.graph["keys"])) == 3
+
+    assert len(net.nodes()) == 4
+    assert unsplit_edge == original_edge
+
+
 def test_doctest():
     import doctest
 
@@ -174,6 +209,7 @@ if __name__ == "__main__":
     # test_multiple_split_network_edge(True)
     # test_multiple_split_network_edge(True)
     # test_double_split_network_edge(True)
-    test_split_with_points(True)
-    test_split_network_edge(True)
+    # test_split_with_points(True)
+    # test_split_network_edge(True)
+    test_unsplit_network_edges()
     print("Done!")
