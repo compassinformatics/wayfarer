@@ -236,7 +236,9 @@
 <span class="sd">    True</span>
 
 <span class="sd">    &gt;&gt;&gt; check_valid_m(m_value=-0.213, length=20)</span>
-<span class="sd">    False</span>
+<span class="sd">    Traceback (most recent call last):</span>
+<span class="sd">    ...</span>
+<span class="sd">    ValueError: The m value (-0.213) must be a positive number</span>
 <span class="sd">    """</span>
 
     <span class="k">if</span> <span class="n">m_value</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
@@ -374,8 +376,10 @@
 <span class="sd">        A tuple of the new snapped measures</span>
 
 <span class="sd">    &gt;&gt;&gt; ls = LineString([(0, 0), (0, 100)])</span>
-<span class="sd">    &gt;&gt;&gt; snap_to_ends(ls, start_m=4, end_m=96, tolerance=3)</span>
-<span class="sd">    (0, 100)</span>
+<span class="sd">    &gt;&gt;&gt; snap_to_ends(ls, start_m=4, end_m=96, tolerance=5)</span>
+<span class="sd">    (0, 100.0)</span>
+<span class="sd">    &gt;&gt;&gt; snap_to_ends(ls, start_m=4, end_m=96, tolerance=4)</span>
+<span class="sd">    (4, 96)</span>
 <span class="sd">    """</span>
 
     <span class="n">check_valid_m</span><span class="p">(</span><span class="n">start_m</span><span class="p">,</span> <span class="n">line</span><span class="o">.</span><span class="n">length</span><span class="p">,</span> <span class="n">tolerance</span><span class="p">)</span>
@@ -445,7 +449,7 @@
 <span class="sd">    &gt;&gt;&gt; pt1 = Point(4, 0)</span>
 <span class="sd">    &gt;&gt;&gt; pt2 = Point(96, 0)</span>
 <span class="sd">    &gt;&gt;&gt; get_measures(ls, pt1, pt2)</span>
-<span class="sd">    (4, 96)</span>
+<span class="sd">    (4.0, 96.0)</span>
 <span class="sd">    """</span>
 
     <span class="n">m1</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">project</span><span class="p">(</span><span class="n">pt1</span><span class="p">)</span>
@@ -465,9 +469,10 @@
 <span class="sd">    Returns:</span>
 <span class="sd">        The measure (m-value) of the point along the line</span>
 
-<span class="sd">    &gt;&gt;&gt; ls = LineString([(0, 0), (100, 0)])</span>
-<span class="sd">    &gt;&gt;&gt; pt1 = Point(50, 0)</span>
-<span class="sd">    50</span>
+<span class="sd">    &gt;&gt;&gt; line = LineString([(0, 0), (100, 0)])</span>
+<span class="sd">    &gt;&gt;&gt; point = Point(50, 0)</span>
+<span class="sd">    &gt;&gt;&gt; get_measure_on_line(line, point)</span>
+<span class="sd">    50.0</span>
 <span class="sd">    """</span>
     <span class="k">return</span> <span class="n">line</span><span class="o">.</span><span class="n">project</span><span class="p">(</span><span class="n">point</span><span class="p">)</span></div>
 
@@ -489,9 +494,9 @@
 <span class="sd">    &gt;&gt;&gt; ls = LineString([(0, 0), (0, 50), (0, 100)])</span>
 <span class="sd">    &gt;&gt;&gt; points = [Point(0, 10), Point(0, 55)]</span>
 <span class="sd">    &gt;&gt;&gt; get_closest_point_to_measure(ls, points, measure=20)</span>
-<span class="sd">    POINT (0 10)</span>
+<span class="sd">    &lt;POINT (0 10)&gt;</span>
 <span class="sd">    &gt;&gt;&gt; get_closest_point_to_measure(ls, points, measure=80)</span>
-<span class="sd">    POINT (0 55)</span>
+<span class="sd">    &lt;POINT (0 55)&gt;</span>
 <span class="sd">    """</span>
     <span class="n">measures_with_points</span> <span class="o">=</span> <span class="p">{}</span>
 
@@ -551,8 +556,8 @@
 
 <span class="sd">    &gt;&gt;&gt; pt1 = Point(0, 0)</span>
 <span class="sd">    &gt;&gt;&gt; pt2 = Point(100, 100)</span>
-<span class="sd">    &gt;&gt;&gt; magnitude(pt1, pt2)</span>
-<span class="sd">    100.0</span>
+<span class="sd">    &gt;&gt;&gt; round(magnitude(pt1, pt2))</span>
+<span class="sd">    141</span>
 <span class="sd">    """</span>
     <span class="n">vect_x</span> <span class="o">=</span> <span class="n">pt2</span><span class="o">.</span><span class="n">x</span> <span class="o">-</span> <span class="n">pt1</span><span class="o">.</span><span class="n">x</span>
     <span class="n">vect_y</span> <span class="o">=</span> <span class="n">pt2</span><span class="o">.</span><span class="n">y</span> <span class="o">-</span> <span class="n">pt1</span><span class="o">.</span><span class="n">y</span>
@@ -571,7 +576,7 @@
 
 <span class="sd">    &gt;&gt;&gt; ls = LineString([(0, 0), (1, 1), (1,1)])</span>
 <span class="sd">    &gt;&gt;&gt; remove_duplicates_in_line(ls)</span>
-<span class="sd">    LineString([(0, 0), (1,1)])</span>
+<span class="sd">    &lt;LINESTRING (0 0, 1 1)&gt;</span>
 <span class="sd">    """</span>
 
     <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">geom_type</span> <span class="o">!=</span> <span class="s2">"LineString"</span><span class="p">:</span>

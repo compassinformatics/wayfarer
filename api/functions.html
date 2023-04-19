@@ -194,11 +194,11 @@
         </li>
         <li class="md-nav__item"><a href="#wayfarer.functions.get_all_paths_from_nodes" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">get_all_paths_from_nodes()</span></code></a>
         </li>
-        <li class="md-nav__item"><a href="#wayfarer.functions.get_edge_by_attribute" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">get_edge_by_attribute()</span></code></a>
-        </li>
         <li class="md-nav__item"><a href="#wayfarer.functions.get_edge_by_key" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">get_edge_by_key()</span></code></a>
         </li>
         <li class="md-nav__item"><a href="#wayfarer.functions.get_edges" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">get_edges()</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#wayfarer.functions.get_edges_by_attribute" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">get_edges_by_attribute()</span></code></a>
         </li>
         <li class="md-nav__item"><a href="#wayfarer.functions.get_edges_from_node_pair" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">get_edges_from_node_pair()</span></code></a>
         </li>
@@ -266,8 +266,9 @@ added</p>
 </dd>
 </dl>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">net</span> <span class="o">=</span> <span class="n">networkx</span><span class="o">.</span><span class="n">MultiGraph</span><span class="p">()</span>
-<span class="go">:rtype: :py:class:`~wayfarer.Edge`</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">add_edge</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">"A"</span><span class="p">,</span> <span class="p">{</span><span class="s2">"LEN_"</span><span class="p">:</span> <span class="mi">10</span><span class="p">})</span>
+<span class="go">:rtype: :py:class:`~wayfarer.Edge`</span>
+<span class="go">Edge(start_node=1, end_node=2, key='A', attributes={'LEN_': 10})</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">net</span><span class="p">)</span>
 <span class="go">MultiGraph with 2 nodes and 1 edges</span>
 </pre></div>
@@ -313,22 +314,6 @@ l = [(“a”,”b”), (“c”), (“d”,”e”)]
 <p>Check for self loops on every node</p>
 </dd></dl>
 <dl class="py function">
-<dt class="sig sig-object py" id="wayfarer.functions.get_edge_by_attribute">
-<span class="sig-prename descclassname"><span class="pre">wayfarer.functions.</span></span><span class="sig-name descname"><span class="pre">get_edge_by_attribute</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">net</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">attribute_field</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/wayfarer/functions.html#get_edge_by_attribute"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#wayfarer.functions.get_edge_by_attribute" title="Permalink to this definition">¶</a></dt>
-<dd><p>Go through all edge property dicts until the relevant attribute is found
-Return an iterator
-For getting data see
-<a class="reference external" href="https://networkx.github.io/documentation/stable/reference/classes/generated/networkx.Graph.get_edge_data.html">https://networkx.github.io/documentation/stable/reference/classes/generated/networkx.Graph.get_edge_data.html</a></p>
-<p>TODO returns a generator so rename to get_edges_by_attribute or make this return the first instance?
-If the attribute_field does not exist for a particular edge then it is ignored
-Edges can have different attribute dicts</p>
-<dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Iterable</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Edge</span></code>]</p>
-</dd>
-</dl>
-</dd></dl>
-<dl class="py function">
 <dt class="sig sig-object py" id="wayfarer.functions.get_edge_by_key">
 <span class="sig-prename descclassname"><span class="pre">wayfarer.functions.</span></span><span class="sig-name descname"><span class="pre">get_edge_by_key</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">net</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">with_data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/wayfarer/functions.html#get_edge_by_key"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#wayfarer.functions.get_edge_by_key" title="Permalink to this definition">¶</a></dt>
 <dd><p>Go through all edge property dicts until the relevant key is found
@@ -364,6 +349,19 @@ nodes list. Note only works with DiGraph or MultiDiGraph.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>end_edges (dict)</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="wayfarer.functions.get_edges_by_attribute">
+<span class="sig-prename descclassname"><span class="pre">wayfarer.functions.</span></span><span class="sig-name descname"><span class="pre">get_edges_by_attribute</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">net</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">attribute_field</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/wayfarer/functions.html#get_edges_by_attribute"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#wayfarer.functions.get_edges_by_attribute" title="Permalink to this definition">¶</a></dt>
+<dd><p>Go through all edge property dicts until the relevant attribute is found.
+Edges can have different attribute dicts, so add a check that the key exists
+If the attribute_field does not exist for a particular edge then it is ignored.
+Returns an iterator</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Iterable</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Edge</span></code>]</p>
 </dd>
 </dl>
 </dd></dl>

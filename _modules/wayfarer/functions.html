@@ -288,6 +288,7 @@
 
 <span class="sd">    &gt;&gt;&gt; net = networkx.MultiGraph()</span>
 <span class="sd">    &gt;&gt;&gt; add_edge(net, 1, 2, "A", {"LEN_": 10})</span>
+<span class="sd">    Edge(start_node=1, end_node=2, key='A', attributes={'LEN_': 10})</span>
 <span class="sd">    &gt;&gt;&gt; print(net)</span>
 <span class="sd">    MultiGraph with 2 nodes and 1 edges</span>
 <span class="sd">    """</span>
@@ -301,6 +302,17 @@
         <span class="n">net</span><span class="o">.</span><span class="n">graph</span><span class="p">[</span><span class="s2">"keys"</span><span class="p">][</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">start_node</span><span class="p">,</span> <span class="n">end_node</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">new_edge</span></div>
+
+
+<span class="k">def</span> <span class="nf">remove_edge_by_key</span><span class="p">(</span>
+    <span class="n">net</span><span class="p">:</span> <span class="p">(</span><span class="n">networkx</span><span class="o">.</span><span class="n">MultiGraph</span> <span class="o">|</span> <span class="n">networkx</span><span class="o">.</span><span class="n">MultiDiGraph</span><span class="p">),</span> <span class="n">key</span><span class="p">:</span> <span class="p">(</span><span class="nb">int</span> <span class="o">|</span> <span class="nb">str</span><span class="p">)</span>
+<span class="p">):</span>
+    <span class="n">edge</span> <span class="o">=</span> <span class="n">get_edge_by_key</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">with_data</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">net</span><span class="o">.</span><span class="n">remove_edge</span><span class="p">(</span><span class="n">edge</span><span class="o">.</span><span class="n">start_node</span><span class="p">,</span> <span class="n">edge</span><span class="o">.</span><span class="n">end_node</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">edge</span><span class="o">.</span><span class="n">key</span><span class="p">)</span>
+
+    <span class="c1"># remove from the keys dictionary if it exists</span>
+    <span class="k">if</span> <span class="s2">"keys"</span> <span class="ow">in</span> <span class="n">net</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+        <span class="k">del</span> <span class="n">net</span><span class="o">.</span><span class="n">graph</span><span class="p">[</span><span class="s2">"keys"</span><span class="p">][</span><span class="n">key</span><span class="p">]</span>
 
 
 <div class="viewcode-block" id="get_edge_by_key"><a class="viewcode-back" href="../../api/functions.html#wayfarer.functions.get_edge_by_key">[docs]</a><span class="k">def</span> <span class="nf">get_edge_by_key</span><span class="p">(</span>
@@ -347,16 +359,12 @@
     <span class="k">return</span> <span class="n">edge</span></div>
 
 
-<div class="viewcode-block" id="get_edge_by_attribute"><a class="viewcode-back" href="../../api/functions.html#wayfarer.functions.get_edge_by_attribute">[docs]</a><span class="k">def</span> <span class="nf">get_edge_by_attribute</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="n">attribute_field</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">Edge</span><span class="p">]:</span>
+<div class="viewcode-block" id="get_edges_by_attribute"><a class="viewcode-back" href="../../api/functions.html#wayfarer.functions.get_edges_by_attribute">[docs]</a><span class="k">def</span> <span class="nf">get_edges_by_attribute</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="n">attribute_field</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">Edge</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">"""</span>
-<span class="sd">    Go through all edge property dicts until the relevant attribute is found</span>
-<span class="sd">    Return an iterator</span>
-<span class="sd">    For getting data see</span>
-<span class="sd">    https://networkx.github.io/documentation/stable/reference/classes/generated/networkx.Graph.get_edge_data.html</span>
-
-<span class="sd">    TODO returns a generator so rename to get_edges_by_attribute or make this return the first instance?</span>
-<span class="sd">    If the attribute_field does not exist for a particular edge then it is ignored</span>
-<span class="sd">    Edges can have different attribute dicts</span>
+<span class="sd">    Go through all edge property dicts until the relevant attribute is found.</span>
+<span class="sd">    Edges can have different attribute dicts, so add a check that the key exists</span>
+<span class="sd">    If the attribute_field does not exist for a particular edge then it is ignored.</span>
+<span class="sd">    Returns an iterator</span>
 <span class="sd">    """</span>
 
     <span class="k">return</span> <span class="p">(</span>
@@ -437,7 +445,6 @@
                     <span class="n">node_paths</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">extra_path</span><span class="p">)</span>
 
     <span class="k">for</span> <span class="n">node_path</span> <span class="ow">in</span> <span class="n">node_paths</span><span class="p">:</span>
-
         <span class="n">node_pairs</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">pairwise</span><span class="p">(</span><span class="n">node_path</span><span class="p">))</span>
 
         <span class="n">path_list</span> <span class="o">=</span> <span class="p">[]</span>
@@ -469,13 +476,12 @@
 
 
 <span class="k">def</span> <span class="nf">get_path_length</span><span class="p">(</span><span class="n">path_edges</span><span class="p">):</span>
-
     <span class="k">return</span> <span class="nb">sum</span><span class="p">([</span><span class="n">edge</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="n">LENGTH_FIELD</span><span class="p">]</span> <span class="k">for</span> <span class="n">edge</span> <span class="ow">in</span> <span class="n">path_edges</span><span class="p">])</span>
 
 
 <div class="viewcode-block" id="get_edges_from_node_pair"><a class="viewcode-back" href="../../api/functions.html#wayfarer.functions.get_edges_from_node_pair">[docs]</a><span class="k">def</span> <span class="nf">get_edges_from_node_pair</span><span class="p">(</span>
     <span class="n">net</span><span class="p">,</span> <span class="n">start_node</span><span class="p">:</span> <span class="p">(</span><span class="nb">int</span> <span class="o">|</span> <span class="nb">str</span><span class="p">),</span> <span class="n">end_node</span><span class="p">:</span> <span class="p">(</span><span class="nb">int</span> <span class="o">|</span> <span class="nb">str</span><span class="p">),</span> <span class="n">hide_log_output</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
-<span class="p">)</span> <span class="o">-&gt;</span> <span class="p">(</span><span class="n">networkx</span><span class="o">.</span><span class="n">classes</span><span class="o">.</span><span class="n">coreviews</span><span class="o">.</span><span class="n">AtlasView</span> <span class="o">|</span> <span class="kc">None</span><span class="p">):</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">networkx</span><span class="o">.</span><span class="n">classes</span><span class="o">.</span><span class="n">coreviews</span><span class="o">.</span><span class="n">AtlasView</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Get all edges between two nodes</span>
 

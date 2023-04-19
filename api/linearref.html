@@ -266,7 +266,9 @@ Requires the Shapely module</p>
 </pre></div>
 </div>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">check_valid_m</span><span class="p">(</span><span class="n">m_value</span><span class="o">=-</span><span class="mf">0.213</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
-<span class="go">False</span>
+<span class="gt">Traceback (most recent call last):</span>
+<span class="c">...</span>
+<span class="gr">ValueError</span>: <span class="n">The m value (-0.213) must be a positive number</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -355,9 +357,9 @@ list of points</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">ls</span> <span class="o">=</span> <span class="n">LineString</span><span class="p">([(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">50</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">)])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">points</span> <span class="o">=</span> <span class="p">[</span><span class="n">Point</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="n">Point</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">55</span><span class="p">)]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">get_closest_point_to_measure</span><span class="p">(</span><span class="n">ls</span><span class="p">,</span> <span class="n">points</span><span class="p">,</span> <span class="n">measure</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
-<span class="go">POINT (0 10)</span>
+<span class="go">&lt;POINT (0 10)&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">get_closest_point_to_measure</span><span class="p">(</span><span class="n">ls</span><span class="p">,</span> <span class="n">points</span><span class="p">,</span> <span class="n">measure</span><span class="o">=</span><span class="mi">80</span><span class="p">)</span>
-<span class="go">POINT (0 55)</span>
+<span class="go">&lt;POINT (0 55)&gt;</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -406,9 +408,10 @@ list of points</p>
 <dd class="field-odd"><p>The measure (m-value) of the point along the line</p>
 </dd>
 </dl>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">ls</span> <span class="o">=</span> <span class="n">LineString</span><span class="p">([(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">0</span><span class="p">)])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">pt1</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-<span class="go">50</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">line</span> <span class="o">=</span> <span class="n">LineString</span><span class="p">([(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">0</span><span class="p">)])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">point</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">get_measure_on_line</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="n">point</span><span class="p">)</span>
+<span class="go">50.0</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -435,7 +438,7 @@ list of points</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">pt1</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">pt2</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="mi">96</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">get_measures</span><span class="p">(</span><span class="n">ls</span><span class="p">,</span> <span class="n">pt1</span><span class="p">,</span> <span class="n">pt2</span><span class="p">)</span>
-<span class="go">(4, 96)</span>
+<span class="go">(4.0, 96.0)</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -546,8 +549,8 @@ A LineString may cross itself (i.e. be complex and not simple).”</p>
 </dl>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pt1</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">pt2</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">magnitude</span><span class="p">(</span><span class="n">pt1</span><span class="p">,</span> <span class="n">pt2</span><span class="p">)</span>
-<span class="go">100.0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">round</span><span class="p">(</span><span class="n">magnitude</span><span class="p">(</span><span class="n">pt1</span><span class="p">,</span> <span class="n">pt2</span><span class="p">))</span>
+<span class="go">141</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -566,7 +569,7 @@ Note this does not work with MultiLineStrings</p>
 </dl>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">ls</span> <span class="o">=</span> <span class="n">LineString</span><span class="p">([(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)])</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">remove_duplicates_in_line</span><span class="p">(</span><span class="n">ls</span><span class="p">)</span>
-<span class="go">LineString([(0, 0), (1,1)])</span>
+<span class="go">&lt;LINESTRING (0 0, 1 1)&gt;</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -592,8 +595,10 @@ ends of a segment, then “snap” these values to the end.</p>
 </dd>
 </dl>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">ls</span> <span class="o">=</span> <span class="n">LineString</span><span class="p">([(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">)])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">snap_to_ends</span><span class="p">(</span><span class="n">ls</span><span class="p">,</span> <span class="n">start_m</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">end_m</span><span class="o">=</span><span class="mi">96</span><span class="p">,</span> <span class="n">tolerance</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
-<span class="go">(0, 100)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">snap_to_ends</span><span class="p">(</span><span class="n">ls</span><span class="p">,</span> <span class="n">start_m</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">end_m</span><span class="o">=</span><span class="mi">96</span><span class="p">,</span> <span class="n">tolerance</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="go">(0, 100.0)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">snap_to_ends</span><span class="p">(</span><span class="n">ls</span><span class="p">,</span> <span class="n">start_m</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">end_m</span><span class="o">=</span><span class="mi">96</span><span class="p">,</span> <span class="n">tolerance</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="go">(4, 96)</span>
 </pre></div>
 </div>
 </dd></dl>
