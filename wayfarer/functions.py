@@ -159,11 +159,17 @@ def get_edge_by_key(
 
     u, v = nodes
 
-    if with_data:
-        atts = net[u][v][key]
-        edge = Edge(u, v, key, atts)
-    else:
-        edge = Edge(u, v, key, {})
+    try:
+        if with_data:
+            atts = net[u][v][key]
+            edge = Edge(u, v, key, atts)
+        else:
+            edge = Edge(u, v, key, {})
+    except KeyError:
+        log.warning(
+            f"The edge with start_node: {u} end_node: {v} key: {key} could not be found in the network"
+        )
+        raise
 
     return edge
 
