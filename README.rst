@@ -13,3 +13,14 @@ For an overview presentation see https://compassinformatics.github.io/wayfarer-p
 
 .. |Coveralls| image:: https://coveralls.io/repos/github/compassinformatics/wayfarer/badge.svg?branch=main
     :target: https://coveralls.io/github/compassinformatics/wayfarer?branch=main
+
+Demo Services
+-------------
+virtualenv C:\VirtualEnvs\wayfarer
+C:\VirtualEnvs\wayfarer\Scripts\activate.ps1
+
+git clone https://github.com/compassinformatics/wayfarer
+
+pip install wayfarer
+requirements.txt
+RUN pip3 install -r requirements.txt

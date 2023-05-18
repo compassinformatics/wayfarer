@@ -4,13 +4,7 @@ pytest-cov
 flake8
 black
 coveralls
-Jinja2
-matplotlib
 mypy
-geopandas==0.12.2
-Fiona==1.9.1
-shapely==2.0.1
-osmnx==1.3.0
 
 # for docs
 sphinx
