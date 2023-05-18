@@ -1,7 +1,7 @@
 Jinja2
 matplotlib
 geopandas==0.12.2
-Fiona==1.9.1
+Fiona==1.9.4
 shapely==2.0.1
 osmnx==1.3.0
 uvicorn[standard]==0.20.0
