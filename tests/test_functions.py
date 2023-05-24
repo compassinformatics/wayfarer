@@ -371,14 +371,23 @@ def test_get_shortest_edge():
 def test_get_shortest_edge_identical():
     """
     If two edges have identical lengths always
-    return the higher value of the two keys
+    return whichever key is first in the dict
     """
     edges = {
-        -1: {"EDGE_ID": 2, "LEN_": 100},
         1: {"EDGE_ID": 1, "LEN_": 100},
+        -1: {"EDGE_ID": 2, "LEN_": 100},
     }
     res = functions.get_shortest_edge(edges)
     assert res[0] == 1
+
+
+def test_get_shortest_edge_mixed_keys():
+    edges = {
+        1: {"EDGE_ID": "A", "LEN_": 100, "NODEID_FROM": 1, "NODEID_TO": 2},
+        "A": {"EDGE_ID": "B", "LEN_": 20, "NODEID_FROM": 2, "NODEID_TO": 3},
+    }
+    res = functions.get_shortest_edge(edges)
+    assert res[0] == "A"
 
 
 def test_get_unique_ordered_list():
@@ -447,8 +456,9 @@ if __name__ == "__main__":
     # test_edges_to_graph()
     # test_get_edges_from_nodes()
     # test_edges_to_graph()
-    # test_get_shortest_edge()
-    # test_get_shortest_edge_identical()
+    test_get_shortest_edge()
+    test_get_shortest_edge_identical()
+    test_get_shortest_edge_mixed_keys()
     # test_get_unique_ordered_list()
     # test_get_edges_from_node_pair()
     # test_to_edge()
@@ -460,5 +470,5 @@ if __name__ == "__main__":
     # test_doctest()
     # test_get_edges_from_nodes_non_unique()
     # test_has_no_overlaps()
-    test_has_no_overlaps_loop()
+    # test_has_no_overlaps_loop()
     print("Done!")

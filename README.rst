@@ -21,6 +21,10 @@ C:\VirtualEnvs\wayfarer\Scripts\activate.ps1
 
 git clone https://github.com/compassinformatics/wayfarer
 
+cd H:\Temp\wayfarer
 pip install wayfarer
-requirements.txt
-RUN pip3 install -r requirements.txt
+pip install -r requirements.demo.txt
+Copy-Item -Path demo -Destination C:\VirtualEnvs\wayfarer -Recurse
+Copy-Item -Path data -Destination C:\VirtualEnvs\wayfarer -Recurse
+cd C:\VirtualEnvs\wayfarer\demo
+uvicorn main:app --workers 8 --port 8001

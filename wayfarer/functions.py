@@ -367,9 +367,11 @@ def get_shortest_edge(edges: dict, length_field=LENGTH_FIELD):
 
     if not edges:
         raise ValueError("The edge list is empty")
-    return min(
-        sorted(edges.items(), reverse=True), key=lambda x: x[1][length_field]
+
+    min_key = min(
+        edges, key=lambda k: edges[k][length_field]
     )  # py3 can add default=None
+    return min_key, edges[min_key]
 
 
 def add_direction_flag(start_node, end_node, attributes, **kwargs):
