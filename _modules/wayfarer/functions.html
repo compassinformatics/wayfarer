@@ -206,6 +206,7 @@
     <span class="n">NODEID_FROM_FIELD</span><span class="p">,</span>
     <span class="n">NODEID_TO_FIELD</span><span class="p">,</span>
     <span class="n">WITH_DIRECTION_FIELD</span><span class="p">,</span>
+    <span class="n">OFFSET_FIELD</span><span class="p">,</span>
     <span class="n">Edge</span><span class="p">,</span>
 <span class="p">)</span>
 
@@ -802,30 +803,36 @@
 <div class="viewcode-block" id="has_overlaps"><a class="viewcode-back" href="../../api/functions.html#wayfarer.functions.has_overlaps">[docs]</a><span class="k">def</span> <span class="nf">has_overlaps</span><span class="p">(</span><span class="n">edges</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Edge</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Checks if the provided list of edges has overlaps</span>
-<span class="sd">    where the same edge id is repeated in the sequence.</span>
-<span class="sd">    Edge ids can be adjacent e.g. 1,2,2,3 returns False</span>
-<span class="sd">    and the same edge id can be found at the start and end of the sequence</span>
-<span class="sd">    e.g. 1,2,3,1 returns False</span>
+<span class="sd">    If an edge is split but the measures don't overlap then this will return False</span>
+<span class="sd">    The same edge id can be found at the start and end of the sequence if there is</span>
+<span class="sd">    no overlap of measures</span>
 
-<span class="sd">    &gt;&gt;&gt; edges = [Edge(0, 1, "A", {"EDGE_ID": 1}), Edge(1, 2, "B", {"EDGE_ID": 2})]</span>
+<span class="sd">    &gt;&gt;&gt; edges = [Edge(0, 1, "A", {"EDGE_ID": 1, "OFFSET": 0, "LEN_": 10}), \</span>
+<span class="sd">Edge(1, 2, "B", {"EDGE_ID": 2, "OFFSET": 0, "LEN_": 10})]</span>
 <span class="sd">    &gt;&gt;&gt; has_overlaps(edges)</span>
 <span class="sd">    False</span>
 <span class="sd">    """</span>
     <span class="c1"># get the edge id from the attributes rather than the edge key in case</span>
     <span class="c1"># there are split edges which will have modified keys</span>
 
-    <span class="n">edge_ids</span> <span class="o">=</span> <span class="p">[</span><span class="n">e</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="n">EDGE_ID_FIELD</span><span class="p">]</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">edges</span><span class="p">]</span>
+    <span class="n">sorted_edges</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">edges</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">e</span><span class="p">:</span> <span class="n">e</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="n">EDGE_ID_FIELD</span><span class="p">])</span>
+    <span class="n">grouped_edges</span> <span class="o">=</span> <span class="n">itertools</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span>
+        <span class="n">sorted_edges</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">e</span><span class="p">:</span> <span class="n">e</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="n">EDGE_ID_FIELD</span><span class="p">]</span>
+    <span class="p">)</span>
 
-    <span class="n">grouped_edge_ids</span> <span class="o">=</span> <span class="p">[</span><span class="n">k</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">edge_ids</span><span class="p">)]</span>
-    <span class="n">unique_edge_count</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">edge_ids</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">edge_group</span> <span class="ow">in</span> <span class="n">grouped_edges</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">edge1</span><span class="p">,</span> <span class="n">edge2</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">combinations</span><span class="p">(</span><span class="n">edge_group</span><span class="p">,</span> <span class="mi">2</span><span class="p">):</span>
 
-    <span class="k">if</span> <span class="n">edge_ids</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">edge_ids</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
-        <span class="n">unique_edge_count</span> <span class="o">+=</span> <span class="mi">1</span>  <span class="c1"># allow looping back onto start edge</span>
+            <span class="n">from_m1</span> <span class="o">=</span> <span class="n">edge1</span><span class="o">.</span><span class="n">attributes</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">OFFSET_FIELD</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+            <span class="n">to_m1</span> <span class="o">=</span> <span class="n">from_m1</span> <span class="o">+</span> <span class="n">edge1</span><span class="o">.</span><span class="n">attributes</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">LENGTH_FIELD</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
 
-    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">grouped_edge_ids</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">unique_edge_count</span><span class="p">:</span>
-        <span class="k">return</span> <span class="kc">True</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span> <span class="kc">False</span></div>
+            <span class="n">from_m2</span> <span class="o">=</span> <span class="n">edge2</span><span class="o">.</span><span class="n">attributes</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">OFFSET_FIELD</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+            <span class="n">to_m2</span> <span class="o">=</span> <span class="n">from_m2</span> <span class="o">+</span> <span class="n">edge2</span><span class="o">.</span><span class="n">attributes</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">LENGTH_FIELD</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="nb">max</span><span class="p">(</span><span class="n">from_m1</span><span class="p">,</span> <span class="n">from_m2</span><span class="p">)</span> <span class="o">&lt;</span> <span class="nb">min</span><span class="p">(</span><span class="n">to_m1</span><span class="p">,</span> <span class="n">to_m2</span><span class="p">):</span>
+                <span class="k">return</span> <span class="kc">True</span>
+
+    <span class="k">return</span> <span class="kc">False</span></div>
 </pre></div>
 
           </article>
