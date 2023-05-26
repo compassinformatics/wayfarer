@@ -414,11 +414,11 @@ def test_get_path_length():
 
 def test_has_overlaps():
     edges = [
-        Edge(0, 1, "A", {"EDGE_ID": 1}),
-        Edge(1, 2, "B", {"EDGE_ID": 2}),
-        Edge(2, 3, "C", {"EDGE_ID": 3}),
-        Edge(2, 3, "C", {"EDGE_ID": 2}),
-        Edge(2, 3, "C", {"EDGE_ID": 4}),
+        Edge(0, 1, "A", {"EDGE_ID": 1, "OFFSET": 0, "LEN_": 10}),
+        Edge(1, 2, "B", {"EDGE_ID": 2, "OFFSET": 0, "LEN_": 10}),
+        Edge(2, 3, "C", {"EDGE_ID": 3, "OFFSET": 0, "LEN_": 10}),
+        Edge(2, 3, "C", {"EDGE_ID": 2, "OFFSET": 0, "LEN_": 10}),
+        Edge(2, 3, "C", {"EDGE_ID": 4, "OFFSET": 0, "LEN_": 10}),
     ]
     assert functions.has_overlaps(edges) is True
 
@@ -444,6 +444,17 @@ def test_has_no_overlaps_loop():
     assert functions.has_overlaps(edges) is False
 
 
+def test_has_no_overlaps_loop_with_split():
+    edges = [
+        Edge(0, 1, "A", {"EDGE_ID": 1, "OFFSET": 5, "LEN_": 10}),
+        Edge(1, 2, "B", {"EDGE_ID": 2, "OFFSET": 0, "LEN_": 10}),
+        Edge(1, 2, "B", {"EDGE_ID": 2, "OFFSET": 10, "LEN_": 10}),
+        Edge(2, 3, "C", {"EDGE_ID": 3, "OFFSET": 0, "LEN_": 10}),
+        Edge(3, 0, "C", {"EDGE_ID": 4, "OFFSET": 0, "LEN_": 5}),
+    ]
+    assert functions.has_overlaps(edges) is False
+
+
 def test_doctest():
     import doctest
 
@@ -456,9 +467,9 @@ if __name__ == "__main__":
     # test_edges_to_graph()
     # test_get_edges_from_nodes()
     # test_edges_to_graph()
-    test_get_shortest_edge()
-    test_get_shortest_edge_identical()
-    test_get_shortest_edge_mixed_keys()
+    # test_get_shortest_edge()
+    # test_get_shortest_edge_identical()
+    # test_get_shortest_edge_mixed_keys()
     # test_get_unique_ordered_list()
     # test_get_edges_from_node_pair()
     # test_to_edge()
@@ -471,4 +482,6 @@ if __name__ == "__main__":
     # test_get_edges_from_nodes_non_unique()
     # test_has_no_overlaps()
     # test_has_no_overlaps_loop()
+    # test_has_overlaps()
+    test_has_no_overlaps_loop_with_split()
     print("Done!")

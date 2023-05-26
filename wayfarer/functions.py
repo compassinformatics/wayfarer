@@ -16,6 +16,7 @@ from wayfarer import (
     NODEID_FROM_FIELD,
     NODEID_TO_FIELD,
     WITH_DIRECTION_FIELD,
+    OFFSET_FIELD,
     Edge,
 )
 
@@ -612,27 +613,33 @@ def get_multiconnected_nodes(edges, connections=2):
 def has_overlaps(edges: list[Edge]) -> bool:
     """
     Checks if the provided list of edges has overlaps
-    where the same edge id is repeated in the sequence.
-    Edge ids can be adjacent e.g. 1,2,2,3 returns False
-    and the same edge id can be found at the start and end of the sequence
-    e.g. 1,2,3,1 returns False
+    If an edge is split but the measures don't overlap then this will return False
+    The same edge id can be found at the start and end of the sequence if there is
+    no overlap of measures
 
-    >>> edges = [Edge(0, 1, "A", {"EDGE_ID": 1}), Edge(1, 2, "B", {"EDGE_ID": 2})]
+    >>> edges = [Edge(0, 1, "A", {"EDGE_ID": 1, "OFFSET": 0, "LEN_": 10}), \
+Edge(1, 2, "B", {"EDGE_ID": 2, "OFFSET": 0, "LEN_": 10})]
     >>> has_overlaps(edges)
     False
     """
     # get the edge id from the attributes rather than the edge key in case
     # there are split edges which will have modified keys
 
-    edge_ids = [e.attributes[EDGE_ID_FIELD] for e in edges]
+    sorted_edges = sorted(edges, key=lambda e: e.attributes[EDGE_ID_FIELD])
+    grouped_edges = itertools.groupby(
+        sorted_edges, key=lambda e: e.attributes[EDGE_ID_FIELD]
+    )
 
-    grouped_edge_ids = [k for k, g in itertools.groupby(edge_ids)]
-    unique_edge_count = len(set(edge_ids))
+    for _, edge_group in grouped_edges:
+        for edge1, edge2 in itertools.combinations(edge_group, 2):
 
-    if edge_ids[0] == edge_ids[-1]:
-        unique_edge_count += 1  # allow looping back onto start edge
+            from_m1 = edge1.attributes.get(OFFSET_FIELD, 0)
+            to_m1 = from_m1 + edge1.attributes.get(LENGTH_FIELD, 0)
 
-    if len(grouped_edge_ids) > unique_edge_count:
-        return True
-    else:
-        return False
+            from_m2 = edge2.attributes.get(OFFSET_FIELD, 0)
+            to_m2 = from_m2 + edge2.attributes.get(LENGTH_FIELD, 0)
+
+            if max(from_m1, from_m2) < min(to_m1, to_m2):
+                return True
+
+    return False

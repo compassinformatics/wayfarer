@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>f8ac0630-98af-462b-b7ee-5688d6183c85</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>tests\test_splitting.py</StartupFile>
+    <StartupFile>tests\test_functions.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -144,6 +144,7 @@
     <Content Include="dev_setup.ps1" />
     <Content Include="build_docs.ps1" />
     <Content Include="LICENSE" />
+    <Content Include="requirements.demo.txt" />
     <Content Include="run_local.ps1" />
     <Content Include="README.rst" />
     <Content Include="requirements.txt">
