@@ -182,7 +182,17 @@
   <ul class="md-nav__list" data-md-scrollfix="">
         <li class="md-nav__item"><a href="#index--page-root" class="md-nav__link">Wayfarer</a><nav class="md-nav">
               <ul class="md-nav__list">
-        <li class="md-nav__item"><a href="#overview" class="md-nav__link">Overview</a>
+        <li class="md-nav__item"><a href="#functionality" class="md-nav__link">Functionality</a><nav class="md-nav">
+              <ul class="md-nav__list">
+        <li class="md-nav__item"><a href="#linear-referencing" class="md-nav__link">Linear Referencing</a>
+        </li></ul>
+            </nav>
+        </li>
+        <li class="md-nav__item"><a href="#why-use-wayfarer" class="md-nav__link">Why Use Wayfarer?</a>
+        </li>
+        <li class="md-nav__item"><a href="#comparison-with-alternatives" class="md-nav__link">Comparison with Alternatives</a>
+        </li>
+        <li class="md-nav__item"><a href="#demo-services" class="md-nav__link">Demo Services</a>
         </li></ul>
             </nav>
         </li>
@@ -197,38 +207,71 @@
             
   <section id="wayfarer">
 <h1 id="index--page-root">Wayfarer<a class="headerlink" href="#index--page-root" title="Permalink to this heading">¶</a></h1>
-<section id="overview">
-<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permalink to this heading">¶</a></h2>
-<p>A Python library for creating and analysing geospatial networks using <a class="reference external" href="https://networkx.org/">NetworkX</a>.</p>
-<p>Uses shortest routes to provide a user interface quickly mark up linear features.</p>
-<p>For an overview presentation see <a class="reference external" href="https://compassinformatics.github.io/wayfarer-presentation/">https://compassinformatics.github.io/wayfarer-presentation/</a></p>
-<p>Focus on creating user interfaces for selecting linear features such as roads and rivers in a network.</p>
-<ul class="simple">
-<li><p>Works with any data source (database, flat files, dictionaries)</p></li>
-<li><p>Compatibility with osmnx</p></li>
-<li><p>Access to all of the NetworkX <a class="reference external" href="https://networkx.org/documentation/latest/reference/algorithms/index.html">Algorithms</a></p></li>
-</ul>
-<p>Allow an easy user interface for marking up features on linear referenced features.</p>
+<a class="reference internal image-reference" href="_images/logo.png"><img alt="wayfarer logo" class="align-right" src="_images/logo.png" style="width: 512.0px; height: 512.0px;"/></a>
+<div class="line-block">
+<div class="line"><a class="reference external" href="https://coveralls.io/github/compassinformatics/wayfarer?branch=main"><img alt="Coveralls" src="https://coveralls.io/repos/github/compassinformatics/wayfarer/badge.svg?branch=main"/></a></div>
+</div>
+<p>Wayfarer is Python library for creating and analysing geospatial networks using <a class="reference external" href="https://networkx.org/">NetworkX</a>.</p>
+<p>See the <a class="reference external" href="https://compassinformatics.github.io/wayfarer-presentation/">Wayfarer Presentation</a> for an overview presentation.</p>
+<section id="functionality">
+<h2 id="functionality">Functionality<a class="headerlink" href="#functionality" title="Permalink to this heading">¶</a></h2>
+<p>Its focus is on creating user interfaces for selecting and creating linear features such as roads and rivers in a network.
+Uses shortest routes to provide a user interface quickly mark up linear features.</p>
+<p>Dynamic splitting - accessibility scenarios. Changes to isochrones.</p>
+<section id="linear-referencing">
+<h3 id="linear-referencing">Linear Referencing<a class="headerlink" href="#linear-referencing" title="Permalink to this heading">¶</a></h3>
 <p>Linear referencing is a powerful technique used in Geographic Information Systems (GIS) to locate geographic features and events along a
 linear feature such as a road, river or pipeline.</p>
 <ul class="simple">
 <li><p>Easy analysis and reporting of data along linear features</p></li>
 <li><p>Efficient data storage - no need to duplicate linear features</p></li>
 </ul>
-<p>More familiar with Python than Postgres and SQL</p>
-<p>pgRouting:</p>
-<p>requires users to have a good understanding of SQL, PostGIS, and network analysis concepts. This can make it difficult for beginners to get started.
-PgRouting is designed to work with PostgreSQL and PostGIS, so users may need to convert their data to these formats before they can use the tool. This can be time-consuming and may require additional software or expertise.</p>
-<p>GraphHopper
-OSRM</p>
-<p>Network Analyst is an extension for ArcGIS</p>
-<p>networkx</p>
-<p><a class="reference external" href="https://pypi.org/project/pyroutelib3/">https://pypi.org/project/pyroutelib3/</a> - OSM data</p>
-<p>PyRoutelib: PyRoutelib is a Python library for network routing that is built on top of NetworkX. It includes a range of routing algorithms, including Dijkstra’s algorithm and A* search, as well as tools for working with routing profiles and generating directions. PyRoutelib is designed to be easy to use and can be integrated into other Python projects.
-osmnx: OSMnx is a Python library for working with OpenStreetMap data and generating street networks. It includes tools for routing and network analysis, including shortest-path algorithms and tools for calculating network measures such as centrality and betweenness. OSMnx can be used to generate routing networks for a range of use cases, including transportation planning and urban design.
-pandana: Pandana is a Python library for working with large-scale spatial networks, including road networks and public transit networks. It includes tools for network analysis and routing, as well as tools for generating spatial aggregates and conducting spatial queries. Pandana is designed to be fast and memory-efficient, making it well-suited for large-scale routing applications</p>
-<p><a class="reference external" href="https://pypi.org/project/pandana/">https://pypi.org/project/pandana/</a></p>
-<p>Dynamic splitting - accessibility scenarios. Changes to isochrones.</p>
+</section>
+</section>
+<section id="why-use-wayfarer">
+<h2 id="why-use-wayfarer">Why Use Wayfarer?<a class="headerlink" href="#why-use-wayfarer" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Works with any data source (any database, flat files, Python dictionaries)</p></li>
+<li><p>Compatibility with <a class="reference external" href="https://osmnx.readthedocs.io/en/stable/">osmnx</a></p></li>
+<li><p>Access to all of the NetworkX <a class="reference external" href="https://networkx.org/documentation/latest/reference/algorithms/index.html">Algorithms</a></p></li>
+<li><p>Allow an easy user interface for marking up features on linear referenced features.</p></li>
+</ul>
+</section>
+<section id="comparison-with-alternatives">
+<h2 id="comparison-with-alternatives">Comparison with Alternatives<a class="headerlink" href="#comparison-with-alternatives" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://pgrouting.org/">pgRouting</a> - requires users to have a good understanding of SQL, PostGIS, and network analysis concepts.
+This can make it difficult for beginners to get started. PgRouting is designed to work with PostgreSQL and PostGIS,
+so users may need to convert their data to these formats before they can use the tool.
+This can be time-consuming and may require additional software or expertise. More familiar with Python than Postgres and SQL</p></li>
+<li><p>Network Analyst is an extension for ArcGIS</p></li>
+<li><p>GraphHopper</p></li>
+<li><p>OSRM</p></li>
+<li><p>OSMNX is a Python library for working with OpenStreetMap data and generating street networks. It includes tools for routing and network analysis, including shortest-path algorithms and tools for calculating network measures such as centrality and betweenness. OSMnx can be used to generate routing networks for a range of use cases, including transportation planning and urban design.</p></li>
+<li><p><a class="reference external" href="https://pypi.org/project/pandana/">Pandana</a> is a Python library for working with large-scale spatial networks, including road networks
+and public transit networks. It includes tools for network analysis and routing, as well as tools for generating spatial aggregates and
+conducting spatial queries. Pandana is designed to be fast and memory-efficient, making it well-suited for large-scale routing applications</p></li>
+<li><p><a class="reference external" href="https://pypi.org/project/pyroutelib3/">PyRoutelib</a> is a Python library for network routing that is built on top of NetworkX.
+It includes a range of routing algorithms, including Dijkstra’s algorithm and A* search, as well as tools for working with routing
+profiles and generating directions. PyRoutelib is designed to be easy to use and can be integrated into other Python projects.</p></li>
+</ul>
+</section>
+<section id="demo-services">
+<h2 id="demo-services">Demo Services<a class="headerlink" href="#demo-services" title="Permalink to this heading">¶</a></h2>
+<div class="highlight-ps1 notranslate"><div class="highlight"><pre><span></span><span class="n">virtualenv</span> <span class="n">C</span><span class="p">:\</span><span class="n">VirtualEnvs</span><span class="p">\</span><span class="n">wayfarer</span>
+<span class="n">C</span><span class="p">:\</span><span class="n">VirtualEnvs</span><span class="p">\</span><span class="n">wayfarer</span><span class="p">\</span><span class="n">Scripts</span><span class="p">\</span><span class="n">activate</span><span class="p">.</span><span class="n">ps1</span>
+
+<span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">://</span><span class="n">github</span><span class="p">.</span><span class="n">com</span><span class="p">/</span><span class="n">compassinformatics</span><span class="p">/</span><span class="n">wayfarer</span>
+
+<span class="nb">cd </span><span class="n">H</span><span class="p">:\</span><span class="n">Temp</span><span class="p">\</span><span class="n">wayfarer</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="n">wayfarer</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="n">-r</span> <span class="n">requirements</span><span class="p">.</span><span class="n">demo</span><span class="p">.</span><span class="n">txt</span>
+<span class="nb">Copy-Item</span> <span class="n">-Path</span> <span class="n">demo</span> <span class="n">-Destination</span> <span class="n">C</span><span class="p">:\</span><span class="n">VirtualEnvs</span><span class="p">\</span><span class="n">wayfarer</span> <span class="n">-Recurse</span>
+<span class="nb">Copy-Item</span> <span class="n">-Path</span> <span class="n">data</span> <span class="n">-Destination</span> <span class="n">C</span><span class="p">:\</span><span class="n">VirtualEnvs</span><span class="p">\</span><span class="n">wayfarer</span> <span class="n">-Recurse</span>
+<span class="nb">cd </span><span class="n">C</span><span class="p">:\</span><span class="n">VirtualEnvs</span><span class="p">\</span><span class="n">wayfarer</span><span class="p">\</span><span class="n">demo</span>
+<span class="n">uvicorn</span> <span class="n">main</span><span class="p">:</span><span class="n">app</span> <span class="p">-</span><span class="n">-workers</span> <span class="n">8</span> <span class="p">-</span><span class="n">-port</span> <span class="n">8001</span>
+</pre></div>
+</div>
 <div class="toctree-wrapper compound">
 <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
