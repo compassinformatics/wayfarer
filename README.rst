@@ -1,7 +1,7 @@
 Wayfarer
 ========
 
-.. image:: images/logo.png
+.. image:: /images/logo.png
    :scale: 50%
    :alt: wayfarer logo
    :align: right
