@@ -100,6 +100,7 @@
     <Folder Include="docs\api\" />
     <Folder Include="docs\images\" />
     <Folder Include="demo\" />
+    <Folder Include="images\" />
     <Folder Include="scripts\" />
     <Folder Include="tests\" />
     <Folder Include="wayfarer\" />
@@ -112,6 +113,7 @@
     <Content Include=".mypy.ini" />
     <Content Include="CONTRIBUTING.rst" />
     <Content Include="data\tipperary.txt" />
+    <Content Include="Dockerfile" />
     <Content Include="docs\api\linearref.rst" />
     <Content Include="docs\api\loader.rst" />
     <Content Include="docs\api\functions.rst" />
@@ -119,6 +121,7 @@
     <Content Include="docs\examples.rst" />
     <Content Include="docs\images\bottle_network.png" />
     <Content Include="docs\images\circle_network.png" />
+    <Content Include="docs\images\logo.png" />
     <Content Include="docs\images\double_loop_network.png" />
     <Content Include="docs\images\dual_path_network.png" />
     <Content Include="docs\images\dual_path_network_manual.png" />
@@ -143,6 +146,12 @@
     <Content Include="docs\talk.rst" />
     <Content Include="dev_setup.ps1" />
     <Content Include="build_docs.ps1" />
+    <Content Include="images\edges.png" />
+    <Content Include="images\isochrones.png" />
+    <Content Include="images\logo-small.png" />
+    <Content Include="images\logo.png" />
+    <Content Include="images\rivers.png" />
+    <Content Include="images\route.png" />
     <Content Include="LICENSE" />
     <Content Include="requirements.demo.txt" />
     <Content Include="run_local.ps1" />

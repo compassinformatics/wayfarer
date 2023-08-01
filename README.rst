@@ -1,14 +1,15 @@
 Wayfarer
 ========
 
-.. image:: /images/logo.png
-   :scale: 50%
+.. image:: ../images/logo-small.png
    :alt: wayfarer logo
    :align: right
 
-| |Coveralls|
+| |Version| |Coveralls| |Downloads|
 
 Wayfarer is Python library for creating and analysing geospatial networks using `NetworkX <https://networkx.org/>`_.
+
+See the `Online Demo <https://compassinformatics.github.io/wayfarer-demo/>`_ to see examples of use cases for the library.
 
 See the `Wayfarer Presentation <https://compassinformatics.github.io/wayfarer-presentation/>`_ for an overview presentation.
 
@@ -17,6 +18,13 @@ Functionality
 
 Its focus is on creating user interfaces for selecting and creating linear features such as roads and rivers in a network.
 Uses shortest routes to provide a user interface quickly mark up linear features. 
+
+Routing
++++++++
+
+.. image:: ../images/route.png
+   :alt: Route solving
+   :align: right
 
 Dynamic splitting - accessibility scenarios. Changes to isochrones. 
 
@@ -55,24 +63,45 @@ Comparison with Alternatives
   It includes a range of routing algorithms, including Dijkstra's algorithm and A* search, as well as tools for working with routing 
   profiles and generating directions. PyRoutelib is designed to be easy to use and can be integrated into other Python projects.
 
-Demo Services
--------------
+Demo Applications
+-----------------
+
+The demo applications use a Python back-end with wayfarer, and a JavaScript front-end build on `OpenLayers <https://openlayers.org/>`_.
+The front-end code is stored in a separate repository at https://github.com/compassinformatics/wayfarer-demo/
+
+To setup the code below you can run the following commands in a PowerShell terminal and using Windows. 
+Alternatively you can use the `Dockerfile <Dockerfile>`_. 
 
 .. code-block:: ps1
 
+    # create a virtual environment and activate it
     virtualenv C:\VirtualEnvs\wayfarer
     C:\VirtualEnvs\wayfarer\Scripts\activate.ps1
 
+    # check-out the latest version of the wayfarer project which include
+    # the demo Python services and data
     git clone https://github.com/compassinformatics/wayfarer
 
-    cd H:\Temp\wayfarer
+    # install wayfarer and its requirements to a virtual environment
+    cd C:\Temp\wayfarer
     pip install wayfarer
     pip install -r requirements.demo.txt
+
+    # copy the data to the demo folder
     Copy-Item -Path demo -Destination C:\VirtualEnvs\wayfarer -Recurse
     Copy-Item -Path data -Destination C:\VirtualEnvs\wayfarer -Recurse
-    cd C:\VirtualEnvs\wayfarer\demo
-    uvicorn main:app --workers 8 --port 8001
 
+    # run the demo services as a Python web service
+    cd C:\VirtualEnvs\wayfarer\demo
+    uvicorn main:app --workers 4 --port 8001
+
+    # should now be available at http://localhost:8001
+
+.. |Version| image:: https://img.shields.io/pypi/v/wayfarer.svg
+   :target: https://pypi.python.org/pypi/wayfarer
 
 .. |Coveralls| image:: https://coveralls.io/repos/github/compassinformatics/wayfarer/badge.svg?branch=main
     :target: https://coveralls.io/github/compassinformatics/wayfarer?branch=main
+
+.. |Downloads| image:: http://pepy.tech/badge/wayfarer
+    :target: http://pepy.tech/project/wayfarer
