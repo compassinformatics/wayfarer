@@ -51,7 +51,7 @@ def test_invalid_lr4():
 def test_valid_lr():
     ls = LineString([(0, 0), (0, 100)])
     new_line = linearref.create_line(ls, 0, 50)
-    assert type(new_line) == LineString
+    assert type(new_line) is LineString
     assert new_line.is_valid
     assert new_line.length == 50
     expected = [(0.0, 0.0), (0.0, 50.0)]
@@ -61,7 +61,7 @@ def test_valid_lr():
 def test_valid_lr2():
     ls = LineString([(0, 0), (0, 100)])
     new_line = linearref.create_line(ls, 1, 50)
-    assert type(new_line) == LineString
+    assert type(new_line) is LineString
     assert new_line.is_valid
     assert new_line.length == 49
     expected = [(0.0, 1.0), (0.0, 50.0)]
@@ -78,7 +78,7 @@ def test_ring_feature():
     assert ls.length == 400
 
     new_line = linearref.create_line(ls, 0, 400)
-    assert type(new_line) == LineString
+    assert type(new_line) is LineString
     assert new_line.is_valid
 
     assert new_line.length == 400

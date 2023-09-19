@@ -32,7 +32,7 @@ def test_add_edge_with_reverse_lookup():
 def test_create_graph():
 
     net = loader.create_graph()
-    assert type(net) == networkx.classes.multigraph.MultiGraph
+    assert type(net) is networkx.classes.multigraph.MultiGraph
     version = wayfarer.__version__
     assert (
         str(net)
@@ -44,7 +44,7 @@ def test_create_graph():
 def test_create_multidigraph():
 
     net = loader.create_graph(graph_type=networkx.MultiDiGraph)
-    assert type(net) == networkx.classes.multidigraph.MultiDiGraph
+    assert type(net) is networkx.classes.multidigraph.MultiDiGraph
     version = wayfarer.__version__
     assert (
         str(net)
