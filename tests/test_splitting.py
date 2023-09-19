@@ -100,15 +100,16 @@ def test_split_invalid_measure(use_reverse_lookup):
     net = loader.load_network_from_geometries(
         feats, use_reverse_lookup=use_reverse_lookup
     )
-    error = False
 
-    try:
-        # 150 is greater than edge length
-        splitter.split_network_edge(net, 2, [150])
-    except ValueError:
-        error = True
+    edge_count = len(net.edges())
+    key = 2
+    original_edge = functions.get_edge_by_key(net, key, with_data=True)
 
-    assert error
+    # 150 is greater than edge length
+    split_edges = splitter.split_network_edge(net, key, [150])
+    # no split should happen and the original edge should be returned
+    assert original_edge == split_edges[0]
+    assert edge_count == len(net.edges())
 
 
 @pytest.mark.parametrize("use_reverse_lookup", [(True), (False)])
@@ -117,15 +118,70 @@ def test_split_invalid_measure2(use_reverse_lookup):
     net = loader.load_network_from_geometries(
         feats, use_reverse_lookup=use_reverse_lookup
     )
-    error = False
 
-    try:
-        # 100 is equal to edge length
-        splitter.split_network_edge(net, 2, [100])
-    except ValueError:
-        error = True
+    edge_count = len(net.edges())
+    key = 2
+    original_edge = functions.get_edge_by_key(net, key, with_data=True)
 
-    assert error
+    # 100 is equal to edge length
+    split_edges = splitter.split_network_edge(net, key, [100])
+    # no split should happen and the original edge should be returned
+    assert original_edge == split_edges[0]
+    assert edge_count == len(net.edges())
+
+
+@pytest.mark.parametrize("use_reverse_lookup", [(True), (False)])
+def test_split_invalid_measure3(use_reverse_lookup):
+    feats = simple_features()
+    net = loader.load_network_from_geometries(
+        feats, use_reverse_lookup=use_reverse_lookup
+    )
+
+    edge_count = len(net.edges())
+    key = 2
+    original_edge = functions.get_edge_by_key(net, key, with_data=True)
+
+    # 0 values should be ignored
+    split_edges = splitter.split_network_edge(net, key, [0])
+    # no split should happen and the original edge should be returned
+    assert original_edge == split_edges[0]
+    assert edge_count == len(net.edges())
+
+
+@pytest.mark.parametrize("use_reverse_lookup", [(True), (False)])
+def test_split_invalid_measure4(use_reverse_lookup):
+    feats = simple_features()
+    net = loader.load_network_from_geometries(
+        feats, use_reverse_lookup=use_reverse_lookup
+    )
+
+    edge_count = len(net.edges())
+    key = 2
+    original_edge = functions.get_edge_by_key(net, key, with_data=True)
+
+    # negative values should be ignored
+    split_edges = splitter.split_network_edge(net, key, [-10])
+    # no split should happen and the original edge should be returned
+    assert original_edge == split_edges[0]
+    assert edge_count == len(net.edges())
+
+
+@pytest.mark.parametrize("use_reverse_lookup", [(True), (False)])
+def test_split_invalid_measure5(use_reverse_lookup):
+    feats = simple_features()
+    net = loader.load_network_from_geometries(
+        feats, use_reverse_lookup=use_reverse_lookup
+    )
+
+    edge_count = len(net.edges())
+    key = 2
+    original_edge = functions.get_edge_by_key(net, key, with_data=True)
+
+    # all invalid measures should be ignored
+    split_edges = splitter.split_network_edge(net, key, [-10, -5, 0, 100, 150, 200])
+    # no split should happen and the original edge should be returned
+    assert original_edge == split_edges[0]
+    assert edge_count == len(net.edges())
 
 
 @pytest.mark.parametrize("use_reverse_lookup", [(True), (False)])
@@ -204,12 +260,13 @@ def test_doctest():
 if __name__ == "__main__":
     logging.basicConfig(level=logging.DEBUG)
     # test_multiple_split_network_edge(True)
-    # test_split_invalid_measure(True)
-    # test_split_invalid_measure2(True)
+    test_split_invalid_measure(True)
+    test_split_invalid_measure2(True)
+    test_split_invalid_measure3(True)
     # test_multiple_split_network_edge(True)
     # test_multiple_split_network_edge(True)
     # test_double_split_network_edge(True)
     # test_split_with_points(True)
     # test_split_network_edge(True)
-    test_unsplit_network_edges()
+    # test_unsplit_network_edges()
     print("Done!")

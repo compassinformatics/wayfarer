@@ -323,23 +323,31 @@ def split_network_edge(
 
     original_edge = functions.get_edge_by_key(net, key, with_data=True)
 
-    log.debug(f"Splitting {original_edge.key} with {len(measures)} points")
-
-    functions.remove_edge_by_key(net, original_edge.key)
     original_length = original_edge.attributes[LENGTH_FIELD]
+
+    validated_measures = []
 
     for m in measures:
         if m >= original_length:
-            raise ValueError(
+            log.debug(
                 f"Split measure {m} is greater or equal to the length {original_length} of edge {key}"
             )
-        if m == 0:
-            raise ValueError("Split measure is 0 - no need to split!")
+        elif m <= 0:
+            log.debug("Split measure is 0 or less - no need to split!")
+        else:
+            validated_measures.append(m)
 
+    if len(validated_measures) == 0:
+        log.debug("No measures along line - returning original edges")
+        return [original_edge]
+
+    log.debug(f"Splitting {original_edge.key} with {len(measures)} points")
+
+    functions.remove_edge_by_key(net, original_edge.key)
     prev_node = original_edge.start_node
     from_m = 0  # type: (int | float)
 
-    for to_m in sorted(set(measures)):
+    for to_m in sorted(set(validated_measures)):
         split_key = create_split_key(key, to_m)
         atts = get_split_attributes(
             original_edge.attributes, from_m, to_m, prev_node, split_key
