@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="./">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -47,11 +47,11 @@
   
   
     <title>wayfarer &#8212; Wayfarer</title>
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/material.css" />
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/sphinx_highlight.js"></script>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=83e35b93" />
+    <link rel="stylesheet" type="text/css" href="_static/material.css?v=79c92029" />
+    <script src="_static/documentation_options.js?v=f2a433a1"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
   
@@ -100,7 +100,7 @@
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" action="search.html" method="get" name="search">
-      <input type="text" class="md-search__input" name="q" placeholder="Search"
+      <input type="text" class="md-search__input" name="q" placeholder=""Search""
              autocapitalize="off" autocomplete="off" spellcheck="false"
              data-md-component="query" data-md-state="active">
       <label class="md-icon md-search__icon" for="__search"></label>
@@ -177,7 +177,7 @@
               <div class="md-sidebar__inner">
                 
 <nav class="md-nav md-nav--secondary">
-    <label class="md-nav__title" for="__toc">Contents</label>
+    <label class="md-nav__title" for="__toc">"Contents"</label>
   <ul class="md-nav__list" data-md-scrollfix="">
         <li class="md-nav__item"><a href="#introduction--page-root" class="md-nav__link">wayfarer</a><nav class="md-nav">
               <ul class="md-nav__list">
@@ -197,7 +197,7 @@
           <article class="md-content__inner md-typeset" role="main">
             
   <section id="wayfarer">
-<h1 id="introduction--page-root">wayfarer<a class="headerlink" href="#introduction--page-root" title="Permalink to this heading">¶</a></h1>
+<h1 id="introduction--page-root">wayfarer<a class="headerlink" href="#introduction--page-root" title="Link to this heading">¶</a></h1>
 <p>Features:</p>
 <ul class="simple">
 <li><p>Uses reverse_lookup for faster access of edge by key</p></li>
@@ -222,13 +222,13 @@ test_lookup_speed_without_reverse_lookup     2,100.0000 (7.00)     60,300.0000 (
 <div><p>if “keys” in net.graph.keys():</p>
 </div></blockquote>
 <section id="use-cases">
-<h2 id="use-cases">Use Cases<a class="headerlink" href="#use-cases" title="Permalink to this heading">¶</a></h2>
+<h2 id="use-cases">Use Cases<a class="headerlink" href="#use-cases" title="Link to this heading">¶</a></h2>
 <p>EPA River Networks
 Prime2 transfer process
 PMS routing</p>
 </section>
 <section id="edge-class">
-<h2 id="edge-class">Edge Class<a class="headerlink" href="#edge-class" title="Permalink to this heading">¶</a></h2>
+<h2 id="edge-class">Edge Class<a class="headerlink" href="#edge-class" title="Link to this heading">¶</a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">to_edge</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="p">{</span><span class="s2">"LEN_"</span><span class="p">:</span> <span class="mi">10</span><span class="p">}))</span>
 <span class="go">Edge(start_node=0, end_node=1, key=1, attributes={'LEN_': 10})</span>
 </pre></div>
@@ -268,7 +268,7 @@ Use of annotations:</p>
               
           </div>
             Created using
-            <a href="http://www.sphinx-doc.org/">Sphinx</a> 7.0.1.
+            <a href="http://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
              and
             <a href="https://github.com/bashtage/sphinx-material/">Material for
               Sphinx</a>

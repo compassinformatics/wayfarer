@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="../">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -47,11 +47,11 @@
   
   
     <title>Linear Referencing Module &#8212; Wayfarer</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/material.css" />
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/sphinx_highlight.js"></script>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=83e35b93" />
+    <link rel="stylesheet" type="text/css" href="../_static/material.css?v=79c92029" />
+    <script src="../_static/documentation_options.js?v=f2a433a1"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Routing Module" href="routing.html" />
@@ -102,7 +102,7 @@
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" action="../search.html" method="get" name="search">
-      <input type="text" class="md-search__input" name="q" placeholder="Search"
+      <input type="text" class="md-search__input" name="q" placeholder=""Search""
              autocapitalize="off" autocomplete="off" spellcheck="false"
              data-md-component="query" data-md-state="active">
       <label class="md-icon md-search__icon" for="__search"></label>
@@ -179,7 +179,7 @@
               <div class="md-sidebar__inner">
                 
 <nav class="md-nav md-nav--secondary">
-    <label class="md-nav__title" for="__toc">Contents</label>
+    <label class="md-nav__title" for="__toc">"Contents"</label>
   <ul class="md-nav__list" data-md-scrollfix="">
         <li class="md-nav__item"><a href="#api-linearref--page-root" class="md-nav__link">Linear Referencing Module</a><nav class="md-nav">
               <ul class="md-nav__list">
@@ -225,7 +225,7 @@
           <article class="md-content__inner md-typeset" role="main">
             
   <section id="module-wayfarer.linearref">
-<span id="linear-referencing-module"></span><h1 id="api-linearref--page-root">Linear Referencing Module<a class="headerlink" href="#api-linearref--page-root" title="Permalink to this heading">¶</a></h1>
+<span id="linear-referencing-module"></span><h1 id="api-linearref--page-root">Linear Referencing Module<a class="headerlink" href="#api-linearref--page-root" title="Link to this heading">¶</a></h1>
 <p>This module contains functions relating to linear referencing.
 Requires the Shapely module</p>
 <p>Reference links:</p>
@@ -238,12 +238,12 @@ Requires the Shapely module</p>
 </ul>
 <dl class="py exception">
 <dt class="sig sig-object py" id="wayfarer.linearref.IdenticalMeasuresError">
-<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">wayfarer.linearref.</span></span><span class="sig-name descname"><span class="pre">IdenticalMeasuresError</span></span><a class="reference internal" href="../_modules/wayfarer/linearref.html#IdenticalMeasuresError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#wayfarer.linearref.IdenticalMeasuresError" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">wayfarer.linearref.</span></span><span class="sig-name descname"><span class="pre">IdenticalMeasuresError</span></span><a class="reference internal" href="../_modules/wayfarer/linearref.html#IdenticalMeasuresError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#wayfarer.linearref.IdenticalMeasuresError" title="Link to this definition">¶</a></dt>
 <dd><p>A custom exception to indicate the start and end measures are identical</p>
 </dd></dl>
 <dl class="py function">
 <dt class="sig sig-object py" id="wayfarer.linearref.check_valid_m">
-<span class="sig-prename descclassname"><span class="pre">wayfarer.linearref.</span></span><span class="sig-name descname"><span class="pre">check_valid_m</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m_value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">length</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tolerance</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-05</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/wayfarer/linearref.html#check_valid_m"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#wayfarer.linearref.check_valid_m" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">wayfarer.linearref.</span></span><span class="sig-name descname"><span class="pre">check_valid_m</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m_value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">length</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tolerance</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-05</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/wayfarer/linearref.html#check_valid_m"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#wayfarer.linearref.check_valid_m" title="Link to this definition">¶</a></dt>
 <dd><p>Check that an m_value is a valid measure for the input length</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -273,7 +273,7 @@ Requires the Shapely module</p>
 </dd></dl>
 <dl class="py function">
 <dt class="sig sig-object py" id="wayfarer.linearref.create_line">
-<span class="sig-prename descclassname"><span class="pre">wayfarer.linearref.</span></span><span class="sig-name descname"><span class="pre">create_line</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">line</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tolerance</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-05</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/wayfarer/linearref.html#create_line"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#wayfarer.linearref.create_line" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">wayfarer.linearref.</span></span><span class="sig-name descname"><span class="pre">create_line</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">line</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tolerance</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-05</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/wayfarer/linearref.html#create_line"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#wayfarer.linearref.create_line" title="Link to this definition">¶</a></dt>
 <dd><p>Create a new line feature based on a start and end measure
 This function also handles ring LineStrings (where start and end nodes are the same)</p>
 <dl class="field-list simple">
@@ -300,7 +300,7 @@ This function also handles ring LineStrings (where start and end nodes are the s
 </dd></dl>
 <dl class="py function">
 <dt class="sig sig-object py" id="wayfarer.linearref.find_common_vertices">
-<span class="sig-prename descclassname"><span class="pre">wayfarer.linearref.</span></span><span class="sig-name descname"><span class="pre">find_common_vertices</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">line1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">line2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/wayfarer/linearref.html#find_common_vertices"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#wayfarer.linearref.find_common_vertices" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">wayfarer.linearref.</span></span><span class="sig-name descname"><span class="pre">find_common_vertices</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">line1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">line2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/wayfarer/linearref.html#find_common_vertices"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#wayfarer.linearref.find_common_vertices" title="Link to this definition">¶</a></dt>
 <dd><p>Find all the points common to both lines and return a list of touching points</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -325,7 +325,7 @@ This function also handles ring LineStrings (where start and end nodes are the s
 </dd></dl>
 <dl class="py function">
 <dt class="sig sig-object py" id="wayfarer.linearref.get_closest_line">
-<span class="sig-prename descclassname"><span class="pre">wayfarer.linearref.</span></span><span class="sig-name descname"><span class="pre">get_closest_line</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lines</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">point</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/wayfarer/linearref.html#get_closest_line"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#wayfarer.linearref.get_closest_line" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">wayfarer.linearref.</span></span><span class="sig-name descname"><span class="pre">get_closest_line</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lines</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">point</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/wayfarer/linearref.html#get_closest_line"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#wayfarer.linearref.get_closest_line" title="Link to this definition">¶</a></dt>
 <dd><p>Get the closest line to a point</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
@@ -335,7 +335,7 @@ This function also handles ring LineStrings (where start and end nodes are the s
 </dd></dl>
 <dl class="py function">
 <dt class="sig sig-object py" id="wayfarer.linearref.get_closest_point_to_measure">
-<span class="sig-prename descclassname"><span class="pre">wayfarer.linearref.</span></span><span class="sig-name descname"><span class="pre">get_closest_point_to_measure</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">line</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">points</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">measure</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/wayfarer/linearref.html#get_closest_point_to_measure"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#wayfarer.linearref.get_closest_point_to_measure" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">wayfarer.linearref.</span></span><span class="sig-name descname"><span class="pre">get_closest_point_to_measure</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">line</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">points</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">measure</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/wayfarer/linearref.html#get_closest_point_to_measure"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#wayfarer.linearref.get_closest_point_to_measure" title="Link to this definition">¶</a></dt>
 <dd><p>Returns the point closest to the start measure from the
 list of points</p>
 <dl class="field-list simple">
@@ -364,7 +364,7 @@ list of points</p>
 </dd></dl>
 <dl class="py function">
 <dt class="sig sig-object py" id="wayfarer.linearref.get_end_point">
-<span class="sig-prename descclassname"><span class="pre">wayfarer.linearref.</span></span><span class="sig-name descname"><span class="pre">get_end_point</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">line</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">point</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">common_vertices</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/wayfarer/linearref.html#get_end_point"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#wayfarer.linearref.get_end_point" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">wayfarer.linearref.</span></span><span class="sig-name descname"><span class="pre">get_end_point</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">line</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">point</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">common_vertices</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/wayfarer/linearref.html#get_end_point"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#wayfarer.linearref.get_end_point" title="Link to this definition">¶</a></dt>
 <dd><p>Get the start or end of the line closest to the input point</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -391,7 +391,7 @@ list of points</p>
 </dd></dl>
 <dl class="py function">
 <dt class="sig sig-object py" id="wayfarer.linearref.get_measure_on_line">
-<span class="sig-prename descclassname"><span class="pre">wayfarer.linearref.</span></span><span class="sig-name descname"><span class="pre">get_measure_on_line</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">line</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">point</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/wayfarer/linearref.html#get_measure_on_line"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#wayfarer.linearref.get_measure_on_line" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">wayfarer.linearref.</span></span><span class="sig-name descname"><span class="pre">get_measure_on_line</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">line</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">point</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/wayfarer/linearref.html#get_measure_on_line"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#wayfarer.linearref.get_measure_on_line" title="Link to this definition">¶</a></dt>
 <dd><p>Return the measure along a line of a point</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -416,7 +416,7 @@ list of points</p>
 </dd></dl>
 <dl class="py function">
 <dt class="sig sig-object py" id="wayfarer.linearref.get_measures">
-<span class="sig-prename descclassname"><span class="pre">wayfarer.linearref.</span></span><span class="sig-name descname"><span class="pre">get_measures</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">line</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pt1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pt2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/wayfarer/linearref.html#get_measures"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#wayfarer.linearref.get_measures" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">wayfarer.linearref.</span></span><span class="sig-name descname"><span class="pre">get_measures</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">line</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pt1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pt2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/wayfarer/linearref.html#get_measures"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#wayfarer.linearref.get_measures" title="Link to this definition">¶</a></dt>
 <dd><p>Snap two points to a line and return the measures</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -443,7 +443,7 @@ list of points</p>
 </dd></dl>
 <dl class="py function">
 <dt class="sig sig-object py" id="wayfarer.linearref.get_nearest_vertex">
-<span class="sig-prename descclassname"><span class="pre">wayfarer.linearref.</span></span><span class="sig-name descname"><span class="pre">get_nearest_vertex</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">point</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">line</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/wayfarer/linearref.html#get_nearest_vertex"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#wayfarer.linearref.get_nearest_vertex" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">wayfarer.linearref.</span></span><span class="sig-name descname"><span class="pre">get_nearest_vertex</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">point</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">line</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/wayfarer/linearref.html#get_nearest_vertex"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#wayfarer.linearref.get_nearest_vertex" title="Link to this definition">¶</a></dt>
 <dd><p>Get the point on the line that is closest to the input point
 Based on code from <a class="reference external" href="http://gis.stackexchange.com/questions/396/nearest-neighbor-between-a-point-layer-and-a-line-layer">gis.stackexchange.com</a></p>
 <dl class="field-list simple">
@@ -470,7 +470,7 @@ and its distance from the original point</p>
 </dd></dl>
 <dl class="py function">
 <dt class="sig sig-object py" id="wayfarer.linearref.intersect_point_to_line">
-<span class="sig-prename descclassname"><span class="pre">wayfarer.linearref.</span></span><span class="sig-name descname"><span class="pre">intersect_point_to_line</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">point</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_point</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_point</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/wayfarer/linearref.html#intersect_point_to_line"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#wayfarer.linearref.intersect_point_to_line" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">wayfarer.linearref.</span></span><span class="sig-name descname"><span class="pre">intersect_point_to_line</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">point</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_point</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_point</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/wayfarer/linearref.html#intersect_point_to_line"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#wayfarer.linearref.intersect_point_to_line" title="Link to this definition">¶</a></dt>
 <dd><p>Get the closest point to the input point, on a straight line
 created between start point and the end point</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">point</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">60</span><span class="p">)</span>
@@ -504,7 +504,7 @@ A LineString may cross itself (i.e. be complex and not simple).”</p>
 </dd></dl>
 <dl class="py function">
 <dt class="sig sig-object py" id="wayfarer.linearref.is_partial">
-<span class="sig-prename descclassname"><span class="pre">wayfarer.linearref.</span></span><span class="sig-name descname"><span class="pre">is_partial</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">line</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tolerance</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-05</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/wayfarer/linearref.html#is_partial"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#wayfarer.linearref.is_partial" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">wayfarer.linearref.</span></span><span class="sig-name descname"><span class="pre">is_partial</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">line</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tolerance</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-05</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/wayfarer/linearref.html#is_partial"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#wayfarer.linearref.is_partial" title="Link to this definition">¶</a></dt>
 <dd><p>Check if the measures cover a whole LineString or only a part of it</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -530,7 +530,7 @@ A LineString may cross itself (i.e. be complex and not simple).”</p>
 </dd></dl>
 <dl class="py function">
 <dt class="sig sig-object py" id="wayfarer.linearref.magnitude">
-<span class="sig-prename descclassname"><span class="pre">wayfarer.linearref.</span></span><span class="sig-name descname"><span class="pre">magnitude</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pt1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pt2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/wayfarer/linearref.html#magnitude"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#wayfarer.linearref.magnitude" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">wayfarer.linearref.</span></span><span class="sig-name descname"><span class="pre">magnitude</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pt1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pt2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/wayfarer/linearref.html#magnitude"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#wayfarer.linearref.magnitude" title="Link to this definition">¶</a></dt>
 <dd><p>Return the magnitude (distance) between two points</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -555,7 +555,7 @@ A LineString may cross itself (i.e. be complex and not simple).”</p>
 </dd></dl>
 <dl class="py function">
 <dt class="sig sig-object py" id="wayfarer.linearref.remove_duplicates_in_line">
-<span class="sig-prename descclassname"><span class="pre">wayfarer.linearref.</span></span><span class="sig-name descname"><span class="pre">remove_duplicates_in_line</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">line</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/wayfarer/linearref.html#remove_duplicates_in_line"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#wayfarer.linearref.remove_duplicates_in_line" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">wayfarer.linearref.</span></span><span class="sig-name descname"><span class="pre">remove_duplicates_in_line</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">line</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/wayfarer/linearref.html#remove_duplicates_in_line"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#wayfarer.linearref.remove_duplicates_in_line" title="Link to this definition">¶</a></dt>
 <dd><p>Remove any duplicate coordinates from a LineString
 Note this does not work with MultiLineStrings</p>
 <dl class="field-list simple">
@@ -574,7 +574,7 @@ Note this does not work with MultiLineStrings</p>
 </dd></dl>
 <dl class="py function">
 <dt class="sig sig-object py" id="wayfarer.linearref.snap_to_ends">
-<span class="sig-prename descclassname"><span class="pre">wayfarer.linearref.</span></span><span class="sig-name descname"><span class="pre">snap_to_ends</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">line</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tolerance</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/wayfarer/linearref.html#snap_to_ends"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#wayfarer.linearref.snap_to_ends" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">wayfarer.linearref.</span></span><span class="sig-name descname"><span class="pre">snap_to_ends</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">line</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tolerance</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/wayfarer/linearref.html#snap_to_ends"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#wayfarer.linearref.snap_to_ends" title="Link to this definition">¶</a></dt>
 <dd><p>If the measure values are within the set tolerance to the
 ends of a segment, then “snap” these values to the end.</p>
 <dl class="field-list simple">
@@ -622,7 +622,7 @@ ends of a segment, then “snap” these values to the end.</p>
               <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
                 <span class="md-flex__ellipsis">
                   <span
-                      class="md-footer-nav__direction"> Previous </span> Loader Module </span>
+                      class="md-footer-nav__direction"> "Previous" </span> Loader Module </span>
               </div>
             </a>
           
@@ -632,7 +632,7 @@ ends of a segment, then “snap” these values to the end.</p>
                rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title"><span
                 class="md-flex__ellipsis"> <span
-                class="md-footer-nav__direction"> Next </span> Routing Module </span>
+                class="md-footer-nav__direction"> "Next" </span> Routing Module </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink"><i
                 class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
@@ -650,7 +650,7 @@ ends of a segment, then “snap” these values to the end.</p>
               
           </div>
             Created using
-            <a href="http://www.sphinx-doc.org/">Sphinx</a> 7.0.1.
+            <a href="http://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
              and
             <a href="https://github.com/bashtage/sphinx-material/">Material for
               Sphinx</a>

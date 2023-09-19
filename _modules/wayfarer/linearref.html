@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="../../">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -46,11 +46,11 @@
   
   
     <title>wayfarer.linearref &#8212; Wayfarer</title>
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/material.css" />
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-    <script src="../../_static/doctools.js"></script>
-    <script src="../../_static/sphinx_highlight.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=83e35b93" />
+    <link rel="stylesheet" type="text/css" href="../../_static/material.css?v=79c92029" />
+    <script src="../../_static/documentation_options.js?v=f2a433a1"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
   
@@ -99,7 +99,7 @@
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" action="../../search.html" method="get" name="search">
-      <input type="text" class="md-search__input" name="q" placeholder="Search"
+      <input type="text" class="md-search__input" name="q" placeholder=""Search""
              autocapitalize="off" autocomplete="off" spellcheck="false"
              data-md-component="query" data-md-state="active">
       <label class="md-icon md-search__icon" for="__search"></label>
@@ -212,7 +212,9 @@
 <span class="n">log</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s2">"wayfarer"</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="IdenticalMeasuresError"><a class="viewcode-back" href="../../api/linearref.html#wayfarer.linearref.IdenticalMeasuresError">[docs]</a><span class="k">class</span> <span class="nc">IdenticalMeasuresError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+<div class="viewcode-block" id="IdenticalMeasuresError">
+<a class="viewcode-back" href="../../api/linearref.html#wayfarer.linearref.IdenticalMeasuresError">[docs]</a>
+<span class="k">class</span> <span class="nc">IdenticalMeasuresError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    A custom exception to indicate the start and end measures are identical</span>
 <span class="sd">    """</span>
@@ -220,7 +222,10 @@
     <span class="k">pass</span></div>
 
 
-<div class="viewcode-block" id="check_valid_m"><a class="viewcode-back" href="../../api/linearref.html#wayfarer.linearref.check_valid_m">[docs]</a><span class="k">def</span> <span class="nf">check_valid_m</span><span class="p">(</span><span class="n">m_value</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">length</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">tolerance</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.00001</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+
+<div class="viewcode-block" id="check_valid_m">
+<a class="viewcode-back" href="../../api/linearref.html#wayfarer.linearref.check_valid_m">[docs]</a>
+<span class="k">def</span> <span class="nf">check_valid_m</span><span class="p">(</span><span class="n">m_value</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">length</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">tolerance</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.00001</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Check that an m_value is a valid measure for the input length</span>
 
@@ -251,7 +256,10 @@
     <span class="k">return</span> <span class="kc">True</span></div>
 
 
-<div class="viewcode-block" id="create_line"><a class="viewcode-back" href="../../api/linearref.html#wayfarer.linearref.create_line">[docs]</a><span class="k">def</span> <span class="nf">create_line</span><span class="p">(</span>
+
+<div class="viewcode-block" id="create_line">
+<a class="viewcode-back" href="../../api/linearref.html#wayfarer.linearref.create_line">[docs]</a>
+<span class="k">def</span> <span class="nf">create_line</span><span class="p">(</span>
     <span class="n">line</span><span class="p">:</span> <span class="n">LineString</span><span class="p">,</span> <span class="n">start_m</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">end_m</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">tolerance</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.00001</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">LineString</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">"""</span>
@@ -331,7 +339,10 @@
     <span class="k">return</span> <span class="n">new_line</span></div>
 
 
-<div class="viewcode-block" id="find_common_vertices"><a class="viewcode-back" href="../../api/linearref.html#wayfarer.linearref.find_common_vertices">[docs]</a><span class="k">def</span> <span class="nf">find_common_vertices</span><span class="p">(</span><span class="n">line1</span><span class="p">:</span> <span class="n">LineString</span><span class="p">,</span> <span class="n">line2</span><span class="p">:</span> <span class="n">LineString</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">Point</span><span class="p">]:</span>
+
+<div class="viewcode-block" id="find_common_vertices">
+<a class="viewcode-back" href="../../api/linearref.html#wayfarer.linearref.find_common_vertices">[docs]</a>
+<span class="k">def</span> <span class="nf">find_common_vertices</span><span class="p">(</span><span class="n">line1</span><span class="p">:</span> <span class="n">LineString</span><span class="p">,</span> <span class="n">line2</span><span class="p">:</span> <span class="n">LineString</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">Point</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Find all the points common to both lines and return a list of touching points</span>
 
@@ -359,7 +370,10 @@
     <span class="k">return</span> <span class="n">touching_points</span></div>
 
 
-<div class="viewcode-block" id="snap_to_ends"><a class="viewcode-back" href="../../api/linearref.html#wayfarer.linearref.snap_to_ends">[docs]</a><span class="k">def</span> <span class="nf">snap_to_ends</span><span class="p">(</span>
+
+<div class="viewcode-block" id="snap_to_ends">
+<a class="viewcode-back" href="../../api/linearref.html#wayfarer.linearref.snap_to_ends">[docs]</a>
+<span class="k">def</span> <span class="nf">snap_to_ends</span><span class="p">(</span>
     <span class="n">line</span><span class="p">:</span> <span class="n">LineString</span><span class="p">,</span> <span class="n">start_m</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">end_m</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">tolerance</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">5</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">"""</span>
@@ -402,7 +416,10 @@
     <span class="k">return</span> <span class="n">start_m</span><span class="p">,</span> <span class="n">end_m</span></div>
 
 
-<div class="viewcode-block" id="is_partial"><a class="viewcode-back" href="../../api/linearref.html#wayfarer.linearref.is_partial">[docs]</a><span class="k">def</span> <span class="nf">is_partial</span><span class="p">(</span>
+
+<div class="viewcode-block" id="is_partial">
+<a class="viewcode-back" href="../../api/linearref.html#wayfarer.linearref.is_partial">[docs]</a>
+<span class="k">def</span> <span class="nf">is_partial</span><span class="p">(</span>
     <span class="n">line</span><span class="p">:</span> <span class="n">LineString</span><span class="p">,</span> <span class="n">start_m</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">end_m</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">tolerance</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.00001</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">"""</span>
@@ -433,7 +450,10 @@
     <span class="k">return</span> <span class="kc">False</span></div>
 
 
-<div class="viewcode-block" id="get_measures"><a class="viewcode-back" href="../../api/linearref.html#wayfarer.linearref.get_measures">[docs]</a><span class="k">def</span> <span class="nf">get_measures</span><span class="p">(</span><span class="n">line</span><span class="p">:</span> <span class="n">LineString</span><span class="p">,</span> <span class="n">pt1</span><span class="p">:</span> <span class="n">Point</span><span class="p">,</span> <span class="n">pt2</span><span class="p">:</span> <span class="n">Point</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
+
+<div class="viewcode-block" id="get_measures">
+<a class="viewcode-back" href="../../api/linearref.html#wayfarer.linearref.get_measures">[docs]</a>
+<span class="k">def</span> <span class="nf">get_measures</span><span class="p">(</span><span class="n">line</span><span class="p">:</span> <span class="n">LineString</span><span class="p">,</span> <span class="n">pt1</span><span class="p">:</span> <span class="n">Point</span><span class="p">,</span> <span class="n">pt2</span><span class="p">:</span> <span class="n">Point</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Snap two points to a line and return the measures</span>
 
@@ -458,7 +478,10 @@
     <span class="k">return</span> <span class="p">(</span><span class="n">start_m</span><span class="p">,</span> <span class="n">end_m</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="get_measure_on_line"><a class="viewcode-back" href="../../api/linearref.html#wayfarer.linearref.get_measure_on_line">[docs]</a><span class="k">def</span> <span class="nf">get_measure_on_line</span><span class="p">(</span><span class="n">line</span><span class="p">:</span> <span class="n">LineString</span><span class="p">,</span> <span class="n">point</span><span class="p">:</span> <span class="n">Point</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+
+<div class="viewcode-block" id="get_measure_on_line">
+<a class="viewcode-back" href="../../api/linearref.html#wayfarer.linearref.get_measure_on_line">[docs]</a>
+<span class="k">def</span> <span class="nf">get_measure_on_line</span><span class="p">(</span><span class="n">line</span><span class="p">:</span> <span class="n">LineString</span><span class="p">,</span> <span class="n">point</span><span class="p">:</span> <span class="n">Point</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Return the measure along a line of a point</span>
 
@@ -476,7 +499,10 @@
     <span class="k">return</span> <span class="n">line</span><span class="o">.</span><span class="n">project</span><span class="p">(</span><span class="n">point</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="get_closest_point_to_measure"><a class="viewcode-back" href="../../api/linearref.html#wayfarer.linearref.get_closest_point_to_measure">[docs]</a><span class="k">def</span> <span class="nf">get_closest_point_to_measure</span><span class="p">(</span>
+
+<div class="viewcode-block" id="get_closest_point_to_measure">
+<a class="viewcode-back" href="../../api/linearref.html#wayfarer.linearref.get_closest_point_to_measure">[docs]</a>
+<span class="k">def</span> <span class="nf">get_closest_point_to_measure</span><span class="p">(</span>
     <span class="n">line</span><span class="p">:</span> <span class="n">LineString</span><span class="p">,</span> <span class="n">points</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Point</span><span class="p">],</span> <span class="n">measure</span><span class="p">:</span> <span class="nb">float</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Point</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">"""</span>
@@ -510,7 +536,10 @@
     <span class="k">return</span> <span class="n">closest_point</span></div>
 
 
-<div class="viewcode-block" id="get_end_point"><a class="viewcode-back" href="../../api/linearref.html#wayfarer.linearref.get_end_point">[docs]</a><span class="k">def</span> <span class="nf">get_end_point</span><span class="p">(</span>
+
+<div class="viewcode-block" id="get_end_point">
+<a class="viewcode-back" href="../../api/linearref.html#wayfarer.linearref.get_end_point">[docs]</a>
+<span class="k">def</span> <span class="nf">get_end_point</span><span class="p">(</span>
     <span class="n">line</span><span class="p">:</span> <span class="n">LineString</span><span class="p">,</span> <span class="n">point</span><span class="p">:</span> <span class="n">Point</span><span class="p">,</span> <span class="n">common_vertices</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Point</span><span class="p">]</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Point</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">"""</span>
@@ -543,7 +572,10 @@
     <span class="k">return</span> <span class="n">end_point</span></div>
 
 
-<div class="viewcode-block" id="magnitude"><a class="viewcode-back" href="../../api/linearref.html#wayfarer.linearref.magnitude">[docs]</a><span class="k">def</span> <span class="nf">magnitude</span><span class="p">(</span><span class="n">pt1</span><span class="p">:</span> <span class="n">Point</span><span class="p">,</span> <span class="n">pt2</span><span class="p">:</span> <span class="n">Point</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+
+<div class="viewcode-block" id="magnitude">
+<a class="viewcode-back" href="../../api/linearref.html#wayfarer.linearref.magnitude">[docs]</a>
+<span class="k">def</span> <span class="nf">magnitude</span><span class="p">(</span><span class="n">pt1</span><span class="p">:</span> <span class="n">Point</span><span class="p">,</span> <span class="n">pt2</span><span class="p">:</span> <span class="n">Point</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Return the magnitude (distance) between two points</span>
 
@@ -563,7 +595,10 @@
     <span class="k">return</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">vect_x</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">vect_y</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="remove_duplicates_in_line"><a class="viewcode-back" href="../../api/linearref.html#wayfarer.linearref.remove_duplicates_in_line">[docs]</a><span class="k">def</span> <span class="nf">remove_duplicates_in_line</span><span class="p">(</span><span class="n">line</span><span class="p">:</span> <span class="n">LineString</span><span class="p">):</span>
+
+<div class="viewcode-block" id="remove_duplicates_in_line">
+<a class="viewcode-back" href="../../api/linearref.html#wayfarer.linearref.remove_duplicates_in_line">[docs]</a>
+<span class="k">def</span> <span class="nf">remove_duplicates_in_line</span><span class="p">(</span><span class="n">line</span><span class="p">:</span> <span class="n">LineString</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Remove any duplicate coordinates from a LineString</span>
 <span class="sd">    Note this does not work with MultiLineStrings</span>
@@ -585,7 +620,10 @@
     <span class="k">return</span> <span class="n">LineString</span><span class="p">(</span><span class="n">clean_coords</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="intersect_point_to_line"><a class="viewcode-back" href="../../api/linearref.html#wayfarer.linearref.intersect_point_to_line">[docs]</a><span class="k">def</span> <span class="nf">intersect_point_to_line</span><span class="p">(</span>
+
+<div class="viewcode-block" id="intersect_point_to_line">
+<a class="viewcode-back" href="../../api/linearref.html#wayfarer.linearref.intersect_point_to_line">[docs]</a>
+<span class="k">def</span> <span class="nf">intersect_point_to_line</span><span class="p">(</span>
     <span class="n">point</span><span class="p">:</span> <span class="n">Point</span><span class="p">,</span> <span class="n">start_point</span><span class="p">:</span> <span class="n">Point</span><span class="p">,</span> <span class="n">end_point</span><span class="p">:</span> <span class="n">Point</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Point</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">"""</span>
@@ -644,7 +682,10 @@
         <span class="k">return</span> <span class="n">Point</span><span class="p">([</span><span class="n">ix</span><span class="p">,</span> <span class="n">iy</span><span class="p">])</span></div>
 
 
-<div class="viewcode-block" id="get_nearest_vertex"><a class="viewcode-back" href="../../api/linearref.html#wayfarer.linearref.get_nearest_vertex">[docs]</a><span class="k">def</span> <span class="nf">get_nearest_vertex</span><span class="p">(</span><span class="n">point</span><span class="p">:</span> <span class="n">Point</span><span class="p">,</span> <span class="n">line</span><span class="p">:</span> <span class="n">LineString</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">Point</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
+
+<div class="viewcode-block" id="get_nearest_vertex">
+<a class="viewcode-back" href="../../api/linearref.html#wayfarer.linearref.get_nearest_vertex">[docs]</a>
+<span class="k">def</span> <span class="nf">get_nearest_vertex</span><span class="p">(</span><span class="n">point</span><span class="p">:</span> <span class="n">Point</span><span class="p">,</span> <span class="n">line</span><span class="p">:</span> <span class="n">LineString</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">Point</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Get the point on the line that is closest to the input point</span>
 <span class="sd">    Based on code from `gis.stackexchange.com &lt;http://gis.stackexchange.com/questions/396/nearest-neighbor-between-a-point-layer-and-a-line-layer&gt;`_</span>
@@ -688,7 +729,10 @@
     <span class="k">return</span> <span class="n">nearest_point</span><span class="p">,</span> <span class="n">min_dist</span></div>
 
 
-<div class="viewcode-block" id="get_closest_line"><a class="viewcode-back" href="../../api/linearref.html#wayfarer.linearref.get_closest_line">[docs]</a><span class="k">def</span> <span class="nf">get_closest_line</span><span class="p">(</span><span class="n">lines</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">LineString</span><span class="p">],</span> <span class="n">point</span><span class="p">:</span> <span class="n">Point</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">Point</span><span class="p">]:</span>
+
+<div class="viewcode-block" id="get_closest_line">
+<a class="viewcode-back" href="../../api/linearref.html#wayfarer.linearref.get_closest_line">[docs]</a>
+<span class="k">def</span> <span class="nf">get_closest_line</span><span class="p">(</span><span class="n">lines</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">LineString</span><span class="p">],</span> <span class="n">point</span><span class="p">:</span> <span class="n">Point</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">Point</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Get the closest line to a point</span>
 <span class="sd">    """</span>
@@ -722,6 +766,7 @@
     <span class="k">return</span> <span class="p">(</span><span class="n">code</span><span class="p">,</span> <span class="n">snapped_point</span><span class="p">)</span></div>
 
 
+
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">"__main__"</span><span class="p">:</span>
     <span class="kn">import</span> <span class="nn">doctest</span>
 
@@ -751,7 +796,7 @@
               
           </div>
             Created using
-            <a href="http://www.sphinx-doc.org/">Sphinx</a> 7.0.1.
+            <a href="http://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
              and
             <a href="https://github.com/bashtage/sphinx-material/">Material for
               Sphinx</a>

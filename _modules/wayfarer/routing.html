@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="../../">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -46,11 +46,11 @@
   
   
     <title>wayfarer.routing &#8212; Wayfarer</title>
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/material.css" />
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-    <script src="../../_static/doctools.js"></script>
-    <script src="../../_static/sphinx_highlight.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=83e35b93" />
+    <link rel="stylesheet" type="text/css" href="../../_static/material.css?v=79c92029" />
+    <script src="../../_static/documentation_options.js?v=f2a433a1"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
   
@@ -99,7 +99,7 @@
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" action="../../search.html" method="get" name="search">
-      <input type="text" class="md-search__input" name="q" placeholder="Search"
+      <input type="text" class="md-search__input" name="q" placeholder=""Search""
              autocapitalize="off" autocomplete="off" spellcheck="false"
              data-md-component="query" data-md-state="active">
       <label class="md-icon md-search__icon" for="__search"></label>
@@ -196,14 +196,19 @@
 <span class="kn">from</span> <span class="nn">networkx</span> <span class="kn">import</span> <span class="n">NetworkXNoPath</span><span class="p">,</span> <span class="n">NodeNotFound</span>
 
 
-<div class="viewcode-block" id="MultipleEnds"><a class="viewcode-back" href="../../api/routing.html#wayfarer.routing.MultipleEnds">[docs]</a><span class="k">class</span> <span class="nc">MultipleEnds</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+<div class="viewcode-block" id="MultipleEnds">
+<a class="viewcode-back" href="../../api/routing.html#wayfarer.routing.MultipleEnds">[docs]</a>
+<span class="k">class</span> <span class="nc">MultipleEnds</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
     <span class="k">pass</span></div>
+
 
 
 <span class="n">log</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s2">"wayfarer"</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="solve_shortest_path"><a class="viewcode-back" href="../../api/routing.html#wayfarer.routing.solve_shortest_path">[docs]</a><span class="k">def</span> <span class="nf">solve_shortest_path</span><span class="p">(</span>
+<div class="viewcode-block" id="solve_shortest_path">
+<a class="viewcode-back" href="../../api/routing.html#wayfarer.routing.solve_shortest_path">[docs]</a>
+<span class="k">def</span> <span class="nf">solve_shortest_path</span><span class="p">(</span>
     <span class="n">net</span><span class="p">:</span> <span class="p">(</span><span class="n">networkx</span><span class="o">.</span><span class="n">MultiGraph</span> <span class="o">|</span> <span class="n">networkx</span><span class="o">.</span><span class="n">MultiDiGraph</span><span class="p">),</span>
     <span class="n">start_node</span><span class="p">:</span> <span class="p">(</span><span class="nb">str</span> <span class="o">|</span> <span class="nb">int</span><span class="p">),</span>
     <span class="n">end_node</span><span class="p">:</span> <span class="p">(</span><span class="nb">str</span> <span class="o">|</span> <span class="nb">int</span><span class="p">),</span>
@@ -219,7 +224,10 @@
     <span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="solve_shortest_path_from_nodes"><a class="viewcode-back" href="../../api/routing.html#wayfarer.routing.solve_shortest_path_from_nodes">[docs]</a><span class="k">def</span> <span class="nf">solve_shortest_path_from_nodes</span><span class="p">(</span>
+
+<div class="viewcode-block" id="solve_shortest_path_from_nodes">
+<a class="viewcode-back" href="../../api/routing.html#wayfarer.routing.solve_shortest_path_from_nodes">[docs]</a>
+<span class="k">def</span> <span class="nf">solve_shortest_path_from_nodes</span><span class="p">(</span>
     <span class="n">net</span><span class="p">:</span> <span class="p">(</span><span class="n">networkx</span><span class="o">.</span><span class="n">MultiGraph</span> <span class="o">|</span> <span class="n">networkx</span><span class="o">.</span><span class="n">MultiDiGraph</span><span class="p">),</span>
     <span class="n">node_list</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span> <span class="o">|</span> <span class="nb">str</span><span class="p">],</span>
     <span class="n">weight</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">LENGTH_FIELD</span><span class="p">,</span>
@@ -247,7 +255,10 @@
     <span class="k">return</span> <span class="n">nodes_in_path</span></div>
 
 
-<div class="viewcode-block" id="solve_shortest_path_from_edges"><a class="viewcode-back" href="../../api/routing.html#wayfarer.routing.solve_shortest_path_from_edges">[docs]</a><span class="k">def</span> <span class="nf">solve_shortest_path_from_edges</span><span class="p">(</span>
+
+<div class="viewcode-block" id="solve_shortest_path_from_edges">
+<a class="viewcode-back" href="../../api/routing.html#wayfarer.routing.solve_shortest_path_from_edges">[docs]</a>
+<span class="k">def</span> <span class="nf">solve_shortest_path_from_edges</span><span class="p">(</span>
     <span class="n">net</span><span class="p">:</span> <span class="p">(</span><span class="n">networkx</span><span class="o">.</span><span class="n">MultiGraph</span> <span class="o">|</span> <span class="n">networkx</span><span class="o">.</span><span class="n">MultiDiGraph</span><span class="p">),</span> <span class="n">edge_id_list</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span> <span class="o">|</span> <span class="nb">str</span><span class="p">]</span>
 <span class="p">):</span>
 <span class="w">    </span><span class="sd">"""</span>
@@ -339,7 +350,10 @@
     <span class="k">return</span> <span class="n">find_ordered_path</span><span class="p">(</span><span class="n">solved_edges</span><span class="p">,</span> <span class="n">start_node</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="solve_matching_path"><a class="viewcode-back" href="../../api/routing.html#wayfarer.routing.solve_matching_path">[docs]</a><span class="k">def</span> <span class="nf">solve_matching_path</span><span class="p">(</span>
+
+<div class="viewcode-block" id="solve_matching_path">
+<a class="viewcode-back" href="../../api/routing.html#wayfarer.routing.solve_matching_path">[docs]</a>
+<span class="k">def</span> <span class="nf">solve_matching_path</span><span class="p">(</span>
     <span class="n">net</span><span class="p">:</span> <span class="p">(</span><span class="n">networkx</span><span class="o">.</span><span class="n">MultiGraph</span> <span class="o">|</span> <span class="n">networkx</span><span class="o">.</span><span class="n">MultiDiGraph</span><span class="p">),</span>
     <span class="n">start_node</span><span class="p">:</span> <span class="p">(</span><span class="nb">str</span> <span class="o">|</span> <span class="nb">int</span><span class="p">),</span>
     <span class="n">end_node</span><span class="p">:</span> <span class="p">(</span><span class="nb">str</span> <span class="o">|</span> <span class="nb">int</span><span class="p">),</span>
@@ -400,7 +414,10 @@
     <span class="k">return</span> <span class="n">edges</span></div>
 
 
-<div class="viewcode-block" id="solve_matching_path_from_nodes"><a class="viewcode-back" href="../../api/routing.html#wayfarer.routing.solve_matching_path_from_nodes">[docs]</a><span class="k">def</span> <span class="nf">solve_matching_path_from_nodes</span><span class="p">(</span>
+
+<div class="viewcode-block" id="solve_matching_path_from_nodes">
+<a class="viewcode-back" href="../../api/routing.html#wayfarer.routing.solve_matching_path_from_nodes">[docs]</a>
+<span class="k">def</span> <span class="nf">solve_matching_path_from_nodes</span><span class="p">(</span>
     <span class="n">net</span><span class="p">:</span> <span class="p">(</span><span class="n">networkx</span><span class="o">.</span><span class="n">MultiGraph</span> <span class="o">|</span> <span class="n">networkx</span><span class="o">.</span><span class="n">MultiDiGraph</span><span class="p">),</span>
     <span class="n">node_list</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span> <span class="o">|</span> <span class="nb">str</span><span class="p">],</span>
     <span class="n">distance</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
@@ -442,7 +459,10 @@
     <span class="k">return</span> <span class="n">solve_matching_path</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="n">start_node</span><span class="p">,</span> <span class="n">end_node</span><span class="p">,</span> <span class="n">distance</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="get_path_ends"><a class="viewcode-back" href="../../api/routing.html#wayfarer.routing.get_path_ends">[docs]</a><span class="k">def</span> <span class="nf">get_path_ends</span><span class="p">(</span><span class="n">edges</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Edge</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[(</span><span class="nb">int</span> <span class="o">|</span> <span class="nb">str</span><span class="p">),</span> <span class="p">(</span><span class="nb">int</span> <span class="o">|</span> <span class="nb">str</span><span class="p">)]:</span>
+
+<div class="viewcode-block" id="get_path_ends">
+<a class="viewcode-back" href="../../api/routing.html#wayfarer.routing.get_path_ends">[docs]</a>
+<span class="k">def</span> <span class="nf">get_path_ends</span><span class="p">(</span><span class="n">edges</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Edge</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[(</span><span class="nb">int</span> <span class="o">|</span> <span class="nb">str</span><span class="p">),</span> <span class="p">(</span><span class="nb">int</span> <span class="o">|</span> <span class="nb">str</span><span class="p">)]:</span>
 <span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    For a list of connected edges find the (unattached) end nodes</span>
 <span class="sd">    TODO Check if the edges form a loop</span>
@@ -468,7 +488,10 @@
     <span class="k">return</span> <span class="n">start_node</span><span class="p">,</span> <span class="n">end_node</span></div>
 
 
-<div class="viewcode-block" id="solve_all_simple_paths"><a class="viewcode-back" href="../../api/routing.html#wayfarer.routing.solve_all_simple_paths">[docs]</a><span class="k">def</span> <span class="nf">solve_all_simple_paths</span><span class="p">(</span>
+
+<div class="viewcode-block" id="solve_all_simple_paths">
+<a class="viewcode-back" href="../../api/routing.html#wayfarer.routing.solve_all_simple_paths">[docs]</a>
+<span class="k">def</span> <span class="nf">solve_all_simple_paths</span><span class="p">(</span>
     <span class="n">net</span><span class="p">:</span> <span class="p">(</span><span class="n">networkx</span><span class="o">.</span><span class="n">MultiGraph</span> <span class="o">|</span> <span class="n">networkx</span><span class="o">.</span><span class="n">MultiDiGraph</span><span class="p">),</span>
     <span class="n">start_node</span><span class="p">:</span> <span class="p">(</span><span class="nb">int</span> <span class="o">|</span> <span class="nb">str</span><span class="p">),</span>
     <span class="n">end_node</span><span class="p">:</span> <span class="p">(</span><span class="nb">int</span> <span class="o">|</span> <span class="nb">str</span><span class="p">),</span>
@@ -510,7 +533,10 @@
     <span class="k">return</span> <span class="n">all_shortest_paths</span></div>
 
 
-<div class="viewcode-block" id="solve_all_shortest_paths"><a class="viewcode-back" href="../../api/routing.html#wayfarer.routing.solve_all_shortest_paths">[docs]</a><span class="k">def</span> <span class="nf">solve_all_shortest_paths</span><span class="p">(</span>
+
+<div class="viewcode-block" id="solve_all_shortest_paths">
+<a class="viewcode-back" href="../../api/routing.html#wayfarer.routing.solve_all_shortest_paths">[docs]</a>
+<span class="k">def</span> <span class="nf">solve_all_shortest_paths</span><span class="p">(</span>
     <span class="n">net</span><span class="p">:</span> <span class="p">(</span><span class="n">networkx</span><span class="o">.</span><span class="n">MultiGraph</span> <span class="o">|</span> <span class="n">networkx</span><span class="o">.</span><span class="n">MultiDiGraph</span><span class="p">),</span>
     <span class="n">start_node</span><span class="p">:</span> <span class="p">(</span><span class="nb">int</span> <span class="o">|</span> <span class="nb">str</span><span class="p">),</span>
     <span class="n">end_node</span><span class="p">:</span> <span class="p">(</span><span class="nb">int</span> <span class="o">|</span> <span class="nb">str</span><span class="p">),</span>
@@ -550,7 +576,10 @@
     <span class="k">return</span> <span class="n">all_shortest_paths</span></div>
 
 
-<div class="viewcode-block" id="find_ordered_path"><a class="viewcode-back" href="../../api/routing.html#wayfarer.routing.find_ordered_path">[docs]</a><span class="k">def</span> <span class="nf">find_ordered_path</span><span class="p">(</span>
+
+<div class="viewcode-block" id="find_ordered_path">
+<a class="viewcode-back" href="../../api/routing.html#wayfarer.routing.find_ordered_path">[docs]</a>
+<span class="k">def</span> <span class="nf">find_ordered_path</span><span class="p">(</span>
     <span class="n">edges</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Edge</span><span class="p">],</span>
     <span class="n">start_node</span><span class="p">:</span> <span class="p">(</span><span class="nb">int</span> <span class="o">|</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">)</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">with_direction_flag</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
@@ -607,6 +636,7 @@
     <span class="k">return</span> <span class="n">ordered_edges</span></div>
 
 
+
 <span class="c1"># if __name__ == "__main__":</span>
 <span class="c1">#    import doctest</span>
 <span class="c1">#    doctest.testmod()</span>
@@ -634,7 +664,7 @@
               
           </div>
             Created using
-            <a href="http://www.sphinx-doc.org/">Sphinx</a> 7.0.1.
+            <a href="http://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
              and
             <a href="https://github.com/bashtage/sphinx-material/">Material for
               Sphinx</a>

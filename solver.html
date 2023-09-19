@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="./">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -47,11 +47,11 @@
   
   
     <title>Edge Solver &#8212; Wayfarer</title>
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/material.css" />
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/sphinx_highlight.js"></script>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=83e35b93" />
+    <link rel="stylesheet" type="text/css" href="_static/material.css?v=79c92029" />
+    <script src="_static/documentation_options.js?v=f2a433a1"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Functions Module" href="api/functions.html" />
@@ -102,7 +102,7 @@
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" action="search.html" method="get" name="search">
-      <input type="text" class="md-search__input" name="q" placeholder="Search"
+      <input type="text" class="md-search__input" name="q" placeholder=""Search""
              autocapitalize="off" autocomplete="off" spellcheck="false"
              data-md-component="query" data-md-state="active">
       <label class="md-icon md-search__icon" for="__search"></label>
@@ -179,7 +179,7 @@
               <div class="md-sidebar__inner">
                 
 <nav class="md-nav md-nav--secondary">
-    <label class="md-nav__title" for="__toc">Contents</label>
+    <label class="md-nav__title" for="__toc">"Contents"</label>
   <ul class="md-nav__list" data-md-scrollfix="">
         <li class="md-nav__item"><a href="#solver--page-root" class="md-nav__link">Edge Solver</a><nav class="md-nav">
               <ul class="md-nav__list">
@@ -201,12 +201,12 @@
           <article class="md-content__inner md-typeset" role="main">
             
   <section id="edge-solver">
-<h1 id="solver--page-root">Edge Solver<a class="headerlink" href="#solver--page-root" title="Permalink to this heading">¶</a></h1>
+<h1 id="solver--page-root">Edge Solver<a class="headerlink" href="#solver--page-root" title="Link to this heading">¶</a></h1>
 <p>The edge solver allows users to select edges to create segments. Segments can only have a maximum of two
 unattached junctions to support linear referencing (measures / chainage).</p>
 <p>Loops and circular segments are allowed. The use cases below detail the currently supported network types in wayfarer.</p>
 <section id="supported-segments">
-<h2 id="supported-segments">Supported Segments<a class="headerlink" href="#supported-segments" title="Permalink to this heading">¶</a></h2>
+<h2 id="supported-segments">Supported Segments<a class="headerlink" href="#supported-segments" title="Link to this heading">¶</a></h2>
 <p>The following network types are supported by the edge solver.</p>
 <a class="reference internal image-reference" href="_images/simple_network.png"><img alt="_images/simple_network.png" class="align-center" src="_images/simple_network.png" style="width: 320.0px; height: 240.0px;"/></a>
 <p>As above but with nodes in different orders:</p>
@@ -221,7 +221,7 @@ unattached junctions to support linear referencing (measures / chainage).</p>
 <img alt="images/single_edge_loop_network.manual.png" class="align-center" src="images/single_edge_loop_network.manual.png"/>
 </section>
 <section id="valid-but-unsupported-segments">
-<h2 id="valid-but-unsupported-segments">Valid but Unsupported Segments<a class="headerlink" href="#valid-but-unsupported-segments" title="Permalink to this heading">¶</a></h2>
+<h2 id="valid-but-unsupported-segments">Valid but Unsupported Segments<a class="headerlink" href="#valid-but-unsupported-segments" title="Link to this heading">¶</a></h2>
 <p>It should be possible to implement the following types if required. The current edge solver however does not support them.</p>
 <p>Loops in the middle of the segment are unsupported.</p>
 <a class="reference internal image-reference" href="_images/loop_middle_network.png"><img alt="_images/loop_middle_network.png" class="align-center" src="_images/loop_middle_network.png" style="width: 320.0px; height: 240.0px;"/></a>
@@ -231,7 +231,7 @@ unattached junctions to support linear referencing (measures / chainage).</p>
 <img alt="_images/dual_path_network_manual.png" class="align-center" src="_images/dual_path_network_manual.png"/>
 </section>
 <section id="invalid-segments">
-<h2 id="invalid-segments">Invalid Segments<a class="headerlink" href="#invalid-segments" title="Permalink to this heading">¶</a></h2>
+<h2 id="invalid-segments">Invalid Segments<a class="headerlink" href="#invalid-segments" title="Link to this heading">¶</a></h2>
 <p>These segments have more than 2 ends. This means it is impossible to apply linear referencing to them, so they will never be
 supported by the edge solver.</p>
 <a class="reference internal image-reference" href="_images/t_network.png"><img alt="_images/t_network.png" class="align-center" src="_images/t_network.png" style="width: 320.0px; height: 240.0px;"/></a>
@@ -257,7 +257,7 @@ supported by the edge solver.</p>
               <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
                 <span class="md-flex__ellipsis">
                   <span
-                      class="md-footer-nav__direction"> Previous </span> Examples </span>
+                      class="md-footer-nav__direction"> "Previous" </span> Examples </span>
               </div>
             </a>
           
@@ -267,7 +267,7 @@ supported by the edge solver.</p>
                rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title"><span
                 class="md-flex__ellipsis"> <span
-                class="md-footer-nav__direction"> Next </span> Functions Module </span>
+                class="md-footer-nav__direction"> "Next" </span> Functions Module </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink"><i
                 class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
@@ -285,7 +285,7 @@ supported by the edge solver.</p>
               
           </div>
             Created using
-            <a href="http://www.sphinx-doc.org/">Sphinx</a> 7.0.1.
+            <a href="http://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
              and
             <a href="https://github.com/bashtage/sphinx-material/">Material for
               Sphinx</a>

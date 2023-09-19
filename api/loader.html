@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="../">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -47,11 +47,11 @@
   
   
     <title>Loader Module &#8212; Wayfarer</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/material.css" />
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/sphinx_highlight.js"></script>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=83e35b93" />
+    <link rel="stylesheet" type="text/css" href="../_static/material.css?v=79c92029" />
+    <script src="../_static/documentation_options.js?v=f2a433a1"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Linear Referencing Module" href="linearref.html" />
@@ -102,7 +102,7 @@
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" action="../search.html" method="get" name="search">
-      <input type="text" class="md-search__input" name="q" placeholder="Search"
+      <input type="text" class="md-search__input" name="q" placeholder=""Search""
              autocapitalize="off" autocomplete="off" spellcheck="false"
              data-md-component="query" data-md-state="active">
       <label class="md-icon md-search__icon" for="__search"></label>
@@ -179,7 +179,7 @@
               <div class="md-sidebar__inner">
                 
 <nav class="md-nav md-nav--secondary">
-    <label class="md-nav__title" for="__toc">Contents</label>
+    <label class="md-nav__title" for="__toc">"Contents"</label>
   <ul class="md-nav__list" data-md-scrollfix="">
         <li class="md-nav__item"><a href="#api-loader--page-root" class="md-nav__link">Loader Module</a><nav class="md-nav">
               <ul class="md-nav__list">
@@ -211,15 +211,15 @@
           <article class="md-content__inner md-typeset" role="main">
             
   <section id="module-wayfarer.loader">
-<span id="loader-module"></span><h1 id="api-loader--page-root">Loader Module<a class="headerlink" href="#api-loader--page-root" title="Permalink to this heading">¶</a></h1>
+<span id="loader-module"></span><h1 id="api-loader--page-root">Loader Module<a class="headerlink" href="#api-loader--page-root" title="Link to this heading">¶</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="wayfarer.loader.UniqueDict">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">wayfarer.loader.</span></span><span class="sig-name descname"><span class="pre">UniqueDict</span></span><a class="reference internal" href="../_modules/wayfarer/loader.html#UniqueDict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#wayfarer.loader.UniqueDict" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">wayfarer.loader.</span></span><span class="sig-name descname"><span class="pre">UniqueDict</span></span><a class="reference internal" href="../_modules/wayfarer/loader.html#UniqueDict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#wayfarer.loader.UniqueDict" title="Link to this definition">¶</a></dt>
 <dd><p>A subclass of dict to ensure all keys are unique</p>
 </dd></dl>
 <dl class="py function">
 <dt class="sig sig-object py" id="wayfarer.loader.add_edge">
-<span class="sig-prename descclassname"><span class="pre">wayfarer.loader.</span></span><span class="sig-name descname"><span class="pre">add_edge</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">net</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">properties</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/wayfarer/loader.html#add_edge"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#wayfarer.loader.add_edge" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">wayfarer.loader.</span></span><span class="sig-name descname"><span class="pre">add_edge</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">net</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">properties</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/wayfarer/loader.html#add_edge"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#wayfarer.loader.add_edge" title="Link to this definition">¶</a></dt>
 <dd><p>Add a new edge to a network based on a dict containing
 the required wayfarer fields</p>
 <dl class="field-list simple">
@@ -244,7 +244,7 @@ the required wayfarer fields</p>
 </dd></dl>
 <dl class="py function">
 <dt class="sig sig-object py" id="wayfarer.loader.create_graph">
-<span class="sig-prename descclassname"><span class="pre">wayfarer.loader.</span></span><span class="sig-name descname"><span class="pre">create_graph</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">use_reverse_lookup=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">graph_type=&lt;class</span> <span class="pre">'networkx.classes.multigraph.MultiGraph'&gt;</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/wayfarer/loader.html#create_graph"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#wayfarer.loader.create_graph" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">wayfarer.loader.</span></span><span class="sig-name descname"><span class="pre">create_graph</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">use_reverse_lookup=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">graph_type=&lt;class</span> <span class="pre">'networkx.classes.multigraph.MultiGraph'&gt;</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/wayfarer/loader.html#create_graph"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#wayfarer.loader.create_graph" title="Link to this definition">¶</a></dt>
 <dd><p>Create a new networkx graph, with an optional dictionary to store unique keys
 for fast edge lookups</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">net</span> <span class="o">=</span> <span class="n">create_graph</span><span class="p">()</span>
@@ -267,7 +267,7 @@ for fast edge lookups</p>
 </dd></dl>
 <dl class="py function">
 <dt class="sig sig-object py" id="wayfarer.loader.distance">
-<span class="sig-prename descclassname"><span class="pre">wayfarer.loader.</span></span><span class="sig-name descname"><span class="pre">distance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/wayfarer/loader.html#distance"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#wayfarer.loader.distance" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">wayfarer.loader.</span></span><span class="sig-name descname"><span class="pre">distance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/wayfarer/loader.html#distance"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#wayfarer.loader.distance" title="Link to this definition">¶</a></dt>
 <dd><p>Return the Euclidean distance between two points.
 Any z-values associated with the points are ignored.</p>
 <dl class="field-list simple">
@@ -291,7 +291,7 @@ Any z-values associated with the points are ignored.</p>
 </dd></dl>
 <dl class="py function">
 <dt class="sig sig-object py" id="wayfarer.loader.load_network_from_file">
-<span class="sig-prename descclassname"><span class="pre">wayfarer.loader.</span></span><span class="sig-name descname"><span class="pre">load_network_from_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/wayfarer/loader.html#load_network_from_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#wayfarer.loader.load_network_from_file" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">wayfarer.loader.</span></span><span class="sig-name descname"><span class="pre">load_network_from_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/wayfarer/loader.html#load_network_from_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#wayfarer.loader.load_network_from_file" title="Link to this definition">¶</a></dt>
 <dd><p>Return a network previously saved to a pickle file</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -307,7 +307,7 @@ Any z-values associated with the points are ignored.</p>
 </dd></dl>
 <dl class="py function">
 <dt class="sig sig-object py" id="wayfarer.loader.load_network_from_geometries">
-<span class="sig-prename descclassname"><span class="pre">wayfarer.loader.</span></span><span class="sig-name descname"><span class="pre">load_network_from_geometries</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">recs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_reverse_lookup=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">graph_type=&lt;class</span> <span class="pre">'networkx.classes.multigraph.MultiGraph'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">skip_errors=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">strip_properties=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keep_geometry=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key_field='EDGE_ID'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">length_field='LEN_'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rounding=5</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/wayfarer/loader.html#load_network_from_geometries"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#wayfarer.loader.load_network_from_geometries" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">wayfarer.loader.</span></span><span class="sig-name descname"><span class="pre">load_network_from_geometries</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">recs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_reverse_lookup=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">graph_type=&lt;class</span> <span class="pre">'networkx.classes.multigraph.MultiGraph'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">skip_errors=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">strip_properties=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keep_geometry=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key_field='EDGE_ID'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">length_field='LEN_'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rounding=5</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/wayfarer/loader.html#load_network_from_geometries"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#wayfarer.loader.load_network_from_geometries" title="Link to this definition">¶</a></dt>
 <dd><p>Create a new networkX graph using a list of recs of type <code class="docutils literal notranslate"><span class="pre">__geo_interface__</span></code>
 This allows networks to be created using libraries such as Fiona.
 Any <code class="docutils literal notranslate"><span class="pre">MultiLineString</span></code> geometries in the network will be ignored, geometries should
@@ -349,7 +349,7 @@ e.g. (-9.564484483347517, 52.421103202488965) and (-9.552925853749544, 52.419691
 </dd></dl>
 <dl class="py function">
 <dt class="sig sig-object py" id="wayfarer.loader.load_network_from_records">
-<span class="sig-prename descclassname"><span class="pre">wayfarer.loader.</span></span><span class="sig-name descname"><span class="pre">load_network_from_records</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">recs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_reverse_lookup=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">graph_type=&lt;class</span> <span class="pre">'networkx.classes.multigraph.MultiGraph'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key_field='EDGE_ID'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">length_field='LEN_'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">from_field='NODEID_FROM'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">to_field='NODEID_TO'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/wayfarer/loader.html#load_network_from_records"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#wayfarer.loader.load_network_from_records" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">wayfarer.loader.</span></span><span class="sig-name descname"><span class="pre">load_network_from_records</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">recs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_reverse_lookup=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">graph_type=&lt;class</span> <span class="pre">'networkx.classes.multigraph.MultiGraph'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key_field='EDGE_ID'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">length_field='LEN_'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">from_field='NODEID_FROM'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">to_field='NODEID_TO'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/wayfarer/loader.html#load_network_from_records"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#wayfarer.loader.load_network_from_records" title="Link to this definition">¶</a></dt>
 <dd><p>Create a new networkX graph based on a list of dictionary objects
 containing the required wayfarer properties</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">recs</span> <span class="o">=</span> <span class="p">[{</span><span class="s2">"EDGE_ID"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">"NODEID_FROM"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">"NODEID_TO"</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">"LEN_"</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="s2">"PROP1"</span><span class="p">:</span> <span class="s2">"A"</span><span class="p">}]</span>
@@ -377,7 +377,7 @@ fast lookups</p></li>
 </dd></dl>
 <dl class="py function">
 <dt class="sig sig-object py" id="wayfarer.loader.save_network_to_file">
-<span class="sig-prename descclassname"><span class="pre">wayfarer.loader.</span></span><span class="sig-name descname"><span class="pre">save_network_to_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">net</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/wayfarer/loader.html#save_network_to_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#wayfarer.loader.save_network_to_file" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">wayfarer.loader.</span></span><span class="sig-name descname"><span class="pre">save_network_to_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">net</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/wayfarer/loader.html#save_network_to_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#wayfarer.loader.save_network_to_file" title="Link to this definition">¶</a></dt>
 <dd><p>Save a network to a Python pickle file
 Note these cannot be shared between different versions of Python</p>
 <dl class="field-list simple">
@@ -413,7 +413,7 @@ Note these cannot be shared between different versions of Python</p>
               <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
                 <span class="md-flex__ellipsis">
                   <span
-                      class="md-footer-nav__direction"> Previous </span> Functions Module </span>
+                      class="md-footer-nav__direction"> "Previous" </span> Functions Module </span>
               </div>
             </a>
           
@@ -423,7 +423,7 @@ Note these cannot be shared between different versions of Python</p>
                rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title"><span
                 class="md-flex__ellipsis"> <span
-                class="md-footer-nav__direction"> Next </span> Linear Referencing Module </span>
+                class="md-footer-nav__direction"> "Next" </span> Linear Referencing Module </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink"><i
                 class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
@@ -441,7 +441,7 @@ Note these cannot be shared between different versions of Python</p>
               
           </div>
             Created using
-            <a href="http://www.sphinx-doc.org/">Sphinx</a> 7.0.1.
+            <a href="http://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
              and
             <a href="https://github.com/bashtage/sphinx-material/">Material for
               Sphinx</a>

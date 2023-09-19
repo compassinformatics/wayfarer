@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-content_root="../">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -47,11 +47,11 @@
   
   
     <title>Routing Module &#8212; Wayfarer</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/material.css" />
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/sphinx_highlight.js"></script>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=83e35b93" />
+    <link rel="stylesheet" type="text/css" href="../_static/material.css?v=79c92029" />
+    <script src="../_static/documentation_options.js?v=f2a433a1"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="prev" title="Linear Referencing Module" href="linearref.html" />
@@ -101,7 +101,7 @@
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" action="../search.html" method="get" name="search">
-      <input type="text" class="md-search__input" name="q" placeholder="Search"
+      <input type="text" class="md-search__input" name="q" placeholder=""Search""
              autocapitalize="off" autocomplete="off" spellcheck="false"
              data-md-component="query" data-md-state="active">
       <label class="md-icon md-search__icon" for="__search"></label>
@@ -178,7 +178,7 @@
               <div class="md-sidebar__inner">
                 
 <nav class="md-nav md-nav--secondary">
-    <label class="md-nav__title" for="__toc">Contents</label>
+    <label class="md-nav__title" for="__toc">"Contents"</label>
   <ul class="md-nav__list" data-md-scrollfix="">
         <li class="md-nav__item"><a href="#api-routing--page-root" class="md-nav__link">Routing Module</a><nav class="md-nav">
               <ul class="md-nav__list">
@@ -214,14 +214,14 @@
           <article class="md-content__inner md-typeset" role="main">
             
   <section id="module-wayfarer.routing">
-<span id="routing-module"></span><h1 id="api-routing--page-root">Routing Module<a class="headerlink" href="#api-routing--page-root" title="Permalink to this heading">¶</a></h1>
+<span id="routing-module"></span><h1 id="api-routing--page-root">Routing Module<a class="headerlink" href="#api-routing--page-root" title="Link to this heading">¶</a></h1>
 <dl class="py exception">
 <dt class="sig sig-object py" id="wayfarer.routing.MultipleEnds">
-<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">wayfarer.routing.</span></span><span class="sig-name descname"><span class="pre">MultipleEnds</span></span><a class="reference internal" href="../_modules/wayfarer/routing.html#MultipleEnds"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#wayfarer.routing.MultipleEnds" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">wayfarer.routing.</span></span><span class="sig-name descname"><span class="pre">MultipleEnds</span></span><a class="reference internal" href="../_modules/wayfarer/routing.html#MultipleEnds"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#wayfarer.routing.MultipleEnds" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 <dl class="py function">
 <dt class="sig sig-object py" id="wayfarer.routing.find_ordered_path">
-<span class="sig-prename descclassname"><span class="pre">wayfarer.routing.</span></span><span class="sig-name descname"><span class="pre">find_ordered_path</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">edges</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_node</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">with_direction_flag</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/wayfarer/routing.html#find_ordered_path"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#wayfarer.routing.find_ordered_path" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">wayfarer.routing.</span></span><span class="sig-name descname"><span class="pre">find_ordered_path</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">edges</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_node</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">with_direction_flag</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/wayfarer/routing.html#find_ordered_path"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#wayfarer.routing.find_ordered_path" title="Link to this definition">¶</a></dt>
 <dd><blockquote>
 <div><p>Given a collection of randomly ordered connected edges, find the full
 path, covering all edges, from one end to the other.
@@ -234,7 +234,7 @@ function from networkx
 </dd></dl>
 <dl class="py function">
 <dt class="sig sig-object py" id="wayfarer.routing.get_path_ends">
-<span class="sig-prename descclassname"><span class="pre">wayfarer.routing.</span></span><span class="sig-name descname"><span class="pre">get_path_ends</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">edges</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/wayfarer/routing.html#get_path_ends"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#wayfarer.routing.get_path_ends" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">wayfarer.routing.</span></span><span class="sig-name descname"><span class="pre">get_path_ends</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">edges</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/wayfarer/routing.html#get_path_ends"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#wayfarer.routing.get_path_ends" title="Link to this definition">¶</a></dt>
 <dd><p>For a list of connected edges find the (unattached) end nodes
 TODO Check if the edges form a loop</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">edges</span> <span class="o">=</span> <span class="p">[</span><span class="n">Edge</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="p">{}),</span> <span class="n">Edge</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="p">{})]</span>
@@ -248,7 +248,7 @@ TODO Check if the edges form a loop</p>
 </dd></dl>
 <dl class="py function">
 <dt class="sig sig-object py" id="wayfarer.routing.solve_all_shortest_paths">
-<span class="sig-prename descclassname"><span class="pre">wayfarer.routing.</span></span><span class="sig-name descname"><span class="pre">solve_all_shortest_paths</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">net</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_node</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/wayfarer/routing.html#solve_all_shortest_paths"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#wayfarer.routing.solve_all_shortest_paths" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">wayfarer.routing.</span></span><span class="sig-name descname"><span class="pre">solve_all_shortest_paths</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">net</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_node</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/wayfarer/routing.html#solve_all_shortest_paths"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#wayfarer.routing.solve_all_shortest_paths" title="Link to this definition">¶</a></dt>
 <dd><p>Find all shortest paths between the two nodes on the network.
 This includes loops and repeated nodes.
 A wrapper function for <a href="#id1"><span class="problematic" id="id2">`all_shortest_paths &lt;
@@ -276,7 +276,7 @@ Unsure why less results are returned in the example below than when using all_si
 </dd></dl>
 <dl class="py function">
 <dt class="sig sig-object py" id="wayfarer.routing.solve_all_simple_paths">
-<span class="sig-prename descclassname"><span class="pre">wayfarer.routing.</span></span><span class="sig-name descname"><span class="pre">solve_all_simple_paths</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">net</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cutoff</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/wayfarer/routing.html#solve_all_simple_paths"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#wayfarer.routing.solve_all_simple_paths" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">wayfarer.routing.</span></span><span class="sig-name descname"><span class="pre">solve_all_simple_paths</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">net</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cutoff</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/wayfarer/routing.html#solve_all_simple_paths"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#wayfarer.routing.solve_all_simple_paths" title="Link to this definition">¶</a></dt>
 <dd><p>Find all simple paths between the two nodes on the network.
 A simple path does not have any repeated nodes
 A wrapper function for <a href="#id3"><span class="problematic" id="id4">`all_simple_paths &lt;
@@ -308,7 +308,7 @@ TODO add <code class="docutils literal notranslate"><span class="pre">has_path</
 </dd></dl>
 <dl class="py function">
 <dt class="sig sig-object py" id="wayfarer.routing.solve_matching_path">
-<span class="sig-prename descclassname"><span class="pre">wayfarer.routing.</span></span><span class="sig-name descname"><span class="pre">solve_matching_path</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">net</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">distance</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cutoff</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_key</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/wayfarer/routing.html#solve_matching_path"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#wayfarer.routing.solve_matching_path" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">wayfarer.routing.</span></span><span class="sig-name descname"><span class="pre">solve_matching_path</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">net</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">distance</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cutoff</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_key</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/wayfarer/routing.html#solve_matching_path"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#wayfarer.routing.solve_matching_path" title="Link to this definition">¶</a></dt>
 <dd><p>Return the path between the nodes that best matches the
 distance
 If no distance is supplied the shortest path is returned</p>
@@ -323,7 +323,7 @@ If long solves are not as expected then increase this value</p>
 </dd></dl>
 <dl class="py function">
 <dt class="sig sig-object py" id="wayfarer.routing.solve_matching_path_from_nodes">
-<span class="sig-prename descclassname"><span class="pre">wayfarer.routing.</span></span><span class="sig-name descname"><span class="pre">solve_matching_path_from_nodes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">net</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">distance</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/wayfarer/routing.html#solve_matching_path_from_nodes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#wayfarer.routing.solve_matching_path_from_nodes" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">wayfarer.routing.</span></span><span class="sig-name descname"><span class="pre">solve_matching_path_from_nodes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">net</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">distance</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/wayfarer/routing.html#solve_matching_path_from_nodes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#wayfarer.routing.solve_matching_path_from_nodes" title="Link to this definition">¶</a></dt>
 <dd><p>From a list of unordered nodes find the longest path that connects all nodes
 Then rerun the solve from the start to the end of the path getting a path
 closest to the desired distance</p>
@@ -335,18 +335,18 @@ closest to the desired distance</p>
 </dd></dl>
 <dl class="py function">
 <dt class="sig sig-object py" id="wayfarer.routing.solve_shortest_path">
-<span class="sig-prename descclassname"><span class="pre">wayfarer.routing.</span></span><span class="sig-name descname"><span class="pre">solve_shortest_path</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">net</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">with_direction_flag</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weight</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'LEN_'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/wayfarer/routing.html#solve_shortest_path"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#wayfarer.routing.solve_shortest_path" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">wayfarer.routing.</span></span><span class="sig-name descname"><span class="pre">solve_shortest_path</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">net</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">with_direction_flag</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weight</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'LEN_'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/wayfarer/routing.html#solve_shortest_path"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#wayfarer.routing.solve_shortest_path" title="Link to this definition">¶</a></dt>
 <dd><p>Solve the shortest path between two nodes, returning a list of Edge objects</p>
 </dd></dl>
 <dl class="py function">
 <dt class="sig sig-object py" id="wayfarer.routing.solve_shortest_path_from_edges">
-<span class="sig-prename descclassname"><span class="pre">wayfarer.routing.</span></span><span class="sig-name descname"><span class="pre">solve_shortest_path_from_edges</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">net</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">edge_id_list</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/wayfarer/routing.html#solve_shortest_path_from_edges"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#wayfarer.routing.solve_shortest_path_from_edges" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">wayfarer.routing.</span></span><span class="sig-name descname"><span class="pre">solve_shortest_path_from_edges</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">net</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">edge_id_list</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/wayfarer/routing.html#solve_shortest_path_from_edges"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#wayfarer.routing.solve_shortest_path_from_edges" title="Link to this definition">¶</a></dt>
 <dd><p>Return a path routing from edge to edge, rather than
 from node to node</p>
 </dd></dl>
 <dl class="py function">
 <dt class="sig sig-object py" id="wayfarer.routing.solve_shortest_path_from_nodes">
-<span class="sig-prename descclassname"><span class="pre">wayfarer.routing.</span></span><span class="sig-name descname"><span class="pre">solve_shortest_path_from_nodes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">net</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weight</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'LEN_'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/wayfarer/routing.html#solve_shortest_path_from_nodes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#wayfarer.routing.solve_shortest_path_from_nodes" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">wayfarer.routing.</span></span><span class="sig-name descname"><span class="pre">solve_shortest_path_from_nodes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">net</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weight</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'LEN_'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/wayfarer/routing.html#solve_shortest_path_from_nodes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#wayfarer.routing.solve_shortest_path_from_nodes" title="Link to this definition">¶</a></dt>
 <dd><p>Return a list of nodes found by solving from each node in node_list to
 the next</p>
 <dl class="field-list simple">
@@ -376,7 +376,7 @@ the next</p>
               <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
                 <span class="md-flex__ellipsis">
                   <span
-                      class="md-footer-nav__direction"> Previous </span> Linear Referencing Module </span>
+                      class="md-footer-nav__direction"> "Previous" </span> Linear Referencing Module </span>
               </div>
             </a>
           
@@ -393,7 +393,7 @@ the next</p>
               
           </div>
             Created using
-            <a href="http://www.sphinx-doc.org/">Sphinx</a> 7.0.1.
+            <a href="http://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
              and
             <a href="https://github.com/bashtage/sphinx-material/">Material for
               Sphinx</a>
