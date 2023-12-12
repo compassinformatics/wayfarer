@@ -230,7 +230,7 @@ Uses the</p>
 </div></blockquote>
 <p><a class="reference external" href="https://networkx.github.io/documentation/stable/reference/algorithms/generated/networkx.algorithms.euler.eulerian_path.html">eulerian_path</a>
 function from networkx
-:rtype: <code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Edge</span></code>]</p>
+:rtype: <span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Edge</span></code>]</span></p>
 </dd></dl>
 <dl class="py function">
 <dt class="sig sig-object py" id="wayfarer.routing.get_path_ends">
@@ -238,7 +238,7 @@ function from networkx
 <dd><p>For a list of connected edges find the (unattached) end nodes
 TODO Check if the edges form a loop</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">edges</span> <span class="o">=</span> <span class="p">[</span><span class="n">Edge</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="p">{}),</span> <span class="n">Edge</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="p">{})]</span>
-<span class="go">:rtype: :py:class:`tuple`\[:py:class:`int` | :py:class:`str`, :py:class:`int` | :py:class:`str`]</span>
+<span class="go">:rtype: :sphinx_autodoc_typehints_type:`\:py\:class\:\`tuple\`\\ \\\[\:py\:class\:\`int\` \| \:py\:class\:\`str\`\, \:py\:class\:\`int\` \| \:py\:class\:\`str\`\]`</span>
 </pre></div>
 </div>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">get_path_ends</span><span class="p">(</span><span class="n">edges</span><span class="p">)</span>
@@ -257,9 +257,9 @@ Unsure why less results are returned in the example below than when using all_si
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>net</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">MultiGraph</span></code> | <code class="xref py py-class docutils literal notranslate"><span class="pre">MultiDiGraph</span></code>) – The network</p></li>
-<li><p><strong>start_node</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code> | <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – The node Id of the start node</p></li>
-<li><p><strong>end_node</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code> | <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – The node Id of the end node</p></li>
+<li><p><strong>net</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">MultiGraph</span></code> | <code class="xref py py-class docutils literal notranslate"><span class="pre">MultiDiGraph</span></code></span>) – The network</p></li>
+<li><p><strong>start_node</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code> | <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – The node Id of the start node</p></li>
+<li><p><strong>end_node</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code> | <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – The node Id of the end node</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
@@ -285,14 +285,14 @@ TODO add <code class="docutils literal notranslate"><span class="pre">has_path</
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>net</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">MultiGraph</span></code> | <code class="xref py py-class docutils literal notranslate"><span class="pre">MultiDiGraph</span></code>) – The network</p></li>
-<li><p><strong>start_node</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code> | <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – The node Id of the start node</p></li>
-<li><p><strong>end_node</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code> | <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – The node Id of the end node</p></li>
-<li><p><strong>cutoff</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>) – The maximum number of edges to search for before stopping the search</p></li>
+<li><p><strong>net</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">MultiGraph</span></code> | <code class="xref py py-class docutils literal notranslate"><span class="pre">MultiDiGraph</span></code></span>) – The network</p></li>
+<li><p><strong>start_node</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code> | <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – The node Id of the start node</p></li>
+<li><p><strong>end_node</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code> | <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – The node Id of the end node</p></li>
+<li><p><strong>cutoff</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – The maximum number of edges to search for before stopping the search</p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></p>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></span></p>
 </dd>
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>An iterator of a list of list of nodes</p>
@@ -317,7 +317,7 @@ If long solves are not as expected then increase this value</p>
 <p>include_key can be used to only include paths that contain this edge key</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Edge</span></code>]]</p>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Edge</span></code>]]</span></p>
 </dd>
 </dl>
 </dd></dl>
@@ -329,7 +329,7 @@ Then rerun the solve from the start to the end of the path getting a path
 closest to the desired distance</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Edge</span></code>]]</p>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Edge</span></code>]]</span></p>
 </dd>
 </dl>
 </dd></dl>
@@ -351,7 +351,7 @@ from node to node</p>
 the next</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code> | <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]</p>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code> | <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]</span></p>
 </dd>
 </dl>
 </dd></dl>

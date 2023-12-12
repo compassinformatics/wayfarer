@@ -248,13 +248,13 @@ Requires the Shapely module</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>m_value</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>) – The measure</p></li>
-<li><p><strong>length</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>) – The length of the line</p></li>
-<li><p><strong>tolerance</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>) – The tolerance the m-value can be beyond the length of the line</p></li>
+<li><p><strong>m_value</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></span>) – The measure</p></li>
+<li><p><strong>length</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></span>) – The length of the line</p></li>
+<li><p><strong>tolerance</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></span>) – The tolerance the m-value can be beyond the length of the line</p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></p>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></span></p>
 </dd>
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>If the line is valid</p>
@@ -279,14 +279,14 @@ This function also handles ring LineStrings (where start and end nodes are the s
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>line</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">LineString</span></code>) – The original LineString</p></li>
-<li><p><strong>start_m</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>) – The start measure to split the line</p></li>
-<li><p><strong>end_m</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>) – The end measure to split the line</p></li>
-<li><p><strong>tolerance</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>) – The tolerance the m-value can be beyond the length of the line</p></li>
+<li><p><strong>line</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">LineString</span></code></span>) – The original LineString</p></li>
+<li><p><strong>start_m</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></span>) – The start measure to split the line</p></li>
+<li><p><strong>end_m</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></span>) – The end measure to split the line</p></li>
+<li><p><strong>tolerance</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></span>) – The tolerance the m-value can be beyond the length of the line</p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">LineString</span></code></p>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">LineString</span></code></span></p>
 </dd>
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>A new line based on the original geometry between the two measures</p>
@@ -305,12 +305,12 @@ This function also handles ring LineStrings (where start and end nodes are the s
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>line1</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">LineString</span></code>) – The first line</p></li>
+<li><p><strong>line1</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">LineString</span></code></span>) – The first line</p></li>
 <li><p><strong>line1</strong> – The second line</p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Point</span></code>]</p>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Point</span></code>]</span></p>
 </dd>
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>A list of points shared between the lines</p>
@@ -329,7 +329,7 @@ This function also handles ring LineStrings (where start and end nodes are the s
 <dd><p>Get the closest line to a point</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">Point</span></code>]</p>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">Point</span></code>]</span></p>
 </dd>
 </dl>
 </dd></dl>
@@ -341,13 +341,13 @@ list of points</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>line</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">LineString</span></code>) – The LineString</p></li>
-<li><p><strong>points</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Point</span></code>]) – A list of points to check</p></li>
-<li><p><strong>measure</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>) – A measure along the line</p></li>
+<li><p><strong>line</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">LineString</span></code></span>) – The LineString</p></li>
+<li><p><strong>points</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Point</span></code>]</span>) – A list of points to check</p></li>
+<li><p><strong>measure</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></span>) – A measure along the line</p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Point</span></code></p>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Point</span></code></span></p>
 </dd>
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>The measure (m-value) of the point along the line</p>
@@ -369,13 +369,13 @@ list of points</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>line</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">LineString</span></code>) – The input line</p></li>
-<li><p><strong>point</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Point</span></code>) – The input point</p></li>
-<li><p><strong>common_vertices</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Point</span></code>]) – Points shared between the two lines</p></li>
+<li><p><strong>line</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">LineString</span></code></span>) – The input line</p></li>
+<li><p><strong>point</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Point</span></code></span>) – The input point</p></li>
+<li><p><strong>common_vertices</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Point</span></code>]</span>) – Points shared between the two lines</p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Point</span></code></p>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Point</span></code></span></p>
 </dd>
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>The end point</p>
@@ -396,12 +396,12 @@ list of points</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>line</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">LineString</span></code>) – The LineString</p></li>
-<li><p><strong>point</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Point</span></code>) – The point</p></li>
+<li><p><strong>line</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">LineString</span></code></span>) – The LineString</p></li>
+<li><p><strong>point</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Point</span></code></span>) – The point</p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></p>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></span></p>
 </dd>
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>The measure (m-value) of the point along the line</p>
@@ -421,13 +421,13 @@ list of points</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>line</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">LineString</span></code>) – The LineString</p></li>
-<li><p><strong>pt1</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Point</span></code>) – A first point</p></li>
-<li><p><strong>pt2</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Point</span></code>) – A second point</p></li>
+<li><p><strong>line</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">LineString</span></code></span>) – The LineString</p></li>
+<li><p><strong>pt1</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Point</span></code></span>) – A first point</p></li>
+<li><p><strong>pt2</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Point</span></code></span>) – A second point</p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]</p>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]</span></p>
 </dd>
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>A tuple of the start and end measures</p>
@@ -449,12 +449,12 @@ Based on code from <a class="reference external" href="http://gis.stackexchange.
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>point</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Point</span></code>) – The input point to place along a line</p></li>
-<li><p><strong>line</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">LineString</span></code>) – The input line</p></li>
+<li><p><strong>point</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Point</span></code></span>) – The input point to place along a line</p></li>
+<li><p><strong>line</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">LineString</span></code></span>) – The input line</p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Point</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]</p>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Point</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]</span></p>
 </dd>
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>A tuple containing the snapped point along the line
@@ -483,13 +483,13 @@ created between start point and the end point</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>point</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Point</span></code>) – The input point to place along a line</p></li>
-<li><p><strong>start_point</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Point</span></code>) – The start point of a straight line</p></li>
-<li><p><strong>end_point</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Point</span></code>) – The end point of a straight line</p></li>
+<li><p><strong>point</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Point</span></code></span>) – The input point to place along a line</p></li>
+<li><p><strong>start_point</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Point</span></code></span>) – The start point of a straight line</p></li>
+<li><p><strong>end_point</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Point</span></code></span>) – The end point of a straight line</p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Point</span></code></p>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Point</span></code></span></p>
 </dd>
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>A point along the straight line, or the closest end point if beyond the start and end
@@ -509,14 +509,14 @@ A LineString may cross itself (i.e. be complex and not simple).”</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>line</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">LineString</span></code>) – The LineString</p></li>
-<li><p><strong>start_m</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>) – The start measure</p></li>
-<li><p><strong>end_m</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>) – The end measure</p></li>
-<li><p><strong>tolerance</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>) – The tolerance for the measures when comparing the start and end</p></li>
+<li><p><strong>line</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">LineString</span></code></span>) – The LineString</p></li>
+<li><p><strong>start_m</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></span>) – The start measure</p></li>
+<li><p><strong>end_m</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></span>) – The end measure</p></li>
+<li><p><strong>tolerance</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></span>) – The tolerance for the measures when comparing the start and end</p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></p>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></span></p>
 </dd>
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>Boolean indicating if the measures only partially cover the line</p>
@@ -535,12 +535,12 @@ A LineString may cross itself (i.e. be complex and not simple).”</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>pt1</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Point</span></code>) – The first point</p></li>
-<li><p><strong>pt2</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">Point</span></code>) – The second point</p></li>
+<li><p><strong>pt1</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Point</span></code></span>) – The first point</p></li>
+<li><p><strong>pt2</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Point</span></code></span>) – The second point</p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></p>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></span></p>
 </dd>
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>The distance between the two points</p>
@@ -560,7 +560,7 @@ A LineString may cross itself (i.e. be complex and not simple).”</p>
 Note this does not work with MultiLineStrings</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>line</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">LineString</span></code>) – The LineString</p>
+<dd class="field-odd"><p><strong>line</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">LineString</span></code></span>) – The LineString</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>A new LineString with any duplicate coordinates removed</p>
@@ -580,14 +580,14 @@ ends of a segment, then “snap” these values to the end.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>line</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">LineString</span></code>) – The LineString</p></li>
-<li><p><strong>start_m</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>) – The start measure</p></li>
-<li><p><strong>end_m</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>) – The end measure</p></li>
-<li><p><strong>tolerance</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>) – The tolerance the m-value can be beyond the length of the line</p></li>
+<li><p><strong>line</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">LineString</span></code></span>) – The LineString</p></li>
+<li><p><strong>start_m</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></span>) – The start measure</p></li>
+<li><p><strong>end_m</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></span>) – The end measure</p></li>
+<li><p><strong>tolerance</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></span>) – The tolerance the m-value can be beyond the length of the line</p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]</p>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]</span></p>
 </dd>
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>A tuple of the new snapped measures</p>
