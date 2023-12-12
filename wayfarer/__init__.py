@@ -1,7 +1,7 @@
 from typing import NamedTuple
 
 
-__version__ = "0.9.5"
+__version__ = "0.9.6"
 
 LENGTH_FIELD = "LEN_"
 EDGE_ID_FIELD = "EDGE_ID"

@@ -315,7 +315,7 @@ def test_get_edges_from_nodes():
     node_list = [1, 2]
     edges = functions.get_edges_from_nodes(net, node_list)
     assert len(edges) == 1
-    edges[0].key == "B"
+    assert edges[0].key == "B"
 
     edges = functions.get_edges_from_nodes(net, [2, 1], with_direction_flag=True)
     assert len(edges) == 1
@@ -329,15 +329,29 @@ def test_get_edges_from_nodes_non_unique():
     net.add_edge(1, 2, key="A", **{"EDGE_ID": "A", "LEN_": 100})
     net.add_edge(1, 2, key="B", **{"EDGE_ID": "B", "LEN_": 100})
 
-    node_list = [1, 2, 1]
+    node_list = [1, 2, 1]  # a loop
     edges = functions.get_edges_from_nodes(net, node_list, return_unique=True)
     assert len(edges) == 1
-    edges[0].key == "B"
+    # as edge A is the "first" key it will be returned
+    assert edges[0].key == "A"
 
     edges = functions.get_edges_from_nodes(net, node_list, return_unique=False)
     assert len(edges) == 2
-    edges[0].key == "B"
-    edges[1].key == "B"
+    assert edges[0].key == "A"
+    assert edges[1].key == "A"
+
+
+def test_get_edges_from_nodes_all_lengths():
+    net = networkx.MultiGraph()
+
+    net.add_edge(1, 2, key="A", **{"EDGE_ID": "A", "LEN_": 50})
+    net.add_edge(1, 2, key="B", **{"EDGE_ID": "B", "LEN_": 100})
+
+    node_list = [1, 2]
+    edges = functions.get_edges_from_nodes(net, node_list, shortest_path_only=False)
+    assert len(edges) == 2
+    assert edges[0].key == "A"
+    assert edges[1].key == "B"
 
 
 def test_edges_to_graph():
@@ -479,9 +493,10 @@ if __name__ == "__main__":
     # test_get_all_paths_from_nodes_with_direction()
     # test_get_path_length()
     # test_doctest()
-    # test_get_edges_from_nodes_non_unique()
+    test_get_edges_from_nodes_non_unique()
     # test_has_no_overlaps()
     # test_has_no_overlaps_loop()
     # test_has_overlaps()
-    test_has_no_overlaps_loop_with_split()
+    # test_has_no_overlaps_loop_with_split()
+    test_get_edges_from_nodes_all_lengths()
     print("Done!")

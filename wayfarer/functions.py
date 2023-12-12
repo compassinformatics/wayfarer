@@ -330,11 +330,15 @@ def get_edges_from_nodes(
     with_direction_flag: bool = False,
     length_field: str = LENGTH_FIELD,
     return_unique: bool = True,
+    shortest_path_only: bool = True,
 ) -> list[Edge]:
     """
-    From a list of nodes, create pairs and then get the shortest edge between the two nodes
-    Set with_direction_flag to add a new attribute to the edge to show if it is matching the
-    direction of the path
+    From a list of nodes, create pairs and then get all the edges between the two nodes.
+    By default only the shortest edges between the edges will be returned, but setting
+    ``shortest_path_only`` to ``False`` will return all edges ignoring the ``length_field``.
+    Set ``with_direction_flag`` to add a new attribute to the edge to show if it is matching the
+    direction of the path.
+    ``return_unique`` ensures only one copy of each edge is returned in the case of loops
     """
     edge_list = []
 
@@ -342,15 +346,28 @@ def get_edges_from_nodes(
 
     for u, v in node_pairs:
         edges = get_edges_from_node_pair(net, u, v)
+        node_edges = []
         if edges:
-            key, attributes = get_shortest_edge(edges, length_field)
-            atts_copy = copy.deepcopy(attributes)
-            edge = Edge(start_node=u, end_node=v, key=key, attributes=atts_copy)
+            if shortest_path_only:
+                key, attributes = get_shortest_edge(edges, length_field)
+                atts_copy = copy.deepcopy(attributes)
+                edge = Edge(start_node=u, end_node=v, key=key, attributes=atts_copy)
+                node_edges.append(edge)
+            else:
+                # get all edges between the nodes, ignoring the length_field
+                for key, attributes in edges.items():
+                    atts_copy = copy.deepcopy(attributes)
+                    node_edges.append(
+                        Edge(start_node=u, end_node=v, key=key, attributes=atts_copy)
+                    )
 
             if with_direction_flag:
-                add_direction_flag(**edge._asdict())  # unpack namedtuple to **kwargs
+                for edge in node_edges:
+                    add_direction_flag(
+                        **edge._asdict()
+                    )  # unpack namedtuple to **kwargs
 
-            edge_list.append(edge)
+            edge_list += node_edges
 
     if return_unique:
         return list({v.key: v for v in edge_list}.values())
@@ -632,7 +649,6 @@ Edge(1, 2, "B", {"EDGE_ID": 2, "OFFSET": 0, "LEN_": 10})]
 
     for _, edge_group in grouped_edges:
         for edge1, edge2 in itertools.combinations(edge_group, 2):
-
             from_m1 = edge1.attributes.get(OFFSET_FIELD, 0)
             to_m1 = from_m1 + edge1.attributes.get(LENGTH_FIELD, 0)
 
