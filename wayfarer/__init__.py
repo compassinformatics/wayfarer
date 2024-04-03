@@ -29,9 +29,9 @@ class Edge(NamedTuple):
     A class representing a network edge
     """
 
-    start_node: (int | str)
-    end_node: (int | str)
-    key: (int | str)
+    start_node: int | str
+    end_node: int | str
+    key: int | str
     attributes: dict
 
 

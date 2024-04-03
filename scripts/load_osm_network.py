@@ -5,6 +5,7 @@ pip install fiona --extra-index-url ...
 Run from root of project
 python scripts/load_osm_network.py
 """
+
 import fiona
 from wayfarer import loader, functions
 

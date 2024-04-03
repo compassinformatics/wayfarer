@@ -1,6 +1,7 @@
 """
 pytest -v tests/test_splitting.py
 """
+
 import logging
 import pytest
 from wayfarer import splitter, functions, loader, routing

@@ -5,6 +5,7 @@ $env:PYTHONPATH = 'D:\GitHub\wayfarer\tests;' + $env:PYTHONPATH
 python D:\GitHub\wayfarer\scripts\create_network_images.py
 
 """
+
 import os
 from tests import networks
 import networkx as nx

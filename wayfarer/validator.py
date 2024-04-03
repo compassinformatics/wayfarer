@@ -7,7 +7,7 @@ import networkx
 
 
 def duplicate_keys(
-    net: (networkx.MultiGraph | networkx.MultiDiGraph),
+    net: networkx.MultiGraph | networkx.MultiDiGraph,
 ) -> list[int | str]:
     """
     Find any duplicate keys in the network
@@ -24,7 +24,7 @@ def duplicate_keys(
     return duplicates
 
 
-def valid_reverse_lookup(net: (networkx.MultiGraph | networkx.MultiDiGraph)):
+def valid_reverse_lookup(net: networkx.MultiGraph | networkx.MultiDiGraph):
     """
     Check if the reverse lookup dictionary
     has the same count as edges in the network
@@ -32,7 +32,7 @@ def valid_reverse_lookup(net: (networkx.MultiGraph | networkx.MultiDiGraph)):
     return len(net.graph["keys"]) == len(net.edges())
 
 
-def recalculate_keys(net: (networkx.MultiGraph | networkx.MultiDiGraph)):
+def recalculate_keys(net: networkx.MultiGraph | networkx.MultiDiGraph):
     """
     Recalculate keys in the reverse lookup dictionary
     These can become out-of-sync following a merge of networks e.g. with
@@ -45,7 +45,7 @@ def recalculate_keys(net: (networkx.MultiGraph | networkx.MultiDiGraph)):
 
 
 def edge_attributes(
-    net: (networkx.MultiGraph | networkx.MultiDiGraph), with_sample_data: bool = False
+    net: networkx.MultiGraph | networkx.MultiDiGraph, with_sample_data: bool = False
 ) -> list:
     """
     Return the list of attributes for the edges

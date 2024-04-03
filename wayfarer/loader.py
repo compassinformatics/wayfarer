@@ -51,7 +51,7 @@ def distance(
     return hypot(x2 - x1, y2 - y1)
 
 
-def save_network_to_file(net: (MultiGraph | MultiDiGraph), filename: str) -> None:
+def save_network_to_file(net: MultiGraph | MultiDiGraph, filename: str) -> None:
     """
     Save a network to a Python pickle file
     Note these cannot be shared between different versions of Python
@@ -68,7 +68,7 @@ def save_network_to_file(net: (MultiGraph | MultiDiGraph), filename: str) -> Non
 
 def load_network_from_file(
     filename: str,
-) -> (MultiGraph | MultiDiGraph):
+) -> MultiGraph | MultiDiGraph:
     """
     Return a network previously saved to a pickle file
 
@@ -82,7 +82,7 @@ def load_network_from_file(
         return pickle.load(f)
 
 
-def add_edge(net: (MultiGraph | MultiDiGraph), properties: dict) -> (str | int):
+def add_edge(net: MultiGraph | MultiDiGraph, properties: dict) -> str | int:
     """
     Add a new edge to a network based on a dict containing
     the required wayfarer fields
@@ -117,8 +117,8 @@ def add_edge(net: (MultiGraph | MultiDiGraph), properties: dict) -> (str | int):
 
 def create_graph(
     use_reverse_lookup: bool = True,
-    graph_type: (MultiGraph | MultiDiGraph) = MultiGraph,
-) -> (MultiGraph | MultiDiGraph):
+    graph_type: MultiGraph | MultiDiGraph = MultiGraph,
+) -> MultiGraph | MultiDiGraph:
     """
     Create a new networkx graph, with an optional dictionary to store unique keys
     for fast edge lookups
@@ -153,12 +153,12 @@ def create_graph(
 def load_network_from_records(
     recs: Iterable,
     use_reverse_lookup: bool = True,
-    graph_type: (MultiGraph | MultiDiGraph) = MultiGraph,
+    graph_type: MultiGraph | MultiDiGraph = MultiGraph,
     key_field: str = EDGE_ID_FIELD,
     length_field: str = LENGTH_FIELD,
     from_field: str = NODEID_FROM_FIELD,
     to_field: str = NODEID_TO_FIELD,
-) -> (MultiGraph | MultiDiGraph):
+) -> MultiGraph | MultiDiGraph:
     """
     Create a new networkX graph based on a list of dictionary objects
     containing the required wayfarer properties
@@ -210,14 +210,14 @@ def load_network_from_records(
 def load_network_from_geometries(
     recs: Iterable,
     use_reverse_lookup: bool = True,
-    graph_type: (MultiGraph | MultiDiGraph) = MultiGraph,
+    graph_type: MultiGraph | MultiDiGraph = MultiGraph,
     skip_errors: bool = False,
     strip_properties: bool = False,
     keep_geometry: bool = False,
     key_field: str = EDGE_ID_FIELD,
     length_field: str = LENGTH_FIELD,
     rounding: int = 5,
-) -> (MultiGraph | MultiDiGraph):
+) -> MultiGraph | MultiDiGraph:
     """
     Create a new networkX graph using a list of recs of type ``__geo_interface__``
     This allows networks to be created using libraries such as Fiona.

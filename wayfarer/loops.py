@@ -1,6 +1,7 @@
 """
 Module containing functions relating to loops
 """
+
 import networkx
 from networkx import cycles
 from wayfarer import Edge, functions
@@ -11,7 +12,7 @@ from typing import Iterable
 log = logging.getLogger("wayfarer")
 
 
-def is_loop(net: (networkx.MultiGraph | networkx.MultiDiGraph)) -> bool:
+def is_loop(net: networkx.MultiGraph | networkx.MultiDiGraph) -> bool:
     """
     Check if the entire network is a loop
     """
@@ -26,7 +27,7 @@ def is_loop(net: (networkx.MultiGraph | networkx.MultiDiGraph)) -> bool:
         return False
 
 
-def has_loop(net: (networkx.MultiGraph | networkx.MultiDiGraph)) -> bool:
+def has_loop(net: networkx.MultiGraph | networkx.MultiDiGraph) -> bool:
     """
     Check if the network has a loop
     """
@@ -104,7 +105,7 @@ def get_loop_nodes(edges: list[Edge]) -> dict:
 
 
 def find_self_loop(
-    net: (networkx.MultiGraph | networkx.MultiDiGraph), node_id: (str | int)
+    net: networkx.MultiGraph | networkx.MultiDiGraph, node_id: str | int
 ):
     """
     For a node_id check to see if any edges start

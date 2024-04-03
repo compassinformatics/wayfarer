@@ -1,6 +1,7 @@
 """
 Helper module to convert between wayfarer and osmnx networks
 """
+
 import wayfarer
 import networkx as nx
 from shapely import wkb, LineString
@@ -20,7 +21,7 @@ log = logging.getLogger("wayfarer")
 
 
 def to_osmnx(
-    net: (nx.MultiGraph | nx.MultiDiGraph),
+    net: nx.MultiGraph | nx.MultiDiGraph,
     geometry_field: str = "Geometry4326",
     crs: str = "epsg:4326",
 ) -> nx.MultiDiGraph:

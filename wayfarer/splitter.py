@@ -2,6 +2,7 @@
 This module handles splitting existing edges, and creating new nodes
 to join the split edges
 """
+
 import logging
 import uuid
 from collections import defaultdict, OrderedDict
@@ -26,7 +27,7 @@ SPLIT_KEY_SEPARATOR = "::"
 
 
 def create_node_id(
-    net: (networkx.MultiGraph | networkx.MultiDiGraph), point_id: (str | int)
+    net: networkx.MultiGraph | networkx.MultiDiGraph, point_id: str | int
 ):
     # if point_id in net.nodes():
     #    raise ValueError("The point ID {} already exists as a Node Id in the network".format(point_id))
@@ -53,7 +54,7 @@ def group_measures_by_edge(input):
 
 
 def split_with_points(
-    net: (networkx.MultiGraph | networkx.MultiDiGraph),
+    net: networkx.MultiGraph | networkx.MultiDiGraph,
     recs: list[dict],
     edge_id_field: str = EDGE_ID_FIELD,
     point_id_field: str = SPLIT_POINT_ID_FIELD,
@@ -101,10 +102,10 @@ def split_with_points(
 
 def get_split_attributes(
     original_attributes: dict,
-    from_m: (float | int),
-    to_m: (float | int),
-    start_node: (str | int | None) = None,
-    end_node: (str | int | None) = None,
+    from_m: float | int,
+    to_m: float | int,
+    start_node: str | int | None = None,
+    end_node: str | int | None = None,
 ) -> dict:
     """
     For a part of an edge that has been split
@@ -149,7 +150,7 @@ def get_split_attributes(
     return atts
 
 
-def create_split_key(key: (str | int), m: (float | int), precision=3) -> str:
+def create_split_key(key: str | int, m: float | int, precision=3) -> str:
     """
     Function to ensure a standard format for split keys
     using the key of an edge and a measure
@@ -234,7 +235,7 @@ def get_measures_from_split_edges(split_edges: list[Edge]):
 
 
 def unsplit_network_edges(
-    net: (networkx.MultiGraph | networkx.MultiDiGraph), split_edges: list[Edge]
+    net: networkx.MultiGraph | networkx.MultiDiGraph, split_edges: list[Edge]
 ) -> Edge:
     """
     Take a list of split network edges and join them back together
@@ -300,8 +301,8 @@ def unsplit_network_edges(
 
 
 def split_network_edge(
-    net: (networkx.MultiGraph | networkx.MultiDiGraph),
-    key: (str | int),
+    net: networkx.MultiGraph | networkx.MultiDiGraph,
+    key: str | int,
     measures: list[int | float],
 ) -> list[Edge]:
     """
