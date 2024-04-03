@@ -469,6 +469,65 @@ def test_has_no_overlaps_loop_with_split():
     assert functions.has_overlaps(edges) is False
 
 
+def test_add_edge():
+
+    net = networkx.MultiGraph()
+    edge = Edge(0, 1, "A", {"EDGE_ID": 1, "OFFSET": 5, "LEN_": 10})
+    functions.add_edge(net, edge.start_node, edge.end_node, edge.key, edge.attributes)
+    assert len(net.edges()) == 1
+
+
+def test_add_edge_shorthand():
+    """
+    As above, but unpacking the Edge into kwargs
+    """
+    net = networkx.MultiGraph()
+    edge = Edge(0, 1, "A", {"EDGE_ID": 1, "OFFSET": 5, "LEN_": 10})
+    functions.add_edge(net, **edge._asdict())
+    assert len(net.edges()) == 1
+
+
+def test_add_single_edge():
+    net = networkx.MultiGraph()
+    edge = Edge(0, 1, "A", {"EDGE_ID": 1, "OFFSET": 5, "LEN_": 10})
+    functions.add_single_edge(net, edge)
+    assert len(net.edges()) == 1
+
+
+def test_remove_edge():
+
+    net = networkx.MultiGraph()
+    edge = Edge(0, 1, "A", {"EDGE_ID": 1, "OFFSET": 5, "LEN_": 10})
+    net.add_edge(edge.start_node, edge.end_node, edge.key, **edge.attributes)
+    assert len(net.edges()) == 1
+    functions.remove_edge(net, edge)
+    assert len(net.edges()) == 0
+
+
+def test_remove_edge_and_key():
+
+    net = loader.create_graph()
+    edge = Edge(0, 1, "A", {"EDGE_ID": 1, "OFFSET": 5, "LEN_": 10})
+    functions.add_edge(net, **edge._asdict())
+    assert len(net.edges()) == 1
+    assert net.graph["keys"]["A"] == (0, 1)
+    functions.remove_edge(net, edge)
+    assert len(net.edges()) == 0
+    assert len(net.graph["keys"].keys()) == 0
+
+
+def test_remove_edge_by_key():
+
+    net = loader.create_graph()
+    edge = Edge(0, 1, "A", {"EDGE_ID": 1, "OFFSET": 5, "LEN_": 10})
+    functions.add_edge(net, **edge._asdict())
+    assert len(net.edges()) == 1
+    assert net.graph["keys"]["A"] == (0, 1)
+    functions.remove_edge_by_key(net, "A")
+    assert len(net.edges()) == 0
+    assert len(net.graph["keys"].keys()) == 0
+
+
 def test_doctest():
     import doctest
 
@@ -493,10 +552,15 @@ if __name__ == "__main__":
     # test_get_all_paths_from_nodes_with_direction()
     # test_get_path_length()
     # test_doctest()
-    test_get_edges_from_nodes_non_unique()
+    # test_get_edges_from_nodes_non_unique()
     # test_has_no_overlaps()
     # test_has_no_overlaps_loop()
     # test_has_overlaps()
     # test_has_no_overlaps_loop_with_split()
-    test_get_edges_from_nodes_all_lengths()
+    # test_get_edges_from_nodes_all_lengths()
+    # test_remove_edge()
+    # test_remove_edge_and_key()
+    # test_remove_edge_by_key()
+    test_add_edge_shorthand()
+    test_add_single_edge()
     print("Done!")

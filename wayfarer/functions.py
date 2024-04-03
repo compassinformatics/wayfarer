@@ -1,6 +1,7 @@
 """
 This module contains functions related to networks and routing
 """
+
 import itertools
 import copy
 import logging
@@ -52,7 +53,7 @@ def get_unique_ordered_list(items: Iterable) -> list:
     return list(dict.fromkeys(items))
 
 
-def edges_to_graph(edges: (list[Edge] | list[tuple])) -> networkx.MultiGraph:
+def edges_to_graph(edges: list[Edge] | list[tuple]) -> networkx.MultiGraph:
     """
     Utility function to create a new MultiGraph based on a list of edges
 
@@ -78,11 +79,30 @@ def edges_to_graph(edges: (list[Edge] | list[tuple])) -> networkx.MultiGraph:
     return net
 
 
+def add_single_edge(net: networkx.MultiGraph | networkx.MultiDiGraph, edge: Edge):
+    """
+    Add an edge class to a network
+
+    Args:
+        net: A network
+        edge: The edge to add to the network
+        end_node: The end node of the edge
+
+    >>> net = networkx.MultiGraph()
+    >>> edge = Edge(start_node=1, end_node=2, key='A', attributes={'LEN_': 10})
+    >>> add_single_edge(net, edge)
+    Edge(start_node=1, end_node=2, key='A', attributes={'LEN_': 10})
+    >>> print(net)
+    MultiGraph with 2 nodes and 1 edges
+    """
+    return add_edge(net, **edge._asdict())
+
+
 def add_edge(
-    net: (networkx.MultiGraph | networkx.MultiDiGraph),
-    start_node: (int | str),
-    end_node: (int | str),
-    key: (int | str),
+    net: networkx.MultiGraph | networkx.MultiDiGraph,
+    start_node: int | str,
+    end_node: int | str,
+    key: int | str,
     attributes: dict,
 ) -> Edge:
     """
@@ -115,19 +135,53 @@ def add_edge(
 
 
 def remove_edge_by_key(
-    net: (networkx.MultiGraph | networkx.MultiDiGraph), key: (int | str)
+    net: networkx.MultiGraph | networkx.MultiDiGraph, key: int | str
 ):
-    edge = get_edge_by_key(net, key, with_data=False)
-    net.remove_edge(edge.start_node, edge.end_node, key=edge.key)
+    """
+    Remove an edge from a network using its unique key.
 
+    Args:
+        net: A network
+        key: The unique key of the edge
+
+    >>> net = networkx.MultiGraph()
+    >>> add_edge(net, 1, 2, "A", {"LEN_": 10})
+    Edge(start_node=1, end_node=2, key='A', attributes={'LEN_': 10})
+    >>> print(len(net.edges()))
+    1
+    >>> remove_edge_by_key(net, "A")
+    >>> print(len(net.edges()))
+    0
+    """
+    edge = get_edge_by_key(net, key, with_data=False)
+    remove_edge(net, edge)
+
+
+def remove_edge(net: networkx.MultiGraph | networkx.MultiDiGraph, edge: Edge):
+    net.remove_edge(edge.start_node, edge.end_node, key=edge.key)
+    """
+    Remove an edge from a network using its unique key.
+
+    Args:
+        net: A network
+        key: The unique key of the edge
+
+    >>> net = networkx.MultiGraph()
+    >>> edge = add_edge(net, 1, 2, "A", {"LEN_": 10})
+    >>> print(len(net.edges()))
+    1
+    >>> remove_edge(net, edge)
+    >>> print(len(net.edges()))
+    0
+    """
     # remove from the keys dictionary if it exists
     if "keys" in net.graph.keys():
-        del net.graph["keys"][key]
+        del net.graph["keys"][edge.key]
 
 
 def get_edge_by_key(
-    net: (networkx.MultiGraph | networkx.MultiDiGraph),
-    key: (int | str),
+    net: networkx.MultiGraph | networkx.MultiDiGraph,
+    key: int | str,
     with_data: bool = True,
 ) -> Edge:
     """
@@ -197,9 +251,7 @@ def get_edges_by_attribute(net, attribute_field: str, value) -> Iterable[Edge]:
 #    )
 
 
-def get_all_complex_paths(
-    net: (networkx.MultiGraph | networkx.MultiDiGraph), node_list
-):
+def get_all_complex_paths(net: networkx.MultiGraph | networkx.MultiDiGraph, node_list):
     """
     For a node path, find any self-looping edges on a node
     and add these combinations to the possible path list
@@ -296,7 +348,7 @@ def get_path_length(path_edges):
 
 
 def get_edges_from_node_pair(
-    net, start_node: (int | str), end_node: (int | str), hide_log_output: bool = False
+    net, start_node: int | str, end_node: int | str, hide_log_output: bool = False
 ) -> networkx.classes.coreviews.AtlasView | None:
     """
     Get all edges between two nodes
@@ -325,7 +377,7 @@ def get_edges_from_node_pair(
 
 
 def get_edges_from_nodes(
-    net: (networkx.MultiGraph | networkx.MultiDiGraph),
+    net: networkx.MultiGraph | networkx.MultiDiGraph,
     node_list: list[int | str],
     with_direction_flag: bool = False,
     length_field: str = LENGTH_FIELD,
