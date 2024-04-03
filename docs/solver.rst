@@ -52,8 +52,14 @@ A circular segment composed of several edges:
 
 A segment with an edge at one end that loops back onto itself:
 
-.. image:: /images/single_edge_loop_network.manual.png
+.. image:: /images/single_edge_loop_network.png
     :align: center
+
+A two segments with two further segments in the middle both connected to the same start and end nodes:
+
+.. image:: /images/dual_path_middle_network.png
+    :align: center
+    :scale: 50%
 
 Valid but Unsupported Segments
 ------------------------------
