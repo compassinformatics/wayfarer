@@ -326,6 +326,43 @@ def test_dual_path():
     assert [e.key for e in edges] == [1, 2, 3]
 
 
+def test_dual_path_middle_network():
+
+    net = networks.dual_path_middle_network()
+    edges = wayfarer.to_edges(net.edges(keys=True, data=True))
+
+    loop_nodes = loops.get_loop_nodes(edges)
+    # no loops (self-loops on one node are not included)
+    assert len(loop_nodes) == 0
+
+    # throw error
+    # networkx.exception.NetworkXError: Graph has no Eulerian paths
+    with pytest.raises(NetworkXError):
+        edges = routing.find_ordered_path(edges)
+
+    edge_id_list = [4, 2, 1]
+    edges = routing.solve_shortest_path_from_edges(net, edge_id_list)
+    assert [e.key for e in edges] == [4, 2, 1]
+
+    edge_id_list = [1, 2, 4]
+    edges = routing.solve_shortest_path_from_edges(net, edge_id_list)
+    assert [e.key for e in edges] == [1, 2, 4]
+
+    edge_id_list = [4, 3, 1]
+    edges = routing.solve_shortest_path_from_edges(net, edge_id_list)
+    assert [e.key for e in edges] == [4, 3, 1]
+
+    edge_id_list = [1, 3, 4]
+    edges = routing.solve_shortest_path_from_edges(net, edge_id_list)
+    assert [e.key for e in edges] == [1, 3, 4]
+
+    # throw error
+    # networkx.exception.NetworkXError: Graph has no Eulerian paths
+    edge_id_list = [1, 2, 3, 4]
+    with pytest.raises(NetworkXError):
+        edges = routing.solve_shortest_path_from_edges(net, edge_id_list)
+
+
 def test_loop_middle_network():
 
     net = networks.loop_middle_network()
@@ -420,7 +457,8 @@ if __name__ == "__main__":
     # test_t_network()
     # test_p_network()
     # test_double_loop_network()
-    test_circle_network()
+    test_dual_path_middle_network()
+    # test_circle_network()
     # test_dual_path()
     # test_loop_middle_network()
     # test_triple_loop_network()

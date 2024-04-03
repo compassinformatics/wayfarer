@@ -14,9 +14,9 @@ log = logging.getLogger("wayfarer")
 
 
 def solve_shortest_path(
-    net: (networkx.MultiGraph | networkx.MultiDiGraph),
-    start_node: (str | int),
-    end_node: (str | int),
+    net: networkx.MultiGraph | networkx.MultiDiGraph,
+    start_node: str | int,
+    end_node: str | int,
     with_direction_flag: bool = True,
     weight: str = LENGTH_FIELD,
 ):
@@ -30,7 +30,7 @@ def solve_shortest_path(
 
 
 def solve_shortest_path_from_nodes(
-    net: (networkx.MultiGraph | networkx.MultiDiGraph),
+    net: networkx.MultiGraph | networkx.MultiDiGraph,
     node_list: list[int | str],
     weight: str = LENGTH_FIELD,
 ) -> list[int | str]:
@@ -58,7 +58,7 @@ def solve_shortest_path_from_nodes(
 
 
 def solve_shortest_path_from_edges(
-    net: (networkx.MultiGraph | networkx.MultiDiGraph), edge_id_list: list[int | str]
+    net: networkx.MultiGraph | networkx.MultiDiGraph, edge_id_list: list[int | str]
 ):
     """
     Return a path routing from edge to edge, rather than
@@ -71,12 +71,27 @@ def solve_shortest_path_from_edges(
     edge_id_list = functions.get_unique_ordered_list(edge_id_list)
 
     edges = []
+    removed_edges = []
     previous_edge_nodes = []  # type: list[int | str]
 
     for edge_id in edge_id_list:
         edge = functions.get_edge_by_key(net, edge_id)
 
         end_nodes = [edge.start_node, edge.end_node]
+
+        # as a first-step remove any dual edges between points if they aren't in the input edge_id_list
+        # this is to handle loops in the middle of a path (with two edges connecting the same two nodes)
+        # simply setting the length to 0 for one pass isn't enough, as in the next
+        # solve in this loop the shorter edge is returned. If we remove the shorter edge we can
+        # ensure only the required edge is returned - see test_dual_path_middle_network
+
+        edges_between_nodes = functions.get_edges_from_nodes(
+            net, end_nodes, shortest_path_only=False
+        )
+        for path_edge in edges_between_nodes:
+            if path_edge.key not in edge_id_list:
+                removed_edges.append(path_edge)
+                functions.remove_edge(net, path_edge)
 
         if previous_edge_nodes:
             node_list = previous_edge_nodes + end_nodes
@@ -119,6 +134,10 @@ def solve_shortest_path_from_edges(
 
         previous_edge_nodes = end_nodes
 
+    # reset network by adding back removed edges
+    for removed_edge in removed_edges:
+        functions.add_single_edge(net, removed_edge)
+
     # edge ids are not unique at this step - due to the case with doubling-back see test_simple_reversed
     unique_edge_ids = functions.get_unique_ordered_list((e.key for e in edges))
     assert len(unique_edge_ids) <= len(edges)
@@ -150,13 +169,13 @@ def solve_shortest_path_from_edges(
 
 
 def solve_matching_path(
-    net: (networkx.MultiGraph | networkx.MultiDiGraph),
-    start_node: (str | int),
-    end_node: (str | int),
+    net: networkx.MultiGraph | networkx.MultiDiGraph,
+    start_node: str | int,
+    end_node: str | int,
     distance: int = 0,
     cutoff: int = 10,
-    include_key: (str | int | None) = None,
-) -> (list[Edge] | None):
+    include_key: str | int | None = None,
+) -> list[Edge] | None:
     """
     Return the path between the nodes that best matches the
     distance
@@ -211,10 +230,10 @@ def solve_matching_path(
 
 
 def solve_matching_path_from_nodes(
-    net: (networkx.MultiGraph | networkx.MultiDiGraph),
+    net: networkx.MultiGraph | networkx.MultiDiGraph,
     node_list: list[int | str],
     distance: int,
-) -> (list[Edge] | None):
+) -> list[Edge] | None:
     """
     From a list of unordered nodes find the longest path that connects all nodes
     Then rerun the solve from the start to the end of the path getting a path
@@ -279,16 +298,16 @@ def get_path_ends(edges: list[Edge]) -> tuple[(int | str), (int | str)]:
 
 
 def solve_all_simple_paths(
-    net: (networkx.MultiGraph | networkx.MultiDiGraph),
-    start_node: (int | str),
-    end_node: (int | str),
+    net: networkx.MultiGraph | networkx.MultiDiGraph,
+    start_node: int | str,
+    end_node: int | str,
     cutoff: int = 10,
 ) -> list:
     """
     Find all simple paths between the two nodes on the network.
     A simple path does not have any repeated nodes
-    A wrapper function for `all_simple_paths <
-    https://networkx.github.io/documentation/stable/reference/algorithms/generated/networkx.algorithms.simple_paths.all_simple_paths.html>`_
+    A wrapper function for
+    `all_simple_paths <https://networkx.github.io/documentation/stable/reference/algorithms/generated/networkx.algorithms.simple_paths.all_simple_paths.html>`_
     TODO add ``has_path`` check prior to running
 
     Args:
@@ -321,15 +340,15 @@ def solve_all_simple_paths(
 
 
 def solve_all_shortest_paths(
-    net: (networkx.MultiGraph | networkx.MultiDiGraph),
-    start_node: (int | str),
-    end_node: (int | str),
+    net: networkx.MultiGraph | networkx.MultiDiGraph,
+    start_node: int | str,
+    end_node: int | str,
 ):
     """
     Find all shortest paths between the two nodes on the network.
     This includes loops and repeated nodes.
-    A wrapper function for `all_shortest_paths <
-    https://networkx.github.io/documentation/stable/reference/algorithms/generated/networkx.algorithms.shortest_paths.generic.all_shortest_paths.html>`_
+    A wrapper function for
+    `all_shortest_paths <https://networkx.org/documentation/stable/reference/algorithms/generated/networkx.algorithms.shortest_paths.generic.all_shortest_paths.html>`_
     Unsure why less results are returned in the example below than when using all_simple_paths
 
     Args:
@@ -344,6 +363,7 @@ def solve_all_shortest_paths(
     >>> pths = solve_all_shortest_paths(net, 0, 2)
     >>> print(list(pths))
     [[0, 1, 2]]
+    # noqa: E501
     """
 
     all_shortest_paths = []
@@ -362,14 +382,14 @@ def solve_all_shortest_paths(
 
 def find_ordered_path(
     edges: list[Edge],
-    start_node: (int | str | None) = None,
+    start_node: int | str | None = None,
     with_direction_flag: bool = True,
 ) -> list[Edge]:
     """
-     Given a collection of randomly ordered connected edges, find the full
-     path, covering all edges, from one end to the other.
-     A start_node can be provided to return the edges in a specific direction.
-     Uses the
+    Given a collection of randomly ordered connected edges, find the full
+    path, covering all edges, from one end to the other.
+    A start_node can be provided to return the edges in a specific direction.
+    Uses the
     `eulerian_path <https://networkx.github.io/documentation/stable/reference/algorithms/generated/networkx.algorithms.euler.eulerian_path.html>`_
     function from networkx
     """

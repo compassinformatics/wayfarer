@@ -1,6 +1,7 @@
 """
 This file contains a collection of various network forms
 """
+
 from wayfarer import (
     EDGE_ID_FIELD,
     LENGTH_FIELD,
@@ -72,6 +73,20 @@ def dual_path_network():
         (2, 2, 3, 10),
         (3, 2, 3, 20),
     ]  # longer edge of 20 to create loop
+    return tuples_to_net(data)
+
+
+def dual_path_middle_network():
+    """
+    Network has 2 edges in the middle which are between the same nodes
+    """
+
+    data = [
+        (1, 1, 2, 10),
+        (2, 2, 3, 10),
+        (3, 2, 3, 20),  # longer edge of 20 to create loop
+        (4, 3, 4, 20),
+    ]
     return tuples_to_net(data)
 
 

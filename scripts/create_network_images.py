@@ -49,6 +49,7 @@ def create_network_images(out_folder):
         "reverse_network": networks.reverse_network,
         "t_network": networks.t_network,
         "dual_path_network": networks.dual_path_network,
+        "dual_path_middle_network": networks.dual_path_middle_network,
         "p_network": networks.p_network,
         "double_loop_network": networks.double_loop_network,
         "circle_network": networks.circle_network,
