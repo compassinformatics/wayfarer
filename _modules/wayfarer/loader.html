@@ -249,7 +249,7 @@
 
 <div class="viewcode-block" id="save_network_to_file">
 <a class="viewcode-back" href="../../api/loader.html#wayfarer.loader.save_network_to_file">[docs]</a>
-<span class="k">def</span> <span class="nf">save_network_to_file</span><span class="p">(</span><span class="n">net</span><span class="p">:</span> <span class="p">(</span><span class="n">MultiGraph</span> <span class="o">|</span> <span class="n">MultiDiGraph</span><span class="p">),</span> <span class="n">filename</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="k">def</span> <span class="nf">save_network_to_file</span><span class="p">(</span><span class="n">net</span><span class="p">:</span> <span class="n">MultiGraph</span> <span class="o">|</span> <span class="n">MultiDiGraph</span><span class="p">,</span> <span class="n">filename</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Save a network to a Python pickle file</span>
 <span class="sd">    Note these cannot be shared between different versions of Python</span>
@@ -269,7 +269,7 @@
 <a class="viewcode-back" href="../../api/loader.html#wayfarer.loader.load_network_from_file">[docs]</a>
 <span class="k">def</span> <span class="nf">load_network_from_file</span><span class="p">(</span>
     <span class="n">filename</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-<span class="p">)</span> <span class="o">-&gt;</span> <span class="p">(</span><span class="n">MultiGraph</span> <span class="o">|</span> <span class="n">MultiDiGraph</span><span class="p">):</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">MultiGraph</span> <span class="o">|</span> <span class="n">MultiDiGraph</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Return a network previously saved to a pickle file</span>
 
@@ -286,7 +286,7 @@
 
 <div class="viewcode-block" id="add_edge">
 <a class="viewcode-back" href="../../api/loader.html#wayfarer.loader.add_edge">[docs]</a>
-<span class="k">def</span> <span class="nf">add_edge</span><span class="p">(</span><span class="n">net</span><span class="p">:</span> <span class="p">(</span><span class="n">MultiGraph</span> <span class="o">|</span> <span class="n">MultiDiGraph</span><span class="p">),</span> <span class="n">properties</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">(</span><span class="nb">str</span> <span class="o">|</span> <span class="nb">int</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">add_edge</span><span class="p">(</span><span class="n">net</span><span class="p">:</span> <span class="n">MultiGraph</span> <span class="o">|</span> <span class="n">MultiDiGraph</span><span class="p">,</span> <span class="n">properties</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span> <span class="o">|</span> <span class="nb">int</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Add a new edge to a network based on a dict containing</span>
 <span class="sd">    the required wayfarer fields</span>
@@ -324,8 +324,8 @@
 <a class="viewcode-back" href="../../api/loader.html#wayfarer.loader.create_graph">[docs]</a>
 <span class="k">def</span> <span class="nf">create_graph</span><span class="p">(</span>
     <span class="n">use_reverse_lookup</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
-    <span class="n">graph_type</span><span class="p">:</span> <span class="p">(</span><span class="n">MultiGraph</span> <span class="o">|</span> <span class="n">MultiDiGraph</span><span class="p">)</span> <span class="o">=</span> <span class="n">MultiGraph</span><span class="p">,</span>
-<span class="p">)</span> <span class="o">-&gt;</span> <span class="p">(</span><span class="n">MultiGraph</span> <span class="o">|</span> <span class="n">MultiDiGraph</span><span class="p">):</span>
+    <span class="n">graph_type</span><span class="p">:</span> <span class="n">MultiGraph</span> <span class="o">|</span> <span class="n">MultiDiGraph</span> <span class="o">=</span> <span class="n">MultiGraph</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">MultiGraph</span> <span class="o">|</span> <span class="n">MultiDiGraph</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Create a new networkx graph, with an optional dictionary to store unique keys</span>
 <span class="sd">    for fast edge lookups</span>
@@ -363,12 +363,12 @@
 <span class="k">def</span> <span class="nf">load_network_from_records</span><span class="p">(</span>
     <span class="n">recs</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">,</span>
     <span class="n">use_reverse_lookup</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
-    <span class="n">graph_type</span><span class="p">:</span> <span class="p">(</span><span class="n">MultiGraph</span> <span class="o">|</span> <span class="n">MultiDiGraph</span><span class="p">)</span> <span class="o">=</span> <span class="n">MultiGraph</span><span class="p">,</span>
+    <span class="n">graph_type</span><span class="p">:</span> <span class="n">MultiGraph</span> <span class="o">|</span> <span class="n">MultiDiGraph</span> <span class="o">=</span> <span class="n">MultiGraph</span><span class="p">,</span>
     <span class="n">key_field</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">EDGE_ID_FIELD</span><span class="p">,</span>
     <span class="n">length_field</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">LENGTH_FIELD</span><span class="p">,</span>
     <span class="n">from_field</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">NODEID_FROM_FIELD</span><span class="p">,</span>
     <span class="n">to_field</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">NODEID_TO_FIELD</span><span class="p">,</span>
-<span class="p">)</span> <span class="o">-&gt;</span> <span class="p">(</span><span class="n">MultiGraph</span> <span class="o">|</span> <span class="n">MultiDiGraph</span><span class="p">):</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">MultiGraph</span> <span class="o">|</span> <span class="n">MultiDiGraph</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Create a new networkX graph based on a list of dictionary objects</span>
 <span class="sd">    containing the required wayfarer properties</span>
@@ -423,14 +423,14 @@
 <span class="k">def</span> <span class="nf">load_network_from_geometries</span><span class="p">(</span>
     <span class="n">recs</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">,</span>
     <span class="n">use_reverse_lookup</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
-    <span class="n">graph_type</span><span class="p">:</span> <span class="p">(</span><span class="n">MultiGraph</span> <span class="o">|</span> <span class="n">MultiDiGraph</span><span class="p">)</span> <span class="o">=</span> <span class="n">MultiGraph</span><span class="p">,</span>
+    <span class="n">graph_type</span><span class="p">:</span> <span class="n">MultiGraph</span> <span class="o">|</span> <span class="n">MultiDiGraph</span> <span class="o">=</span> <span class="n">MultiGraph</span><span class="p">,</span>
     <span class="n">skip_errors</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="n">strip_properties</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="n">keep_geometry</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="n">key_field</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">EDGE_ID_FIELD</span><span class="p">,</span>
     <span class="n">length_field</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">LENGTH_FIELD</span><span class="p">,</span>
     <span class="n">rounding</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span>
-<span class="p">)</span> <span class="o">-&gt;</span> <span class="p">(</span><span class="n">MultiGraph</span> <span class="o">|</span> <span class="n">MultiDiGraph</span><span class="p">):</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">MultiGraph</span> <span class="o">|</span> <span class="n">MultiDiGraph</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Create a new networkX graph using a list of recs of type ``__geo_interface__``</span>
 <span class="sd">    This allows networks to be created using libraries such as Fiona.</span>
