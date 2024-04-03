@@ -44,16 +44,19 @@ File Geodatabase Example
 Python Code Examples
 --------------------
 
+.. sourcecode:: python
 
     net = networkx.MultiGraph()
     net.add_edge(1, 2, key=1, **{LENGTH_FIELD: 10, EDGE_ID_FIELD: 1, NODEID_FROM_FIELD: 1, NODEID_TO_FIELD: 2})
     net.add_edge(2, 3, key=2, **{LENGTH_FIELD: 10, EDGE_ID_FIELD: 2, NODEID_FROM_FIELD: 2, NODEID_TO_FIELD: 3})
     net.add_edge(3, 4, key=3, **{LENGTH_FIELD: 10, EDGE_ID_FIELD: 3, NODEID_FROM_FIELD: 3, NODEID_TO_FIELD: 4})
     net.add_edge(4, 5, key=4, **{LENGTH_FIELD: 10, EDGE_ID_FIELD: 4, NODEID_FROM_FIELD: 4, NODEID_TO_FIELD: 5})
-    
+
     return net
 
 Alternate:
+
+.. sourcecode:: python
 
     recs = [
         {

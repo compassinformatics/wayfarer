@@ -1,3 +1,4 @@
+.. sourcecode:: python
 
     # add in any loops (this includes self-loops)
     # see https://networkx.org/documentation/stable/reference/algorithms/generated/networkx.algorithms.cycles.find_cycle.html

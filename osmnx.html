@@ -192,21 +192,28 @@
 <p>OSMNx brings ability to download OSM data directly into networks, plotting, and isochrone analysis.</p>
 <p>To handle one-way OSMNX adds in all paths twice - once with reverse flag true and once with it set to false.</p>
 <p>An edge is in the following format:</p>
-<p>(53128729, 53149520, 0, {‘osmid’: 6400955, ‘name’: ‘Hill Lane’, ‘highway’: ‘residential’, ‘oneway’: False, ‘reversed’: False, ‘length’: 118.926})</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="mi">53128729</span><span class="p">,</span> <span class="mi">53149520</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="p">{</span><span class="s1">'osmid'</span><span class="p">:</span> <span class="mi">6400955</span><span class="p">,</span> <span class="s1">'name'</span><span class="p">:</span> <span class="s1">'Hill Lane'</span><span class="p">,</span> <span class="s1">'highway'</span><span class="p">:</span> <span class="s1">'residential'</span><span class="p">,</span> <span class="s1">'oneway'</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s1">'reversed'</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s1">'length'</span><span class="p">:</span> <span class="mf">118.926</span><span class="p">})</span>
+</pre></div>
+</div>
 <p>See loader functions at <a class="reference external" href="https://github.com/gboeing/osmnx/blob/c034e2bf670bd8e9e46c5605bc989a7d916d58f3/osmnx/graph.py#L528">https://github.com/gboeing/osmnx/blob/c034e2bf670bd8e9e46c5605bc989a7d916d58f3/osmnx/graph.py#L528</a></p>
-<p>[(53017091, 53064327, 0, {‘osmid’: 6345781, ‘name’: ‘Rose Avenue’, ‘highway’: ‘residential’, ‘oneway’: False, ‘reversed’: False, ‘length’: 229.891}),
-(53017091, 53075599, 0, {‘osmid’: 6345781, ‘name’: ‘Rose Avenue’, ‘highway’: ‘residential’, ‘oneway’: False, ‘reversed’: True, ‘length’: 121.11399999999999,
-‘geometry’: &lt;LINESTRING (-122.248 37.826, -122.248 37.826, -122.248 37.826, -122.248 37….&gt;}),</p>
-<blockquote>
-<div><p># Shapely LineStrings support pickling: <a class="reference external" href="https://shapely.readthedocs.io/en/stable/geometry.html#pickling">https://shapely.readthedocs.io/en/stable/geometry.html#pickling</a></p>
-<p>Whereas <code class="docutils literal notranslate"><span class="pre">save_graphml</span></code> converts all attributes to strings, including attributes such as “<a href="#id1"><span class="problematic" id="id2">LEN_</span></a>” which wayfarer requires to be numeric.</p>
-<p># ox.save_graphml(G, filepath) # this converts numeric attributes to strings
-# <a class="reference external" href="https://github.com/gboeing/osmnx/blob/c123c39e5c69159f87802cd6bf6dd79204019744/osmnx/io.py#L158">https://github.com/gboeing/osmnx/blob/c123c39e5c69159f87802cd6bf6dd79204019744/osmnx/io.py#L158</a>
-# G = ox.load_graphml(filepath) # this sets the types based on field names</p>
-</div></blockquote>
-<p># geometry is expected as shapely.geometry.linestring.LineString</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">[(</span><span class="mi">53017091</span><span class="p">,</span> <span class="mi">53064327</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="p">{</span><span class="s1">'osmid'</span><span class="p">:</span> <span class="mi">6345781</span><span class="p">,</span> <span class="s1">'name'</span><span class="p">:</span> <span class="s1">'Rose Avenue'</span><span class="p">,</span> <span class="s1">'highway'</span><span class="p">:</span> <span class="s1">'residential'</span><span class="p">,</span> <span class="s1">'oneway'</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s1">'reversed'</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s1">'length'</span><span class="p">:</span> <span class="mf">229.891</span><span class="p">}),</span>
+<span class="p">(</span><span class="mi">53017091</span><span class="p">,</span> <span class="mi">53075599</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="p">{</span><span class="s1">'osmid'</span><span class="p">:</span> <span class="mi">6345781</span><span class="p">,</span> <span class="s1">'name'</span><span class="p">:</span> <span class="s1">'Rose Avenue'</span><span class="p">,</span> <span class="s1">'highway'</span><span class="p">:</span> <span class="s1">'residential'</span><span class="p">,</span> <span class="s1">'oneway'</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s1">'reversed'</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s1">'length'</span><span class="p">:</span> <span class="mf">121.11399999999999</span><span class="p">,</span>
+<span class="s1">'geometry'</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">LINESTRING</span> <span class="p">(</span><span class="o">-</span><span class="mf">122.248</span> <span class="mf">37.826</span><span class="p">,</span> <span class="o">-</span><span class="mf">122.248</span> <span class="mf">37.826</span><span class="p">,</span> <span class="o">-</span><span class="mf">122.248</span> <span class="mf">37.826</span><span class="p">,</span> <span class="o">-</span><span class="mf">122.248</span> <span class="mf">37.</span><span class="o">...&gt;</span><span class="p">}),</span>
+</pre></div>
+</div>
+<p>Shapely LineStrings support pickling: <a class="reference external" href="https://shapely.readthedocs.io/en/stable/geometry.html#pickling">https://shapely.readthedocs.io/en/stable/geometry.html#pickling</a>
+Whereas <code class="docutils literal notranslate"><span class="pre">save_graphml</span></code> converts all attributes to strings, including attributes such as <code class="docutils literal notranslate"><span class="pre">LEN_</span></code> which wayfarer requires to be numeric.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># ox.save_graphml(G, filepath) # this converts numeric attributes to strings</span>
+<span class="c1"># https://github.com/gboeing/osmnx/blob/c123c39e5c69159f87802cd6bf6dd79204019744/osmnx/io.py#L158</span>
+<span class="c1"># G = ox.load_graphml(filepath) # this sets the types based on field names</span>
+
+<span class="c1"># geometry is expected as shapely.geometry.linestring.LineString</span>
+</pre></div>
+</div>
 <p>Nodes are in the format:</p>
-<p>(53022625, {‘y’: 37.8207744, ‘x’: -122.2323445, ‘highway’: ‘turning_circle’, ‘street_count’: 1})</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="mi">53022625</span><span class="p">,</span> <span class="p">{</span><span class="s1">'y'</span><span class="p">:</span> <span class="mf">37.8207744</span><span class="p">,</span> <span class="s1">'x'</span><span class="p">:</span> <span class="o">-</span><span class="mf">122.2323445</span><span class="p">,</span> <span class="s1">'highway'</span><span class="p">:</span> <span class="s1">'turning_circle'</span><span class="p">,</span> <span class="s1">'street_count'</span><span class="p">:</span> <span class="mi">1</span><span class="p">})</span>
+</pre></div>
+</div>
 </section>
 
 
