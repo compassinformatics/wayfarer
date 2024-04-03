@@ -8,4 +8,4 @@ C:\VirtualEnvs\wayfarer\Scripts\activate.ps1
 
 pip install -e .
 pip install -r requirements.txt
-
+pip install -r requirements.demo.txt
