@@ -209,9 +209,9 @@
 <div class="viewcode-block" id="solve_shortest_path">
 <a class="viewcode-back" href="../../api/routing.html#wayfarer.routing.solve_shortest_path">[docs]</a>
 <span class="k">def</span> <span class="nf">solve_shortest_path</span><span class="p">(</span>
-    <span class="n">net</span><span class="p">:</span> <span class="n">networkx</span><span class="o">.</span><span class="n">MultiGraph</span> <span class="o">|</span> <span class="n">networkx</span><span class="o">.</span><span class="n">MultiDiGraph</span><span class="p">,</span>
-    <span class="n">start_node</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="nb">int</span><span class="p">,</span>
-    <span class="n">end_node</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">net</span><span class="p">:</span> <span class="p">(</span><span class="n">networkx</span><span class="o">.</span><span class="n">MultiGraph</span> <span class="o">|</span> <span class="n">networkx</span><span class="o">.</span><span class="n">MultiDiGraph</span><span class="p">),</span>
+    <span class="n">start_node</span><span class="p">:</span> <span class="p">(</span><span class="nb">str</span> <span class="o">|</span> <span class="nb">int</span><span class="p">),</span>
+    <span class="n">end_node</span><span class="p">:</span> <span class="p">(</span><span class="nb">str</span> <span class="o">|</span> <span class="nb">int</span><span class="p">),</span>
     <span class="n">with_direction_flag</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
     <span class="n">weight</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">LENGTH_FIELD</span><span class="p">,</span>
 <span class="p">):</span>
@@ -228,7 +228,7 @@
 <div class="viewcode-block" id="solve_shortest_path_from_nodes">
 <a class="viewcode-back" href="../../api/routing.html#wayfarer.routing.solve_shortest_path_from_nodes">[docs]</a>
 <span class="k">def</span> <span class="nf">solve_shortest_path_from_nodes</span><span class="p">(</span>
-    <span class="n">net</span><span class="p">:</span> <span class="n">networkx</span><span class="o">.</span><span class="n">MultiGraph</span> <span class="o">|</span> <span class="n">networkx</span><span class="o">.</span><span class="n">MultiDiGraph</span><span class="p">,</span>
+    <span class="n">net</span><span class="p">:</span> <span class="p">(</span><span class="n">networkx</span><span class="o">.</span><span class="n">MultiGraph</span> <span class="o">|</span> <span class="n">networkx</span><span class="o">.</span><span class="n">MultiDiGraph</span><span class="p">),</span>
     <span class="n">node_list</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span> <span class="o">|</span> <span class="nb">str</span><span class="p">],</span>
     <span class="n">weight</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">LENGTH_FIELD</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span> <span class="o">|</span> <span class="nb">str</span><span class="p">]:</span>
@@ -259,7 +259,7 @@
 <div class="viewcode-block" id="solve_shortest_path_from_edges">
 <a class="viewcode-back" href="../../api/routing.html#wayfarer.routing.solve_shortest_path_from_edges">[docs]</a>
 <span class="k">def</span> <span class="nf">solve_shortest_path_from_edges</span><span class="p">(</span>
-    <span class="n">net</span><span class="p">:</span> <span class="n">networkx</span><span class="o">.</span><span class="n">MultiGraph</span> <span class="o">|</span> <span class="n">networkx</span><span class="o">.</span><span class="n">MultiDiGraph</span><span class="p">,</span> <span class="n">edge_id_list</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span> <span class="o">|</span> <span class="nb">str</span><span class="p">]</span>
+    <span class="n">net</span><span class="p">:</span> <span class="p">(</span><span class="n">networkx</span><span class="o">.</span><span class="n">MultiGraph</span> <span class="o">|</span> <span class="n">networkx</span><span class="o">.</span><span class="n">MultiDiGraph</span><span class="p">),</span> <span class="n">edge_id_list</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span> <span class="o">|</span> <span class="nb">str</span><span class="p">]</span>
 <span class="p">):</span>
 <span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Return a path routing from edge to edge, rather than</span>
@@ -272,27 +272,12 @@
     <span class="n">edge_id_list</span> <span class="o">=</span> <span class="n">functions</span><span class="o">.</span><span class="n">get_unique_ordered_list</span><span class="p">(</span><span class="n">edge_id_list</span><span class="p">)</span>
 
     <span class="n">edges</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="n">removed_edges</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="n">previous_edge_nodes</span> <span class="o">=</span> <span class="p">[]</span>  <span class="c1"># type: list[int | str]</span>
 
     <span class="k">for</span> <span class="n">edge_id</span> <span class="ow">in</span> <span class="n">edge_id_list</span><span class="p">:</span>
         <span class="n">edge</span> <span class="o">=</span> <span class="n">functions</span><span class="o">.</span><span class="n">get_edge_by_key</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="n">edge_id</span><span class="p">)</span>
 
         <span class="n">end_nodes</span> <span class="o">=</span> <span class="p">[</span><span class="n">edge</span><span class="o">.</span><span class="n">start_node</span><span class="p">,</span> <span class="n">edge</span><span class="o">.</span><span class="n">end_node</span><span class="p">]</span>
-
-        <span class="c1"># as a first-step remove any dual edges between points if they aren't in the input edge_id_list</span>
-        <span class="c1"># this is to handle loops in the middle of a path (with two edges connecting the same two nodes)</span>
-        <span class="c1"># simply setting the length to 0 for one pass isn't enough, as in the next</span>
-        <span class="c1"># solve in this loop the shorter edge is returned. If we remove the shorter edge we can</span>
-        <span class="c1"># ensure only the required edge is returned - see test_dual_path_middle_network</span>
-
-        <span class="n">edges_between_nodes</span> <span class="o">=</span> <span class="n">functions</span><span class="o">.</span><span class="n">get_edges_from_nodes</span><span class="p">(</span>
-            <span class="n">net</span><span class="p">,</span> <span class="n">end_nodes</span><span class="p">,</span> <span class="n">shortest_path_only</span><span class="o">=</span><span class="kc">False</span>
-        <span class="p">)</span>
-        <span class="k">for</span> <span class="n">path_edge</span> <span class="ow">in</span> <span class="n">edges_between_nodes</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">path_edge</span><span class="o">.</span><span class="n">key</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">edge_id_list</span><span class="p">:</span>
-                <span class="n">removed_edges</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">path_edge</span><span class="p">)</span>
-                <span class="n">functions</span><span class="o">.</span><span class="n">remove_edge</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="n">path_edge</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">previous_edge_nodes</span><span class="p">:</span>
             <span class="n">node_list</span> <span class="o">=</span> <span class="n">previous_edge_nodes</span> <span class="o">+</span> <span class="n">end_nodes</span>
@@ -335,10 +320,6 @@
 
         <span class="n">previous_edge_nodes</span> <span class="o">=</span> <span class="n">end_nodes</span>
 
-    <span class="c1"># reset network by adding back removed edges</span>
-    <span class="k">for</span> <span class="n">removed_edge</span> <span class="ow">in</span> <span class="n">removed_edges</span><span class="p">:</span>
-        <span class="n">functions</span><span class="o">.</span><span class="n">add_single_edge</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="n">removed_edge</span><span class="p">)</span>
-
     <span class="c1"># edge ids are not unique at this step - due to the case with doubling-back see test_simple_reversed</span>
     <span class="n">unique_edge_ids</span> <span class="o">=</span> <span class="n">functions</span><span class="o">.</span><span class="n">get_unique_ordered_list</span><span class="p">((</span><span class="n">e</span><span class="o">.</span><span class="n">key</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">edges</span><span class="p">))</span>
     <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">unique_edge_ids</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="nb">len</span><span class="p">(</span><span class="n">edges</span><span class="p">)</span>
@@ -373,13 +354,13 @@
 <div class="viewcode-block" id="solve_matching_path">
 <a class="viewcode-back" href="../../api/routing.html#wayfarer.routing.solve_matching_path">[docs]</a>
 <span class="k">def</span> <span class="nf">solve_matching_path</span><span class="p">(</span>
-    <span class="n">net</span><span class="p">:</span> <span class="n">networkx</span><span class="o">.</span><span class="n">MultiGraph</span> <span class="o">|</span> <span class="n">networkx</span><span class="o">.</span><span class="n">MultiDiGraph</span><span class="p">,</span>
-    <span class="n">start_node</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="nb">int</span><span class="p">,</span>
-    <span class="n">end_node</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">net</span><span class="p">:</span> <span class="p">(</span><span class="n">networkx</span><span class="o">.</span><span class="n">MultiGraph</span> <span class="o">|</span> <span class="n">networkx</span><span class="o">.</span><span class="n">MultiDiGraph</span><span class="p">),</span>
+    <span class="n">start_node</span><span class="p">:</span> <span class="p">(</span><span class="nb">str</span> <span class="o">|</span> <span class="nb">int</span><span class="p">),</span>
+    <span class="n">end_node</span><span class="p">:</span> <span class="p">(</span><span class="nb">str</span> <span class="o">|</span> <span class="nb">int</span><span class="p">),</span>
     <span class="n">distance</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
     <span class="n">cutoff</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span>
-    <span class="n">include_key</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">Edge</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="n">include_key</span><span class="p">:</span> <span class="p">(</span><span class="nb">str</span> <span class="o">|</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span><span class="p">)</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="p">(</span><span class="nb">list</span><span class="p">[</span><span class="n">Edge</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Return the path between the nodes that best matches the</span>
 <span class="sd">    distance</span>
@@ -437,10 +418,10 @@
 <div class="viewcode-block" id="solve_matching_path_from_nodes">
 <a class="viewcode-back" href="../../api/routing.html#wayfarer.routing.solve_matching_path_from_nodes">[docs]</a>
 <span class="k">def</span> <span class="nf">solve_matching_path_from_nodes</span><span class="p">(</span>
-    <span class="n">net</span><span class="p">:</span> <span class="n">networkx</span><span class="o">.</span><span class="n">MultiGraph</span> <span class="o">|</span> <span class="n">networkx</span><span class="o">.</span><span class="n">MultiDiGraph</span><span class="p">,</span>
+    <span class="n">net</span><span class="p">:</span> <span class="p">(</span><span class="n">networkx</span><span class="o">.</span><span class="n">MultiGraph</span> <span class="o">|</span> <span class="n">networkx</span><span class="o">.</span><span class="n">MultiDiGraph</span><span class="p">),</span>
     <span class="n">node_list</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span> <span class="o">|</span> <span class="nb">str</span><span class="p">],</span>
     <span class="n">distance</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
-<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">Edge</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="p">(</span><span class="nb">list</span><span class="p">[</span><span class="n">Edge</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    From a list of unordered nodes find the longest path that connects all nodes</span>
 <span class="sd">    Then rerun the solve from the start to the end of the path getting a path</span>
@@ -511,16 +492,16 @@
 <div class="viewcode-block" id="solve_all_simple_paths">
 <a class="viewcode-back" href="../../api/routing.html#wayfarer.routing.solve_all_simple_paths">[docs]</a>
 <span class="k">def</span> <span class="nf">solve_all_simple_paths</span><span class="p">(</span>
-    <span class="n">net</span><span class="p">:</span> <span class="n">networkx</span><span class="o">.</span><span class="n">MultiGraph</span> <span class="o">|</span> <span class="n">networkx</span><span class="o">.</span><span class="n">MultiDiGraph</span><span class="p">,</span>
-    <span class="n">start_node</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">str</span><span class="p">,</span>
-    <span class="n">end_node</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">net</span><span class="p">:</span> <span class="p">(</span><span class="n">networkx</span><span class="o">.</span><span class="n">MultiGraph</span> <span class="o">|</span> <span class="n">networkx</span><span class="o">.</span><span class="n">MultiDiGraph</span><span class="p">),</span>
+    <span class="n">start_node</span><span class="p">:</span> <span class="p">(</span><span class="nb">int</span> <span class="o">|</span> <span class="nb">str</span><span class="p">),</span>
+    <span class="n">end_node</span><span class="p">:</span> <span class="p">(</span><span class="nb">int</span> <span class="o">|</span> <span class="nb">str</span><span class="p">),</span>
     <span class="n">cutoff</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Find all simple paths between the two nodes on the network.</span>
 <span class="sd">    A simple path does not have any repeated nodes</span>
-<span class="sd">    A wrapper function for</span>
-<span class="sd">    `all_simple_paths &lt;https://networkx.github.io/documentation/stable/reference/algorithms/generated/networkx.algorithms.simple_paths.all_simple_paths.html&gt;`_</span>
+<span class="sd">    A wrapper function for `all_simple_paths &lt;</span>
+<span class="sd">    https://networkx.github.io/documentation/stable/reference/algorithms/generated/networkx.algorithms.simple_paths.all_simple_paths.html&gt;`_</span>
 <span class="sd">    TODO add ``has_path`` check prior to running</span>
 
 <span class="sd">    Args:</span>
@@ -556,15 +537,15 @@
 <div class="viewcode-block" id="solve_all_shortest_paths">
 <a class="viewcode-back" href="../../api/routing.html#wayfarer.routing.solve_all_shortest_paths">[docs]</a>
 <span class="k">def</span> <span class="nf">solve_all_shortest_paths</span><span class="p">(</span>
-    <span class="n">net</span><span class="p">:</span> <span class="n">networkx</span><span class="o">.</span><span class="n">MultiGraph</span> <span class="o">|</span> <span class="n">networkx</span><span class="o">.</span><span class="n">MultiDiGraph</span><span class="p">,</span>
-    <span class="n">start_node</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">str</span><span class="p">,</span>
-    <span class="n">end_node</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">net</span><span class="p">:</span> <span class="p">(</span><span class="n">networkx</span><span class="o">.</span><span class="n">MultiGraph</span> <span class="o">|</span> <span class="n">networkx</span><span class="o">.</span><span class="n">MultiDiGraph</span><span class="p">),</span>
+    <span class="n">start_node</span><span class="p">:</span> <span class="p">(</span><span class="nb">int</span> <span class="o">|</span> <span class="nb">str</span><span class="p">),</span>
+    <span class="n">end_node</span><span class="p">:</span> <span class="p">(</span><span class="nb">int</span> <span class="o">|</span> <span class="nb">str</span><span class="p">),</span>
 <span class="p">):</span>
 <span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Find all shortest paths between the two nodes on the network.</span>
 <span class="sd">    This includes loops and repeated nodes.</span>
-<span class="sd">    A wrapper function for</span>
-<span class="sd">    `all_shortest_paths &lt;https://networkx.org/documentation/stable/reference/algorithms/generated/networkx.algorithms.shortest_paths.generic.all_shortest_paths.html&gt;`_</span>
+<span class="sd">    A wrapper function for `all_shortest_paths &lt;</span>
+<span class="sd">    https://networkx.github.io/documentation/stable/reference/algorithms/generated/networkx.algorithms.shortest_paths.generic.all_shortest_paths.html&gt;`_</span>
 <span class="sd">    Unsure why less results are returned in the example below than when using all_simple_paths</span>
 
 <span class="sd">    Args:</span>
@@ -579,7 +560,6 @@
 <span class="sd">    &gt;&gt;&gt; pths = solve_all_shortest_paths(net, 0, 2)</span>
 <span class="sd">    &gt;&gt;&gt; print(list(pths))</span>
 <span class="sd">    [[0, 1, 2]]</span>
-<span class="sd">    # noqa: E501</span>
 <span class="sd">    """</span>
 
     <span class="n">all_shortest_paths</span> <span class="o">=</span> <span class="p">[]</span>
@@ -601,14 +581,14 @@
 <a class="viewcode-back" href="../../api/routing.html#wayfarer.routing.find_ordered_path">[docs]</a>
 <span class="k">def</span> <span class="nf">find_ordered_path</span><span class="p">(</span>
     <span class="n">edges</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Edge</span><span class="p">],</span>
-    <span class="n">start_node</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">start_node</span><span class="p">:</span> <span class="p">(</span><span class="nb">int</span> <span class="o">|</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">)</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">with_direction_flag</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">Edge</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">"""</span>
-<span class="sd">    Given a collection of randomly ordered connected edges, find the full</span>
-<span class="sd">    path, covering all edges, from one end to the other.</span>
-<span class="sd">    A start_node can be provided to return the edges in a specific direction.</span>
-<span class="sd">    Uses the</span>
+<span class="sd">     Given a collection of randomly ordered connected edges, find the full</span>
+<span class="sd">     path, covering all edges, from one end to the other.</span>
+<span class="sd">     A start_node can be provided to return the edges in a specific direction.</span>
+<span class="sd">     Uses the</span>
 <span class="sd">    `eulerian_path &lt;https://networkx.github.io/documentation/stable/reference/algorithms/generated/networkx.algorithms.euler.eulerian_path.html&gt;`_</span>
 <span class="sd">    function from networkx</span>
 <span class="sd">    """</span>

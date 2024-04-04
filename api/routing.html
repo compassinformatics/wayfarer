@@ -222,17 +222,15 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="wayfarer.routing.find_ordered_path">
 <span class="sig-prename descclassname"><span class="pre">wayfarer.routing.</span></span><span class="sig-name descname"><span class="pre">find_ordered_path</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">edges</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_node</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">with_direction_flag</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/wayfarer/routing.html#find_ordered_path"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#wayfarer.routing.find_ordered_path" title="Link to this definition">¶</a></dt>
-<dd><p>Given a collection of randomly ordered connected edges, find the full
+<dd><blockquote>
+<div><p>Given a collection of randomly ordered connected edges, find the full
 path, covering all edges, from one end to the other.
 A start_node can be provided to return the edges in a specific direction.
-Uses the
-<a class="reference external" href="https://networkx.github.io/documentation/stable/reference/algorithms/generated/networkx.algorithms.euler.eulerian_path.html">eulerian_path</a>
-function from networkx</p>
-<dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Edge</span></code>]</span></p>
-</dd>
-</dl>
+Uses the</p>
+</div></blockquote>
+<p><a class="reference external" href="https://networkx.github.io/documentation/stable/reference/algorithms/generated/networkx.algorithms.euler.eulerian_path.html">eulerian_path</a>
+function from networkx
+:rtype: <span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Edge</span></code>]</span></p>
 </dd></dl>
 <dl class="py function">
 <dt class="sig sig-object py" id="wayfarer.routing.get_path_ends">
@@ -253,8 +251,8 @@ TODO Check if the edges form a loop</p>
 <span class="sig-prename descclassname"><span class="pre">wayfarer.routing.</span></span><span class="sig-name descname"><span class="pre">solve_all_shortest_paths</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">net</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_node</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/wayfarer/routing.html#solve_all_shortest_paths"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#wayfarer.routing.solve_all_shortest_paths" title="Link to this definition">¶</a></dt>
 <dd><p>Find all shortest paths between the two nodes on the network.
 This includes loops and repeated nodes.
-A wrapper function for
-<a class="reference external" href="https://networkx.org/documentation/stable/reference/algorithms/generated/networkx.algorithms.shortest_paths.generic.all_shortest_paths.html">all_shortest_paths</a>
+A wrapper function for <a href="#id1"><span class="problematic" id="id2">`all_shortest_paths &lt;
+https://networkx.github.io/documentation/stable/reference/algorithms/generated/networkx.algorithms.shortest_paths.generic.all_shortest_paths.html&gt;`_</span></a>
 Unsure why less results are returned in the example below than when using all_simple_paths</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -273,7 +271,6 @@ Unsure why less results are returned in the example below than when using all_si
 <span class="gp">&gt;&gt;&gt; </span><span class="n">pths</span> <span class="o">=</span> <span class="n">solve_all_shortest_paths</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">pths</span><span class="p">))</span>
 <span class="go">[[0, 1, 2]]</span>
-<span class="go"># noqa: E501</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -282,8 +279,8 @@ Unsure why less results are returned in the example below than when using all_si
 <span class="sig-prename descclassname"><span class="pre">wayfarer.routing.</span></span><span class="sig-name descname"><span class="pre">solve_all_simple_paths</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">net</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cutoff</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/wayfarer/routing.html#solve_all_simple_paths"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#wayfarer.routing.solve_all_simple_paths" title="Link to this definition">¶</a></dt>
 <dd><p>Find all simple paths between the two nodes on the network.
 A simple path does not have any repeated nodes
-A wrapper function for
-<a class="reference external" href="https://networkx.github.io/documentation/stable/reference/algorithms/generated/networkx.algorithms.simple_paths.all_simple_paths.html">all_simple_paths</a>
+A wrapper function for <a href="#id3"><span class="problematic" id="id4">`all_simple_paths &lt;
+https://networkx.github.io/documentation/stable/reference/algorithms/generated/networkx.algorithms.simple_paths.all_simple_paths.html&gt;`_</span></a>
 TODO add <code class="docutils literal notranslate"><span class="pre">has_path</span></code> check prior to running</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
