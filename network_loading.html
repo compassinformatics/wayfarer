@@ -50,7 +50,7 @@
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=83e35b93" />
     <link rel="stylesheet" type="text/css" href="_static/material.css?v=79c92029" />
     <script src="_static/documentation_options.js?v=f2a433a1"></script>
-    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -224,54 +224,45 @@ contain, and the same attributes are used for each of them.</p>
 </section>
 <section id="python-code-examples">
 <h2 id="python-code-examples">Python Code Examples<a class="headerlink" href="#python-code-examples" title="Link to this heading">¶</a></h2>
-<blockquote>
-<div><p>net = networkx.MultiGraph()
-net.add_edge(1, 2, key=1, <a href="#id1"><span class="problematic" id="id2">**</span></a>{LENGTH_FIELD: 10, EDGE_ID_FIELD: 1, NODEID_FROM_FIELD: 1, NODEID_TO_FIELD: 2})
-net.add_edge(2, 3, key=2, <a href="#id3"><span class="problematic" id="id4">**</span></a>{LENGTH_FIELD: 10, EDGE_ID_FIELD: 2, NODEID_FROM_FIELD: 2, NODEID_TO_FIELD: 3})
-net.add_edge(3, 4, key=3, <a href="#id5"><span class="problematic" id="id6">**</span></a>{LENGTH_FIELD: 10, EDGE_ID_FIELD: 3, NODEID_FROM_FIELD: 3, NODEID_TO_FIELD: 4})
-net.add_edge(4, 5, key=4, <a href="#id7"><span class="problematic" id="id8">**</span></a>{LENGTH_FIELD: 10, EDGE_ID_FIELD: 4, NODEID_FROM_FIELD: 4, NODEID_TO_FIELD: 5})</p>
-<p>return net</p>
-</div></blockquote>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">net</span> <span class="o">=</span> <span class="n">networkx</span><span class="o">.</span><span class="n">MultiGraph</span><span class="p">()</span>
+<span class="n">net</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="o">**</span><span class="p">{</span><span class="n">LENGTH_FIELD</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="n">EDGE_ID_FIELD</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="n">NODEID_FROM_FIELD</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="n">NODEID_TO_FIELD</span><span class="p">:</span> <span class="mi">2</span><span class="p">})</span>
+<span class="n">net</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="o">**</span><span class="p">{</span><span class="n">LENGTH_FIELD</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="n">EDGE_ID_FIELD</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="n">NODEID_FROM_FIELD</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="n">NODEID_TO_FIELD</span><span class="p">:</span> <span class="mi">3</span><span class="p">})</span>
+<span class="n">net</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="o">**</span><span class="p">{</span><span class="n">LENGTH_FIELD</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="n">EDGE_ID_FIELD</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="n">NODEID_FROM_FIELD</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="n">NODEID_TO_FIELD</span><span class="p">:</span> <span class="mi">4</span><span class="p">})</span>
+<span class="n">net</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="o">**</span><span class="p">{</span><span class="n">LENGTH_FIELD</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="n">EDGE_ID_FIELD</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="n">NODEID_FROM_FIELD</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="n">NODEID_TO_FIELD</span><span class="p">:</span> <span class="mi">5</span><span class="p">})</span>
+
+<span class="k">return</span> <span class="n">net</span>
+</pre></div>
+</div>
 <p>Alternate:</p>
-<blockquote>
-<div><dl>
-<dt>recs = [</dt><dd><dl class="simple">
-<dt>{</dt><dd><p>EDGE_ID_FIELD: 1,
-NODEID_FROM_FIELD: 1,
-NODEID_TO_FIELD: 2,
-LENGTH_FIELD: 10,</p>
-</dd>
-</dl>
-<p>},
-{</p>
-<blockquote>
-<div><p>EDGE_ID_FIELD: 2,
-NODEID_FROM_FIELD: 2,
-NODEID_TO_FIELD: 3,
-LENGTH_FIELD: 10,</p>
-</div></blockquote>
-<p>},
-{</p>
-<blockquote>
-<div><p>EDGE_ID_FIELD: 3,
-NODEID_FROM_FIELD: 3,
-NODEID_TO_FIELD: 4,
-LENGTH_FIELD: 10,</p>
-</div></blockquote>
-<p>},
-{</p>
-<blockquote>
-<div><p>EDGE_ID_FIELD: 4,
-NODEID_FROM_FIELD: 4,
-NODEID_TO_FIELD: 5,
-LENGTH_FIELD: 10,</p>
-</div></blockquote>
-<p>},</p>
-</dd>
-</dl>
-<p>]
-return loader.load_network_from_records(recs)</p>
-</div></blockquote>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">recs</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span>
+        <span class="n">EDGE_ID_FIELD</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="n">NODEID_FROM_FIELD</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="n">NODEID_TO_FIELD</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+        <span class="n">LENGTH_FIELD</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="n">EDGE_ID_FIELD</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+        <span class="n">NODEID_FROM_FIELD</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+        <span class="n">NODEID_TO_FIELD</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+        <span class="n">LENGTH_FIELD</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="n">EDGE_ID_FIELD</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+        <span class="n">NODEID_FROM_FIELD</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+        <span class="n">NODEID_TO_FIELD</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+        <span class="n">LENGTH_FIELD</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="n">EDGE_ID_FIELD</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+        <span class="n">NODEID_FROM_FIELD</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+        <span class="n">NODEID_TO_FIELD</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+        <span class="n">LENGTH_FIELD</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+    <span class="p">},</span>
+<span class="p">]</span>
+<span class="k">return</span> <span class="n">loader</span><span class="o">.</span><span class="n">load_network_from_records</span><span class="p">(</span><span class="n">recs</span><span class="p">)</span>
+</pre></div>
+</div>
 </section>
 </section>
 
@@ -298,7 +289,7 @@ return loader.load_network_from_records(recs)</p>
               
           </div>
             Created using
-            <a href="http://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
+            <a href="http://www.sphinx-doc.org/">Sphinx</a> 7.3.7.
              and
             <a href="https://github.com/bashtage/sphinx-material/">Material for
               Sphinx</a>

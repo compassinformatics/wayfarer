@@ -49,7 +49,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=83e35b93" />
     <link rel="stylesheet" type="text/css" href="../../_static/material.css?v=79c92029" />
     <script src="../../_static/documentation_options.js?v=f2a433a1"></script>
-    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -191,6 +191,7 @@
 <span></span><span class="sd">"""</span>
 <span class="sd">This module contains functions related to networks and routing</span>
 <span class="sd">"""</span>
+
 <span class="kn">import</span> <span class="nn">itertools</span>
 <span class="kn">import</span> <span class="nn">copy</span>
 <span class="kn">import</span> <span class="nn">logging</span>
@@ -250,7 +251,7 @@
 
 <div class="viewcode-block" id="edges_to_graph">
 <a class="viewcode-back" href="../../api/functions.html#wayfarer.functions.edges_to_graph">[docs]</a>
-<span class="k">def</span> <span class="nf">edges_to_graph</span><span class="p">(</span><span class="n">edges</span><span class="p">:</span> <span class="p">(</span><span class="nb">list</span><span class="p">[</span><span class="n">Edge</span><span class="p">]</span> <span class="o">|</span> <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">]))</span> <span class="o">-&gt;</span> <span class="n">networkx</span><span class="o">.</span><span class="n">MultiGraph</span><span class="p">:</span>
+<span class="k">def</span> <span class="nf">edges_to_graph</span><span class="p">(</span><span class="n">edges</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Edge</span><span class="p">]</span> <span class="o">|</span> <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">networkx</span><span class="o">.</span><span class="n">MultiGraph</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Utility function to create a new MultiGraph based on a list of edges</span>
 
@@ -277,13 +278,35 @@
 
 
 
+<div class="viewcode-block" id="add_single_edge">
+<a class="viewcode-back" href="../../api/functions.html#wayfarer.functions.add_single_edge">[docs]</a>
+<span class="k">def</span> <span class="nf">add_single_edge</span><span class="p">(</span><span class="n">net</span><span class="p">:</span> <span class="n">networkx</span><span class="o">.</span><span class="n">MultiGraph</span> <span class="o">|</span> <span class="n">networkx</span><span class="o">.</span><span class="n">MultiDiGraph</span><span class="p">,</span> <span class="n">edge</span><span class="p">:</span> <span class="n">Edge</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Add an edge class to a network</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        net: A network</span>
+<span class="sd">        edge: The edge to add to the network</span>
+<span class="sd">        end_node: The end node of the edge</span>
+
+<span class="sd">    &gt;&gt;&gt; net = networkx.MultiGraph()</span>
+<span class="sd">    &gt;&gt;&gt; edge = Edge(start_node=1, end_node=2, key='A', attributes={'LEN_': 10})</span>
+<span class="sd">    &gt;&gt;&gt; add_single_edge(net, edge)</span>
+<span class="sd">    Edge(start_node=1, end_node=2, key='A', attributes={'LEN_': 10})</span>
+<span class="sd">    &gt;&gt;&gt; print(net)</span>
+<span class="sd">    MultiGraph with 2 nodes and 1 edges</span>
+<span class="sd">    """</span>
+    <span class="k">return</span> <span class="n">add_edge</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="o">**</span><span class="n">edge</span><span class="o">.</span><span class="n">_asdict</span><span class="p">())</span></div>
+
+
+
 <div class="viewcode-block" id="add_edge">
 <a class="viewcode-back" href="../../api/functions.html#wayfarer.functions.add_edge">[docs]</a>
 <span class="k">def</span> <span class="nf">add_edge</span><span class="p">(</span>
-    <span class="n">net</span><span class="p">:</span> <span class="p">(</span><span class="n">networkx</span><span class="o">.</span><span class="n">MultiGraph</span> <span class="o">|</span> <span class="n">networkx</span><span class="o">.</span><span class="n">MultiDiGraph</span><span class="p">),</span>
-    <span class="n">start_node</span><span class="p">:</span> <span class="p">(</span><span class="nb">int</span> <span class="o">|</span> <span class="nb">str</span><span class="p">),</span>
-    <span class="n">end_node</span><span class="p">:</span> <span class="p">(</span><span class="nb">int</span> <span class="o">|</span> <span class="nb">str</span><span class="p">),</span>
-    <span class="n">key</span><span class="p">:</span> <span class="p">(</span><span class="nb">int</span> <span class="o">|</span> <span class="nb">str</span><span class="p">),</span>
+    <span class="n">net</span><span class="p">:</span> <span class="n">networkx</span><span class="o">.</span><span class="n">MultiGraph</span> <span class="o">|</span> <span class="n">networkx</span><span class="o">.</span><span class="n">MultiDiGraph</span><span class="p">,</span>
+    <span class="n">start_node</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">end_node</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">key</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">str</span><span class="p">,</span>
     <span class="n">attributes</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Edge</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">"""</span>
@@ -316,22 +339,59 @@
 
 
 
+<div class="viewcode-block" id="remove_edge_by_key">
+<a class="viewcode-back" href="../../api/functions.html#wayfarer.functions.remove_edge_by_key">[docs]</a>
 <span class="k">def</span> <span class="nf">remove_edge_by_key</span><span class="p">(</span>
-    <span class="n">net</span><span class="p">:</span> <span class="p">(</span><span class="n">networkx</span><span class="o">.</span><span class="n">MultiGraph</span> <span class="o">|</span> <span class="n">networkx</span><span class="o">.</span><span class="n">MultiDiGraph</span><span class="p">),</span> <span class="n">key</span><span class="p">:</span> <span class="p">(</span><span class="nb">int</span> <span class="o">|</span> <span class="nb">str</span><span class="p">)</span>
+    <span class="n">net</span><span class="p">:</span> <span class="n">networkx</span><span class="o">.</span><span class="n">MultiGraph</span> <span class="o">|</span> <span class="n">networkx</span><span class="o">.</span><span class="n">MultiDiGraph</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">str</span>
 <span class="p">):</span>
-    <span class="n">edge</span> <span class="o">=</span> <span class="n">get_edge_by_key</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">with_data</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-    <span class="n">net</span><span class="o">.</span><span class="n">remove_edge</span><span class="p">(</span><span class="n">edge</span><span class="o">.</span><span class="n">start_node</span><span class="p">,</span> <span class="n">edge</span><span class="o">.</span><span class="n">end_node</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">edge</span><span class="o">.</span><span class="n">key</span><span class="p">)</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Remove an edge from a network using its unique key.</span>
 
+<span class="sd">    Args:</span>
+<span class="sd">        net: A network</span>
+<span class="sd">        key: The unique key of the edge</span>
+
+<span class="sd">    &gt;&gt;&gt; net = networkx.MultiGraph()</span>
+<span class="sd">    &gt;&gt;&gt; add_edge(net, 1, 2, "A", {"LEN_": 10})</span>
+<span class="sd">    Edge(start_node=1, end_node=2, key='A', attributes={'LEN_': 10})</span>
+<span class="sd">    &gt;&gt;&gt; print(len(net.edges()))</span>
+<span class="sd">    1</span>
+<span class="sd">    &gt;&gt;&gt; remove_edge_by_key(net, "A")</span>
+<span class="sd">    &gt;&gt;&gt; print(len(net.edges()))</span>
+<span class="sd">    0</span>
+<span class="sd">    """</span>
+    <span class="n">edge</span> <span class="o">=</span> <span class="n">get_edge_by_key</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">with_data</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">remove_edge</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="n">edge</span><span class="p">)</span></div>
+
+
+
+<span class="k">def</span> <span class="nf">remove_edge</span><span class="p">(</span><span class="n">net</span><span class="p">:</span> <span class="n">networkx</span><span class="o">.</span><span class="n">MultiGraph</span> <span class="o">|</span> <span class="n">networkx</span><span class="o">.</span><span class="n">MultiDiGraph</span><span class="p">,</span> <span class="n">edge</span><span class="p">:</span> <span class="n">Edge</span><span class="p">):</span>
+    <span class="n">net</span><span class="o">.</span><span class="n">remove_edge</span><span class="p">(</span><span class="n">edge</span><span class="o">.</span><span class="n">start_node</span><span class="p">,</span> <span class="n">edge</span><span class="o">.</span><span class="n">end_node</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">edge</span><span class="o">.</span><span class="n">key</span><span class="p">)</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Remove an edge from a network using its unique key.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        net: A network</span>
+<span class="sd">        key: The unique key of the edge</span>
+
+<span class="sd">    &gt;&gt;&gt; net = networkx.MultiGraph()</span>
+<span class="sd">    &gt;&gt;&gt; edge = add_edge(net, 1, 2, "A", {"LEN_": 10})</span>
+<span class="sd">    &gt;&gt;&gt; print(len(net.edges()))</span>
+<span class="sd">    1</span>
+<span class="sd">    &gt;&gt;&gt; remove_edge(net, edge)</span>
+<span class="sd">    &gt;&gt;&gt; print(len(net.edges()))</span>
+<span class="sd">    0</span>
+<span class="sd">    """</span>
     <span class="c1"># remove from the keys dictionary if it exists</span>
     <span class="k">if</span> <span class="s2">"keys"</span> <span class="ow">in</span> <span class="n">net</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
-        <span class="k">del</span> <span class="n">net</span><span class="o">.</span><span class="n">graph</span><span class="p">[</span><span class="s2">"keys"</span><span class="p">][</span><span class="n">key</span><span class="p">]</span>
+        <span class="k">del</span> <span class="n">net</span><span class="o">.</span><span class="n">graph</span><span class="p">[</span><span class="s2">"keys"</span><span class="p">][</span><span class="n">edge</span><span class="o">.</span><span class="n">key</span><span class="p">]</span>
 
 
 <div class="viewcode-block" id="get_edge_by_key">
 <a class="viewcode-back" href="../../api/functions.html#wayfarer.functions.get_edge_by_key">[docs]</a>
 <span class="k">def</span> <span class="nf">get_edge_by_key</span><span class="p">(</span>
-    <span class="n">net</span><span class="p">:</span> <span class="p">(</span><span class="n">networkx</span><span class="o">.</span><span class="n">MultiGraph</span> <span class="o">|</span> <span class="n">networkx</span><span class="o">.</span><span class="n">MultiDiGraph</span><span class="p">),</span>
-    <span class="n">key</span><span class="p">:</span> <span class="p">(</span><span class="nb">int</span> <span class="o">|</span> <span class="nb">str</span><span class="p">),</span>
+    <span class="n">net</span><span class="p">:</span> <span class="n">networkx</span><span class="o">.</span><span class="n">MultiGraph</span> <span class="o">|</span> <span class="n">networkx</span><span class="o">.</span><span class="n">MultiDiGraph</span><span class="p">,</span>
+    <span class="n">key</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">str</span><span class="p">,</span>
     <span class="n">with_data</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Edge</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">"""</span>
@@ -407,9 +467,7 @@
 
 <div class="viewcode-block" id="get_all_complex_paths">
 <a class="viewcode-back" href="../../api/functions.html#wayfarer.functions.get_all_complex_paths">[docs]</a>
-<span class="k">def</span> <span class="nf">get_all_complex_paths</span><span class="p">(</span>
-    <span class="n">net</span><span class="p">:</span> <span class="p">(</span><span class="n">networkx</span><span class="o">.</span><span class="n">MultiGraph</span> <span class="o">|</span> <span class="n">networkx</span><span class="o">.</span><span class="n">MultiDiGraph</span><span class="p">),</span> <span class="n">node_list</span>
-<span class="p">):</span>
+<span class="k">def</span> <span class="nf">get_all_complex_paths</span><span class="p">(</span><span class="n">net</span><span class="p">:</span> <span class="n">networkx</span><span class="o">.</span><span class="n">MultiGraph</span> <span class="o">|</span> <span class="n">networkx</span><span class="o">.</span><span class="n">MultiDiGraph</span><span class="p">,</span> <span class="n">node_list</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    For a node path, find any self-looping edges on a node</span>
 <span class="sd">    and add these combinations to the possible path list</span>
@@ -505,14 +563,14 @@
 
 
 
-<span class="k">def</span> <span class="nf">get_path_length</span><span class="p">(</span><span class="n">path_edges</span><span class="p">):</span>
-    <span class="k">return</span> <span class="nb">sum</span><span class="p">([</span><span class="n">edge</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="n">LENGTH_FIELD</span><span class="p">]</span> <span class="k">for</span> <span class="n">edge</span> <span class="ow">in</span> <span class="n">path_edges</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">get_path_length</span><span class="p">(</span><span class="n">path_edges</span><span class="p">,</span> <span class="n">length_field</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">LENGTH_FIELD</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">sum</span><span class="p">([</span><span class="n">edge</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="n">length_field</span><span class="p">]</span> <span class="k">for</span> <span class="n">edge</span> <span class="ow">in</span> <span class="n">path_edges</span><span class="p">])</span>
 
 
 <div class="viewcode-block" id="get_edges_from_node_pair">
 <a class="viewcode-back" href="../../api/functions.html#wayfarer.functions.get_edges_from_node_pair">[docs]</a>
 <span class="k">def</span> <span class="nf">get_edges_from_node_pair</span><span class="p">(</span>
-    <span class="n">net</span><span class="p">,</span> <span class="n">start_node</span><span class="p">:</span> <span class="p">(</span><span class="nb">int</span> <span class="o">|</span> <span class="nb">str</span><span class="p">),</span> <span class="n">end_node</span><span class="p">:</span> <span class="p">(</span><span class="nb">int</span> <span class="o">|</span> <span class="nb">str</span><span class="p">),</span> <span class="n">hide_log_output</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">net</span><span class="p">,</span> <span class="n">start_node</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">str</span><span class="p">,</span> <span class="n">end_node</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">str</span><span class="p">,</span> <span class="n">hide_log_output</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">networkx</span><span class="o">.</span><span class="n">classes</span><span class="o">.</span><span class="n">coreviews</span><span class="o">.</span><span class="n">AtlasView</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Get all edges between two nodes</span>
@@ -544,16 +602,20 @@
 <div class="viewcode-block" id="get_edges_from_nodes">
 <a class="viewcode-back" href="../../api/functions.html#wayfarer.functions.get_edges_from_nodes">[docs]</a>
 <span class="k">def</span> <span class="nf">get_edges_from_nodes</span><span class="p">(</span>
-    <span class="n">net</span><span class="p">:</span> <span class="p">(</span><span class="n">networkx</span><span class="o">.</span><span class="n">MultiGraph</span> <span class="o">|</span> <span class="n">networkx</span><span class="o">.</span><span class="n">MultiDiGraph</span><span class="p">),</span>
+    <span class="n">net</span><span class="p">:</span> <span class="n">networkx</span><span class="o">.</span><span class="n">MultiGraph</span> <span class="o">|</span> <span class="n">networkx</span><span class="o">.</span><span class="n">MultiDiGraph</span><span class="p">,</span>
     <span class="n">node_list</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span> <span class="o">|</span> <span class="nb">str</span><span class="p">],</span>
     <span class="n">with_direction_flag</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-    <span class="n">length_field</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">LENGTH_FIELD</span><span class="p">,</span>
+    <span class="n">length_field</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">LENGTH_FIELD</span><span class="p">,</span>
     <span class="n">return_unique</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">shortest_path_only</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">Edge</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">"""</span>
-<span class="sd">    From a list of nodes, create pairs and then get the shortest edge between the two nodes</span>
-<span class="sd">    Set with_direction_flag to add a new attribute to the edge to show if it is matching the</span>
-<span class="sd">    direction of the path</span>
+<span class="sd">    From a list of nodes, create pairs and then get all the edges between the two nodes.</span>
+<span class="sd">    By default only the shortest edges between the edges will be returned, but setting</span>
+<span class="sd">    ``shortest_path_only`` to ``False`` will return all edges ignoring the ``length_field``.</span>
+<span class="sd">    Set ``with_direction_flag`` to add a new attribute to the edge to show if it is matching the</span>
+<span class="sd">    direction of the path.</span>
+<span class="sd">    ``return_unique`` ensures only one copy of each edge is returned in the case of loops</span>
 <span class="sd">    """</span>
     <span class="n">edge_list</span> <span class="o">=</span> <span class="p">[]</span>
 
@@ -561,15 +623,28 @@
 
     <span class="k">for</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">node_pairs</span><span class="p">:</span>
         <span class="n">edges</span> <span class="o">=</span> <span class="n">get_edges_from_node_pair</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+        <span class="n">node_edges</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">if</span> <span class="n">edges</span><span class="p">:</span>
-            <span class="n">key</span><span class="p">,</span> <span class="n">attributes</span> <span class="o">=</span> <span class="n">get_shortest_edge</span><span class="p">(</span><span class="n">edges</span><span class="p">,</span> <span class="n">length_field</span><span class="p">)</span>
-            <span class="n">atts_copy</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">attributes</span><span class="p">)</span>
-            <span class="n">edge</span> <span class="o">=</span> <span class="n">Edge</span><span class="p">(</span><span class="n">start_node</span><span class="o">=</span><span class="n">u</span><span class="p">,</span> <span class="n">end_node</span><span class="o">=</span><span class="n">v</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">key</span><span class="p">,</span> <span class="n">attributes</span><span class="o">=</span><span class="n">atts_copy</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">shortest_path_only</span><span class="p">:</span>
+                <span class="n">key</span><span class="p">,</span> <span class="n">attributes</span> <span class="o">=</span> <span class="n">get_shortest_edge</span><span class="p">(</span><span class="n">edges</span><span class="p">,</span> <span class="n">length_field</span><span class="p">)</span>
+                <span class="n">atts_copy</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">attributes</span><span class="p">)</span>
+                <span class="n">edge</span> <span class="o">=</span> <span class="n">Edge</span><span class="p">(</span><span class="n">start_node</span><span class="o">=</span><span class="n">u</span><span class="p">,</span> <span class="n">end_node</span><span class="o">=</span><span class="n">v</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">key</span><span class="p">,</span> <span class="n">attributes</span><span class="o">=</span><span class="n">atts_copy</span><span class="p">)</span>
+                <span class="n">node_edges</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">edge</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1"># get all edges between the nodes, ignoring the length_field</span>
+                <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">attributes</span> <span class="ow">in</span> <span class="n">edges</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                    <span class="n">atts_copy</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">attributes</span><span class="p">)</span>
+                    <span class="n">node_edges</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                        <span class="n">Edge</span><span class="p">(</span><span class="n">start_node</span><span class="o">=</span><span class="n">u</span><span class="p">,</span> <span class="n">end_node</span><span class="o">=</span><span class="n">v</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">key</span><span class="p">,</span> <span class="n">attributes</span><span class="o">=</span><span class="n">atts_copy</span><span class="p">)</span>
+                    <span class="p">)</span>
 
             <span class="k">if</span> <span class="n">with_direction_flag</span><span class="p">:</span>
-                <span class="n">add_direction_flag</span><span class="p">(</span><span class="o">**</span><span class="n">edge</span><span class="o">.</span><span class="n">_asdict</span><span class="p">())</span>  <span class="c1"># unpack namedtuple to **kwargs</span>
+                <span class="k">for</span> <span class="n">edge</span> <span class="ow">in</span> <span class="n">node_edges</span><span class="p">:</span>
+                    <span class="n">add_direction_flag</span><span class="p">(</span>
+                        <span class="o">**</span><span class="n">edge</span><span class="o">.</span><span class="n">_asdict</span><span class="p">()</span>
+                    <span class="p">)</span>  <span class="c1"># unpack namedtuple to **kwargs</span>
 
-            <span class="n">edge_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">edge</span><span class="p">)</span>
+            <span class="n">edge_list</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">node_edges</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">return_unique</span><span class="p">:</span>
         <span class="k">return</span> <span class="nb">list</span><span class="p">({</span><span class="n">v</span><span class="o">.</span><span class="n">key</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">edge_list</span><span class="p">}</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
@@ -580,7 +655,7 @@
 
 <div class="viewcode-block" id="get_shortest_edge">
 <a class="viewcode-back" href="../../api/functions.html#wayfarer.functions.get_shortest_edge">[docs]</a>
-<span class="k">def</span> <span class="nf">get_shortest_edge</span><span class="p">(</span><span class="n">edges</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">length_field</span><span class="o">=</span><span class="n">LENGTH_FIELD</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">get_shortest_edge</span><span class="p">(</span><span class="n">edges</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">length_field</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">LENGTH_FIELD</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    From a dictionary of edges, get the shortest edge</span>
 <span class="sd">    by its length</span>
@@ -591,10 +666,14 @@
     <span class="k">if</span> <span class="ow">not</span> <span class="n">edges</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"The edge list is empty"</span><span class="p">)</span>
 
-    <span class="n">min_key</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span>
-        <span class="n">edges</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">k</span><span class="p">:</span> <span class="n">edges</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">length_field</span><span class="p">]</span>
-    <span class="p">)</span>  <span class="c1"># py3 can add default=None</span>
-    <span class="k">return</span> <span class="n">min_key</span><span class="p">,</span> <span class="n">edges</span><span class="p">[</span><span class="n">min_key</span><span class="p">]</span></div>
+    <span class="k">if</span> <span class="n">length_field</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="c1"># simply return the first edge</span>
+        <span class="k">return</span> <span class="nb">next</span><span class="p">(</span><span class="nb">iter</span><span class="p">(</span><span class="n">edges</span><span class="p">)),</span> <span class="n">edges</span><span class="p">[</span><span class="nb">next</span><span class="p">(</span><span class="nb">iter</span><span class="p">(</span><span class="n">edges</span><span class="p">))]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">min_key</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span>
+            <span class="n">edges</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">k</span><span class="p">:</span> <span class="n">edges</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">length_field</span><span class="p">]</span>
+        <span class="p">)</span>  <span class="c1"># py3 can add default=None</span>
+        <span class="k">return</span> <span class="n">min_key</span><span class="p">,</span> <span class="n">edges</span><span class="p">[</span><span class="n">min_key</span><span class="p">]</span></div>
 
 
 
@@ -654,7 +733,7 @@
         <span class="k">if</span> <span class="n">edge_atts</span><span class="p">[</span><span class="n">WITH_DIRECTION_FIELD</span><span class="p">]</span> <span class="ow">is</span> <span class="kc">False</span><span class="p">:</span>
             <span class="n">nodes</span> <span class="o">=</span> <span class="nb">reversed</span><span class="p">(</span><span class="n">nodes</span><span class="p">)</span>
 
-        <span class="n">all_nodes</span> <span class="o">+=</span> <span class="n">nodes</span>
+        <span class="n">all_nodes</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">nodes</span><span class="p">)</span>
 
     <span class="c1"># return a unique ordered list</span>
     <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">OrderedDict</span><span class="o">.</span><span class="n">fromkeys</span><span class="p">(</span><span class="n">all_nodes</span><span class="p">))</span></div>
@@ -890,7 +969,6 @@
 
     <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">edge_group</span> <span class="ow">in</span> <span class="n">grouped_edges</span><span class="p">:</span>
         <span class="k">for</span> <span class="n">edge1</span><span class="p">,</span> <span class="n">edge2</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">combinations</span><span class="p">(</span><span class="n">edge_group</span><span class="p">,</span> <span class="mi">2</span><span class="p">):</span>
-
             <span class="n">from_m1</span> <span class="o">=</span> <span class="n">edge1</span><span class="o">.</span><span class="n">attributes</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">OFFSET_FIELD</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
             <span class="n">to_m1</span> <span class="o">=</span> <span class="n">from_m1</span> <span class="o">+</span> <span class="n">edge1</span><span class="o">.</span><span class="n">attributes</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">LENGTH_FIELD</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
 
@@ -926,7 +1004,7 @@
               
           </div>
             Created using
-            <a href="http://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
+            <a href="http://www.sphinx-doc.org/">Sphinx</a> 7.3.7.
              and
             <a href="https://github.com/bashtage/sphinx-material/">Material for
               Sphinx</a>

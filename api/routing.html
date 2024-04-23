@@ -50,7 +50,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=83e35b93" />
     <link rel="stylesheet" type="text/css" href="../_static/material.css?v=79c92029" />
     <script src="../_static/documentation_options.js?v=f2a433a1"></script>
-    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -222,15 +222,17 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="wayfarer.routing.find_ordered_path">
 <span class="sig-prename descclassname"><span class="pre">wayfarer.routing.</span></span><span class="sig-name descname"><span class="pre">find_ordered_path</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">edges</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_node</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">with_direction_flag</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/wayfarer/routing.html#find_ordered_path"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#wayfarer.routing.find_ordered_path" title="Link to this definition">¶</a></dt>
-<dd><blockquote>
-<div><p>Given a collection of randomly ordered connected edges, find the full
+<dd><p>Given a collection of randomly ordered connected edges, find the full
 path, covering all edges, from one end to the other.
 A start_node can be provided to return the edges in a specific direction.
-Uses the</p>
-</div></blockquote>
-<p><a class="reference external" href="https://networkx.github.io/documentation/stable/reference/algorithms/generated/networkx.algorithms.euler.eulerian_path.html">eulerian_path</a>
-function from networkx
-:rtype: <span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Edge</span></code>]</span></p>
+Uses the
+<a class="reference external" href="https://networkx.github.io/documentation/stable/reference/algorithms/generated/networkx.algorithms.euler.eulerian_path.html">eulerian_path</a>
+function from networkx</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">Edge</span></code>]</span></p>
+</dd>
+</dl>
 </dd></dl>
 <dl class="py function">
 <dt class="sig sig-object py" id="wayfarer.routing.get_path_ends">
@@ -251,8 +253,8 @@ TODO Check if the edges form a loop</p>
 <span class="sig-prename descclassname"><span class="pre">wayfarer.routing.</span></span><span class="sig-name descname"><span class="pre">solve_all_shortest_paths</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">net</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_node</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/wayfarer/routing.html#solve_all_shortest_paths"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#wayfarer.routing.solve_all_shortest_paths" title="Link to this definition">¶</a></dt>
 <dd><p>Find all shortest paths between the two nodes on the network.
 This includes loops and repeated nodes.
-A wrapper function for <a href="#id1"><span class="problematic" id="id2">`all_shortest_paths &lt;
-https://networkx.github.io/documentation/stable/reference/algorithms/generated/networkx.algorithms.shortest_paths.generic.all_shortest_paths.html&gt;`_</span></a>
+A wrapper function for
+<a class="reference external" href="https://networkx.org/documentation/stable/reference/algorithms/generated/networkx.algorithms.shortest_paths.generic.all_shortest_paths.html">all_shortest_paths</a>
 Unsure why less results are returned in the example below than when using all_simple_paths</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -273,14 +275,15 @@ Unsure why less results are returned in the example below than when using all_si
 <span class="go">[[0, 1, 2]]</span>
 </pre></div>
 </div>
+<p># noqa: E501</p>
 </dd></dl>
 <dl class="py function">
 <dt class="sig sig-object py" id="wayfarer.routing.solve_all_simple_paths">
 <span class="sig-prename descclassname"><span class="pre">wayfarer.routing.</span></span><span class="sig-name descname"><span class="pre">solve_all_simple_paths</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">net</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cutoff</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/wayfarer/routing.html#solve_all_simple_paths"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#wayfarer.routing.solve_all_simple_paths" title="Link to this definition">¶</a></dt>
 <dd><p>Find all simple paths between the two nodes on the network.
 A simple path does not have any repeated nodes
-A wrapper function for <a href="#id3"><span class="problematic" id="id4">`all_simple_paths &lt;
-https://networkx.github.io/documentation/stable/reference/algorithms/generated/networkx.algorithms.simple_paths.all_simple_paths.html&gt;`_</span></a>
+A wrapper function for
+<a class="reference external" href="https://networkx.github.io/documentation/stable/reference/algorithms/generated/networkx.algorithms.simple_paths.all_simple_paths.html">all_simple_paths</a>
 TODO add <code class="docutils literal notranslate"><span class="pre">has_path</span></code> check prior to running</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -336,7 +339,9 @@ closest to the desired distance</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="wayfarer.routing.solve_shortest_path">
 <span class="sig-prename descclassname"><span class="pre">wayfarer.routing.</span></span><span class="sig-name descname"><span class="pre">solve_shortest_path</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">net</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">with_direction_flag</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weight</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'LEN_'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/wayfarer/routing.html#solve_shortest_path"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#wayfarer.routing.solve_shortest_path" title="Link to this definition">¶</a></dt>
-<dd><p>Solve the shortest path between two nodes, returning a list of Edge objects</p>
+<dd><p>Solve the shortest path between two nodes, returning a list of Edge objects.
+Set weight to the attribute name for deciding the shortest path, or to None
+to ignore any weightings (faster).</p>
 </dd></dl>
 <dl class="py function">
 <dt class="sig sig-object py" id="wayfarer.routing.solve_shortest_path_from_edges">
@@ -348,7 +353,8 @@ from node to node</p>
 <dt class="sig sig-object py" id="wayfarer.routing.solve_shortest_path_from_nodes">
 <span class="sig-prename descclassname"><span class="pre">wayfarer.routing.</span></span><span class="sig-name descname"><span class="pre">solve_shortest_path_from_nodes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">net</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weight</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'LEN_'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/wayfarer/routing.html#solve_shortest_path_from_nodes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#wayfarer.routing.solve_shortest_path_from_nodes" title="Link to this definition">¶</a></dt>
 <dd><p>Return a list of nodes found by solving from each node in node_list to
-the next</p>
+the next. Set weight to the attribute name for deciding the shortest path, or to None
+to ignore any weightings (faster).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code> | <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]</span></p>
@@ -393,7 +399,7 @@ the next</p>
               
           </div>
             Created using
-            <a href="http://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
+            <a href="http://www.sphinx-doc.org/">Sphinx</a> 7.3.7.
              and
             <a href="https://github.com/bashtage/sphinx-material/">Material for
               Sphinx</a>
