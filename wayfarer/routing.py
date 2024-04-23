@@ -109,7 +109,7 @@ def solve_shortest_path_from_edges(
 
         if edge.start_node == edge.end_node:
             # self-loop
-            edges += functions.get_edges_from_nodes(net, end_nodes)
+            edges.extend(functions.get_edges_from_nodes(net, end_nodes))
         else:
             try:
                 nodes = solve_shortest_path_from_nodes(net, node_list)
@@ -118,7 +118,7 @@ def solve_shortest_path_from_edges(
                 log.warning(ex)
                 raise
 
-            edges += functions.get_edges_from_nodes(net, nodes)
+            edges.extend(functions.get_edges_from_nodes(net, nodes))
 
             # reset original length - note not in original implementation
             # ensure this is only reset after get_edges_from_nodes has been called
@@ -130,7 +130,7 @@ def solve_shortest_path_from_edges(
                 net, [edge.start_node, edge.end_node]
             )
             if loop_edges:
-                edges += loop_edges
+                edges.extend(loop_edges)
 
         previous_edge_nodes = end_nodes
 
@@ -196,13 +196,11 @@ def solve_matching_path(
         all_shortest_paths.append([start_node])
 
     for path_nodes in all_shortest_paths:
-
         all_paths = functions.get_all_paths_from_nodes(
             net, path_nodes, with_direction_flag=True
         )
 
         for path_edges in all_paths:
-
             if include_key and include_key not in [e.key for e in path_edges]:
                 continue
             path_length = functions.get_path_length(path_edges)

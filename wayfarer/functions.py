@@ -419,7 +419,7 @@ def get_edges_from_nodes(
                         **edge._asdict()
                     )  # unpack namedtuple to **kwargs
 
-            edge_list += node_edges
+            edge_list.extend(node_edges)
 
     if return_unique:
         return list({v.key: v for v in edge_list}.values())
@@ -495,7 +495,7 @@ def get_nodes_from_edges(edges):
         if edge_atts[WITH_DIRECTION_FIELD] is False:
             nodes = reversed(nodes)
 
-        all_nodes += nodes
+        all_nodes.extend(nodes)
 
     # return a unique ordered list
     return list(OrderedDict.fromkeys(all_nodes))

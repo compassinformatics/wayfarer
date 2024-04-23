@@ -201,7 +201,7 @@ def get_split_nodes(split_edges: list[Edge]) -> list[int | str]:
     split_nodes = []
 
     for split_edge in split_edges:
-        nodes += [split_edge.start_node, split_edge.end_node]
+        nodes.extend([split_edge.start_node, split_edge.end_node])
 
     for n in set(nodes):
         if SPLIT_KEY_SEPARATOR in str(n):
