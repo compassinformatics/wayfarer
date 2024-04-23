@@ -361,8 +361,8 @@ def solve_all_shortest_paths(
     >>> pths = solve_all_shortest_paths(net, 0, 2)
     >>> print(list(pths))
     [[0, 1, 2]]
-    # noqa: E501
     """
+    # noqa: E501
 
     all_shortest_paths = []
 

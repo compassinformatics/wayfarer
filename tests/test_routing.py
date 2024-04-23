@@ -21,7 +21,7 @@ def test_solve_all_simple_paths_no_node():
 
     net = networks.simple_network()
     with pytest.raises(NodeNotFound):
-        routing.solve_all_simple_paths(net, 1, 99)
+        list(routing.solve_all_simple_paths(net, 1, 99))
 
 
 def test_solve_all_simple_paths_cutoff():
@@ -122,12 +122,12 @@ def test_doctest():
 if __name__ == "__main__":
     logging.basicConfig(level=logging.DEBUG)
     # test_doctest()
-    # test_solve_all_simple_paths_no_node()
+    test_solve_all_simple_paths_no_node()
     # test_solve_all_simple_paths_cutoff()
     # test_solve_all_shortest_paths()
     # test_solve_all_shortest_paths_no_node()
     # test_get_path_ends()
     # test_get_path_ends_single_edge()
     # test_solve_shortest_path_directions()
-    test_solve_shortest_path_split_network()
+    # test_solve_shortest_path_split_network()
     print("Done!")
