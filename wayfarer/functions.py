@@ -343,8 +343,8 @@ def get_all_paths_from_nodes(net, node_list, with_direction_flag=False):
     return itertools.chain(*all_paths)
 
 
-def get_path_length(path_edges):
-    return sum([edge.attributes[LENGTH_FIELD] for edge in path_edges])
+def get_path_length(path_edges, length_field: str = LENGTH_FIELD):
+    return sum([edge.attributes[length_field] for edge in path_edges])
 
 
 def get_edges_from_node_pair(
@@ -380,7 +380,7 @@ def get_edges_from_nodes(
     net: networkx.MultiGraph | networkx.MultiDiGraph,
     node_list: list[int | str],
     with_direction_flag: bool = False,
-    length_field: str = LENGTH_FIELD,
+    length_field: str | None = LENGTH_FIELD,
     return_unique: bool = True,
     shortest_path_only: bool = True,
 ) -> list[Edge]:
@@ -427,7 +427,7 @@ def get_edges_from_nodes(
         return edge_list
 
 
-def get_shortest_edge(edges: dict, length_field=LENGTH_FIELD):
+def get_shortest_edge(edges: dict, length_field: str | None = LENGTH_FIELD):
     """
     From a dictionary of edges, get the shortest edge
     by its length
@@ -438,10 +438,14 @@ def get_shortest_edge(edges: dict, length_field=LENGTH_FIELD):
     if not edges:
         raise ValueError("The edge list is empty")
 
-    min_key = min(
-        edges, key=lambda k: edges[k][length_field]
-    )  # py3 can add default=None
-    return min_key, edges[min_key]
+    if length_field is None:
+        # simply return the first edge
+        return next(iter(edges)), edges[next(iter(edges))]
+    else:
+        min_key = min(
+            edges, key=lambda k: edges[k][length_field]
+        )  # py3 can add default=None
+        return min_key, edges[min_key]
 
 
 def add_direction_flag(start_node, end_node, attributes, **kwargs):

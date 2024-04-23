@@ -18,10 +18,12 @@ def solve_shortest_path(
     start_node: str | int,
     end_node: str | int,
     with_direction_flag: bool = True,
-    weight: str = LENGTH_FIELD,
+    weight: str | None = LENGTH_FIELD,
 ):
     """
-    Solve the shortest path between two nodes, returning a list of Edge objects
+    Solve the shortest path between two nodes, returning a list of Edge objects.
+    Set weight to the attribute name for deciding the shortest path, or to None
+    to ignore any weightings (faster).
     """
     nodes = solve_shortest_path_from_nodes(net, [start_node, end_node], weight)
     return functions.get_edges_from_nodes(
@@ -32,16 +34,16 @@ def solve_shortest_path(
 def solve_shortest_path_from_nodes(
     net: networkx.MultiGraph | networkx.MultiDiGraph,
     node_list: list[int | str],
-    weight: str = LENGTH_FIELD,
+    weight: str | None = LENGTH_FIELD,
 ) -> list[int | str]:
     """
     Return a list of nodes found by solving from each node in node_list to
-    the next
+    the next. Set weight to the attribute name for deciding the shortest path, or to None
+    to ignore any weightings (faster).
     """
     nodes_in_path = []
 
     for start_node, end_node in functions.pairwise(node_list):
-
         log.debug("Solving from %s to %s", start_node, end_node)
 
         if start_node == end_node:
@@ -361,8 +363,9 @@ def solve_all_shortest_paths(
     >>> pths = solve_all_shortest_paths(net, 0, 2)
     >>> print(list(pths))
     [[0, 1, 2]]
-    """
+
     # noqa: E501
+    """
 
     all_shortest_paths = []
 

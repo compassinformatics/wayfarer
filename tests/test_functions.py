@@ -404,6 +404,15 @@ def test_get_shortest_edge_mixed_keys():
     assert res[0] == "A"
 
 
+def test_get_shortest_edge_no_length():
+    edges = {
+        "A": {"EDGE_ID": "A", "LEN_": 100, "NODEID_FROM": 1, "NODEID_TO": 2},
+        "B": {"EDGE_ID": "B", "LEN_": 20, "NODEID_FROM": 2, "NODEID_TO": 3},
+    }
+    res = functions.get_shortest_edge(edges, length_field=None)
+    assert res[0] == "A"
+
+
 def test_get_unique_ordered_list():
     lst = [2, 2, 1, 1, 4, 4, 1, 2, 3]
     res = functions.get_unique_ordered_list(lst)
@@ -470,7 +479,6 @@ def test_has_no_overlaps_loop_with_split():
 
 
 def test_add_edge():
-
     net = networkx.MultiGraph()
     edge = Edge(0, 1, "A", {"EDGE_ID": 1, "OFFSET": 5, "LEN_": 10})
     functions.add_edge(net, edge.start_node, edge.end_node, edge.key, edge.attributes)
@@ -495,7 +503,6 @@ def test_add_single_edge():
 
 
 def test_remove_edge():
-
     net = networkx.MultiGraph()
     edge = Edge(0, 1, "A", {"EDGE_ID": 1, "OFFSET": 5, "LEN_": 10})
     net.add_edge(edge.start_node, edge.end_node, edge.key, **edge.attributes)
@@ -505,7 +512,6 @@ def test_remove_edge():
 
 
 def test_remove_edge_and_key():
-
     net = loader.create_graph()
     edge = Edge(0, 1, "A", {"EDGE_ID": 1, "OFFSET": 5, "LEN_": 10})
     functions.add_edge(net, **edge._asdict())
@@ -517,7 +523,6 @@ def test_remove_edge_and_key():
 
 
 def test_remove_edge_by_key():
-
     net = loader.create_graph()
     edge = Edge(0, 1, "A", {"EDGE_ID": 1, "OFFSET": 5, "LEN_": 10})
     functions.add_edge(net, **edge._asdict())
@@ -561,6 +566,7 @@ if __name__ == "__main__":
     # test_remove_edge()
     # test_remove_edge_and_key()
     # test_remove_edge_by_key()
-    test_add_edge_shorthand()
-    test_add_single_edge()
+    # test_add_edge_shorthand()
+    # test_add_single_edge()
+    test_get_shortest_edge_no_length()
     print("Done!")
