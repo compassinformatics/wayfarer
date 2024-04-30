@@ -11,21 +11,18 @@ from networkx import NetworkXNoPath, NodeNotFound
 
 
 def test_solve_all_simple_paths():
-
     net = networks.simple_network()
     simple_paths = routing.solve_all_simple_paths(net, 1, 5)
     assert list(simple_paths) == [[1, 2, 3, 4, 5]]
 
 
 def test_solve_all_simple_paths_no_node():
-
     net = networks.simple_network()
     with pytest.raises(NodeNotFound):
-        routing.solve_all_simple_paths(net, 1, 99)
+        list(routing.solve_all_simple_paths(net, 1, 99))
 
 
 def test_solve_all_simple_paths_cutoff():
-
     net = networks.simple_network()
     simple_paths = routing.solve_all_simple_paths(net, 1, 5, cutoff=3)
     assert list(simple_paths) == []
@@ -36,7 +33,6 @@ def test_solve_all_simple_paths_cutoff():
 
 
 def test_solve_all_shortest_paths():
-
     net = networks.circle_network()
     all_paths = routing.solve_all_shortest_paths(net, 1, 3)
     # print(list(all_paths))
@@ -44,7 +40,6 @@ def test_solve_all_shortest_paths():
 
 
 def test_solve_all_shortest_paths_no_node():
-
     net = networks.circle_network()
     # it seems NetworkXNoPath is raised rather than NodeNotFound
     # when using all_shortest_paths in networkx
@@ -54,7 +49,6 @@ def test_solve_all_shortest_paths_no_node():
 
 
 def test_get_path_ends():
-
     edges = [Edge(0, 1, 1, {}), Edge(1, 2, 1, {})]
     ends = routing.get_path_ends(edges)
     # print(ends)
@@ -62,7 +56,6 @@ def test_get_path_ends():
 
 
 def test_get_path_ends_single_edge():
-
     edges = [Edge(0, 1, 1, {})]
     ends = routing.get_path_ends(edges)
     # print(ends)
@@ -70,15 +63,20 @@ def test_get_path_ends_single_edge():
 
 
 def test_solve_shortest_path():
-
     net = networks.simple_network()
     edges = routing.solve_shortest_path(net, start_node=1, end_node=5)
     edge_ids = [edge.key for edge in edges]
     assert edge_ids == [1, 2, 3, 4]
 
 
-def test_solve_shortest_path_directions():
+def test_solve_shortest_path_no_weight():
+    net = networks.simple_network()
+    edges = routing.solve_shortest_path(net, start_node=1, end_node=5, weight=None)
+    edge_ids = [edge.key for edge in edges]
+    assert edge_ids == [1, 2, 3, 4]
 
+
+def test_solve_shortest_path_directions():
     net = networks.simple_network()
     edges = routing.solve_shortest_path(net, start_node=1, end_node=5)
 
@@ -92,7 +90,6 @@ def test_solve_shortest_path_directions():
 
 
 def test_solve_shortest_path_split_network():
-
     net = networks.simple_network()
 
     splitter.split_network_edge(net, 3, [2, 8])
@@ -129,5 +126,6 @@ if __name__ == "__main__":
     # test_get_path_ends()
     # test_get_path_ends_single_edge()
     # test_solve_shortest_path_directions()
-    test_solve_shortest_path_split_network()
+    # test_solve_shortest_path_split_network()
+    test_solve_shortest_path_no_weight()
     print("Done!")

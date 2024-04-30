@@ -2,10 +2,10 @@ Jinja2
 matplotlib
 geopandas==0.14.3
 Fiona==1.9.6
-shapely==2.0.3
+shapely==2.0.4
 osmnx==1.9.2
 uvicorn[standard]==0.29.0
-fastapi==0.110.1
+fastapi==0.110.2
 # following required for isochrones
 scipy==1.13.0
 odbcutils==0.2.1
