@@ -2,6 +2,7 @@
 This module contains functions related to networks and routing
 """
 
+from __future__ import annotations
 import itertools
 import copy
 import logging

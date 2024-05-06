@@ -2,6 +2,7 @@
 Module containing functions relating to loops
 """
 
+from __future__ import annotations
 import networkx
 from networkx import cycles
 from wayfarer import Edge, functions

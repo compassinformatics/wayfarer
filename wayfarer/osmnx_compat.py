@@ -2,6 +2,7 @@
 Helper module to convert between wayfarer and osmnx networks
 """
 
+from __future__ import annotations
 import wayfarer
 import networkx as nx
 from shapely import wkb, LineString

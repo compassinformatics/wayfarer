@@ -3,6 +3,7 @@ This module handles splitting existing edges, and creating new nodes
 to join the split edges
 """
 
+from __future__ import annotations
 import logging
 import uuid
 from collections import defaultdict, OrderedDict

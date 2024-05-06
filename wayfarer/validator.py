@@ -2,6 +2,7 @@
 A collection of functions to help validate a network
 """
 
+from __future__ import annotations
 from collections import Counter
 import networkx
 
