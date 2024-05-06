@@ -1,3 +1,4 @@
+from __future__ import annotations
 import logging
 import wayfarer
 from math import hypot
@@ -217,6 +218,7 @@ def load_network_from_geometries(
     key_field: str = EDGE_ID_FIELD,
     length_field: str = LENGTH_FIELD,
     rounding: int = 5,
+    use_integer_keys: bool = True,
 ) -> MultiGraph | MultiDiGraph:
     """
     Create a new networkX graph using a list of recs of type ``__geo_interface__``
@@ -246,6 +248,9 @@ def load_network_from_geometries(
                   the input geometries. As node values must match exactly for edges to be connected rounding
                   to a fixed number of decimal places avoids unconnected edges to to tiny differences in floats
                   e.g. (-9.564484483347517, 52.421103202488965) and (-9.552925853749544, 52.41969110706263)
+        use_integer_keys: Using Integer keys makes using wayfarer faster. By default keys will be attempted to be
+                          converted to integers. Set this to ``False`` to leave keys unconverted (for example when using
+                          String keys)
     Returns:
         A new network
     """
@@ -278,15 +283,19 @@ def load_network_from_geometries(
             length = sum([distance(*combo) for combo in functions.pairwise(coords)])
 
         if key_field == "id" and "id" in r:
-            key = int(r["id"])
+            key = r["id"]
         else:
             try:
-                key = int(properties[key_field])
+                key = properties[key_field]
             except KeyError:
                 log.error(
                     "Available properties: {}".format(",".join(properties.keys()))
                 )
                 raise
+
+        # keys as integers are faster than strings, so convert if possible
+        if use_integer_keys:
+            key = int(key)
 
         # if we simply take the coordinates then often these differ due to rounding issues as they
         # are floats e.g. (-9.564484483347517, 52.421103202488965) and (-9.552925853749544, 52.41969110706263)
