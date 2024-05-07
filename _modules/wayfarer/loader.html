@@ -188,7 +188,8 @@
           <article class="md-content__inner md-typeset" role="main">
             
   <h1 id="modules-wayfarer-loader--page-root">Source code for wayfarer.loader</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">logging</span>
+<span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
+<span class="kn">import</span> <span class="nn">logging</span>
 <span class="kn">import</span> <span class="nn">wayfarer</span>
 <span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">hypot</span>
 <span class="kn">from</span> <span class="nn">wayfarer</span> <span class="kn">import</span> <span class="p">(</span>
@@ -430,6 +431,7 @@
     <span class="n">key_field</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">EDGE_ID_FIELD</span><span class="p">,</span>
     <span class="n">length_field</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">LENGTH_FIELD</span><span class="p">,</span>
     <span class="n">rounding</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span>
+    <span class="n">use_integer_keys</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">MultiGraph</span> <span class="o">|</span> <span class="n">MultiDiGraph</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Create a new networkX graph using a list of recs of type ``__geo_interface__``</span>
@@ -459,6 +461,9 @@
 <span class="sd">                  the input geometries. As node values must match exactly for edges to be connected rounding</span>
 <span class="sd">                  to a fixed number of decimal places avoids unconnected edges to to tiny differences in floats</span>
 <span class="sd">                  e.g. (-9.564484483347517, 52.421103202488965) and (-9.552925853749544, 52.41969110706263)</span>
+<span class="sd">        use_integer_keys: Using Integer keys makes using wayfarer faster. By default keys will be attempted to be</span>
+<span class="sd">                          converted to integers. Set this to ``False`` to leave keys unconverted (for example when using</span>
+<span class="sd">                          String keys)</span>
 <span class="sd">    Returns:</span>
 <span class="sd">        A new network</span>
 <span class="sd">    """</span>
@@ -491,15 +496,19 @@
             <span class="n">length</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">([</span><span class="n">distance</span><span class="p">(</span><span class="o">*</span><span class="n">combo</span><span class="p">)</span> <span class="k">for</span> <span class="n">combo</span> <span class="ow">in</span> <span class="n">functions</span><span class="o">.</span><span class="n">pairwise</span><span class="p">(</span><span class="n">coords</span><span class="p">)])</span>
 
         <span class="k">if</span> <span class="n">key_field</span> <span class="o">==</span> <span class="s2">"id"</span> <span class="ow">and</span> <span class="s2">"id"</span> <span class="ow">in</span> <span class="n">r</span><span class="p">:</span>
-            <span class="n">key</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="s2">"id"</span><span class="p">])</span>
+            <span class="n">key</span> <span class="o">=</span> <span class="n">r</span><span class="p">[</span><span class="s2">"id"</span><span class="p">]</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">try</span><span class="p">:</span>
-                <span class="n">key</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">properties</span><span class="p">[</span><span class="n">key_field</span><span class="p">])</span>
+                <span class="n">key</span> <span class="o">=</span> <span class="n">properties</span><span class="p">[</span><span class="n">key_field</span><span class="p">]</span>
             <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
                 <span class="n">log</span><span class="o">.</span><span class="n">error</span><span class="p">(</span>
                     <span class="s2">"Available properties: </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">","</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">properties</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span>
                 <span class="p">)</span>
                 <span class="k">raise</span>
+
+        <span class="c1"># keys as integers are faster than strings, so convert if possible</span>
+        <span class="k">if</span> <span class="n">use_integer_keys</span><span class="p">:</span>
+            <span class="n">key</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
 
         <span class="c1"># if we simply take the coordinates then often these differ due to rounding issues as they</span>
         <span class="c1"># are floats e.g. (-9.564484483347517, 52.421103202488965) and (-9.552925853749544, 52.41969110706263)</span>
