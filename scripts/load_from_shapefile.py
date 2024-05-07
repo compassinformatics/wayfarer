@@ -1,5 +1,5 @@
 """
-An example of create a Wayfarer network using 
+An example of create a Wayfarer network using
 the pyshp library
 
 pip install pyshp
