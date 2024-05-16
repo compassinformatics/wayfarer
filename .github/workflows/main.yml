@@ -1,4 +1,4 @@
-name: Test Python package
+name: Wayfarer Python Package
 
 # see https://stackoverflow.com/a/56422603/179520
 env:
@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: ["3.10"]
+        python-version: [3.9, "3.10"]
 
     steps:
       - uses: actions/checkout@v2
@@ -56,9 +56,9 @@ jobs:
         env:
           COVERALLS_FLAG_NAME: ${{ matrix.test-name }}
           COVERALLS_PARALLEL: true
-          # get token from https://coveralls.io/github/geographika/odbcutils
-          # and then add to https://github.com/geographika/odbcutils/settings/secrets/actions
-          COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
+          # get token from https://coveralls.io/github/compassinformatics/wayfarer
+          # and then add to https://github.com/compassinformatics/wayfarer/settings/secrets/actions
+          # COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Build wheel and source distributions
         run: |
