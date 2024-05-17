@@ -294,8 +294,8 @@ def load_network_from_geometries(
                 raise
 
         # keys as integers are faster than strings, so convert if possible
-        if use_integer_keys:
-            if isinstance(key, str) and key.isdigit():
+        if use_integer_keys and isinstance(key, str):
+            if key.isdigit():
                 key = int(key)
             else:
                 raise ValueError(f"Input string '{key}' is not a valid integer")
