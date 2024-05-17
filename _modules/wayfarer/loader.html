@@ -507,8 +507,11 @@
                 <span class="k">raise</span>
 
         <span class="c1"># keys as integers are faster than strings, so convert if possible</span>
-        <span class="k">if</span> <span class="n">use_integer_keys</span><span class="p">:</span>
-            <span class="n">key</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">use_integer_keys</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">key</span><span class="o">.</span><span class="n">isdigit</span><span class="p">():</span>
+                <span class="n">key</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Input string '</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2">' is not a valid integer"</span><span class="p">)</span>
 
         <span class="c1"># if we simply take the coordinates then often these differ due to rounding issues as they</span>
         <span class="c1"># are floats e.g. (-9.564484483347517, 52.421103202488965) and (-9.552925853749544, 52.41969110706263)</span>
