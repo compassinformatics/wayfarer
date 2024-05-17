@@ -295,7 +295,10 @@ def load_network_from_geometries(
 
         # keys as integers are faster than strings, so convert if possible
         if use_integer_keys:
-            key = int(key)
+            if key.isdigit():
+                key = int(key)
+            else:
+                raise ValueError(f"Input string '{key}' is not a valid integer")
 
         # if we simply take the coordinates then often these differ due to rounding issues as they
         # are floats e.g. (-9.564484483347517, 52.421103202488965) and (-9.552925853749544, 52.41969110706263)

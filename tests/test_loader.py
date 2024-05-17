@@ -216,6 +216,39 @@ def test_pickling():
     assert len(net2.edges()) == 1
 
 
+def test_load_network_with_valid_ints():
+
+    rec1 = {
+        "geometry": {"type": "LineString", "coordinates": [(0, 0), (0, 1)]},
+        "properties": {"EDGE_ID": "1"},
+    }
+    rec2 = {
+        "geometry": {"type": "LineString", "coordinates": [(0, 1), (0, 2)]},
+        "properties": {"EDGE_ID": "21"},
+    }
+    recs = [rec1, rec2]
+
+    net = loader.load_network_from_geometries(recs, use_integer_keys=True)
+    # print(list(net.graph["keys"].keys()))
+    assert list(net.graph["keys"].keys()) == [1, 21]
+
+
+def test_load_network_with_invalid_ints():
+
+    rec1 = {
+        "geometry": {"type": "LineString", "coordinates": [(0, 0), (0, 1)]},
+        "properties": {"EDGE_ID": "1"},
+    }
+    rec2 = {
+        "geometry": {"type": "LineString", "coordinates": [(0, 1), (0, 2)]},
+        "properties": {"EDGE_ID": "2_1"},
+    }
+    recs = [rec1, rec2]
+
+    with pytest.raises(ValueError):
+        loader.load_network_from_geometries(recs, use_integer_keys=True)
+
+
 def test_doctest():
     import doctest
 
@@ -224,21 +257,23 @@ def test_doctest():
 
 if __name__ == "__main__":
     logging.basicConfig(level=logging.DEBUG)
-    test_doctest()
-    test_add_edge()
-    test_add_edge_missing_key()
-    test_add_edge_with_reverse_lookup()
-    test_create_graph()
-    test_create_multidigraph()
-    test_create_graph_no_lookup()
-    test_load_network_from_records()
-    test_load_network_from_records_missing_key()
-    test_load_network_from_geometries()
-    test_load_network_from_geometries_calculated_length()
-    test_load_network_from_invalid_geometries()
-    test_load_network_from_invalid_geometries_skip()
-    test_load_network_from_invalid_geometries_missing_key()
-    test_uniquedict()
-    test_uniquedict_error()
-    test_pickling()
+    # test_doctest()
+    # test_add_edge()
+    # test_add_edge_missing_key()
+    # test_add_edge_with_reverse_lookup()
+    # test_create_graph()
+    # test_create_multidigraph()
+    # test_create_graph_no_lookup()
+    # test_load_network_from_records()
+    # test_load_network_from_records_missing_key()
+    # test_load_network_from_geometries()
+    # test_load_network_from_geometries_calculated_length()
+    # test_load_network_from_invalid_geometries()
+    # test_load_network_from_invalid_geometries_skip()
+    # test_load_network_from_invalid_geometries_missing_key()
+    # test_uniquedict()
+    # test_uniquedict_error()
+    # test_pickling()
+    test_load_network_with_invalid_ints()
+    test_load_network_with_valid_ints()
     print("Done!")
