@@ -533,6 +533,26 @@ def test_remove_edge_by_key():
     assert len(net.graph["keys"].keys()) == 0
 
 
+def test_get_source_edges():
+    net = networkx.MultiDiGraph()
+
+    net.add_edge(0, 1, key="A", **{"EDGE_ID": 1})
+    net.add_edge(1, 2, key="B", **{"EDGE_ID": 2})
+    net.add_edge(2, 3, key="C", **{"EDGE_ID": 3})
+    edges = functions.get_source_edges(net)
+    assert edges["A"] == {"EDGE_ID": 1}
+
+
+def test_get_sink_edges():
+    net = networkx.MultiDiGraph()
+
+    net.add_edge(0, 1, key="A", **{"EDGE_ID": 1})
+    net.add_edge(1, 2, key="B", **{"EDGE_ID": 2})
+    net.add_edge(2, 3, key="C", **{"EDGE_ID": 3})
+    edges = functions.get_sink_edges(net)
+    assert edges["C"] == {"EDGE_ID": 3}
+
+
 def test_doctest():
     import doctest
 
@@ -568,5 +588,7 @@ if __name__ == "__main__":
     # test_remove_edge_by_key()
     # test_add_edge_shorthand()
     # test_add_single_edge()
-    test_get_shortest_edge_no_length()
+    # test_get_shortest_edge_no_length()
+    test_get_source_edges()
+    test_get_sink_edges()
     print("Done!")

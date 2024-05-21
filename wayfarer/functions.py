@@ -565,7 +565,7 @@ def get_sink_edges(net):
     """
     sinks = get_sink_nodes(net)
 
-    return get_edges(net, sinks)
+    return get_edges(net, sinks, in_edges=True)
 
 
 def get_source_nodes(net):
@@ -598,10 +598,10 @@ def get_source_edges(net):
     """
     sources = get_source_nodes(net)
 
-    return get_edges(net, sources)
+    return get_edges(net, sources, in_edges=False)
 
 
-def get_edges(net, nodes):
+def get_edges(net, nodes, in_edges=True):
     """
     Get all the edges in the network that touch the nodes in the
     nodes list. Note only works with DiGraph or MultiDiGraph.
@@ -609,6 +609,7 @@ def get_edges(net, nodes):
     Args:
         net (object): a networkx network
         nodes: (list):  a list of network nodes e.g. ``[(224966, 437657), (225195, 437940)]``
+        in_edges: (bool): set to True to get edges coming into the node, and False to edges leaving the node
 
     Returns:
         end_edges (dict): a dict containing segment codes and their associated network edge
@@ -617,9 +618,12 @@ def get_edges(net, nodes):
     end_edges = {}
 
     for node in nodes:
-        in_edges = net.in_edges(node)
+        if in_edges is True:
+            node_edges = net.in_edges(node)
+        else:
+            node_edges = net.out_edges(node)
 
-        for edge in in_edges:
+        for edge in node_edges:
             edges = get_edges_from_node_pair(net, edge[0], edge[1])
             assert len(edges) == 1
             end_edges.update(edges)
