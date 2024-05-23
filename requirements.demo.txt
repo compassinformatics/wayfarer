@@ -7,5 +7,5 @@ osmnx==1.9.3
 uvicorn[standard]==0.29.0
 fastapi==0.111.0
 # following required for isochrones
-scipy==1.13.0
+scipy==1.13.1
 odbcutils==0.2.1
