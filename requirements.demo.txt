@@ -3,7 +3,7 @@ matplotlib
 geopandas==0.14.4
 Fiona==1.9.6
 shapely==2.0.4
-osmnx==1.9.3
+osmnx==1.9.4
 uvicorn[standard]==0.30.1
 fastapi==0.111.0
 # following required for isochrones
