@@ -4,7 +4,7 @@ name: Wayfarer Python Package
 env:
     PY_IGNORE_IMPORTMISMATCH: 1
 
-on: [push]
+on: [push, pull_request]
 
 jobs:
   test:
