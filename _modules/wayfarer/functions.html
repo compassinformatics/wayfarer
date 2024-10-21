@@ -194,7 +194,7 @@
 
 <span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
 <span class="kn">import</span> <span class="nn">itertools</span>
-<span class="kn">import</span> <span class="nn">copy</span>
+<span class="kn">import</span> <span class="nn">marshal</span>
 <span class="kn">import</span> <span class="nn">logging</span>
 <span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">OrderedDict</span>
 <span class="kn">import</span> <span class="nn">networkx</span>
@@ -544,7 +544,8 @@
                 <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">attributes</span> <span class="ow">in</span> <span class="n">edges</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
                     <span class="c1"># make a copy so client programs can modify without</span>
                     <span class="c1"># affecting the original edge dict</span>
-                    <span class="n">atts_copy</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">attributes</span><span class="p">)</span>
+                    <span class="c1"># atts_copy = copy.deepcopy(attributes)</span>
+                    <span class="n">atts_copy</span> <span class="o">=</span> <span class="n">marshal</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">marshal</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">attributes</span><span class="p">))</span>
                     <span class="n">edge</span> <span class="o">=</span> <span class="n">Edge</span><span class="p">(</span><span class="n">start_node</span><span class="o">=</span><span class="n">u</span><span class="p">,</span> <span class="n">end_node</span><span class="o">=</span><span class="n">v</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">key</span><span class="p">,</span> <span class="n">attributes</span><span class="o">=</span><span class="n">atts_copy</span><span class="p">)</span>
                     <span class="k">if</span> <span class="n">with_direction_flag</span><span class="p">:</span>
                         <span class="n">add_direction_flag</span><span class="p">(</span>
@@ -628,13 +629,13 @@
         <span class="k">if</span> <span class="n">edges</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">shortest_path_only</span><span class="p">:</span>
                 <span class="n">key</span><span class="p">,</span> <span class="n">attributes</span> <span class="o">=</span> <span class="n">get_shortest_edge</span><span class="p">(</span><span class="n">edges</span><span class="p">,</span> <span class="n">length_field</span><span class="p">)</span>
-                <span class="n">atts_copy</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">attributes</span><span class="p">)</span>
+                <span class="n">atts_copy</span> <span class="o">=</span> <span class="n">marshal</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">marshal</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">attributes</span><span class="p">))</span>
                 <span class="n">edge</span> <span class="o">=</span> <span class="n">Edge</span><span class="p">(</span><span class="n">start_node</span><span class="o">=</span><span class="n">u</span><span class="p">,</span> <span class="n">end_node</span><span class="o">=</span><span class="n">v</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">key</span><span class="p">,</span> <span class="n">attributes</span><span class="o">=</span><span class="n">atts_copy</span><span class="p">)</span>
                 <span class="n">node_edges</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">edge</span><span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="c1"># get all edges between the nodes, ignoring the length_field</span>
                 <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">attributes</span> <span class="ow">in</span> <span class="n">edges</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-                    <span class="n">atts_copy</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">attributes</span><span class="p">)</span>
+                    <span class="n">atts_copy</span> <span class="o">=</span> <span class="n">marshal</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">marshal</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">attributes</span><span class="p">))</span>
                     <span class="n">node_edges</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
                         <span class="n">Edge</span><span class="p">(</span><span class="n">start_node</span><span class="o">=</span><span class="n">u</span><span class="p">,</span> <span class="n">end_node</span><span class="o">=</span><span class="n">v</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">key</span><span class="p">,</span> <span class="n">attributes</span><span class="o">=</span><span class="n">atts_copy</span><span class="p">)</span>
                     <span class="p">)</span>
