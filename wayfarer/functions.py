@@ -4,7 +4,7 @@ This module contains functions related to networks and routing
 
 from __future__ import annotations
 import itertools
-import copy
+import marshal
 import logging
 from collections import OrderedDict
 import networkx
@@ -325,7 +325,8 @@ def get_all_paths_from_nodes(net, node_list, with_direction_flag=False):
                 for key, attributes in edges.items():
                     # make a copy so client programs can modify without
                     # affecting the original edge dict
-                    atts_copy = copy.deepcopy(attributes)
+                    # atts_copy = copy.deepcopy(attributes)
+                    atts_copy = marshal.loads(marshal.dumps(attributes))
                     edge = Edge(start_node=u, end_node=v, key=key, attributes=atts_copy)
                     if with_direction_flag:
                         add_direction_flag(
@@ -403,13 +404,13 @@ def get_edges_from_nodes(
         if edges:
             if shortest_path_only:
                 key, attributes = get_shortest_edge(edges, length_field)
-                atts_copy = copy.deepcopy(attributes)
+                atts_copy = marshal.loads(marshal.dumps(attributes))
                 edge = Edge(start_node=u, end_node=v, key=key, attributes=atts_copy)
                 node_edges.append(edge)
             else:
                 # get all edges between the nodes, ignoring the length_field
                 for key, attributes in edges.items():
-                    atts_copy = copy.deepcopy(attributes)
+                    atts_copy = marshal.loads(marshal.dumps(attributes))
                     node_edges.append(
                         Edge(start_node=u, end_node=v, key=key, attributes=atts_copy)
                     )
