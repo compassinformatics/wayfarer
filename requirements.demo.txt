@@ -1,9 +1,9 @@
 Jinja2
 matplotlib
-geopandas==1.0.1
 Fiona==1.10.1
 shapely==2.0.6
 osmnx==1.9.4
+# geopandas==1.0.1 # osmnx 1.9.4 depends on geopandas<0.15 and >=0.12
 uvicorn[standard]==0.30.6
 fastapi==0.115.0
 # following required for isochrones
