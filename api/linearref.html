@@ -47,7 +47,7 @@
   
   
     <title>Linear Referencing Module &#8212; Wayfarer</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=83e35b93" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=75810a84" />
     <link rel="stylesheet" type="text/css" href="../_static/material.css?v=79c92029" />
     <script src="../_static/documentation_options.js?v=f2a433a1"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
@@ -392,7 +392,9 @@ list of points</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="wayfarer.linearref.get_measure_on_line">
 <span class="sig-prename descclassname"><span class="pre">wayfarer.linearref.</span></span><span class="sig-name descname"><span class="pre">get_measure_on_line</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">line</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">point</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/wayfarer/linearref.html#get_measure_on_line"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#wayfarer.linearref.get_measure_on_line" title="Link to this definition">¶</a></dt>
-<dd><p>Return the measure along a line of a point</p>
+<dd><p>Return the measure along a line of a point. Note the Shapely
+function can return a np.float64 value, so we ensure it is
+converted to a float (see <a class="reference external" href="https://github.com/shapely/shapely/issues/2196">https://github.com/shapely/shapely/issues/2196</a>).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">

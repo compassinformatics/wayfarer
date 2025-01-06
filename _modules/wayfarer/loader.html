@@ -46,7 +46,7 @@
   
   
     <title>wayfarer.loader &#8212; Wayfarer</title>
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=83e35b93" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=75810a84" />
     <link rel="stylesheet" type="text/css" href="../../_static/material.css?v=79c92029" />
     <script src="../../_static/documentation_options.js?v=f2a433a1"></script>
     <script src="../../_static/doctools.js?v=9bcbadda"></script>
@@ -188,21 +188,21 @@
           <article class="md-content__inner md-typeset" role="main">
             
   <h1 id="modules-wayfarer-loader--page-root">Source code for wayfarer.loader</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
-<span class="kn">import</span> <span class="nn">logging</span>
-<span class="kn">import</span> <span class="nn">wayfarer</span>
-<span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">hypot</span>
-<span class="kn">from</span> <span class="nn">wayfarer</span> <span class="kn">import</span> <span class="p">(</span>
+<span></span><span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">wayfarer</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">math</span><span class="w"> </span><span class="kn">import</span> <span class="n">hypot</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">wayfarer</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
     <span class="n">EDGE_ID_FIELD</span><span class="p">,</span>
     <span class="n">LENGTH_FIELD</span><span class="p">,</span>
     <span class="n">NODEID_FROM_FIELD</span><span class="p">,</span>
     <span class="n">NODEID_TO_FIELD</span><span class="p">,</span>
     <span class="n">GEOMETRY_FIELD</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="kn">from</span> <span class="nn">wayfarer</span> <span class="kn">import</span> <span class="n">functions</span>
-<span class="kn">import</span> <span class="nn">pickle</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Iterable</span>
-<span class="kn">from</span> <span class="nn">networkx</span> <span class="kn">import</span> <span class="n">MultiGraph</span><span class="p">,</span> <span class="n">MultiDiGraph</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">wayfarer</span><span class="w"> </span><span class="kn">import</span> <span class="n">functions</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pickle</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Iterable</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">networkx</span><span class="w"> </span><span class="kn">import</span> <span class="n">MultiGraph</span><span class="p">,</span> <span class="n">MultiDiGraph</span>
 
 
 <span class="n">log</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s2">"wayfarer"</span><span class="p">)</span>
@@ -210,12 +210,12 @@
 
 <div class="viewcode-block" id="UniqueDict">
 <a class="viewcode-back" href="../../api/loader.html#wayfarer.loader.UniqueDict">[docs]</a>
-<span class="k">class</span> <span class="nc">UniqueDict</span><span class="p">(</span><span class="nb">dict</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">UniqueDict</span><span class="p">(</span><span class="nb">dict</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    A subclass of dict to ensure all keys are unique</span>
 <span class="sd">    """</span>
 
-    <span class="k">def</span> <span class="fm">__setitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__setitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">key</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">:</span>
             <span class="nb">dict</span><span class="o">.</span><span class="fm">__setitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
@@ -225,7 +225,7 @@
 
 <div class="viewcode-block" id="distance">
 <a class="viewcode-back" href="../../api/loader.html#wayfarer.loader.distance">[docs]</a>
-<span class="k">def</span> <span class="nf">distance</span><span class="p">(</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">distance</span><span class="p">(</span>
     <span class="n">p1</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[(</span><span class="nb">int</span> <span class="o">|</span> <span class="nb">float</span><span class="p">),</span> <span class="p">(</span><span class="nb">int</span> <span class="o">|</span> <span class="nb">float</span><span class="p">)],</span> <span class="n">p2</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[(</span><span class="nb">int</span> <span class="o">|</span> <span class="nb">float</span><span class="p">),</span> <span class="p">(</span><span class="nb">int</span> <span class="o">|</span> <span class="nb">float</span><span class="p">)]</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">"""</span>
@@ -250,7 +250,7 @@
 
 <div class="viewcode-block" id="save_network_to_file">
 <a class="viewcode-back" href="../../api/loader.html#wayfarer.loader.save_network_to_file">[docs]</a>
-<span class="k">def</span> <span class="nf">save_network_to_file</span><span class="p">(</span><span class="n">net</span><span class="p">:</span> <span class="n">MultiGraph</span> <span class="o">|</span> <span class="n">MultiDiGraph</span><span class="p">,</span> <span class="n">filename</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">save_network_to_file</span><span class="p">(</span><span class="n">net</span><span class="p">:</span> <span class="n">MultiGraph</span> <span class="o">|</span> <span class="n">MultiDiGraph</span><span class="p">,</span> <span class="n">filename</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Save a network to a Python pickle file</span>
 <span class="sd">    Note these cannot be shared between different versions of Python</span>
@@ -268,7 +268,7 @@
 
 <div class="viewcode-block" id="load_network_from_file">
 <a class="viewcode-back" href="../../api/loader.html#wayfarer.loader.load_network_from_file">[docs]</a>
-<span class="k">def</span> <span class="nf">load_network_from_file</span><span class="p">(</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">load_network_from_file</span><span class="p">(</span>
     <span class="n">filename</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">MultiGraph</span> <span class="o">|</span> <span class="n">MultiDiGraph</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">"""</span>
@@ -287,7 +287,7 @@
 
 <div class="viewcode-block" id="add_edge">
 <a class="viewcode-back" href="../../api/loader.html#wayfarer.loader.add_edge">[docs]</a>
-<span class="k">def</span> <span class="nf">add_edge</span><span class="p">(</span><span class="n">net</span><span class="p">:</span> <span class="n">MultiGraph</span> <span class="o">|</span> <span class="n">MultiDiGraph</span><span class="p">,</span> <span class="n">properties</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span> <span class="o">|</span> <span class="nb">int</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">add_edge</span><span class="p">(</span><span class="n">net</span><span class="p">:</span> <span class="n">MultiGraph</span> <span class="o">|</span> <span class="n">MultiDiGraph</span><span class="p">,</span> <span class="n">properties</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span> <span class="o">|</span> <span class="nb">int</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Add a new edge to a network based on a dict containing</span>
 <span class="sd">    the required wayfarer fields</span>
@@ -323,7 +323,7 @@
 
 <div class="viewcode-block" id="create_graph">
 <a class="viewcode-back" href="../../api/loader.html#wayfarer.loader.create_graph">[docs]</a>
-<span class="k">def</span> <span class="nf">create_graph</span><span class="p">(</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">create_graph</span><span class="p">(</span>
     <span class="n">use_reverse_lookup</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
     <span class="n">graph_type</span><span class="p">:</span> <span class="n">MultiGraph</span> <span class="o">|</span> <span class="n">MultiDiGraph</span> <span class="o">=</span> <span class="n">MultiGraph</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">MultiGraph</span> <span class="o">|</span> <span class="n">MultiDiGraph</span><span class="p">:</span>
@@ -361,7 +361,7 @@
 
 <div class="viewcode-block" id="load_network_from_records">
 <a class="viewcode-back" href="../../api/loader.html#wayfarer.loader.load_network_from_records">[docs]</a>
-<span class="k">def</span> <span class="nf">load_network_from_records</span><span class="p">(</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">load_network_from_records</span><span class="p">(</span>
     <span class="n">recs</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">,</span>
     <span class="n">use_reverse_lookup</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
     <span class="n">graph_type</span><span class="p">:</span> <span class="n">MultiGraph</span> <span class="o">|</span> <span class="n">MultiDiGraph</span> <span class="o">=</span> <span class="n">MultiGraph</span><span class="p">,</span>
@@ -421,7 +421,7 @@
 
 <div class="viewcode-block" id="load_network_from_geometries">
 <a class="viewcode-back" href="../../api/loader.html#wayfarer.loader.load_network_from_geometries">[docs]</a>
-<span class="k">def</span> <span class="nf">load_network_from_geometries</span><span class="p">(</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">load_network_from_geometries</span><span class="p">(</span>
     <span class="n">recs</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">,</span>
     <span class="n">use_reverse_lookup</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
     <span class="n">graph_type</span><span class="p">:</span> <span class="n">MultiGraph</span> <span class="o">|</span> <span class="n">MultiDiGraph</span> <span class="o">=</span> <span class="n">MultiGraph</span><span class="p">,</span>

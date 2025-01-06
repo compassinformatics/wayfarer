@@ -46,7 +46,7 @@
   
   
     <title>wayfarer.functions &#8212; Wayfarer</title>
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=83e35b93" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=75810a84" />
     <link rel="stylesheet" type="text/css" href="../../_static/material.css?v=79c92029" />
     <script src="../../_static/documentation_options.js?v=f2a433a1"></script>
     <script src="../../_static/doctools.js?v=9bcbadda"></script>
@@ -192,17 +192,17 @@
 <span class="sd">This module contains functions related to networks and routing</span>
 <span class="sd">"""</span>
 
-<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
-<span class="kn">import</span> <span class="nn">itertools</span>
-<span class="kn">import</span> <span class="nn">marshal</span>
-<span class="kn">import</span> <span class="nn">logging</span>
-<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">OrderedDict</span>
-<span class="kn">import</span> <span class="nn">networkx</span>
-<span class="kn">from</span> <span class="nn">wayfarer</span> <span class="kn">import</span> <span class="n">loops</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Iterable</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">itertools</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">marshal</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">OrderedDict</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">networkx</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">wayfarer</span><span class="w"> </span><span class="kn">import</span> <span class="n">loops</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Iterable</span>
 
 
-<span class="kn">from</span> <span class="nn">wayfarer</span> <span class="kn">import</span> <span class="p">(</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">wayfarer</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
     <span class="n">EDGE_ID_FIELD</span><span class="p">,</span>
     <span class="n">LENGTH_FIELD</span><span class="p">,</span>
     <span class="n">NODEID_FROM_FIELD</span><span class="p">,</span>
@@ -218,7 +218,7 @@
 
 <div class="viewcode-block" id="pairwise">
 <a class="viewcode-back" href="../../api/functions.html#wayfarer.functions.pairwise">[docs]</a>
-<span class="k">def</span> <span class="nf">pairwise</span><span class="p">(</span><span class="n">iterable</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterable</span><span class="p">[</span><span class="nb">tuple</span><span class="p">]:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">pairwise</span><span class="p">(</span><span class="n">iterable</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterable</span><span class="p">[</span><span class="nb">tuple</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Loops through the iterable, returning adjacent pairs</span>
 <span class="sd">    each time. Useful for returning point coordinates.</span>
@@ -234,7 +234,7 @@
 
 <div class="viewcode-block" id="get_unique_ordered_list">
 <a class="viewcode-back" href="../../api/functions.html#wayfarer.functions.get_unique_ordered_list">[docs]</a>
-<span class="k">def</span> <span class="nf">get_unique_ordered_list</span><span class="p">(</span><span class="n">items</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_unique_ordered_list</span><span class="p">(</span><span class="n">items</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    An order-preserving function to get a unique list of edges or nodes</span>
 
@@ -252,7 +252,7 @@
 
 <div class="viewcode-block" id="edges_to_graph">
 <a class="viewcode-back" href="../../api/functions.html#wayfarer.functions.edges_to_graph">[docs]</a>
-<span class="k">def</span> <span class="nf">edges_to_graph</span><span class="p">(</span><span class="n">edges</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Edge</span><span class="p">]</span> <span class="o">|</span> <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">networkx</span><span class="o">.</span><span class="n">MultiGraph</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">edges_to_graph</span><span class="p">(</span><span class="n">edges</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Edge</span><span class="p">]</span> <span class="o">|</span> <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">networkx</span><span class="o">.</span><span class="n">MultiGraph</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Utility function to create a new MultiGraph based on a list of edges</span>
 
@@ -281,7 +281,7 @@
 
 <div class="viewcode-block" id="add_single_edge">
 <a class="viewcode-back" href="../../api/functions.html#wayfarer.functions.add_single_edge">[docs]</a>
-<span class="k">def</span> <span class="nf">add_single_edge</span><span class="p">(</span><span class="n">net</span><span class="p">:</span> <span class="n">networkx</span><span class="o">.</span><span class="n">MultiGraph</span> <span class="o">|</span> <span class="n">networkx</span><span class="o">.</span><span class="n">MultiDiGraph</span><span class="p">,</span> <span class="n">edge</span><span class="p">:</span> <span class="n">Edge</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">add_single_edge</span><span class="p">(</span><span class="n">net</span><span class="p">:</span> <span class="n">networkx</span><span class="o">.</span><span class="n">MultiGraph</span> <span class="o">|</span> <span class="n">networkx</span><span class="o">.</span><span class="n">MultiDiGraph</span><span class="p">,</span> <span class="n">edge</span><span class="p">:</span> <span class="n">Edge</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Add an edge class to a network</span>
 
@@ -303,7 +303,7 @@
 
 <div class="viewcode-block" id="add_edge">
 <a class="viewcode-back" href="../../api/functions.html#wayfarer.functions.add_edge">[docs]</a>
-<span class="k">def</span> <span class="nf">add_edge</span><span class="p">(</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">add_edge</span><span class="p">(</span>
     <span class="n">net</span><span class="p">:</span> <span class="n">networkx</span><span class="o">.</span><span class="n">MultiGraph</span> <span class="o">|</span> <span class="n">networkx</span><span class="o">.</span><span class="n">MultiDiGraph</span><span class="p">,</span>
     <span class="n">start_node</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">str</span><span class="p">,</span>
     <span class="n">end_node</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">str</span><span class="p">,</span>
@@ -342,7 +342,7 @@
 
 <div class="viewcode-block" id="remove_edge_by_key">
 <a class="viewcode-back" href="../../api/functions.html#wayfarer.functions.remove_edge_by_key">[docs]</a>
-<span class="k">def</span> <span class="nf">remove_edge_by_key</span><span class="p">(</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">remove_edge_by_key</span><span class="p">(</span>
     <span class="n">net</span><span class="p">:</span> <span class="n">networkx</span><span class="o">.</span><span class="n">MultiGraph</span> <span class="o">|</span> <span class="n">networkx</span><span class="o">.</span><span class="n">MultiDiGraph</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">str</span>
 <span class="p">):</span>
 <span class="w">    </span><span class="sd">"""</span>
@@ -366,7 +366,7 @@
 
 
 
-<span class="k">def</span> <span class="nf">remove_edge</span><span class="p">(</span><span class="n">net</span><span class="p">:</span> <span class="n">networkx</span><span class="o">.</span><span class="n">MultiGraph</span> <span class="o">|</span> <span class="n">networkx</span><span class="o">.</span><span class="n">MultiDiGraph</span><span class="p">,</span> <span class="n">edge</span><span class="p">:</span> <span class="n">Edge</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">remove_edge</span><span class="p">(</span><span class="n">net</span><span class="p">:</span> <span class="n">networkx</span><span class="o">.</span><span class="n">MultiGraph</span> <span class="o">|</span> <span class="n">networkx</span><span class="o">.</span><span class="n">MultiDiGraph</span><span class="p">,</span> <span class="n">edge</span><span class="p">:</span> <span class="n">Edge</span><span class="p">):</span>
     <span class="n">net</span><span class="o">.</span><span class="n">remove_edge</span><span class="p">(</span><span class="n">edge</span><span class="o">.</span><span class="n">start_node</span><span class="p">,</span> <span class="n">edge</span><span class="o">.</span><span class="n">end_node</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">edge</span><span class="o">.</span><span class="n">key</span><span class="p">)</span>
 <span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Remove an edge from a network using its unique key.</span>
@@ -390,7 +390,7 @@
 
 <div class="viewcode-block" id="get_edge_by_key">
 <a class="viewcode-back" href="../../api/functions.html#wayfarer.functions.get_edge_by_key">[docs]</a>
-<span class="k">def</span> <span class="nf">get_edge_by_key</span><span class="p">(</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_edge_by_key</span><span class="p">(</span>
     <span class="n">net</span><span class="p">:</span> <span class="n">networkx</span><span class="o">.</span><span class="n">MultiGraph</span> <span class="o">|</span> <span class="n">networkx</span><span class="o">.</span><span class="n">MultiDiGraph</span><span class="p">,</span>
     <span class="n">key</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">str</span><span class="p">,</span>
     <span class="n">with_data</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
@@ -443,7 +443,7 @@
 
 <div class="viewcode-block" id="get_edges_by_attribute">
 <a class="viewcode-back" href="../../api/functions.html#wayfarer.functions.get_edges_by_attribute">[docs]</a>
-<span class="k">def</span> <span class="nf">get_edges_by_attribute</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="n">attribute_field</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">Edge</span><span class="p">]:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_edges_by_attribute</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="n">attribute_field</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">Edge</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Go through all edge property dicts until the relevant attribute is found.</span>
 <span class="sd">    Edges can have different attribute dicts, so add a check that the key exists</span>
@@ -468,7 +468,7 @@
 
 <div class="viewcode-block" id="get_all_complex_paths">
 <a class="viewcode-back" href="../../api/functions.html#wayfarer.functions.get_all_complex_paths">[docs]</a>
-<span class="k">def</span> <span class="nf">get_all_complex_paths</span><span class="p">(</span><span class="n">net</span><span class="p">:</span> <span class="n">networkx</span><span class="o">.</span><span class="n">MultiGraph</span> <span class="o">|</span> <span class="n">networkx</span><span class="o">.</span><span class="n">MultiDiGraph</span><span class="p">,</span> <span class="n">node_list</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_all_complex_paths</span><span class="p">(</span><span class="n">net</span><span class="p">:</span> <span class="n">networkx</span><span class="o">.</span><span class="n">MultiGraph</span> <span class="o">|</span> <span class="n">networkx</span><span class="o">.</span><span class="n">MultiDiGraph</span><span class="p">,</span> <span class="n">node_list</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    For a node path, find any self-looping edges on a node</span>
 <span class="sd">    and add these combinations to the possible path list</span>
@@ -502,7 +502,7 @@
 
 <div class="viewcode-block" id="get_all_paths_from_nodes">
 <a class="viewcode-back" href="../../api/functions.html#wayfarer.functions.get_all_paths_from_nodes">[docs]</a>
-<span class="k">def</span> <span class="nf">get_all_paths_from_nodes</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="n">node_list</span><span class="p">,</span> <span class="n">with_direction_flag</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_all_paths_from_nodes</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="n">node_list</span><span class="p">,</span> <span class="n">with_direction_flag</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Get all combinations of edges along a set of nodes, rather</span>
 <span class="sd">    than just the shortest edges</span>
@@ -565,13 +565,13 @@
 
 
 
-<span class="k">def</span> <span class="nf">get_path_length</span><span class="p">(</span><span class="n">path_edges</span><span class="p">,</span> <span class="n">length_field</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">LENGTH_FIELD</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_path_length</span><span class="p">(</span><span class="n">path_edges</span><span class="p">,</span> <span class="n">length_field</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">LENGTH_FIELD</span><span class="p">):</span>
     <span class="k">return</span> <span class="nb">sum</span><span class="p">([</span><span class="n">edge</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="n">length_field</span><span class="p">]</span> <span class="k">for</span> <span class="n">edge</span> <span class="ow">in</span> <span class="n">path_edges</span><span class="p">])</span>
 
 
 <div class="viewcode-block" id="get_edges_from_node_pair">
 <a class="viewcode-back" href="../../api/functions.html#wayfarer.functions.get_edges_from_node_pair">[docs]</a>
-<span class="k">def</span> <span class="nf">get_edges_from_node_pair</span><span class="p">(</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_edges_from_node_pair</span><span class="p">(</span>
     <span class="n">net</span><span class="p">,</span> <span class="n">start_node</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">str</span><span class="p">,</span> <span class="n">end_node</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">str</span><span class="p">,</span> <span class="n">hide_log_output</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">networkx</span><span class="o">.</span><span class="n">classes</span><span class="o">.</span><span class="n">coreviews</span><span class="o">.</span><span class="n">AtlasView</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">"""</span>
@@ -603,7 +603,7 @@
 
 <div class="viewcode-block" id="get_edges_from_nodes">
 <a class="viewcode-back" href="../../api/functions.html#wayfarer.functions.get_edges_from_nodes">[docs]</a>
-<span class="k">def</span> <span class="nf">get_edges_from_nodes</span><span class="p">(</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_edges_from_nodes</span><span class="p">(</span>
     <span class="n">net</span><span class="p">:</span> <span class="n">networkx</span><span class="o">.</span><span class="n">MultiGraph</span> <span class="o">|</span> <span class="n">networkx</span><span class="o">.</span><span class="n">MultiDiGraph</span><span class="p">,</span>
     <span class="n">node_list</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span> <span class="o">|</span> <span class="nb">str</span><span class="p">],</span>
     <span class="n">with_direction_flag</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
@@ -657,7 +657,7 @@
 
 <div class="viewcode-block" id="get_shortest_edge">
 <a class="viewcode-back" href="../../api/functions.html#wayfarer.functions.get_shortest_edge">[docs]</a>
-<span class="k">def</span> <span class="nf">get_shortest_edge</span><span class="p">(</span><span class="n">edges</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">length_field</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">LENGTH_FIELD</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_shortest_edge</span><span class="p">(</span><span class="n">edges</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">length_field</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">LENGTH_FIELD</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    From a dictionary of edges, get the shortest edge</span>
 <span class="sd">    by its length</span>
@@ -681,7 +681,7 @@
 
 <div class="viewcode-block" id="add_direction_flag">
 <a class="viewcode-back" href="../../api/functions.html#wayfarer.functions.add_direction_flag">[docs]</a>
-<span class="k">def</span> <span class="nf">add_direction_flag</span><span class="p">(</span><span class="n">start_node</span><span class="p">,</span> <span class="n">end_node</span><span class="p">,</span> <span class="n">attributes</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">add_direction_flag</span><span class="p">(</span><span class="n">start_node</span><span class="p">,</span> <span class="n">end_node</span><span class="p">,</span> <span class="n">attributes</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    kwargs so an edge with any properties can be easily passed to the function</span>
 <span class="sd">    """</span>
@@ -723,7 +723,7 @@
 
 <div class="viewcode-block" id="get_nodes_from_edges">
 <a class="viewcode-back" href="../../api/functions.html#wayfarer.functions.get_nodes_from_edges">[docs]</a>
-<span class="k">def</span> <span class="nf">get_nodes_from_edges</span><span class="p">(</span><span class="n">edges</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_nodes_from_edges</span><span class="p">(</span><span class="n">edges</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    From a list of edges return a unique, ordered list</span>
 <span class="sd">    of nodes along the path</span>
@@ -744,7 +744,7 @@
 
 <div class="viewcode-block" id="get_unattached_node">
 <a class="viewcode-back" href="../../api/functions.html#wayfarer.functions.get_unattached_node">[docs]</a>
-<span class="k">def</span> <span class="nf">get_unattached_node</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="n">edge</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_unattached_node</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="n">edge</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Given an edge find which end is unattached on the</span>
 <span class="sd">    network</span>
@@ -776,7 +776,7 @@
 
 <div class="viewcode-block" id="get_sink_nodes">
 <a class="viewcode-back" href="../../api/functions.html#wayfarer.functions.get_sink_nodes">[docs]</a>
-<span class="k">def</span> <span class="nf">get_sink_nodes</span><span class="p">(</span><span class="n">net</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_sink_nodes</span><span class="p">(</span><span class="n">net</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Get all the sinks in the network.</span>
 
@@ -796,7 +796,7 @@
 
 <div class="viewcode-block" id="get_sink_edges">
 <a class="viewcode-back" href="../../api/functions.html#wayfarer.functions.get_sink_edges">[docs]</a>
-<span class="k">def</span> <span class="nf">get_sink_edges</span><span class="p">(</span><span class="n">net</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_sink_edges</span><span class="p">(</span><span class="n">net</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Get all the sinks edges in the network. These are edges which have no edges attached</span>
 <span class="sd">    at their downstream end</span>
@@ -815,7 +815,7 @@
 
 <div class="viewcode-block" id="get_source_nodes">
 <a class="viewcode-back" href="../../api/functions.html#wayfarer.functions.get_source_nodes">[docs]</a>
-<span class="k">def</span> <span class="nf">get_source_nodes</span><span class="p">(</span><span class="n">net</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_source_nodes</span><span class="p">(</span><span class="n">net</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Get all the source in the network.</span>
 
@@ -835,7 +835,7 @@
 
 <div class="viewcode-block" id="get_source_edges">
 <a class="viewcode-back" href="../../api/functions.html#wayfarer.functions.get_source_edges">[docs]</a>
-<span class="k">def</span> <span class="nf">get_source_edges</span><span class="p">(</span><span class="n">net</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_source_edges</span><span class="p">(</span><span class="n">net</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Get all the source edges in the network. These are edges which have no edges attached</span>
 <span class="sd">    at their upstream end</span>
@@ -854,7 +854,7 @@
 
 <div class="viewcode-block" id="get_edges">
 <a class="viewcode-back" href="../../api/functions.html#wayfarer.functions.get_edges">[docs]</a>
-<span class="k">def</span> <span class="nf">get_edges</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="n">nodes</span><span class="p">,</span> <span class="n">in_edges</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_edges</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="n">nodes</span><span class="p">,</span> <span class="n">in_edges</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Get all the edges in the network that touch the nodes in the</span>
 <span class="sd">    nodes list. Note only works with DiGraph or MultiDiGraph.</span>
@@ -887,7 +887,7 @@
 
 <div class="viewcode-block" id="get_ordered_end_nodes">
 <a class="viewcode-back" href="../../api/functions.html#wayfarer.functions.get_ordered_end_nodes">[docs]</a>
-<span class="k">def</span> <span class="nf">get_ordered_end_nodes</span><span class="p">(</span><span class="n">edges</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Edge</span><span class="p">],</span> <span class="n">end_nodes</span><span class="p">:</span> <span class="nb">list</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_ordered_end_nodes</span><span class="p">(</span><span class="n">edges</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Edge</span><span class="p">],</span> <span class="n">end_nodes</span><span class="p">:</span> <span class="nb">list</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Ensures the end nodes are returned in the same order as the input edges</span>
 
@@ -909,7 +909,7 @@
 
 <div class="viewcode-block" id="get_end_nodes">
 <a class="viewcode-back" href="../../api/functions.html#wayfarer.functions.get_end_nodes">[docs]</a>
-<span class="k">def</span> <span class="nf">get_end_nodes</span><span class="p">(</span><span class="n">edges</span><span class="p">,</span> <span class="n">ordered</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_end_nodes</span><span class="p">(</span><span class="n">edges</span><span class="p">,</span> <span class="n">ordered</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Find the end nodes of a graph</span>
 
@@ -935,7 +935,7 @@
 
 <div class="viewcode-block" id="get_multiconnected_nodes">
 <a class="viewcode-back" href="../../api/functions.html#wayfarer.functions.get_multiconnected_nodes">[docs]</a>
-<span class="k">def</span> <span class="nf">get_multiconnected_nodes</span><span class="p">(</span><span class="n">edges</span><span class="p">,</span> <span class="n">connections</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_multiconnected_nodes</span><span class="p">(</span><span class="n">edges</span><span class="p">,</span> <span class="n">connections</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Get all nodes which have at least n connections</span>
 
@@ -953,7 +953,7 @@
 
 <div class="viewcode-block" id="has_overlaps">
 <a class="viewcode-back" href="../../api/functions.html#wayfarer.functions.has_overlaps">[docs]</a>
-<span class="k">def</span> <span class="nf">has_overlaps</span><span class="p">(</span><span class="n">edges</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Edge</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">has_overlaps</span><span class="p">(</span><span class="n">edges</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Edge</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Checks if the provided list of edges has overlaps</span>
 <span class="sd">    If an edge is split but the measures don't overlap then this will return False</span>
