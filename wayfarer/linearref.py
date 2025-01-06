@@ -271,7 +271,9 @@ def get_measures(line: LineString, pt1: Point, pt2: Point) -> tuple[float, float
 
 def get_measure_on_line(line: LineString, point: Point) -> float:
     """
-    Return the measure along a line of a point
+    Return the measure along a line of a point. Note the Shapely
+    function can return a np.float64 value, so we ensure it is
+    converted to a float (see https://github.com/shapely/shapely/issues/2196).
 
     Args:
         line: The LineString
@@ -284,7 +286,7 @@ def get_measure_on_line(line: LineString, point: Point) -> float:
     >>> get_measure_on_line(line, point)
     50.0
     """
-    return line.project(point)
+    return float(line.project(point))
 
 
 def get_closest_point_to_measure(

@@ -1,6 +1,7 @@
 import pytest
 from wayfarer import linearref
 from shapely.geometry import LineString, Point, MultiLineString
+from shapely.wkt import loads
 from decimal import Decimal
 
 
@@ -373,6 +374,21 @@ def test_get_measure_on_line():
     assert m == 50
 
 
+def test_get_measure_on_line2():
+    pt = Point(606009.852, 627525.514)
+
+    wkt = (
+        "LINESTRING (606019.852 627522.087, 606016.046 627522.628, 606011.352 627524.538, 606006.532 627527.675, "
+        "606003.574 627530.937, 606000.695 627535.076, 605998.74 627539.943, 605997.949 627545.735, 605998.684 627549.394)"
+    )
+    ls = loads(wkt)
+
+    # without a conversion to float this returns np.float64(10.702118085318782) in newer versions of Shapely
+    m = linearref.get_measure_on_line(ls, pt)
+    print(m)
+    pytest.approx(m, 10.702118)
+
+
 def test_get_measure_not_on_line():
     pt = Point(500, 0)
     ls = LineString([(0, 0), (100, 0)])
@@ -444,6 +460,7 @@ def run_tests():
 
 if __name__ == "__main__":
     # run_tests()
-    test_intersect_point_to_line()
+    # test_intersect_point_to_line()
     # test_get_end_point_error()
+    test_get_measure_on_line2()
     print("Done!")
