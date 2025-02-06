@@ -44,7 +44,7 @@ def test_valid_reverse_lookup():
     ]
     net = loader.load_network_from_records(recs, use_reverse_lookup=True)
 
-    assert validator.valid_reverse_lookup(net) == True
+    assert validator.valid_reverse_lookup(net)
 
 
 def test_recalculate_keys():
