@@ -394,7 +394,7 @@ def remove_duplicates_in_line(line: LineString):
     if line.geom_type != "LineString":
         raise NotImplementedError(f"Geometry type {line.geom_type} is not valid")
 
-    clean_coords = [k for k, g in itertools.groupby(line.coords)]
+    clean_coords = [k for k, g in itertools.groupby(sorted(line.coords))]
     return LineString(clean_coords)
 
 
