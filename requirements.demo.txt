@@ -5,7 +5,7 @@ shapely==2.0.6
 osmnx==2.0.1
 # geopandas==1.0.1 # osmnx 1.9.4 depends on geopandas<0.15 and >=0.12
 uvicorn[standard]==0.34.0
-fastapi==0.115.6
+fastapi==0.115.12
 # following required for isochrones
 scipy==1.15.0
 odbcutils==0.2.1
