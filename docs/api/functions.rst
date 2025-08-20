@@ -1,5 +1,5 @@
-Functions Module
-================
+Functions Module API
+====================
 
 .. automodule:: wayfarer.functions
    :members:
