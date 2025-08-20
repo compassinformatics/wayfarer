@@ -6,10 +6,13 @@
 
    self
    examples.rst
+   osm_examples.rst
    solver.rst
+   api/wayfarer.rst
    api/functions.rst
-   api/loader.rst
    api/linearref.rst
+   api/loader.rst
+   api/osmnx_compat.rst
    api/routing.rst
 
 ..
