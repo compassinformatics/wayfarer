@@ -553,6 +553,34 @@ def test_get_sink_edges():
     assert edges["C"] == {"EDGE_ID": 3}
 
 
+def test_copy_attributes():
+
+    atts = {"EDGE_ID": 1}
+    atts_copy = functions.copy_attributes(atts)
+    assert atts_copy["EDGE_ID"] == 1
+
+    atts_copy["EDGE_ID"] = 2
+    # original attributes should be unmodified
+    assert atts["EDGE_ID"] == 1
+
+
+def test_copy_attributes_class():
+
+    class Unmarshalable:
+        def __init__(self, x):
+            self.x = x
+
+    obj = Unmarshalable(1)
+
+    atts = {"geom": obj}
+    atts_copy = functions.copy_attributes(atts)
+    assert atts_copy["geom"].x == 1
+
+    atts_copy["geom"].x = 2
+    # original attributes should be unmodified
+    assert atts["geom"].x == 1
+
+
 def test_doctest():
     import doctest
 
@@ -589,6 +617,7 @@ if __name__ == "__main__":
     # test_add_edge_shorthand()
     # test_add_single_edge()
     # test_get_shortest_edge_no_length()
-    test_get_source_edges()
-    test_get_sink_edges()
+    # test_get_source_edges()
+    # test_get_sink_edges()
+    test_copy_attributes_class()
     print("Done!")
