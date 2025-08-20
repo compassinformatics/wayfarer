@@ -23,7 +23,7 @@ jobs:
       # https://docs.github.com/en/actions/guides/building-and-testing-python#caching-dependencies
       # caching of pip files
       - name: Cache pip
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         with:
           path: ~/.cache/pip
           key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
