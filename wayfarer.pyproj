@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>f8ac0630-98af-462b-b7ee-5688d6183c85</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>tests\test_routing_ordered_path.py</StartupFile>
+    <StartupFile>docs\examples\routing_example.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -36,6 +36,11 @@
     <Compile Include="demo\utils.py" />
     <Compile Include="demo\__init__.py" />
     <Compile Include="docs\conf.py" />
+    <Compile Include="docs\examples\create_network.py" />
+    <Compile Include="docs\examples\named_tuple.py" />
+    <Compile Include="docs\examples\node_to_node.py" />
+    <Compile Include="docs\examples\routing_example.py" />
+    <Compile Include="docs\examples\snap_points.py" />
     <Compile Include="scripts\load_from_shapefile.py" />
     <Compile Include="scripts\rivers.py" />
     <Compile Include="demo\rivers.py" />
@@ -99,6 +104,7 @@
     <Folder Include="docs\" />
     <Folder Include="data\" />
     <Folder Include="docs\api\" />
+    <Folder Include="docs\examples\" />
     <Folder Include="docs\images\" />
     <Folder Include="demo\" />
     <Folder Include="docs\_static\" />
@@ -119,7 +125,9 @@
     <Content Include="docs\api\linearref.rst" />
     <Content Include="docs\api\loader.rst" />
     <Content Include="docs\api\functions.rst" />
+    <Content Include="docs\api\osmnx_compat.rst" />
     <Content Include="docs\api\routing.rst" />
+    <Content Include="docs\api\wayfarer.rst" />
     <Content Include="docs\examples.rst" />
     <Content Include="docs\images\bottle_network.png" />
     <Content Include="docs\images\circle_network.png" />
@@ -137,16 +145,9 @@
     <Content Include="docs\images\triple_loop_network.png" />
     <Content Include="docs\images\t_network.png" />
     <Content Include="docs\index.rst" />
-    <Content Include="docs\introduction.rst" />
-    <Content Include="docs\network_comparison.rst" />
     <Content Include="docs\network_loading.rst" />
     <Content Include="docs\osmnx.rst" />
-    <Content Include="docs\presentation.rst" />
-    <Content Include="docs\self_loops.rst">
-      <SubType>Code</SubType>
-    </Content>
     <Content Include="docs\solver.rst" />
-    <Content Include="docs\talk.rst" />
     <Content Include="dev_setup.ps1" />
     <Content Include="build_docs.ps1" />
     <Content Include="docs\_static\placeholder.txt" />

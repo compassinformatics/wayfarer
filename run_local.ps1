@@ -5,7 +5,7 @@ black .
 flake8 .
 
 mypy --install-types
-mypy wayfarer tests scripts demo
+mypy wayfarer tests scripts demo docs/examples
 
 pytest --doctest-modules
 
