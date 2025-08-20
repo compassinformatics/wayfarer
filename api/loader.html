@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="lang:clipboard.copy" content="Copy to clipboard">
+  <meta name="lang:clipboard.copied" content="Copied to clipboard">
+  <meta name="lang:search.language" content="en">
+  <meta name="lang:search.pipeline.stopwords" content="True">
+  <meta name="lang:search.pipeline.trimmer" content="True">
+  <meta name="lang:search.result.none" content="No matching documents">
+  <meta name="lang:search.result.one" content="1 matching document">
+  <meta name="lang:search.result.other" content="# matching documents">
+  <meta name="lang:search.tokenizer" content="[\s\-]+">
+
+  
+    <link href="https://fonts.gstatic.com/" rel="preconnect" crossorigin>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono:400,500,700|Roboto:300,400,400i,700&display=fallback" rel="stylesheet">
+
+    <style>
+      body,
+      input {
+        font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif
+      }
+
+      code,
+      kbd,
+      pre {
+        font-family: "Roboto Mono", "Courier New", Courier, monospace
+      }
+    </style>
+  
+
+  <link rel="stylesheet" href="../_static/stylesheets/application.css"/>
+  <link rel="stylesheet" href="../_static/stylesheets/application-palette.css"/>
+  <link rel="stylesheet" href="../_static/stylesheets/application-fixes.css"/>
+  
+  <link rel="stylesheet" href="../_static/fonts/material-icons.css"/>
+  
+  <meta name="theme-color" content="#3f51b5">
+  <script src="../_static/javascripts/modernizr.js"></script>
+  
+  
+  
+    <title>Loader Module API &#8212; Wayfarer</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=75810a84" />
+    <link rel="stylesheet" type="text/css" href="../_static/material.css?v=79c92029" />
+    <script src="../_static/documentation_options.js?v=f2a433a1"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="OSMnx Compatibility Module API" href="osmnx_compat.html" />
+    <link rel="prev" title="Linear Referencing Module API" href="linearref.html" />
+  
+   
+
+  </head>
+  <body dir=ltr
+        data-md-color-primary=blue-grey data-md-color-accent=blue>
+  
+  <svg class="md-svg">
+    <defs data-children-count="0">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="__github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg>
+      
+    </defs>
+  </svg>
+  
+  <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer">
+  <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search">
+  <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+  <a href="#api/loader" tabindex="1" class="md-skip"> Skip to content </a>
+  <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex navheader">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="../index.html" title="Wayfarer"
+           class="md-header-nav__button md-logo">
+          
+            &nbsp;
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          <span class="md-header-nav__topic">Wayfarer</span>
+          <span class="md-header-nav__topic"> Loader Module API </span>
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+        
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" action="../search.html" method="get" name="search">
+      <input type="text" class="md-search__input" name="q" placeholder=""Search""
+             autocapitalize="off" autocomplete="off" spellcheck="false"
+             data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+      </div>
+      
+      
+  
+  <script src="../_static/javascripts/version_dropdown.js"></script>
+  <script>
+    var json_loc = "../"versions.json"",
+        target_loc = "../../",
+        text = "Versions";
+    $( document ).ready( add_version_dropdown(json_loc, target_loc, text));
+  </script>
+  
+
+    </div>
+  </nav>
+</header>
+
+  
+  <div class="md-container">
+    
+    
+    
+  <nav class="md-tabs" data-md-component="tabs">
+    <div class="md-tabs__inner md-grid">
+      <ul class="md-tabs__list">
+          <li class="md-tabs__item"><a href="../index.html" class="md-tabs__link">Wayfarer</a></li>
+      </ul>
+    </div>
+  </nav>
+    <main class="md-main">
+      <div class="md-main__inner md-grid" data-md-component="container">
+        
+          <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+            <div class="md-sidebar__scrollwrap">
+              <div class="md-sidebar__inner">
+                <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="../index.html" title="Wayfarer" class="md-nav__button md-logo">
+      
+        <img src="../_static/" alt=" logo" width="48" height="48">
+      
+    </a>
+    <a href="../index.html"
+       title="Wayfarer">Wayfarer</a>
+  </label>
+  
+
+  
+  <ul class="md-nav__list">
+    <li class="md-nav__item">
+    
+      <span class="md-nav__link caption"><span class="caption-text">Contents:</span></span>
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../index.html" class="md-nav__link">Wayfarer</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../examples.html" class="md-nav__link">Examples</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../osm_examples.html" class="md-nav__link">OSM Example</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../solver.html" class="md-nav__link">Edge Solver</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="wayfarer.html" class="md-nav__link">Wayfarer Module API</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="functions.html" class="md-nav__link">Functions Module API</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="linearref.html" class="md-nav__link">Linear Referencing Module API</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    <label class="md-nav__link md-nav__link--active" for="__toc"> Loader Module API </label>
+    
+      <a href="#" class="md-nav__link md-nav__link--active">Loader Module API</a>
+      
+        
+<nav class="md-nav md-nav--secondary">
+    <label class="md-nav__title" for="__toc">"Contents"</label>
+  <ul class="md-nav__list" data-md-scrollfix="">
+        <li class="md-nav__item"><a href="#api-loader--page-root" class="md-nav__link">Loader Module API</a><nav class="md-nav">
+              <ul class="md-nav__list">
+        <li class="md-nav__item"><a href="#wayfarer.loader.UniqueDict" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">UniqueDict</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#wayfarer.loader.add_edge" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">add_edge()</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#wayfarer.loader.create_graph" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">create_graph()</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#wayfarer.loader.distance" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">distance()</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#wayfarer.loader.load_network_from_file" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">load_network_from_file()</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#wayfarer.loader.load_network_from_geometries" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">load_network_from_geometries()</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#wayfarer.loader.load_network_from_records" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">load_network_from_records()</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#wayfarer.loader.save_network_to_file" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">save_network_to_file()</span></code></a>
+        </li></ul>
+            </nav>
+        </li>
+  </ul>
+</nav>
+      <ul class="md-nav__list"> 
+    <li class="md-nav__item">
+    
+    
+      <a href="#wayfarer.loader.UniqueDict" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">UniqueDict</span></code></a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="#wayfarer.loader.add_edge" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">add_edge()</span></code></a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="#wayfarer.loader.create_graph" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">create_graph()</span></code></a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="#wayfarer.loader.distance" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">distance()</span></code></a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="#wayfarer.loader.load_network_from_file" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">load_network_from_file()</span></code></a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="#wayfarer.loader.load_network_from_geometries" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">load_network_from_geometries()</span></code></a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="#wayfarer.loader.load_network_from_records" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">load_network_from_records()</span></code></a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="#wayfarer.loader.save_network_to_file" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">save_network_to_file()</span></code></a>
+      
+    
+    </li></ul>
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="osmnx_compat.html" class="md-nav__link">OSMnx Compatibility Module API</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="routing.html" class="md-nav__link">Routing Module API</a>
+      
+    
+    </li>
+  </ul>
+  
+
+</nav>
+              </div>
+            </div>
+          </div>
+          <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+            <div class="md-sidebar__scrollwrap">
+              <div class="md-sidebar__inner">
+                
+<nav class="md-nav md-nav--secondary">
+    <label class="md-nav__title" for="__toc">"Contents"</label>
+  <ul class="md-nav__list" data-md-scrollfix="">
+        <li class="md-nav__item"><a href="#api-loader--page-root" class="md-nav__link">Loader Module API</a><nav class="md-nav">
+              <ul class="md-nav__list">
+        <li class="md-nav__item"><a href="#wayfarer.loader.UniqueDict" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">UniqueDict</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#wayfarer.loader.add_edge" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">add_edge()</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#wayfarer.loader.create_graph" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">create_graph()</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#wayfarer.loader.distance" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">distance()</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#wayfarer.loader.load_network_from_file" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">load_network_from_file()</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#wayfarer.loader.load_network_from_geometries" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">load_network_from_geometries()</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#wayfarer.loader.load_network_from_records" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">load_network_from_records()</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#wayfarer.loader.save_network_to_file" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">save_network_to_file()</span></code></a>
+        </li></ul>
+            </nav>
+        </li>
+  </ul>
+</nav>
+              </div>
+            </div>
+          </div>
+        
+        <div class="md-content">
+          <article class="md-content__inner md-typeset" role="main">
+            
+  <section id="module-wayfarer.loader">
+<span id="loader-module-api"></span><h1 id="api-loader--page-root">Loader Module API<a class="headerlink" href="#api-loader--page-root" title="Link to this heading">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="wayfarer.loader.UniqueDict">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">wayfarer.loader.</span></span><span class="sig-name descname"><span class="pre">UniqueDict</span></span><a class="reference internal" href="../_modules/wayfarer/loader.html#UniqueDict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#wayfarer.loader.UniqueDict" title="Link to this definition">¶</a></dt>
+<dd><p>A subclass of dict to ensure all keys are unique</p>
+</dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="wayfarer.loader.add_edge">
+<span class="sig-prename descclassname"><span class="pre">wayfarer.loader.</span></span><span class="sig-name descname"><span class="pre">add_edge</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">net</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">properties</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/wayfarer/loader.html#add_edge"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#wayfarer.loader.add_edge" title="Link to this definition">¶</a></dt>
+<dd><p>Add a new edge to a network based on a dict containing
+the required wayfarer fields</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>net</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://networkx.org/documentation/stable/reference/classes/multigraph.html#networkx.MultiGraph" title="(in NetworkX v3.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">MultiGraph</span></code></a> | <a class="reference external" href="https://networkx.org/documentation/stable/reference/classes/multidigraph.html#networkx.MultiDiGraph" title="(in NetworkX v3.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">MultiDiGraph</span></code></a></span>) – A network</p></li>
+<li><p><strong>properties</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a></span>) – A dictionary containing values for the edge</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a> | <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The key of the edge</p>
+</dd>
+</dl>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">net</span> <span class="o">=</span> <span class="n">MultiGraph</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">add_edge</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="p">{</span><span class="s2">"EDGE_ID"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">"NODEID_FROM"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">"NODEID_TO"</span><span class="p">:</span> <span class="mi">1</span><span class="p">})</span>
+<span class="go">1</span>
+</pre></div>
+</div>
+</dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="wayfarer.loader.create_graph">
+<span class="sig-prename descclassname"><span class="pre">wayfarer.loader.</span></span><span class="sig-name descname"><span class="pre">create_graph</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">use_reverse_lookup=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">graph_type=&lt;class</span> <span class="pre">'networkx.classes.multigraph.MultiGraph'&gt;</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/wayfarer/loader.html#create_graph"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#wayfarer.loader.create_graph" title="Link to this definition">¶</a></dt>
+<dd><p>Create a new networkx graph, with an optional dictionary to store unique keys
+for fast edge lookups</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">net</span> <span class="o">=</span> <span class="n">create_graph</span><span class="p">()</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>use_reverse_lookup</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>) – Create a dictionary for fast key lookup</p></li>
+<li><p><strong>graph_type</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://networkx.org/documentation/stable/reference/classes/multigraph.html#networkx.MultiGraph" title="(in NetworkX v3.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">MultiGraph</span></code></a> | <a class="reference external" href="https://networkx.org/documentation/stable/reference/classes/multidigraph.html#networkx.MultiDiGraph" title="(in NetworkX v3.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">MultiDiGraph</span></code></a></span>) – The type of network</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://networkx.org/documentation/stable/reference/classes/multigraph.html#networkx.MultiGraph" title="(in NetworkX v3.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">MultiGraph</span></code></a> | <a class="reference external" href="https://networkx.org/documentation/stable/reference/classes/multidigraph.html#networkx.MultiDiGraph" title="(in NetworkX v3.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">MultiDiGraph</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The new network</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="wayfarer.loader.distance">
+<span class="sig-prename descclassname"><span class="pre">wayfarer.loader.</span></span><span class="sig-name descname"><span class="pre">distance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/wayfarer/loader.html#distance"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#wayfarer.loader.distance" title="Link to this definition">¶</a></dt>
+<dd><p>Return the Euclidean distance between two points.
+Any z-values associated with the points are ignored.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>p1</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a> | <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a> | <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>]</span>) – The first point</p></li>
+<li><p><strong>p2</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a> | <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a> | <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>]</span>) – The second point</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The distance between the two points</p>
+</dd>
+</dl>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">distance</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="go">14.142135623730951</span>
+</pre></div>
+</div>
+</dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="wayfarer.loader.load_network_from_file">
+<span class="sig-prename descclassname"><span class="pre">wayfarer.loader.</span></span><span class="sig-name descname"><span class="pre">load_network_from_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/wayfarer/loader.html#load_network_from_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#wayfarer.loader.load_network_from_file" title="Link to this definition">¶</a></dt>
+<dd><p>Return a network previously saved to a pickle file</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>filename</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>) – The filename to the pickle file containing the network</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://networkx.org/documentation/stable/reference/classes/multigraph.html#networkx.MultiGraph" title="(in NetworkX v3.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">MultiGraph</span></code></a> | <a class="reference external" href="https://networkx.org/documentation/stable/reference/classes/multidigraph.html#networkx.MultiDiGraph" title="(in NetworkX v3.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">MultiDiGraph</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The network</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="wayfarer.loader.load_network_from_geometries">
+<span class="sig-prename descclassname"><span class="pre">wayfarer.loader.</span></span><span class="sig-name descname"><span class="pre">load_network_from_geometries</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">recs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_reverse_lookup=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">graph_type=&lt;class</span> <span class="pre">'networkx.classes.multigraph.MultiGraph'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">skip_errors=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">strip_properties=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keep_geometry=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key_field='EDGE_ID'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">length_field='LEN_'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rounding=5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_integer_keys=True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/wayfarer/loader.html#load_network_from_geometries"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#wayfarer.loader.load_network_from_geometries" title="Link to this definition">¶</a></dt>
+<dd><p>Create a new networkX graph using a list of recs of type <code class="docutils literal notranslate"><span class="pre">__geo_interface__</span></code>
+This allows networks to be created using libraries such as Fiona.
+Any <code class="docutils literal notranslate"><span class="pre">MultiLineString</span></code> geometries in the network will be ignored, geometries should
+be converted to <code class="docutils literal notranslate"><span class="pre">LineString</span></code> prior to creating the network.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rec</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"geometry"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"type"</span><span class="p">:</span> <span class="s2">"LineString"</span><span class="p">,</span> <span class="s2">"coordinates"</span><span class="p">:</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)]},</span> <span class="s2">"properties"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"EDGE_ID"</span><span class="p">:</span> <span class="mi">1</span><span class="p">}}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">net</span> <span class="o">=</span> <span class="n">load_network_from_geometries</span><span class="p">([</span><span class="n">rec</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">str</span><span class="p">(</span><span class="n">net</span><span class="p">)</span>
+<span class="go">"MultiGraph named 'Wayfarer Generated MultiGraph (version ...)' with 2 nodes and 1 edges"</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>recs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Iterable" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Iterable</span></code></a></span>) – An iterable of dictionary objects The filename to the pickle file containing the network</p></li>
+<li><p><strong>use_reverse_lookup</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>) – Create a dictionary as part of the graph that stores unique edge keys for
+fast lookups</p></li>
+<li><p><strong>graph_type</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://networkx.org/documentation/stable/reference/classes/multigraph.html#networkx.MultiGraph" title="(in NetworkX v3.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">MultiGraph</span></code></a> | <a class="reference external" href="https://networkx.org/documentation/stable/reference/classes/multidigraph.html#networkx.MultiDiGraph" title="(in NetworkX v3.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">MultiDiGraph</span></code></a></span>) – The type of network to create</p></li>
+<li><p><strong>skip_errors</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>) – Ignore any geometries that are not of type <code class="docutils literal notranslate"><span class="pre">LineString</span></code></p></li>
+<li><p><strong>strip_properties</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>) – Reduce the size of the network file by only retaining the
+properties required to run routing. Any other properties in the records
+will be ignored</p></li>
+<li><p><strong>key_field</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>) – A key field containing a unique Id for each feature must be provided</p></li>
+<li><p><strong>length_field</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>) – The field in the geometry properties that contains a length. If not provided
+then the length will be calculated from the geometry. It is assumed the geometry
+is projected, as a simple planar distance will be calculated.</p></li>
+<li><p><strong>rounding</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – If no node fields are used then nodes will be created based on the start and end points of
+the input geometries. As node values must match exactly for edges to be connected rounding
+to a fixed number of decimal places avoids unconnected edges to to tiny differences in floats
+e.g. (-9.564484483347517, 52.421103202488965) and (-9.552925853749544, 52.41969110706263)</p></li>
+<li><p><strong>use_integer_keys</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>) – Using Integer keys makes using wayfarer faster. By default keys will be attempted to be
+converted to integers. Set this to <code class="docutils literal notranslate"><span class="pre">False</span></code> to leave keys unconverted (for example when using
+String keys)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://networkx.org/documentation/stable/reference/classes/multigraph.html#networkx.MultiGraph" title="(in NetworkX v3.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">MultiGraph</span></code></a> | <a class="reference external" href="https://networkx.org/documentation/stable/reference/classes/multidigraph.html#networkx.MultiDiGraph" title="(in NetworkX v3.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">MultiDiGraph</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A new network</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="wayfarer.loader.load_network_from_records">
+<span class="sig-prename descclassname"><span class="pre">wayfarer.loader.</span></span><span class="sig-name descname"><span class="pre">load_network_from_records</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">recs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_reverse_lookup=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">graph_type=&lt;class</span> <span class="pre">'networkx.classes.multigraph.MultiGraph'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key_field='EDGE_ID'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">length_field='LEN_'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">from_field='NODEID_FROM'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">to_field='NODEID_TO'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/wayfarer/loader.html#load_network_from_records"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#wayfarer.loader.load_network_from_records" title="Link to this definition">¶</a></dt>
+<dd><p>Create a new networkX graph based on a list of dictionary objects
+containing the required wayfarer properties</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">recs</span> <span class="o">=</span> <span class="p">[{</span><span class="s2">"EDGE_ID"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">"NODEID_FROM"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">"NODEID_TO"</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">"LEN_"</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="s2">"PROP1"</span><span class="p">:</span> <span class="s2">"A"</span><span class="p">}]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">net</span> <span class="o">=</span> <span class="n">load_network_from_records</span><span class="p">(</span><span class="n">recs</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">str</span><span class="p">(</span><span class="n">net</span><span class="p">)</span>
+<span class="go">"MultiGraph named 'Wayfarer Generated MultiGraph (version ...)' with 2 nodes and 1 edges"</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>recs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Iterable" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Iterable</span></code></a></span>) – An iterable of dictionary objects The filename to the pickle file containing the network</p></li>
+<li><p><strong>use_reverse_lookup</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>) – Create a dictionary as part of the graph that stores unique edge keys for
+fast lookups</p></li>
+<li><p><strong>graph_type</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://networkx.org/documentation/stable/reference/classes/multigraph.html#networkx.MultiGraph" title="(in NetworkX v3.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">MultiGraph</span></code></a> | <a class="reference external" href="https://networkx.org/documentation/stable/reference/classes/multidigraph.html#networkx.MultiDiGraph" title="(in NetworkX v3.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">MultiDiGraph</span></code></a></span>) – The type of network to create</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://networkx.org/documentation/stable/reference/classes/multigraph.html#networkx.MultiGraph" title="(in NetworkX v3.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">MultiGraph</span></code></a> | <a class="reference external" href="https://networkx.org/documentation/stable/reference/classes/multidigraph.html#networkx.MultiDiGraph" title="(in NetworkX v3.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">MultiDiGraph</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A new network</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="wayfarer.loader.save_network_to_file">
+<span class="sig-prename descclassname"><span class="pre">wayfarer.loader.</span></span><span class="sig-name descname"><span class="pre">save_network_to_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">net</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/wayfarer/loader.html#save_network_to_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#wayfarer.loader.save_network_to_file" title="Link to this definition">¶</a></dt>
+<dd><p>Save a network to a Python pickle file
+Note these cannot be shared between different versions of Python</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>net</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://networkx.org/documentation/stable/reference/classes/multigraph.html#networkx.MultiGraph" title="(in NetworkX v3.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">MultiGraph</span></code></a> | <a class="reference external" href="https://networkx.org/documentation/stable/reference/classes/multidigraph.html#networkx.MultiDiGraph" title="(in NetworkX v3.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">MultiDiGraph</span></code></a></span>) – The network</p></li>
+<li><p><strong>filename</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>) – The filename to save the network as a pickle file</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a></span></p>
+</dd>
+</dl>
+</dd></dl>
+</section>
+
+
+          </article>
+        </div>
+      </div>
+    </main>
+  </div>
+  <footer class="md-footer">
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+          
+            <a href="linearref.html" title="Linear Referencing Module API"
+               class="md-flex md-footer-nav__link md-footer-nav__link--prev"
+               rel="prev">
+              <div class="md-flex__cell md-flex__cell--shrink">
+                <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+              </div>
+              <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+                <span class="md-flex__ellipsis">
+                  <span
+                      class="md-footer-nav__direction"> "Previous" </span> Linear Referencing Module API </span>
+              </div>
+            </a>
+          
+          
+            <a href="osmnx_compat.html" title="OSMnx Compatibility Module API"
+               class="md-flex md-footer-nav__link md-footer-nav__link--next"
+               rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title"><span
+                class="md-flex__ellipsis"> <span
+                class="md-footer-nav__direction"> "Next" </span> OSMnx Compatibility Module API </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink"><i
+                class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          
+        </a>
+        
+      </nav>
+    </div>
+    <div class="md-footer-meta md-typeset">
+      <div class="md-footer-meta__inner md-grid">
+        <div class="md-footer-copyright">
+          <div class="md-footer-copyright__highlight">
+              &#169; Copyright 2025, Compass Informatics.
+              
+          </div>
+            Created using
+            <a href="http://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+             and
+            <a href="https://github.com/bashtage/sphinx-material/">Material for
+              Sphinx</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script src="../_static/javascripts/application.js"></script>
+  <script>app.initialize({version: "1.0.4", url: {base: ".."}})</script>
+  </body>
+</html>

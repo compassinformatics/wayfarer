@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="lang:clipboard.copy" content="Copy to clipboard">
+  <meta name="lang:clipboard.copied" content="Copied to clipboard">
+  <meta name="lang:search.language" content="en">
+  <meta name="lang:search.pipeline.stopwords" content="True">
+  <meta name="lang:search.pipeline.trimmer" content="True">
+  <meta name="lang:search.result.none" content="No matching documents">
+  <meta name="lang:search.result.one" content="1 matching document">
+  <meta name="lang:search.result.other" content="# matching documents">
+  <meta name="lang:search.tokenizer" content="[\s\-]+">
+
+  
+    <link href="https://fonts.gstatic.com/" rel="preconnect" crossorigin>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono:400,500,700|Roboto:300,400,400i,700&display=fallback" rel="stylesheet">
+
+    <style>
+      body,
+      input {
+        font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif
+      }
+
+      code,
+      kbd,
+      pre {
+        font-family: "Roboto Mono", "Courier New", Courier, monospace
+      }
+    </style>
+  
+
+  <link rel="stylesheet" href="_static/stylesheets/application.css"/>
+  <link rel="stylesheet" href="_static/stylesheets/application-palette.css"/>
+  <link rel="stylesheet" href="_static/stylesheets/application-fixes.css"/>
+  
+  <link rel="stylesheet" href="_static/fonts/material-icons.css"/>
+  
+  <meta name="theme-color" content="#3f51b5">
+  <script src="_static/javascripts/modernizr.js"></script>
+  
+  
+  
+    <title>Wayfarer &#8212; Wayfarer</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=75810a84" />
+    <link rel="stylesheet" type="text/css" href="_static/material.css?v=79c92029" />
+    <script src="_static/documentation_options.js?v=f2a433a1"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Examples" href="examples.html" />
+  
+   
+
+  </head>
+  <body dir=ltr
+        data-md-color-primary=blue-grey data-md-color-accent=blue>
+  
+  <svg class="md-svg">
+    <defs data-children-count="0">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="__github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg>
+      
+    </defs>
+  </svg>
+  
+  <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer">
+  <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search">
+  <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+  <a href="#index" tabindex="1" class="md-skip"> Skip to content </a>
+  <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex navheader">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="#" title="Wayfarer"
+           class="md-header-nav__button md-logo">
+          
+            &nbsp;
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          <span class="md-header-nav__topic">Wayfarer</span>
+          <span class="md-header-nav__topic"> Wayfarer </span>
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+        
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" action="search.html" method="get" name="search">
+      <input type="text" class="md-search__input" name="q" placeholder=""Search""
+             autocapitalize="off" autocomplete="off" spellcheck="false"
+             data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+      </div>
+      
+      
+  
+  <script src="_static/javascripts/version_dropdown.js"></script>
+  <script>
+    var json_loc = ""versions.json"",
+        target_loc = "../",
+        text = "Versions";
+    $( document ).ready( add_version_dropdown(json_loc, target_loc, text));
+  </script>
+  
+
+    </div>
+  </nav>
+</header>
+
+  
+  <div class="md-container">
+    
+    
+    
+  <nav class="md-tabs" data-md-component="tabs">
+    <div class="md-tabs__inner md-grid">
+      <ul class="md-tabs__list">
+          <li class="md-tabs__item"><a href="#" class="md-tabs__link">Wayfarer</a></li>
+      </ul>
+    </div>
+  </nav>
+    <main class="md-main">
+      <div class="md-main__inner md-grid" data-md-component="container">
+        
+          <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+            <div class="md-sidebar__scrollwrap">
+              <div class="md-sidebar__inner">
+                <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="#" title="Wayfarer" class="md-nav__button md-logo">
+      
+        <img src="_static/" alt=" logo" width="48" height="48">
+      
+    </a>
+    <a href="#"
+       title="Wayfarer">Wayfarer</a>
+  </label>
+  
+
+  
+  <ul class="md-nav__list">
+    <li class="md-nav__item">
+    
+      <span class="md-nav__link caption"><span class="caption-text">Contents:</span></span>
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    <label class="md-nav__link md-nav__link--active" for="__toc"> Wayfarer </label>
+    
+      <a href="#" class="md-nav__link md-nav__link--active">Wayfarer</a>
+      
+        
+<nav class="md-nav md-nav--secondary">
+    <label class="md-nav__title" for="__toc">"Contents"</label>
+  <ul class="md-nav__list" data-md-scrollfix="">
+        <li class="md-nav__item"><a href="#index--page-root" class="md-nav__link">Wayfarer</a><nav class="md-nav">
+              <ul class="md-nav__list">
+        <li class="md-nav__item"><a href="#functionality" class="md-nav__link">Functionality</a><nav class="md-nav">
+              <ul class="md-nav__list">
+        <li class="md-nav__item"><a href="#routing" class="md-nav__link">Routing</a>
+        </li>
+        <li class="md-nav__item"><a href="#linear-referencing" class="md-nav__link">Linear Referencing</a>
+        </li></ul>
+            </nav>
+        </li>
+        <li class="md-nav__item"><a href="#why-use-wayfarer" class="md-nav__link">Why Use Wayfarer?</a>
+        </li>
+        <li class="md-nav__item"><a href="#comparison-with-alternatives" class="md-nav__link">Comparison with Alternatives</a>
+        </li>
+        <li class="md-nav__item"><a href="#demo-applications" class="md-nav__link">Demo Applications</a>
+        </li></ul>
+            </nav>
+        </li>
+  </ul>
+</nav>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="examples.html" class="md-nav__link">Examples</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="osm_examples.html" class="md-nav__link">OSM Example</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="solver.html" class="md-nav__link">Edge Solver</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="api/wayfarer.html" class="md-nav__link">Wayfarer Module API</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="api/functions.html" class="md-nav__link">Functions Module API</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="api/linearref.html" class="md-nav__link">Linear Referencing Module API</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="api/loader.html" class="md-nav__link">Loader Module API</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="api/osmnx_compat.html" class="md-nav__link">OSMnx Compatibility Module API</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="api/routing.html" class="md-nav__link">Routing Module API</a>
+      
+    
+    </li>
+  </ul>
+  
+
+</nav>
+              </div>
+            </div>
+          </div>
+          <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+            <div class="md-sidebar__scrollwrap">
+              <div class="md-sidebar__inner">
+                
+<nav class="md-nav md-nav--secondary">
+    <label class="md-nav__title" for="__toc">"Contents"</label>
+  <ul class="md-nav__list" data-md-scrollfix="">
+        <li class="md-nav__item"><a href="#index--page-root" class="md-nav__link">Wayfarer</a><nav class="md-nav">
+              <ul class="md-nav__list">
+        <li class="md-nav__item"><a href="#functionality" class="md-nav__link">Functionality</a><nav class="md-nav">
+              <ul class="md-nav__list">
+        <li class="md-nav__item"><a href="#routing" class="md-nav__link">Routing</a>
+        </li>
+        <li class="md-nav__item"><a href="#linear-referencing" class="md-nav__link">Linear Referencing</a>
+        </li></ul>
+            </nav>
+        </li>
+        <li class="md-nav__item"><a href="#why-use-wayfarer" class="md-nav__link">Why Use Wayfarer?</a>
+        </li>
+        <li class="md-nav__item"><a href="#comparison-with-alternatives" class="md-nav__link">Comparison with Alternatives</a>
+        </li>
+        <li class="md-nav__item"><a href="#demo-applications" class="md-nav__link">Demo Applications</a>
+        </li></ul>
+            </nav>
+        </li>
+  </ul>
+</nav>
+              </div>
+            </div>
+          </div>
+        
+        <div class="md-content">
+          <article class="md-content__inner md-typeset" role="main">
+            
+  <section id="wayfarer">
+<h1 id="index--page-root">Wayfarer<a class="headerlink" href="#index--page-root" title="Link to this heading">¶</a></h1>
+<img alt="wayfarer logo" class="align-right" src="_images/logo-small.png"/>
+<div class="line-block">
+<div class="line"><a class="reference external" href="https://pypi.python.org/pypi/wayfarer"><img alt="Version" src="https://img.shields.io/pypi/v/wayfarer.svg"/></a> <a class="reference external" href="https://coveralls.io/github/compassinformatics/wayfarer?branch=main"><img alt="Coveralls" src="https://coveralls.io/repos/github/compassinformatics/wayfarer/badge.svg?branch=main"/></a> <a class="reference external" href="http://pepy.tech/project/wayfarer"><img alt="Downloads" src="http://pepy.tech/badge/wayfarer"/></a></div>
+</div>
+<p>Wayfarer is Python library for creating and analysing geospatial networks using <a class="reference external" href="https://networkx.org/">NetworkX</a>.</p>
+<p>See the <a class="reference external" href="https://compassinformatics.github.io/wayfarer-demo/">Online Demo</a> to see examples of use cases for the library.</p>
+<p>See the <a class="reference external" href="https://compassinformatics.github.io/wayfarer-presentation/">Wayfarer Presentation</a> for an overview presentation.</p>
+<section id="functionality">
+<h2 id="functionality">Functionality<a class="headerlink" href="#functionality" title="Link to this heading">¶</a></h2>
+<p>Its focus is on creating user interfaces for selecting and creating linear features such as roads and rivers in a network.
+Uses shortest routes to provide a user interface quickly mark up linear features.</p>
+<section id="routing">
+<h3 id="routing">Routing<a class="headerlink" href="#routing" title="Link to this heading">¶</a></h3>
+<img alt="Route solving" class="align-right" src="_images/route.png"/>
+<p>Dynamic splitting - accessibility scenarios. Changes to isochrones.</p>
+</section>
+<section id="linear-referencing">
+<h3 id="linear-referencing">Linear Referencing<a class="headerlink" href="#linear-referencing" title="Link to this heading">¶</a></h3>
+<p>Linear referencing is a powerful technique used in Geographic Information Systems (GIS) to locate geographic features and events along a
+linear feature such as a road, river or pipeline.</p>
+<ul class="simple">
+<li><p>Easy analysis and reporting of data along linear features</p></li>
+<li><p>Efficient data storage - no need to duplicate linear features</p></li>
+</ul>
+</section>
+</section>
+<section id="why-use-wayfarer">
+<h2 id="why-use-wayfarer">Why Use Wayfarer?<a class="headerlink" href="#why-use-wayfarer" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Works with any data source (any database, flat files, Python dictionaries)</p></li>
+<li><p>Compatibility with <a class="reference external" href="https://osmnx.readthedocs.io/en/stable/">osmnx</a></p></li>
+<li><p>Access to all of the NetworkX <a class="reference external" href="https://networkx.org/documentation/latest/reference/algorithms/index.html">Algorithms</a></p></li>
+<li><p>Allow an easy user interface for marking up features on linear referenced features.</p></li>
+</ul>
+</section>
+<section id="comparison-with-alternatives">
+<h2 id="comparison-with-alternatives">Comparison with Alternatives<a class="headerlink" href="#comparison-with-alternatives" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://pgrouting.org/">pgRouting</a> - requires users to have a good understanding of SQL, PostGIS, and network analysis concepts.
+This can make it difficult for beginners to get started. PgRouting is designed to work with PostgreSQL and PostGIS,
+so users may need to convert their data to these formats before they can use the tool.
+This can be time-consuming and may require additional software or expertise. More familiar with Python than Postgres and SQL</p></li>
+<li><p>Network Analyst is an extension for ArcGIS</p></li>
+<li><p>GraphHopper</p></li>
+<li><p>OSRM</p></li>
+<li><p>OSMNX is a Python library for working with OpenStreetMap data and generating street networks. It includes tools for routing and network analysis, including shortest-path algorithms and tools for calculating network measures such as centrality and betweenness. OSMnx can be used to generate routing networks for a range of use cases, including transportation planning and urban design.</p></li>
+<li><p><a class="reference external" href="https://pypi.org/project/pandana/">Pandana</a> is a Python library for working with large-scale spatial networks, including road networks
+and public transit networks. It includes tools for network analysis and routing, as well as tools for generating spatial aggregates and
+conducting spatial queries. Pandana is designed to be fast and memory-efficient, making it well-suited for large-scale routing applications</p></li>
+<li><p><a class="reference external" href="https://pypi.org/project/pyroutelib3/">PyRoutelib</a> is a Python library for network routing that is built on top of NetworkX.
+It includes a range of routing algorithms, including Dijkstra’s algorithm and A* search, as well as tools for working with routing
+profiles and generating directions. PyRoutelib is designed to be easy to use and can be integrated into other Python projects.</p></li>
+</ul>
+</section>
+<section id="demo-applications">
+<h2 id="demo-applications">Demo Applications<a class="headerlink" href="#demo-applications" title="Link to this heading">¶</a></h2>
+<p>The demo applications use a Python back-end with wayfarer, and a JavaScript front-end build on <a class="reference external" href="https://openlayers.org/">OpenLayers</a>.
+The front-end code is stored in a separate repository at <a class="reference external" href="https://github.com/compassinformatics/wayfarer-demo/">https://github.com/compassinformatics/wayfarer-demo/</a></p>
+<p>To setup the code below you can run the following commands in a PowerShell terminal and using Windows.
+Alternatively you can use the <a class="reference external" href="Dockerfile">Dockerfile</a>.</p>
+<div class="highlight-ps1 notranslate"><div class="highlight"><pre><span></span><span class="c"># create a virtual environment and activate it</span>
+<span class="n">virtualenv</span> <span class="n">C</span><span class="p">:\</span><span class="n">VirtualEnvs</span><span class="p">\</span><span class="n">wayfarer</span>
+<span class="n">C</span><span class="p">:\</span><span class="n">VirtualEnvs</span><span class="p">\</span><span class="n">wayfarer</span><span class="p">\</span><span class="n">Scripts</span><span class="p">\</span><span class="n">activate</span><span class="p">.</span><span class="n">ps1</span>
+
+<span class="c"># check-out the latest version of the wayfarer project which include</span>
+<span class="c"># the demo Python services and data</span>
+<span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">://</span><span class="n">github</span><span class="p">.</span><span class="n">com</span><span class="p">/</span><span class="n">compassinformatics</span><span class="p">/</span><span class="n">wayfarer</span>
+
+<span class="c"># install wayfarer and its requirements to a virtual environment</span>
+<span class="nb">cd </span><span class="n">C</span><span class="p">:\</span><span class="n">Temp</span><span class="p">\</span><span class="n">wayfarer</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="n">wayfarer</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="n">-r</span> <span class="n">requirements</span><span class="p">.</span><span class="n">demo</span><span class="p">.</span><span class="n">txt</span>
+
+<span class="c"># copy the data to the demo folder</span>
+<span class="nb">Copy-Item</span> <span class="n">-Path</span> <span class="n">demo</span> <span class="n">-Destination</span> <span class="n">C</span><span class="p">:\</span><span class="n">VirtualEnvs</span><span class="p">\</span><span class="n">wayfarer</span> <span class="n">-Recurse</span>
+<span class="nb">Copy-Item</span> <span class="n">-Path</span> <span class="n">data</span> <span class="n">-Destination</span> <span class="n">C</span><span class="p">:\</span><span class="n">VirtualEnvs</span><span class="p">\</span><span class="n">wayfarer</span> <span class="n">-Recurse</span>
+
+<span class="c"># run the demo services as a Python web service</span>
+<span class="nb">cd </span><span class="n">C</span><span class="p">:\</span><span class="n">VirtualEnvs</span><span class="p">\</span><span class="n">wayfarer</span><span class="p">\</span><span class="n">demo</span>
+<span class="n">uvicorn</span> <span class="n">main</span><span class="p">:</span><span class="n">app</span> <span class="p">-</span><span class="n">-workers</span> <span class="n">4</span> <span class="p">-</span><span class="n">-port</span> <span class="n">8001</span>
+
+<span class="c"># should now be available at http://localhost:8001</span>
+</pre></div>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Wayfarer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="osm_examples.html">OSM Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="solver.html">Edge Solver</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/wayfarer.html">Wayfarer Module API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/functions.html">Functions Module API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/linearref.html">Linear Referencing Module API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/loader.html">Loader Module API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/osmnx_compat.html">OSMnx Compatibility Module API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/routing.html">Routing Module API</a></li>
+</ul>
+</div>
+</section>
+</section>
+
+
+          </article>
+        </div>
+      </div>
+    </main>
+  </div>
+  <footer class="md-footer">
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+          
+          
+            <a href="examples.html" title="Examples"
+               class="md-flex md-footer-nav__link md-footer-nav__link--next"
+               rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title"><span
+                class="md-flex__ellipsis"> <span
+                class="md-footer-nav__direction"> "Next" </span> Examples </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink"><i
+                class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          
+        </a>
+        
+      </nav>
+    </div>
+    <div class="md-footer-meta md-typeset">
+      <div class="md-footer-meta__inner md-grid">
+        <div class="md-footer-copyright">
+          <div class="md-footer-copyright__highlight">
+              &#169; Copyright 2025, Compass Informatics.
+              
+          </div>
+            Created using
+            <a href="http://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+             and
+            <a href="https://github.com/bashtage/sphinx-material/">Material for
+              Sphinx</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script src="_static/javascripts/application.js"></script>
+  <script>app.initialize({version: "1.0.4", url: {base: ".."}})</script>
+  </body>
+</html>

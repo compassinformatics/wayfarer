@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="lang:clipboard.copy" content="Copy to clipboard">
+  <meta name="lang:clipboard.copied" content="Copied to clipboard">
+  <meta name="lang:search.language" content="en">
+  <meta name="lang:search.pipeline.stopwords" content="True">
+  <meta name="lang:search.pipeline.trimmer" content="True">
+  <meta name="lang:search.result.none" content="No matching documents">
+  <meta name="lang:search.result.one" content="1 matching document">
+  <meta name="lang:search.result.other" content="# matching documents">
+  <meta name="lang:search.tokenizer" content="[\s\-]+">
+
+  
+    <link href="https://fonts.gstatic.com/" rel="preconnect" crossorigin>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono:400,500,700|Roboto:300,400,400i,700&display=fallback" rel="stylesheet">
+
+    <style>
+      body,
+      input {
+        font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif
+      }
+
+      code,
+      kbd,
+      pre {
+        font-family: "Roboto Mono", "Courier New", Courier, monospace
+      }
+    </style>
+  
+
+  <link rel="stylesheet" href="../../_static/stylesheets/application.css"/>
+  <link rel="stylesheet" href="../../_static/stylesheets/application-palette.css"/>
+  <link rel="stylesheet" href="../../_static/stylesheets/application-fixes.css"/>
+  
+  <link rel="stylesheet" href="../../_static/fonts/material-icons.css"/>
+  
+  <meta name="theme-color" content="#3f51b5">
+  <script src="../../_static/javascripts/modernizr.js"></script>
+  
+  
+  
+    <title>wayfarer.loader &#8212; Wayfarer</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=75810a84" />
+    <link rel="stylesheet" type="text/css" href="../../_static/material.css?v=79c92029" />
+    <script src="../../_static/documentation_options.js?v=f2a433a1"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  
+   
+
+  </head>
+  <body dir=ltr
+        data-md-color-primary=blue-grey data-md-color-accent=blue>
+  
+  <svg class="md-svg">
+    <defs data-children-count="0">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="__github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg>
+      
+    </defs>
+  </svg>
+  
+  <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer">
+  <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search">
+  <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+  <a href="#_modules/wayfarer/loader" tabindex="1" class="md-skip"> Skip to content </a>
+  <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex navheader">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="../../index.html" title="Wayfarer"
+           class="md-header-nav__button md-logo">
+          
+            &nbsp;
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          <span class="md-header-nav__topic">Wayfarer</span>
+          <span class="md-header-nav__topic"> wayfarer.loader </span>
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+        
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" action="../../search.html" method="get" name="search">
+      <input type="text" class="md-search__input" name="q" placeholder=""Search""
+             autocapitalize="off" autocomplete="off" spellcheck="false"
+             data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+      </div>
+      
+      
+  
+  <script src="../../_static/javascripts/version_dropdown.js"></script>
+  <script>
+    var json_loc = "../../"versions.json"",
+        target_loc = "../../../",
+        text = "Versions";
+    $( document ).ready( add_version_dropdown(json_loc, target_loc, text));
+  </script>
+  
+
+    </div>
+  </nav>
+</header>
+
+  
+  <div class="md-container">
+    
+    
+    
+  <nav class="md-tabs" data-md-component="tabs">
+    <div class="md-tabs__inner md-grid">
+      <ul class="md-tabs__list">
+          <li class="md-tabs__item"><a href="../../index.html" class="md-tabs__link">Wayfarer</a></li>
+          <li class="md-tabs__item"><a href="../index.html" class="md-tabs__link">Module code</a></li>
+          <li class="md-tabs__item"><a href="../wayfarer.html" class="md-tabs__link">wayfarer</a></li>
+      </ul>
+    </div>
+  </nav>
+    <main class="md-main">
+      <div class="md-main__inner md-grid" data-md-component="container">
+        
+          <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+            <div class="md-sidebar__scrollwrap">
+              <div class="md-sidebar__inner">
+                <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="../../index.html" title="Wayfarer" class="md-nav__button md-logo">
+      
+        <img src="../../_static/" alt=" logo" width="48" height="48">
+      
+    </a>
+    <a href="../../index.html"
+       title="Wayfarer">Wayfarer</a>
+  </label>
+  
+
+  
+  <ul class="md-nav__list">
+    <li class="md-nav__item">
+    
+      <span class="md-nav__link caption"><span class="caption-text">Contents:</span></span>
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../../index.html" class="md-nav__link">Wayfarer</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../../examples.html" class="md-nav__link">Examples</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../../osm_examples.html" class="md-nav__link">OSM Example</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../../solver.html" class="md-nav__link">Edge Solver</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../../api/wayfarer.html" class="md-nav__link">Wayfarer Module API</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../../api/functions.html" class="md-nav__link">Functions Module API</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../../api/linearref.html" class="md-nav__link">Linear Referencing Module API</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../../api/loader.html" class="md-nav__link">Loader Module API</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../../api/osmnx_compat.html" class="md-nav__link">OSMnx Compatibility Module API</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../../api/routing.html" class="md-nav__link">Routing Module API</a>
+      
+    
+    </li>
+  </ul>
+  
+
+</nav>
+              </div>
+            </div>
+          </div>
+          <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+            <div class="md-sidebar__scrollwrap">
+              <div class="md-sidebar__inner">
+                
+<nav class="md-nav md-nav--secondary">
+  <ul class="md-nav__list" data-md-scrollfix="">
+  </ul>
+</nav>
+              </div>
+            </div>
+          </div>
+        
+        <div class="md-content">
+          <article class="md-content__inner md-typeset" role="main">
+            
+  <h1 id="modules-wayfarer-loader--page-root">Source code for wayfarer.loader</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">wayfarer</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">math</span><span class="w"> </span><span class="kn">import</span> <span class="n">hypot</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">wayfarer</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">EDGE_ID_FIELD</span><span class="p">,</span>
+    <span class="n">LENGTH_FIELD</span><span class="p">,</span>
+    <span class="n">NODEID_FROM_FIELD</span><span class="p">,</span>
+    <span class="n">NODEID_TO_FIELD</span><span class="p">,</span>
+    <span class="n">GEOMETRY_FIELD</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">wayfarer</span><span class="w"> </span><span class="kn">import</span> <span class="n">functions</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pickle</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Iterable</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">networkx</span><span class="w"> </span><span class="kn">import</span> <span class="n">MultiGraph</span><span class="p">,</span> <span class="n">MultiDiGraph</span>
+
+
+<span class="n">log</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s2">"wayfarer"</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="UniqueDict">
+<a class="viewcode-back" href="../../api/loader.html#wayfarer.loader.UniqueDict">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">UniqueDict</span><span class="p">(</span><span class="nb">dict</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    A subclass of dict to ensure all keys are unique</span>
+<span class="sd">    """</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__setitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">key</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">:</span>
+            <span class="nb">dict</span><span class="o">.</span><span class="fm">__setitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="s2">"The key </span><span class="si">{}</span><span class="s2"> already exists. Keys must be unique"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">key</span><span class="p">))</span></div>
+
+
+
+<div class="viewcode-block" id="distance">
+<a class="viewcode-back" href="../../api/loader.html#wayfarer.loader.distance">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">distance</span><span class="p">(</span>
+    <span class="n">p1</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[(</span><span class="nb">int</span> <span class="o">|</span> <span class="nb">float</span><span class="p">),</span> <span class="p">(</span><span class="nb">int</span> <span class="o">|</span> <span class="nb">float</span><span class="p">)],</span> <span class="n">p2</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[(</span><span class="nb">int</span> <span class="o">|</span> <span class="nb">float</span><span class="p">),</span> <span class="p">(</span><span class="nb">int</span> <span class="o">|</span> <span class="nb">float</span><span class="p">)]</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Return the Euclidean distance between two points.</span>
+<span class="sd">    Any z-values associated with the points are ignored.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        p1: The first point</span>
+<span class="sd">        p2: The second point</span>
+<span class="sd">    Returns:</span>
+<span class="sd">        The distance between the two points</span>
+
+<span class="sd">    &gt;&gt;&gt; distance((0, 0), (10, 10))</span>
+<span class="sd">    14.142135623730951</span>
+<span class="sd">    """</span>
+
+    <span class="n">x1</span><span class="p">,</span> <span class="n">y1</span> <span class="o">=</span> <span class="n">p1</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">p1</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">x2</span><span class="p">,</span> <span class="n">y2</span> <span class="o">=</span> <span class="n">p2</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">p2</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">hypot</span><span class="p">(</span><span class="n">x2</span> <span class="o">-</span> <span class="n">x1</span><span class="p">,</span> <span class="n">y2</span> <span class="o">-</span> <span class="n">y1</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="save_network_to_file">
+<a class="viewcode-back" href="../../api/loader.html#wayfarer.loader.save_network_to_file">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">save_network_to_file</span><span class="p">(</span><span class="n">net</span><span class="p">:</span> <span class="n">MultiGraph</span> <span class="o">|</span> <span class="n">MultiDiGraph</span><span class="p">,</span> <span class="n">filename</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Save a network to a Python pickle file</span>
+<span class="sd">    Note these cannot be shared between different versions of Python</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        net: The network</span>
+<span class="sd">        filename: The filename to save the network as a pickle file</span>
+
+<span class="sd">    """</span>
+
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s2">"wb"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">protocol</span><span class="o">=</span><span class="n">pickle</span><span class="o">.</span><span class="n">HIGHEST_PROTOCOL</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="load_network_from_file">
+<a class="viewcode-back" href="../../api/loader.html#wayfarer.loader.load_network_from_file">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">load_network_from_file</span><span class="p">(</span>
+    <span class="n">filename</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">MultiGraph</span> <span class="o">|</span> <span class="n">MultiDiGraph</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Return a network previously saved to a pickle file</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        filename: The filename to the pickle file containing the network</span>
+<span class="sd">    Returns:</span>
+<span class="sd">        The network</span>
+
+<span class="sd">    """</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s2">"rb"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="add_edge">
+<a class="viewcode-back" href="../../api/loader.html#wayfarer.loader.add_edge">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">add_edge</span><span class="p">(</span><span class="n">net</span><span class="p">:</span> <span class="n">MultiGraph</span> <span class="o">|</span> <span class="n">MultiDiGraph</span><span class="p">,</span> <span class="n">properties</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span> <span class="o">|</span> <span class="nb">int</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Add a new edge to a network based on a dict containing</span>
+<span class="sd">    the required wayfarer fields</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        net: A network</span>
+<span class="sd">        properties: A dictionary containing values for the edge</span>
+<span class="sd">    Returns:</span>
+<span class="sd">        The key of the edge</span>
+
+<span class="sd">    &gt;&gt;&gt; net = MultiGraph()</span>
+<span class="sd">    &gt;&gt;&gt; add_edge(net, {"EDGE_ID": 1, "NODEID_FROM": 1, "NODEID_TO": 1})</span>
+<span class="sd">    1</span>
+<span class="sd">    """</span>
+
+    <span class="n">key</span> <span class="o">=</span> <span class="n">properties</span><span class="p">[</span><span class="n">EDGE_ID_FIELD</span><span class="p">]</span>
+    <span class="n">start_node</span> <span class="o">=</span> <span class="n">properties</span><span class="p">[</span><span class="n">NODEID_FROM_FIELD</span><span class="p">]</span>
+    <span class="n">end_node</span> <span class="o">=</span> <span class="n">properties</span><span class="p">[</span><span class="n">NODEID_TO_FIELD</span><span class="p">]</span>
+
+    <span class="c1"># key is used to identify different edges between nodes</span>
+    <span class="n">net</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="n">start_node</span><span class="p">,</span> <span class="n">end_node</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">key</span><span class="p">,</span> <span class="o">**</span><span class="n">properties</span><span class="p">)</span>
+
+    <span class="c1"># update the reverse lookup dictionary attached to the graph</span>
+    <span class="c1"># this is used for fast edge_id lookups</span>
+    <span class="c1"># the key is the dict key and the values are the nodes</span>
+
+    <span class="k">if</span> <span class="s2">"keys"</span> <span class="ow">in</span> <span class="n">net</span><span class="o">.</span><span class="n">graph</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+        <span class="n">net</span><span class="o">.</span><span class="n">graph</span><span class="p">[</span><span class="s2">"keys"</span><span class="p">][</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">start_node</span><span class="p">,</span> <span class="n">end_node</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">key</span></div>
+
+
+
+<div class="viewcode-block" id="create_graph">
+<a class="viewcode-back" href="../../api/loader.html#wayfarer.loader.create_graph">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">create_graph</span><span class="p">(</span>
+    <span class="n">use_reverse_lookup</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">graph_type</span><span class="p">:</span> <span class="n">MultiGraph</span> <span class="o">|</span> <span class="n">MultiDiGraph</span> <span class="o">=</span> <span class="n">MultiGraph</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">MultiGraph</span> <span class="o">|</span> <span class="n">MultiDiGraph</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Create a new networkx graph, with an optional dictionary to store unique keys</span>
+<span class="sd">    for fast edge lookups</span>
+
+<span class="sd">    &gt;&gt;&gt; net = create_graph()</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        use_reverse_lookup: Create a dictionary for fast key lookup</span>
+<span class="sd">        graph_type: The type of network</span>
+<span class="sd">    Returns:</span>
+<span class="sd">        The new network</span>
+<span class="sd">    """</span>
+    <span class="k">if</span> <span class="n">graph_type</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">(</span><span class="n">MultiDiGraph</span><span class="p">,</span> <span class="n">MultiGraph</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="s2">"The graph type </span><span class="si">{}</span><span class="s2"> unsupported. Only MultiGraph and MultiDiGraph are supported"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                <span class="n">graph_type</span><span class="o">.</span><span class="vm">__name__</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+
+    <span class="n">graph_name</span> <span class="o">=</span> <span class="s2">"Wayfarer Generated </span><span class="si">{}</span><span class="s2"> (version </span><span class="si">{}</span><span class="s2">)"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+        <span class="n">graph_type</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">wayfarer</span><span class="o">.</span><span class="n">__version__</span>
+    <span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">use_reverse_lookup</span><span class="p">:</span>
+        <span class="n">reverse_lookup</span> <span class="o">=</span> <span class="n">UniqueDict</span><span class="p">()</span>
+        <span class="n">net</span> <span class="o">=</span> <span class="n">graph_type</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">graph_name</span><span class="p">,</span> <span class="n">keys</span><span class="o">=</span><span class="n">reverse_lookup</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">net</span> <span class="o">=</span> <span class="n">graph_type</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">graph_name</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">net</span></div>
+
+
+
+<div class="viewcode-block" id="load_network_from_records">
+<a class="viewcode-back" href="../../api/loader.html#wayfarer.loader.load_network_from_records">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">load_network_from_records</span><span class="p">(</span>
+    <span class="n">recs</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">,</span>
+    <span class="n">use_reverse_lookup</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">graph_type</span><span class="p">:</span> <span class="n">MultiGraph</span> <span class="o">|</span> <span class="n">MultiDiGraph</span> <span class="o">=</span> <span class="n">MultiGraph</span><span class="p">,</span>
+    <span class="n">key_field</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">EDGE_ID_FIELD</span><span class="p">,</span>
+    <span class="n">length_field</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">LENGTH_FIELD</span><span class="p">,</span>
+    <span class="n">from_field</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">NODEID_FROM_FIELD</span><span class="p">,</span>
+    <span class="n">to_field</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">NODEID_TO_FIELD</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">MultiGraph</span> <span class="o">|</span> <span class="n">MultiDiGraph</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Create a new networkX graph based on a list of dictionary objects</span>
+<span class="sd">    containing the required wayfarer properties</span>
+
+<span class="sd">    &gt;&gt;&gt; recs = [{"EDGE_ID": 1, "NODEID_FROM": 1, "NODEID_TO": 2, "LEN_": 5, "PROP1": "A"}]</span>
+<span class="sd">    &gt;&gt;&gt; net = load_network_from_records(recs)</span>
+<span class="sd">    &gt;&gt;&gt; str(net)  # doctest: +ELLIPSIS</span>
+<span class="sd">    "MultiGraph named 'Wayfarer Generated MultiGraph (version ...)' with 2 nodes and 1 edges"</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        recs: An iterable of dictionary objects The filename to the pickle file containing the network</span>
+<span class="sd">        use_reverse_lookup: Create a dictionary as part of the graph that stores unique edge keys for</span>
+<span class="sd">                            fast lookups</span>
+<span class="sd">        graph_type: The type of network to create</span>
+<span class="sd">    Returns:</span>
+<span class="sd">        A new network</span>
+
+<span class="sd">    """</span>
+
+    <span class="n">net</span> <span class="o">=</span> <span class="n">create_graph</span><span class="p">(</span><span class="n">use_reverse_lookup</span><span class="p">,</span> <span class="n">graph_type</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">recs</span><span class="p">:</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">key</span> <span class="o">=</span> <span class="n">r</span><span class="p">[</span><span class="n">key_field</span><span class="p">]</span>
+            <span class="n">start_node</span> <span class="o">=</span> <span class="n">r</span><span class="p">[</span><span class="n">from_field</span><span class="p">]</span>
+            <span class="n">end_node</span> <span class="o">=</span> <span class="n">r</span><span class="p">[</span><span class="n">to_field</span><span class="p">]</span>
+            <span class="n">len_</span> <span class="o">=</span> <span class="n">r</span><span class="p">[</span><span class="n">length_field</span><span class="p">]</span>
+        <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">"Available properties: </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">","</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">keys</span><span class="p">())))</span>
+            <span class="k">raise</span>
+
+        <span class="n">network_attributes</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="n">EDGE_ID_FIELD</span><span class="p">:</span> <span class="n">key</span><span class="p">,</span>
+            <span class="n">LENGTH_FIELD</span><span class="p">:</span> <span class="n">len_</span><span class="p">,</span>
+            <span class="n">NODEID_FROM_FIELD</span><span class="p">:</span> <span class="n">start_node</span><span class="p">,</span>
+            <span class="n">NODEID_TO_FIELD</span><span class="p">:</span> <span class="n">end_node</span><span class="p">,</span>
+        <span class="p">}</span>
+
+        <span class="n">field_names</span> <span class="o">=</span> <span class="p">[</span><span class="n">key_field</span><span class="p">,</span> <span class="n">length_field</span><span class="p">,</span> <span class="n">from_field</span><span class="p">,</span> <span class="n">to_field</span><span class="p">]</span>
+        <span class="nb">all</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">pop</span><span class="p">,</span> <span class="n">field_names</span><span class="p">))</span>  <span class="c1"># remove all keys already added</span>
+        <span class="n">network_attributes</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>  <span class="c1"># add in any remaining keys</span>
+
+        <span class="n">add_edge</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="n">network_attributes</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">net</span></div>
+
+
+
+<div class="viewcode-block" id="load_network_from_geometries">
+<a class="viewcode-back" href="../../api/loader.html#wayfarer.loader.load_network_from_geometries">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">load_network_from_geometries</span><span class="p">(</span>
+    <span class="n">recs</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">,</span>
+    <span class="n">use_reverse_lookup</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">graph_type</span><span class="p">:</span> <span class="n">MultiGraph</span> <span class="o">|</span> <span class="n">MultiDiGraph</span> <span class="o">=</span> <span class="n">MultiGraph</span><span class="p">,</span>
+    <span class="n">skip_errors</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">strip_properties</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">keep_geometry</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">key_field</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">EDGE_ID_FIELD</span><span class="p">,</span>
+    <span class="n">length_field</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">LENGTH_FIELD</span><span class="p">,</span>
+    <span class="n">rounding</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span>
+    <span class="n">use_integer_keys</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">MultiGraph</span> <span class="o">|</span> <span class="n">MultiDiGraph</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Create a new networkX graph using a list of recs of type ``__geo_interface__``</span>
+<span class="sd">    This allows networks to be created using libraries such as Fiona.</span>
+<span class="sd">    Any ``MultiLineString`` geometries in the network will be ignored, geometries should</span>
+<span class="sd">    be converted to ``LineString`` prior to creating the network.</span>
+
+<span class="sd">    &gt;&gt;&gt; rec = {"geometry": {"type": "LineString", "coordinates": [(0, 0), (0, 1)]}, "properties": {"EDGE_ID": 1}}</span>
+<span class="sd">    &gt;&gt;&gt; net = load_network_from_geometries([rec])</span>
+<span class="sd">    &gt;&gt;&gt; str(net)  # doctest: +ELLIPSIS</span>
+<span class="sd">    "MultiGraph named 'Wayfarer Generated MultiGraph (version ...)' with 2 nodes and 1 edges"</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        recs: An iterable of dictionary objects The filename to the pickle file containing the network</span>
+<span class="sd">        use_reverse_lookup: Create a dictionary as part of the graph that stores unique edge keys for</span>
+<span class="sd">                            fast lookups</span>
+<span class="sd">        graph_type: The type of network to create</span>
+<span class="sd">        skip_errors: Ignore any geometries that are not of type ``LineString``</span>
+<span class="sd">        strip_properties: Reduce the size of the network file by only retaining the</span>
+<span class="sd">                          properties required to run routing. Any other properties in the records</span>
+<span class="sd">                          will be ignored</span>
+<span class="sd">        key_field: A key field containing a unique Id for each feature must be provided</span>
+<span class="sd">        length_field: The field in the geometry properties that contains a length. If not provided</span>
+<span class="sd">                      then the length will be calculated from the geometry. It is assumed the geometry</span>
+<span class="sd">                      is projected, as a simple planar distance will be calculated.</span>
+<span class="sd">        rounding: If no node fields are used then nodes will be created based on the start and end points of</span>
+<span class="sd">                  the input geometries. As node values must match exactly for edges to be connected rounding</span>
+<span class="sd">                  to a fixed number of decimal places avoids unconnected edges to to tiny differences in floats</span>
+<span class="sd">                  e.g. (-9.564484483347517, 52.421103202488965) and (-9.552925853749544, 52.41969110706263)</span>
+<span class="sd">        use_integer_keys: Using Integer keys makes using wayfarer faster. By default keys will be attempted to be</span>
+<span class="sd">                          converted to integers. Set this to ``False`` to leave keys unconverted (for example when using</span>
+<span class="sd">                          String keys)</span>
+<span class="sd">    Returns:</span>
+<span class="sd">        A new network</span>
+<span class="sd">    """</span>
+
+    <span class="n">net</span> <span class="o">=</span> <span class="n">create_graph</span><span class="p">(</span><span class="n">use_reverse_lookup</span><span class="p">,</span> <span class="n">graph_type</span><span class="p">)</span>
+    <span class="n">error_count</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">recs</span><span class="p">:</span>
+
+        <span class="c1"># __geo__interface</span>
+        <span class="n">geom</span> <span class="o">=</span> <span class="n">r</span><span class="p">[</span><span class="s2">"geometry"</span><span class="p">]</span>
+        <span class="n">coords</span> <span class="o">=</span> <span class="n">geom</span><span class="p">[</span><span class="s2">"coordinates"</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="n">geom</span><span class="p">[</span><span class="s2">"type"</span><span class="p">]</span> <span class="o">!=</span> <span class="s2">"LineString"</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">skip_errors</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
+                <span class="n">error_count</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="k">continue</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                    <span class="s2">"The geometry type </span><span class="si">{}</span><span class="s2"> is not supported - only LineString can be used"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                        <span class="n">geom</span><span class="p">[</span><span class="s2">"type"</span><span class="p">]</span>
+                    <span class="p">)</span>
+                <span class="p">)</span>
+
+        <span class="n">properties</span> <span class="o">=</span> <span class="n">r</span><span class="p">[</span><span class="s2">"properties"</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="n">length_field</span> <span class="ow">in</span> <span class="n">properties</span><span class="p">:</span>
+            <span class="n">length</span> <span class="o">=</span> <span class="n">properties</span><span class="p">[</span><span class="n">length_field</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">length</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">([</span><span class="n">distance</span><span class="p">(</span><span class="o">*</span><span class="n">combo</span><span class="p">)</span> <span class="k">for</span> <span class="n">combo</span> <span class="ow">in</span> <span class="n">functions</span><span class="o">.</span><span class="n">pairwise</span><span class="p">(</span><span class="n">coords</span><span class="p">)])</span>
+
+        <span class="k">if</span> <span class="n">key_field</span> <span class="o">==</span> <span class="s2">"id"</span> <span class="ow">and</span> <span class="s2">"id"</span> <span class="ow">in</span> <span class="n">r</span><span class="p">:</span>
+            <span class="n">key</span> <span class="o">=</span> <span class="n">r</span><span class="p">[</span><span class="s2">"id"</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">key</span> <span class="o">=</span> <span class="n">properties</span><span class="p">[</span><span class="n">key_field</span><span class="p">]</span>
+            <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+                <span class="n">log</span><span class="o">.</span><span class="n">error</span><span class="p">(</span>
+                    <span class="s2">"Available properties: </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">","</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">properties</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span>
+                <span class="p">)</span>
+                <span class="k">raise</span>
+
+        <span class="c1"># keys as integers are faster than strings, so convert if possible</span>
+        <span class="k">if</span> <span class="n">use_integer_keys</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">key</span><span class="o">.</span><span class="n">isdigit</span><span class="p">():</span>
+                <span class="n">key</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Input string '</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2">' is not a valid integer"</span><span class="p">)</span>
+
+        <span class="c1"># if we simply take the coordinates then often these differ due to rounding issues as they</span>
+        <span class="c1"># are floats e.g. (-9.564484483347517, 52.421103202488965) and (-9.552925853749544, 52.41969110706263)</span>
+        <span class="c1"># instead convert the coordinates to unique strings, apply rounding, and strip any z-values</span>
+
+        <span class="n">start_node</span> <span class="o">=</span> <span class="s2">"</span><span class="si">{}</span><span class="s2">|</span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+            <span class="nb">round</span><span class="p">(</span><span class="n">coords</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">rounding</span><span class="p">),</span> <span class="nb">round</span><span class="p">(</span><span class="n">coords</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span> <span class="n">rounding</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="n">end_node</span> <span class="o">=</span> <span class="s2">"</span><span class="si">{}</span><span class="s2">|</span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+            <span class="nb">round</span><span class="p">(</span><span class="n">coords</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">rounding</span><span class="p">),</span> <span class="nb">round</span><span class="p">(</span><span class="n">coords</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span> <span class="n">rounding</span><span class="p">)</span>
+        <span class="p">)</span>
+
+        <span class="n">network_attributes</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="n">EDGE_ID_FIELD</span><span class="p">:</span> <span class="n">key</span><span class="p">,</span>
+            <span class="n">LENGTH_FIELD</span><span class="p">:</span> <span class="n">length</span><span class="p">,</span>
+            <span class="n">NODEID_FROM_FIELD</span><span class="p">:</span> <span class="n">start_node</span><span class="p">,</span>
+            <span class="n">NODEID_TO_FIELD</span><span class="p">:</span> <span class="n">end_node</span><span class="p">,</span>
+        <span class="p">}</span>
+
+        <span class="c1"># only use fields required for routing</span>
+        <span class="k">if</span> <span class="n">strip_properties</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="n">properties</span> <span class="o">=</span> <span class="n">network_attributes</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">properties</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">network_attributes</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">keep_geometry</span><span class="p">:</span>
+            <span class="n">properties</span><span class="p">[</span><span class="n">GEOMETRY_FIELD</span><span class="p">]</span> <span class="o">=</span> <span class="n">geom</span>
+
+        <span class="n">add_edge</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="n">properties</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">error_count</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">log</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">"</span><span class="si">{}</span><span class="s2"> MultiLineString features were ignored"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">error_count</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">net</span></div>
+
+</pre></div>
+
+          </article>
+        </div>
+      </div>
+    </main>
+  </div>
+  <footer class="md-footer">
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+          
+          
+        </a>
+        
+      </nav>
+    </div>
+    <div class="md-footer-meta md-typeset">
+      <div class="md-footer-meta__inner md-grid">
+        <div class="md-footer-copyright">
+          <div class="md-footer-copyright__highlight">
+              &#169; Copyright 2025, Compass Informatics.
+              
+          </div>
+            Created using
+            <a href="http://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+             and
+            <a href="https://github.com/bashtage/sphinx-material/">Material for
+              Sphinx</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script src="../../_static/javascripts/application.js"></script>
+  <script>app.initialize({version: "1.0.4", url: {base: ".."}})</script>
+  </body>
+</html>

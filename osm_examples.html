@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="lang:clipboard.copy" content="Copy to clipboard">
+  <meta name="lang:clipboard.copied" content="Copied to clipboard">
+  <meta name="lang:search.language" content="en">
+  <meta name="lang:search.pipeline.stopwords" content="True">
+  <meta name="lang:search.pipeline.trimmer" content="True">
+  <meta name="lang:search.result.none" content="No matching documents">
+  <meta name="lang:search.result.one" content="1 matching document">
+  <meta name="lang:search.result.other" content="# matching documents">
+  <meta name="lang:search.tokenizer" content="[\s\-]+">
+
+  
+    <link href="https://fonts.gstatic.com/" rel="preconnect" crossorigin>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono:400,500,700|Roboto:300,400,400i,700&display=fallback" rel="stylesheet">
+
+    <style>
+      body,
+      input {
+        font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif
+      }
+
+      code,
+      kbd,
+      pre {
+        font-family: "Roboto Mono", "Courier New", Courier, monospace
+      }
+    </style>
+  
+
+  <link rel="stylesheet" href="_static/stylesheets/application.css"/>
+  <link rel="stylesheet" href="_static/stylesheets/application-palette.css"/>
+  <link rel="stylesheet" href="_static/stylesheets/application-fixes.css"/>
+  
+  <link rel="stylesheet" href="_static/fonts/material-icons.css"/>
+  
+  <meta name="theme-color" content="#3f51b5">
+  <script src="_static/javascripts/modernizr.js"></script>
+  
+  
+  
+    <title>OSM Example &#8212; Wayfarer</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=75810a84" />
+    <link rel="stylesheet" type="text/css" href="_static/material.css?v=79c92029" />
+    <script src="_static/documentation_options.js?v=f2a433a1"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Edge Solver" href="solver.html" />
+    <link rel="prev" title="Examples" href="examples.html" />
+  
+   
+
+  </head>
+  <body dir=ltr
+        data-md-color-primary=blue-grey data-md-color-accent=blue>
+  
+  <svg class="md-svg">
+    <defs data-children-count="0">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="__github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg>
+      
+    </defs>
+  </svg>
+  
+  <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer">
+  <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search">
+  <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+  <a href="#osm_examples" tabindex="1" class="md-skip"> Skip to content </a>
+  <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex navheader">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="index.html" title="Wayfarer"
+           class="md-header-nav__button md-logo">
+          
+            &nbsp;
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          <span class="md-header-nav__topic">Wayfarer</span>
+          <span class="md-header-nav__topic"> OSM Example </span>
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+        
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" action="search.html" method="get" name="search">
+      <input type="text" class="md-search__input" name="q" placeholder=""Search""
+             autocapitalize="off" autocomplete="off" spellcheck="false"
+             data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+      </div>
+      
+      
+  
+  <script src="_static/javascripts/version_dropdown.js"></script>
+  <script>
+    var json_loc = ""versions.json"",
+        target_loc = "../",
+        text = "Versions";
+    $( document ).ready( add_version_dropdown(json_loc, target_loc, text));
+  </script>
+  
+
+    </div>
+  </nav>
+</header>
+
+  
+  <div class="md-container">
+    
+    
+    
+  <nav class="md-tabs" data-md-component="tabs">
+    <div class="md-tabs__inner md-grid">
+      <ul class="md-tabs__list">
+          <li class="md-tabs__item"><a href="index.html" class="md-tabs__link">Wayfarer</a></li>
+      </ul>
+    </div>
+  </nav>
+    <main class="md-main">
+      <div class="md-main__inner md-grid" data-md-component="container">
+        
+          <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+            <div class="md-sidebar__scrollwrap">
+              <div class="md-sidebar__inner">
+                <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="index.html" title="Wayfarer" class="md-nav__button md-logo">
+      
+        <img src="_static/" alt=" logo" width="48" height="48">
+      
+    </a>
+    <a href="index.html"
+       title="Wayfarer">Wayfarer</a>
+  </label>
+  
+
+  
+  <ul class="md-nav__list">
+    <li class="md-nav__item">
+    
+      <span class="md-nav__link caption"><span class="caption-text">Contents:</span></span>
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="index.html" class="md-nav__link">Wayfarer</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="examples.html" class="md-nav__link">Examples</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    <label class="md-nav__link md-nav__link--active" for="__toc"> OSM Example </label>
+    
+      <a href="#" class="md-nav__link md-nav__link--active">OSM Example</a>
+      
+        
+<nav class="md-nav md-nav--secondary">
+    <label class="md-nav__title" for="__toc">"Contents"</label>
+  <ul class="md-nav__list" data-md-scrollfix="">
+        <li class="md-nav__item"><a href="#osm-examples--page-root" class="md-nav__link">OSM Example</a><nav class="md-nav">
+              <ul class="md-nav__list">
+        <li class="md-nav__item"><a href="#creating-a-network-from-osm-data" class="md-nav__link">Creating a Network from OSM Data</a>
+        </li>
+        <li class="md-nav__item"><a href="#calculate-a-route-between-two-nodes" class="md-nav__link">Calculate a Route Between Two Nodes</a>
+        </li>
+        <li class="md-nav__item"><a href="#calculate-a-route-between-two-user-entered-points" class="md-nav__link">Calculate a Route Between Two User Entered Points</a>
+        </li></ul>
+            </nav>
+        </li>
+  </ul>
+</nav>
+      <ul class="md-nav__list"> 
+    <li class="md-nav__item">
+    
+    
+      <a href="#creating-a-network-from-osm-data" class="md-nav__link">Creating a Network from OSM Data</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="#calculate-a-route-between-two-nodes" class="md-nav__link">Calculate a Route Between Two Nodes</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="#calculate-a-route-between-two-user-entered-points" class="md-nav__link">Calculate a Route Between Two User Entered Points</a>
+      
+    
+    </li></ul>
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="solver.html" class="md-nav__link">Edge Solver</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="api/wayfarer.html" class="md-nav__link">Wayfarer Module API</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="api/functions.html" class="md-nav__link">Functions Module API</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="api/linearref.html" class="md-nav__link">Linear Referencing Module API</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="api/loader.html" class="md-nav__link">Loader Module API</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="api/osmnx_compat.html" class="md-nav__link">OSMnx Compatibility Module API</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="api/routing.html" class="md-nav__link">Routing Module API</a>
+      
+    
+    </li>
+  </ul>
+  
+
+</nav>
+              </div>
+            </div>
+          </div>
+          <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+            <div class="md-sidebar__scrollwrap">
+              <div class="md-sidebar__inner">
+                
+<nav class="md-nav md-nav--secondary">
+    <label class="md-nav__title" for="__toc">"Contents"</label>
+  <ul class="md-nav__list" data-md-scrollfix="">
+        <li class="md-nav__item"><a href="#osm-examples--page-root" class="md-nav__link">OSM Example</a><nav class="md-nav">
+              <ul class="md-nav__list">
+        <li class="md-nav__item"><a href="#creating-a-network-from-osm-data" class="md-nav__link">Creating a Network from OSM Data</a>
+        </li>
+        <li class="md-nav__item"><a href="#calculate-a-route-between-two-nodes" class="md-nav__link">Calculate a Route Between Two Nodes</a>
+        </li>
+        <li class="md-nav__item"><a href="#calculate-a-route-between-two-user-entered-points" class="md-nav__link">Calculate a Route Between Two User Entered Points</a>
+        </li></ul>
+            </nav>
+        </li>
+  </ul>
+</nav>
+              </div>
+            </div>
+          </div>
+        
+        <div class="md-content">
+          <article class="md-content__inner md-typeset" role="main">
+            
+  <section id="osm-example">
+<h1 id="osm-examples--page-root">OSM Example<a class="headerlink" href="#osm-examples--page-root" title="Link to this heading">¶</a></h1>
+<p>This page includes examples of usage of the Wayfarer library with routing data taken from OpenStreetMap.</p>
+<section id="creating-a-network-from-osm-data">
+<h2 id="creating-a-network-from-osm-data">Creating a Network from OSM Data<a class="headerlink" href="#creating-a-network-from-osm-data" title="Link to this heading">¶</a></h2>
+<p>First we create a network using the <a class="reference external" href="https://osmnx.readthedocs.io">OSMnx</a> library.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">osmnx</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ox</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">wayfarer</span><span class="w"> </span><span class="kn">import</span> <span class="n">loader</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">osmnx</span><span class="w"> </span><span class="kn">import</span> <span class="n">convert</span><span class="p">,</span> <span class="n">projection</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">download_osm</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Download roads from OSM centered around Riga, Latvia</span>
+<span class="sd">    This only needs to be run once.</span>
+<span class="sd">    """</span>
+
+    <span class="n">location_point</span> <span class="o">=</span> <span class="p">(</span><span class="mf">56.94105</span><span class="p">,</span> <span class="mf">24.09682</span><span class="p">)</span>
+    <span class="c1"># get roads within a distance of 500m from this point</span>
+    <span class="n">bbox</span> <span class="o">=</span> <span class="n">ox</span><span class="o">.</span><span class="n">utils_geo</span><span class="o">.</span><span class="n">bbox_from_point</span><span class="p">(</span><span class="n">location_point</span><span class="p">,</span> <span class="n">dist</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span>
+
+    <span class="n">G</span> <span class="o">=</span> <span class="n">ox</span><span class="o">.</span><span class="n">graph_from_bbox</span><span class="p">(</span><span class="n">bbox</span><span class="o">=</span><span class="n">bbox</span><span class="p">)</span>
+
+    <span class="c1"># save as a graph</span>
+    <span class="n">ox</span><span class="o">.</span><span class="n">save_graphml</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">filepath</span><span class="o">=</span><span class="s2">"./data/riga.graphml"</span><span class="p">)</span>
+
+    <span class="c1"># also save the data as a GeoPackage for review (not required for routing)</span>
+    <span class="n">ox</span><span class="o">.</span><span class="n">save_graph_geopackage</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">filepath</span><span class="o">=</span><span class="s2">"./data/riga.gpkg"</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">create_wayfarer_graph</span><span class="p">():</span>
+
+    <span class="c1"># load the OSMnx graph from the previously saved file</span>
+    <span class="n">G</span> <span class="o">=</span> <span class="n">ox</span><span class="o">.</span><span class="n">load_graphml</span><span class="p">(</span><span class="s2">"./data/riga.graphml"</span><span class="p">)</span>
+
+    <span class="c1"># get data frames from the graph</span>
+    <span class="n">_</span><span class="p">,</span> <span class="n">gdf_edges</span> <span class="o">=</span> <span class="n">convert</span><span class="o">.</span><span class="n">graph_to_gdfs</span><span class="p">(</span><span class="n">convert</span><span class="o">.</span><span class="n">to_undirected</span><span class="p">(</span><span class="n">G</span><span class="p">))</span>
+
+    <span class="c1"># project to Web Mercator from EPSG:4326 so we can work with planar distance calculations</span>
+    <span class="n">gdf_edges</span> <span class="o">=</span> <span class="n">projection</span><span class="o">.</span><span class="n">project_gdf</span><span class="p">(</span><span class="n">gdf_edges</span><span class="p">,</span> <span class="n">to_crs</span><span class="o">=</span><span class="s2">"EPSG:3857"</span><span class="p">)</span>
+
+    <span class="c1"># get a dictionary of all edges in the network</span>
+    <span class="n">d</span> <span class="o">=</span> <span class="n">gdf_edges</span><span class="o">.</span><span class="n">to_dict</span><span class="p">(</span><span class="s2">"records"</span><span class="p">)</span>
+
+    <span class="c1"># loop through the edges and add a unique key</span>
+    <span class="n">recs</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">fid</span><span class="p">,</span> <span class="n">props</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">d</span><span class="p">):</span>
+        <span class="c1"># we can't use osmid as the key as sometimes it is not always unique and sometimes a list</span>
+        <span class="c1"># instead use the enumerator which will match the FID in the GeoPackage</span>
+        <span class="n">props</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s2">"key"</span><span class="p">:</span> <span class="n">fid</span><span class="p">})</span>
+        <span class="c1"># we reprojected the geometry to Web Mercator, so we also need to update the length field</span>
+        <span class="n">props</span><span class="p">[</span><span class="s2">"length"</span><span class="p">]</span> <span class="o">=</span> <span class="n">props</span><span class="p">[</span><span class="s2">"geometry"</span><span class="p">]</span><span class="o">.</span><span class="n">length</span>
+        <span class="n">recs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">props</span><span class="p">)</span>
+
+    <span class="c1"># create the wayfarer network</span>
+    <span class="n">net</span> <span class="o">=</span> <span class="n">loader</span><span class="o">.</span><span class="n">load_network_from_records</span><span class="p">(</span>
+        <span class="n">recs</span><span class="p">,</span>
+        <span class="n">key_field</span><span class="o">=</span><span class="s2">"key"</span><span class="p">,</span>
+        <span class="n">length_field</span><span class="o">=</span><span class="s2">"length"</span><span class="p">,</span>
+        <span class="n">from_field</span><span class="o">=</span><span class="s2">"from"</span><span class="p">,</span>
+        <span class="n">to_field</span><span class="o">=</span><span class="s2">"to"</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="c1"># save the network</span>
+    <span class="n">loader</span><span class="o">.</span><span class="n">save_network_to_file</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="s2">"./data/riga.pickle"</span><span class="p">)</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">"__main__"</span><span class="p">:</span>
+    <span class="n">download_osm</span><span class="p">()</span>
+    <span class="n">create_wayfarer_graph</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Done!"</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="calculate-a-route-between-two-nodes">
+<h2 id="calculate-a-route-between-two-nodes">Calculate a Route Between Two Nodes<a class="headerlink" href="#calculate-a-route-between-two-nodes" title="Link to this heading">¶</a></h2>
+<p>We can easily calculate routes between two nodes, by passing in the node IDs at the start and end of the route.
+We then export the route to a GeoJSON file in the EPSG:4326 projection.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>To run this example requires <strong>pyproj</strong> to be installed in your Python environment.</p>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">wayfarer</span><span class="w"> </span><span class="kn">import</span> <span class="n">loader</span><span class="p">,</span> <span class="n">routing</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">shapely.geometry</span><span class="w"> </span><span class="kn">import</span> <span class="n">mapping</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">shapely.ops</span><span class="w"> </span><span class="kn">import</span> <span class="n">transform</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pyproj</span>
+
+<span class="n">net</span> <span class="o">=</span> <span class="n">loader</span><span class="o">.</span><span class="n">load_network_from_file</span><span class="p">(</span><span class="s2">"./data/riga.pickle"</span><span class="p">)</span>
+<span class="n">path</span> <span class="o">=</span> <span class="n">routing</span><span class="o">.</span><span class="n">solve_shortest_path</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="n">start_node</span><span class="o">=</span><span class="mi">1390592196</span><span class="p">,</span> <span class="n">end_node</span><span class="o">=</span><span class="mi">1812435081</span><span class="p">)</span>
+
+<span class="n">features</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="n">transformer</span> <span class="o">=</span> <span class="n">pyproj</span><span class="o">.</span><span class="n">Transformer</span><span class="o">.</span><span class="n">from_crs</span><span class="p">(</span>
+    <span class="s2">"EPSG:3857"</span><span class="p">,</span> <span class="s2">"EPSG:4326"</span><span class="p">,</span> <span class="n">always_xy</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span><span class="o">.</span><span class="n">transform</span>
+
+<span class="k">for</span> <span class="n">edge</span> <span class="ow">in</span> <span class="n">path</span><span class="p">:</span>
+    <span class="c1"># convert to EPSG:4326</span>
+    <span class="n">geom</span> <span class="o">=</span> <span class="n">transform</span><span class="p">(</span><span class="n">transformer</span><span class="p">,</span> <span class="n">edge</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="s2">"geometry"</span><span class="p">])</span>
+    <span class="n">feature</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">"type"</span><span class="p">:</span> <span class="s2">"Feature"</span><span class="p">,</span>
+        <span class="c1"># convert the Shapely geometry to a GeoJSON geometry</span>
+        <span class="s2">"geometry"</span><span class="p">:</span> <span class="n">mapping</span><span class="p">(</span><span class="n">geom</span><span class="p">),</span>
+        <span class="s2">"properties"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"id"</span><span class="p">:</span> <span class="n">edge</span><span class="o">.</span><span class="n">key</span><span class="p">},</span>
+    <span class="p">}</span>
+    <span class="n">features</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">feature</span><span class="p">)</span>
+
+<span class="n">geojson_obj</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"type"</span><span class="p">:</span> <span class="s2">"FeatureCollection"</span><span class="p">,</span> <span class="s2">"features"</span><span class="p">:</span> <span class="n">features</span><span class="p">}</span>
+
+<span class="c1"># save to a geojson file</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">"./data/riga.geojson"</span><span class="p">,</span> <span class="s2">"w"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">geojson_obj</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Done!"</span><span class="p">)</span>
+</pre></div>
+</div>
+<img alt="_images/node_to_node.png" src="_images/node_to_node.png"/>
+</section>
+<section id="calculate-a-route-between-two-user-entered-points">
+<h2 id="calculate-a-route-between-two-user-entered-points">Calculate a Route Between Two User Entered Points<a class="headerlink" href="#calculate-a-route-between-two-user-entered-points" title="Link to this heading">¶</a></h2>
+<p>To route between two user entered points, you can simply snap to the closest node and use the approach above. To get an exact route from start point to the end
+point we need to split the network at the start and end of the route.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>To run this example requires <strong>Shapely</strong> to be installed in your Python environment.</p>
+</div>
+<p>First we will take two input points, and get their closest edge, and measure along the edge. The example below is just one way to get these values,
+the edge and measure could be calculated using OpenLayers in a web browser, or in a database using the geometries used to create the network.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">shapely.geometry</span><span class="w"> </span><span class="kn">import</span> <span class="n">shape</span><span class="p">,</span> <span class="n">Point</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">wayfarer</span><span class="w"> </span><span class="kn">import</span> <span class="n">loader</span><span class="p">,</span> <span class="n">to_edge</span><span class="p">,</span> <span class="n">linearref</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">get_closest_edge</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="n">pt</span><span class="p">):</span>
+
+    <span class="n">closest_line</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">min_dist</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="s2">"inf"</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">edge</span> <span class="ow">in</span> <span class="n">net</span><span class="o">.</span><span class="n">edges</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">keys</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="n">edge</span> <span class="o">=</span> <span class="n">to_edge</span><span class="p">(</span><span class="n">edge</span><span class="p">)</span>
+        <span class="n">geom</span> <span class="o">=</span> <span class="n">shape</span><span class="p">(</span><span class="n">edge</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="s2">"geometry"</span><span class="p">])</span>
+        <span class="n">dist</span> <span class="o">=</span> <span class="n">pt</span><span class="o">.</span><span class="n">distance</span><span class="p">(</span><span class="n">geom</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">dist</span> <span class="o">&lt;</span> <span class="n">min_dist</span><span class="p">:</span>
+            <span class="n">min_dist</span> <span class="o">=</span> <span class="n">dist</span>
+            <span class="n">closest_line</span> <span class="o">=</span> <span class="n">geom</span>
+            <span class="n">fid</span> <span class="o">=</span> <span class="n">edge</span><span class="o">.</span><span class="n">key</span>
+
+    <span class="c1"># find snapped point on the line</span>
+    <span class="n">snap_point</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">linearref</span><span class="o">.</span><span class="n">get_nearest_vertex</span><span class="p">(</span><span class="n">pt</span><span class="p">,</span> <span class="n">closest_line</span><span class="p">)</span>
+
+    <span class="c1"># get the measure along the line</span>
+    <span class="n">distance_along</span> <span class="o">=</span> <span class="n">linearref</span><span class="o">.</span><span class="n">get_measure_on_line</span><span class="p">(</span><span class="n">closest_line</span><span class="p">,</span> <span class="n">snap_point</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">fid</span><span class="p">,</span> <span class="n">distance_along</span><span class="p">)</span>
+
+
+<span class="n">net</span> <span class="o">=</span> <span class="n">loader</span><span class="o">.</span><span class="n">load_network_from_file</span><span class="p">(</span><span class="s2">"./data/riga.pickle"</span><span class="p">)</span>
+
+<span class="n">start_pt</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="mi">2682555</span><span class="p">,</span> <span class="mi">7748329</span><span class="p">)</span>
+<span class="n">end_pt</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="mi">2682585</span><span class="p">,</span> <span class="mi">7747272</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">get_closest_edge</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="n">start_pt</span><span class="p">))</span>
+<span class="c1"># (281, 55.395036218377086)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">get_closest_edge</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="n">end_pt</span><span class="p">))</span>
+<span class="c1"># (1103, 7.734503415793048)</span>
+</pre></div>
+</div>
+<p>Now with an edge and measure for each point we will split the network, and route between the two user entered points to get an exact path.
+Wayfarer takes care of creating the split geometries, if the network contains geometry, although this can also be handled separately using
+a geospatial database to split and return features if required.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">wayfarer</span><span class="w"> </span><span class="kn">import</span> <span class="n">loader</span><span class="p">,</span> <span class="n">routing</span><span class="p">,</span> <span class="n">splitter</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">shapely.geometry</span><span class="w"> </span><span class="kn">import</span> <span class="n">mapping</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">shapely.ops</span><span class="w"> </span><span class="kn">import</span> <span class="n">transform</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pyproj</span>
+
+
+<span class="n">net</span> <span class="o">=</span> <span class="n">loader</span><span class="o">.</span><span class="n">load_network_from_file</span><span class="p">(</span><span class="s2">"./data/riga.pickle"</span><span class="p">)</span>
+
+<span class="c1"># now split the network with the user entered points</span>
+
+<span class="n">start_split_edges</span> <span class="o">=</span> <span class="n">splitter</span><span class="o">.</span><span class="n">split_network_edge</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="mi">281</span><span class="p">,</span> <span class="p">[</span><span class="mf">55.395</span><span class="p">])</span>
+<span class="n">start_node</span> <span class="o">=</span> <span class="n">start_split_edges</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">start_node</span>
+
+<span class="n">end_split_edges</span> <span class="o">=</span> <span class="n">splitter</span><span class="o">.</span><span class="n">split_network_edge</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="mi">1103</span><span class="p">,</span> <span class="p">[</span><span class="mf">7.735</span><span class="p">])</span>
+<span class="n">end_node</span> <span class="o">=</span> <span class="n">end_split_edges</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">start_node</span>
+
+<span class="n">path</span> <span class="o">=</span> <span class="n">routing</span><span class="o">.</span><span class="n">solve_shortest_path</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="n">start_node</span><span class="o">=</span><span class="n">start_node</span><span class="p">,</span> <span class="n">end_node</span><span class="o">=</span><span class="n">end_node</span><span class="p">)</span>
+
+<span class="n">features</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="n">transformer</span> <span class="o">=</span> <span class="n">pyproj</span><span class="o">.</span><span class="n">Transformer</span><span class="o">.</span><span class="n">from_crs</span><span class="p">(</span>
+    <span class="s2">"EPSG:3857"</span><span class="p">,</span> <span class="s2">"EPSG:4326"</span><span class="p">,</span> <span class="n">always_xy</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span><span class="o">.</span><span class="n">transform</span>
+
+<span class="k">for</span> <span class="n">edge</span> <span class="ow">in</span> <span class="n">path</span><span class="p">:</span>
+    <span class="c1"># convert to EPSG:4326</span>
+    <span class="n">geom</span> <span class="o">=</span> <span class="n">transform</span><span class="p">(</span><span class="n">transformer</span><span class="p">,</span> <span class="n">edge</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="s2">"geometry"</span><span class="p">])</span>
+    <span class="n">feature</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">"type"</span><span class="p">:</span> <span class="s2">"Feature"</span><span class="p">,</span>
+        <span class="s2">"geometry"</span><span class="p">:</span> <span class="n">mapping</span><span class="p">(</span><span class="n">geom</span><span class="p">),</span>
+        <span class="s2">"properties"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"id"</span><span class="p">:</span> <span class="n">edge</span><span class="o">.</span><span class="n">key</span><span class="p">},</span>
+    <span class="p">}</span>
+    <span class="n">features</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">feature</span><span class="p">)</span>
+
+<span class="n">geojson_obj</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"type"</span><span class="p">:</span> <span class="s2">"FeatureCollection"</span><span class="p">,</span> <span class="s2">"features"</span><span class="p">:</span> <span class="n">features</span><span class="p">}</span>
+
+<span class="c1"># save to a geojson file</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">"./data/riga2.geojson"</span><span class="p">,</span> <span class="s2">"w"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">geojson_obj</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Done!"</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The output GeoJSON file is visualised below.</p>
+<img alt="_images/split_route.png" src="_images/split_route.png"/>
+</section>
+</section>
+
+
+          </article>
+        </div>
+      </div>
+    </main>
+  </div>
+  <footer class="md-footer">
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+          
+            <a href="examples.html" title="Examples"
+               class="md-flex md-footer-nav__link md-footer-nav__link--prev"
+               rel="prev">
+              <div class="md-flex__cell md-flex__cell--shrink">
+                <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+              </div>
+              <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+                <span class="md-flex__ellipsis">
+                  <span
+                      class="md-footer-nav__direction"> "Previous" </span> Examples </span>
+              </div>
+            </a>
+          
+          
+            <a href="solver.html" title="Edge Solver"
+               class="md-flex md-footer-nav__link md-footer-nav__link--next"
+               rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title"><span
+                class="md-flex__ellipsis"> <span
+                class="md-footer-nav__direction"> "Next" </span> Edge Solver </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink"><i
+                class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          
+        </a>
+        
+      </nav>
+    </div>
+    <div class="md-footer-meta md-typeset">
+      <div class="md-footer-meta__inner md-grid">
+        <div class="md-footer-copyright">
+          <div class="md-footer-copyright__highlight">
+              &#169; Copyright 2025, Compass Informatics.
+              
+          </div>
+            Created using
+            <a href="http://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+             and
+            <a href="https://github.com/bashtage/sphinx-material/">Material for
+              Sphinx</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script src="_static/javascripts/application.js"></script>
+  <script>app.initialize({version: "1.0.4", url: {base: ".."}})</script>
+  </body>
+</html>

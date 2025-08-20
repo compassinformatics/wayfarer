@@ -1,0 +1,1042 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="lang:clipboard.copy" content="Copy to clipboard">
+  <meta name="lang:clipboard.copied" content="Copied to clipboard">
+  <meta name="lang:search.language" content="en">
+  <meta name="lang:search.pipeline.stopwords" content="True">
+  <meta name="lang:search.pipeline.trimmer" content="True">
+  <meta name="lang:search.result.none" content="No matching documents">
+  <meta name="lang:search.result.one" content="1 matching document">
+  <meta name="lang:search.result.other" content="# matching documents">
+  <meta name="lang:search.tokenizer" content="[\s\-]+">
+
+  
+    <link href="https://fonts.gstatic.com/" rel="preconnect" crossorigin>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono:400,500,700|Roboto:300,400,400i,700&display=fallback" rel="stylesheet">
+
+    <style>
+      body,
+      input {
+        font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif
+      }
+
+      code,
+      kbd,
+      pre {
+        font-family: "Roboto Mono", "Courier New", Courier, monospace
+      }
+    </style>
+  
+
+  <link rel="stylesheet" href="../_static/stylesheets/application.css"/>
+  <link rel="stylesheet" href="../_static/stylesheets/application-palette.css"/>
+  <link rel="stylesheet" href="../_static/stylesheets/application-fixes.css"/>
+  
+  <link rel="stylesheet" href="../_static/fonts/material-icons.css"/>
+  
+  <meta name="theme-color" content="#3f51b5">
+  <script src="../_static/javascripts/modernizr.js"></script>
+  
+  
+  
+    <title>Functions Module API &#8212; Wayfarer</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=75810a84" />
+    <link rel="stylesheet" type="text/css" href="../_static/material.css?v=79c92029" />
+    <script src="../_static/documentation_options.js?v=f2a433a1"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Linear Referencing Module API" href="linearref.html" />
+    <link rel="prev" title="Wayfarer Module API" href="wayfarer.html" />
+  
+   
+
+  </head>
+  <body dir=ltr
+        data-md-color-primary=blue-grey data-md-color-accent=blue>
+  
+  <svg class="md-svg">
+    <defs data-children-count="0">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="__github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg>
+      
+    </defs>
+  </svg>
+  
+  <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer">
+  <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search">
+  <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+  <a href="#api/functions" tabindex="1" class="md-skip"> Skip to content </a>
+  <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex navheader">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="../index.html" title="Wayfarer"
+           class="md-header-nav__button md-logo">
+          
+            &nbsp;
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          <span class="md-header-nav__topic">Wayfarer</span>
+          <span class="md-header-nav__topic"> Functions Module API </span>
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+        
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" action="../search.html" method="get" name="search">
+      <input type="text" class="md-search__input" name="q" placeholder=""Search""
+             autocapitalize="off" autocomplete="off" spellcheck="false"
+             data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+      </div>
+      
+      
+  
+  <script src="../_static/javascripts/version_dropdown.js"></script>
+  <script>
+    var json_loc = "../"versions.json"",
+        target_loc = "../../",
+        text = "Versions";
+    $( document ).ready( add_version_dropdown(json_loc, target_loc, text));
+  </script>
+  
+
+    </div>
+  </nav>
+</header>
+
+  
+  <div class="md-container">
+    
+    
+    
+  <nav class="md-tabs" data-md-component="tabs">
+    <div class="md-tabs__inner md-grid">
+      <ul class="md-tabs__list">
+          <li class="md-tabs__item"><a href="../index.html" class="md-tabs__link">Wayfarer</a></li>
+      </ul>
+    </div>
+  </nav>
+    <main class="md-main">
+      <div class="md-main__inner md-grid" data-md-component="container">
+        
+          <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+            <div class="md-sidebar__scrollwrap">
+              <div class="md-sidebar__inner">
+                <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="../index.html" title="Wayfarer" class="md-nav__button md-logo">
+      
+        <img src="../_static/" alt=" logo" width="48" height="48">
+      
+    </a>
+    <a href="../index.html"
+       title="Wayfarer">Wayfarer</a>
+  </label>
+  
+
+  
+  <ul class="md-nav__list">
+    <li class="md-nav__item">
+    
+      <span class="md-nav__link caption"><span class="caption-text">Contents:</span></span>
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../index.html" class="md-nav__link">Wayfarer</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../examples.html" class="md-nav__link">Examples</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../osm_examples.html" class="md-nav__link">OSM Example</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../solver.html" class="md-nav__link">Edge Solver</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="wayfarer.html" class="md-nav__link">Wayfarer Module API</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    <label class="md-nav__link md-nav__link--active" for="__toc"> Functions Module API </label>
+    
+      <a href="#" class="md-nav__link md-nav__link--active">Functions Module API</a>
+      
+        
+<nav class="md-nav md-nav--secondary">
+    <label class="md-nav__title" for="__toc">"Contents"</label>
+  <ul class="md-nav__list" data-md-scrollfix="">
+        <li class="md-nav__item"><a href="#api-functions--page-root" class="md-nav__link">Functions Module API</a><nav class="md-nav">
+              <ul class="md-nav__list">
+        <li class="md-nav__item"><a href="#wayfarer.functions.add_direction_flag" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">add_direction_flag()</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#wayfarer.functions.add_edge" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">add_edge()</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#wayfarer.functions.add_single_edge" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">add_single_edge()</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#wayfarer.functions.copy_attributes" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">copy_attributes()</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#wayfarer.functions.edges_to_graph" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">edges_to_graph()</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#wayfarer.functions.get_all_complex_paths" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">get_all_complex_paths()</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#wayfarer.functions.get_all_paths_from_nodes" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">get_all_paths_from_nodes()</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#wayfarer.functions.get_edge_by_key" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">get_edge_by_key()</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#wayfarer.functions.get_edges" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">get_edges()</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#wayfarer.functions.get_edges_by_attribute" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">get_edges_by_attribute()</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#wayfarer.functions.get_edges_from_node_pair" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">get_edges_from_node_pair()</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#wayfarer.functions.get_edges_from_nodes" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">get_edges_from_nodes()</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#wayfarer.functions.get_end_nodes" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">get_end_nodes()</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#wayfarer.functions.get_multiconnected_nodes" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">get_multiconnected_nodes()</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#wayfarer.functions.get_nodes_from_edges" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">get_nodes_from_edges()</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#wayfarer.functions.get_ordered_end_nodes" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">get_ordered_end_nodes()</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#wayfarer.functions.get_shortest_edge" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">get_shortest_edge()</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#wayfarer.functions.get_sink_edges" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">get_sink_edges()</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#wayfarer.functions.get_sink_nodes" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">get_sink_nodes()</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#wayfarer.functions.get_source_edges" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">get_source_edges()</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#wayfarer.functions.get_source_nodes" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">get_source_nodes()</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#wayfarer.functions.get_unattached_node" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">get_unattached_node()</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#wayfarer.functions.get_unique_ordered_list" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">get_unique_ordered_list()</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#wayfarer.functions.has_overlaps" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">has_overlaps()</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#wayfarer.functions.pairwise" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">pairwise()</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#wayfarer.functions.remove_edge_by_key" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">remove_edge_by_key()</span></code></a>
+        </li></ul>
+            </nav>
+        </li>
+  </ul>
+</nav>
+      <ul class="md-nav__list"> 
+    <li class="md-nav__item">
+    
+    
+      <a href="#wayfarer.functions.add_direction_flag" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">add_direction_flag()</span></code></a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="#wayfarer.functions.add_edge" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">add_edge()</span></code></a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="#wayfarer.functions.add_single_edge" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">add_single_edge()</span></code></a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="#wayfarer.functions.copy_attributes" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">copy_attributes()</span></code></a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="#wayfarer.functions.edges_to_graph" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">edges_to_graph()</span></code></a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="#wayfarer.functions.get_all_complex_paths" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">get_all_complex_paths()</span></code></a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="#wayfarer.functions.get_all_paths_from_nodes" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">get_all_paths_from_nodes()</span></code></a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="#wayfarer.functions.get_edge_by_key" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">get_edge_by_key()</span></code></a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="#wayfarer.functions.get_edges" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">get_edges()</span></code></a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="#wayfarer.functions.get_edges_by_attribute" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">get_edges_by_attribute()</span></code></a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="#wayfarer.functions.get_edges_from_node_pair" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">get_edges_from_node_pair()</span></code></a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="#wayfarer.functions.get_edges_from_nodes" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">get_edges_from_nodes()</span></code></a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="#wayfarer.functions.get_end_nodes" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">get_end_nodes()</span></code></a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="#wayfarer.functions.get_multiconnected_nodes" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">get_multiconnected_nodes()</span></code></a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="#wayfarer.functions.get_nodes_from_edges" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">get_nodes_from_edges()</span></code></a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="#wayfarer.functions.get_ordered_end_nodes" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">get_ordered_end_nodes()</span></code></a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="#wayfarer.functions.get_shortest_edge" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">get_shortest_edge()</span></code></a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="#wayfarer.functions.get_sink_edges" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">get_sink_edges()</span></code></a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="#wayfarer.functions.get_sink_nodes" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">get_sink_nodes()</span></code></a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="#wayfarer.functions.get_source_edges" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">get_source_edges()</span></code></a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="#wayfarer.functions.get_source_nodes" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">get_source_nodes()</span></code></a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="#wayfarer.functions.get_unattached_node" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">get_unattached_node()</span></code></a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="#wayfarer.functions.get_unique_ordered_list" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">get_unique_ordered_list()</span></code></a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="#wayfarer.functions.has_overlaps" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">has_overlaps()</span></code></a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="#wayfarer.functions.pairwise" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">pairwise()</span></code></a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="#wayfarer.functions.remove_edge_by_key" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">remove_edge_by_key()</span></code></a>
+      
+    
+    </li></ul>
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="linearref.html" class="md-nav__link">Linear Referencing Module API</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="loader.html" class="md-nav__link">Loader Module API</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="osmnx_compat.html" class="md-nav__link">OSMnx Compatibility Module API</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="routing.html" class="md-nav__link">Routing Module API</a>
+      
+    
+    </li>
+  </ul>
+  
+
+</nav>
+              </div>
+            </div>
+          </div>
+          <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+            <div class="md-sidebar__scrollwrap">
+              <div class="md-sidebar__inner">
+                
+<nav class="md-nav md-nav--secondary">
+    <label class="md-nav__title" for="__toc">"Contents"</label>
+  <ul class="md-nav__list" data-md-scrollfix="">
+        <li class="md-nav__item"><a href="#api-functions--page-root" class="md-nav__link">Functions Module API</a><nav class="md-nav">
+              <ul class="md-nav__list">
+        <li class="md-nav__item"><a href="#wayfarer.functions.add_direction_flag" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">add_direction_flag()</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#wayfarer.functions.add_edge" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">add_edge()</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#wayfarer.functions.add_single_edge" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">add_single_edge()</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#wayfarer.functions.copy_attributes" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">copy_attributes()</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#wayfarer.functions.edges_to_graph" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">edges_to_graph()</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#wayfarer.functions.get_all_complex_paths" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">get_all_complex_paths()</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#wayfarer.functions.get_all_paths_from_nodes" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">get_all_paths_from_nodes()</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#wayfarer.functions.get_edge_by_key" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">get_edge_by_key()</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#wayfarer.functions.get_edges" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">get_edges()</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#wayfarer.functions.get_edges_by_attribute" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">get_edges_by_attribute()</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#wayfarer.functions.get_edges_from_node_pair" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">get_edges_from_node_pair()</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#wayfarer.functions.get_edges_from_nodes" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">get_edges_from_nodes()</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#wayfarer.functions.get_end_nodes" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">get_end_nodes()</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#wayfarer.functions.get_multiconnected_nodes" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">get_multiconnected_nodes()</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#wayfarer.functions.get_nodes_from_edges" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">get_nodes_from_edges()</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#wayfarer.functions.get_ordered_end_nodes" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">get_ordered_end_nodes()</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#wayfarer.functions.get_shortest_edge" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">get_shortest_edge()</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#wayfarer.functions.get_sink_edges" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">get_sink_edges()</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#wayfarer.functions.get_sink_nodes" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">get_sink_nodes()</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#wayfarer.functions.get_source_edges" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">get_source_edges()</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#wayfarer.functions.get_source_nodes" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">get_source_nodes()</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#wayfarer.functions.get_unattached_node" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">get_unattached_node()</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#wayfarer.functions.get_unique_ordered_list" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">get_unique_ordered_list()</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#wayfarer.functions.has_overlaps" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">has_overlaps()</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#wayfarer.functions.pairwise" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">pairwise()</span></code></a>
+        </li>
+        <li class="md-nav__item"><a href="#wayfarer.functions.remove_edge_by_key" class="md-nav__link"><code class="docutils literal notranslate"><span class="pre">remove_edge_by_key()</span></code></a>
+        </li></ul>
+            </nav>
+        </li>
+  </ul>
+</nav>
+              </div>
+            </div>
+          </div>
+        
+        <div class="md-content">
+          <article class="md-content__inner md-typeset" role="main">
+            
+  <section id="module-wayfarer.functions">
+<span id="functions-module-api"></span><h1 id="api-functions--page-root">Functions Module API<a class="headerlink" href="#api-functions--page-root" title="Link to this heading">¶</a></h1>
+<p>This module contains functions related to networks and routing</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="wayfarer.functions.add_direction_flag">
+<span class="sig-prename descclassname"><span class="pre">wayfarer.functions.</span></span><span class="sig-name descname"><span class="pre">add_direction_flag</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start_node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">attributes</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/wayfarer/functions.html#add_direction_flag"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#wayfarer.functions.add_direction_flag" title="Link to this definition">¶</a></dt>
+<dd><p>kwargs so an edge with any properties can be easily passed to the function</p>
+</dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="wayfarer.functions.add_edge">
+<span class="sig-prename descclassname"><span class="pre">wayfarer.functions.</span></span><span class="sig-name descname"><span class="pre">add_edge</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">net</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">attributes</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/wayfarer/functions.html#add_edge"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#wayfarer.functions.add_edge" title="Link to this definition">¶</a></dt>
+<dd><p>Add an edge to a network. When adding an edge to a network, nodes are automatically
+added</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>net</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://networkx.org/documentation/stable/reference/classes/multigraph.html#networkx.MultiGraph" title="(in NetworkX v3.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">MultiGraph</span></code></a> | <a class="reference external" href="https://networkx.org/documentation/stable/reference/classes/multidigraph.html#networkx.MultiDiGraph" title="(in NetworkX v3.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">MultiDiGraph</span></code></a></span>) – A network</p></li>
+<li><p><strong>start_node</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a> | <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>) – The start node of the edge</p></li>
+<li><p><strong>end_node</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a> | <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>) – The end node of the edge</p></li>
+<li><p><strong>key</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a> | <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>) – The unique key of the edge</p></li>
+<li><p><strong>attributes</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a></span>) – Any attributes associated with the edge</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="wayfarer.html#wayfarer.Edge" title="wayfarer.Edge"><code class="xref py py-class docutils literal notranslate"><span class="pre">Edge</span></code></a></span></p>
+</dd>
+</dl>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">net</span> <span class="o">=</span> <span class="n">networkx</span><span class="o">.</span><span class="n">MultiGraph</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">add_edge</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">"A"</span><span class="p">,</span> <span class="p">{</span><span class="s2">"LEN_"</span><span class="p">:</span> <span class="mi">10</span><span class="p">})</span>
+<span class="go">Edge(start_node=1, end_node=2, key='A', attributes={'LEN_': 10})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">net</span><span class="p">)</span>
+<span class="go">MultiGraph with 2 nodes and 1 edges</span>
+</pre></div>
+</div>
+</dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="wayfarer.functions.add_single_edge">
+<span class="sig-prename descclassname"><span class="pre">wayfarer.functions.</span></span><span class="sig-name descname"><span class="pre">add_single_edge</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">net</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">edge</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/wayfarer/functions.html#add_single_edge"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#wayfarer.functions.add_single_edge" title="Link to this definition">¶</a></dt>
+<dd><p>Add an edge class to a network</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>net</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://networkx.org/documentation/stable/reference/classes/multigraph.html#networkx.MultiGraph" title="(in NetworkX v3.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">MultiGraph</span></code></a> | <a class="reference external" href="https://networkx.org/documentation/stable/reference/classes/multidigraph.html#networkx.MultiDiGraph" title="(in NetworkX v3.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">MultiDiGraph</span></code></a></span>) – A network</p></li>
+<li><p><strong>edge</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="wayfarer.html#wayfarer.Edge" title="wayfarer.Edge"><code class="xref py py-class docutils literal notranslate"><span class="pre">Edge</span></code></a></span>) – The edge to add to the network</p></li>
+<li><p><strong>end_node</strong> – The end node of the edge</p></li>
+</ul>
+</dd>
+</dl>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">net</span> <span class="o">=</span> <span class="n">networkx</span><span class="o">.</span><span class="n">MultiGraph</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">edge</span> <span class="o">=</span> <span class="n">Edge</span><span class="p">(</span><span class="n">start_node</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">end_node</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s1">'A'</span><span class="p">,</span> <span class="n">attributes</span><span class="o">=</span><span class="p">{</span><span class="s1">'LEN_'</span><span class="p">:</span> <span class="mi">10</span><span class="p">})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">add_single_edge</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="n">edge</span><span class="p">)</span>
+<span class="go">Edge(start_node=1, end_node=2, key='A', attributes={'LEN_': 10})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">net</span><span class="p">)</span>
+<span class="go">MultiGraph with 2 nodes and 1 edges</span>
+</pre></div>
+</div>
+</dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="wayfarer.functions.copy_attributes">
+<span class="sig-prename descclassname"><span class="pre">wayfarer.functions.</span></span><span class="sig-name descname"><span class="pre">copy_attributes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">attributes</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/wayfarer/functions.html#copy_attributes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#wayfarer.functions.copy_attributes" title="Link to this definition">¶</a></dt>
+<dd><p>Make a copy of the attributes dictionary.
+Using <code class="docutils literal notranslate"><span class="pre">marshal</span></code> is much faster, but fails on dictionary values such as classes</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a></span></p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="wayfarer.functions.edges_to_graph">
+<span class="sig-prename descclassname"><span class="pre">wayfarer.functions.</span></span><span class="sig-name descname"><span class="pre">edges_to_graph</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">edges</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/wayfarer/functions.html#edges_to_graph"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#wayfarer.functions.edges_to_graph" title="Link to this definition">¶</a></dt>
+<dd><p>Utility function to create a new MultiGraph based on a list of edges</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>edges</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference internal" href="wayfarer.html#wayfarer.Edge" title="wayfarer.Edge"><code class="xref py py-class docutils literal notranslate"><span class="pre">Edge</span></code></a>] | <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>]</span>) – A list of Edge named tuples, or simply tuples</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://networkx.org/documentation/stable/reference/classes/multigraph.html#networkx.MultiGraph" title="(in NetworkX v3.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">MultiGraph</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A new network</p>
+</dd>
+</dl>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">edges</span> <span class="o">=</span> <span class="p">[</span><span class="n">Edge</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">"A"</span><span class="p">,</span> <span class="p">{}),</span> <span class="n">Edge</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">"B"</span><span class="p">,</span> <span class="p">{})]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">net</span> <span class="o">=</span> <span class="n">edges_to_graph</span><span class="p">(</span><span class="n">edges</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">net</span><span class="p">)</span>
+<span class="go">MultiGraph with 3 nodes and 2 edges</span>
+</pre></div>
+</div>
+</dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="wayfarer.functions.get_all_complex_paths">
+<span class="sig-prename descclassname"><span class="pre">wayfarer.functions.</span></span><span class="sig-name descname"><span class="pre">get_all_complex_paths</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">net</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_list</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/wayfarer/functions.html#get_all_complex_paths"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#wayfarer.functions.get_all_complex_paths" title="Link to this definition">¶</a></dt>
+<dd><p>For a node path, find any self-looping edges on a node
+and add these combinations to the possible path list</p>
+</dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="wayfarer.functions.get_all_paths_from_nodes">
+<span class="sig-prename descclassname"><span class="pre">wayfarer.functions.</span></span><span class="sig-name descname"><span class="pre">get_all_paths_from_nodes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">net</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">with_direction_flag</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/wayfarer/functions.html#get_all_paths_from_nodes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#wayfarer.functions.get_all_paths_from_nodes" title="Link to this definition">¶</a></dt>
+<dd><p>Get all combinations of edges along a set of nodes, rather
+than just the shortest edges
+l = [(“a”,”b”), (“c”), (“d”,”e”)]
+[(‘a’, ‘c’, ‘d’), (‘a’, ‘c’, ‘e’), (‘b’, ‘c’, ‘d’), (‘b’, ‘c’, ‘e’)]</p>
+<p>list(itertools.combinations([[1],[1,2]], r=2))
+[([1], [1, 2])]</p>
+<p>Check for self loops on every node</p>
+</dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="wayfarer.functions.get_edge_by_key">
+<span class="sig-prename descclassname"><span class="pre">wayfarer.functions.</span></span><span class="sig-name descname"><span class="pre">get_edge_by_key</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">net</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">with_data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/wayfarer/functions.html#get_edge_by_key"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#wayfarer.functions.get_edge_by_key" title="Link to this definition">¶</a></dt>
+<dd><p>Go through all edge property dicts until the relevant key is found
+Using an iterator faster than list comprehension
+See <a class="reference external" href="https://stackoverflow.com/a/36413569/179520">https://stackoverflow.com/a/36413569/179520</a> answer from networkx dev</p>
+<p><a class="reference external" href="https://networkx.github.io/documentation/stable/reference/classes/generated/networkx.Graph.edges.html">https://networkx.github.io/documentation/stable/reference/classes/generated/networkx.Graph.edges.html</a></p>
+<p>400ns with reverse lookup
+1.16 seconds with generators</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="wayfarer.html#wayfarer.Edge" title="wayfarer.Edge"><code class="xref py py-class docutils literal notranslate"><span class="pre">Edge</span></code></a></span></p>
+</dd>
+</dl>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">edges</span> <span class="o">=</span> <span class="p">[</span><span class="n">Edge</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">"A"</span><span class="p">,</span> <span class="p">{}),</span> <span class="n">Edge</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">"B"</span><span class="p">,</span> <span class="p">{</span><span class="s2">"LEN_"</span><span class="p">:</span> <span class="mi">10</span><span class="p">})]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">net</span> <span class="o">=</span> <span class="n">edges_to_graph</span><span class="p">(</span><span class="n">edges</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">get_edge_by_key</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="s2">"B"</span><span class="p">,</span> <span class="n">with_data</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="go">Edge(start_node=1, end_node=2, key='B', attributes={'attributes': {'LEN_': 10}})</span>
+</pre></div>
+</div>
+</dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="wayfarer.functions.get_edges">
+<span class="sig-prename descclassname"><span class="pre">wayfarer.functions.</span></span><span class="sig-name descname"><span class="pre">get_edges</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">net</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nodes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">in_edges</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/wayfarer/functions.html#get_edges"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#wayfarer.functions.get_edges" title="Link to this definition">¶</a></dt>
+<dd><p>Get all the edges in the network that touch the nodes in the
+nodes list. Note only works with DiGraph or MultiDiGraph.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>net</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.13)"><em>object</em></a>) – a networkx network</p></li>
+<li><p><strong>nodes</strong> – (list):  a list of network nodes e.g. <code class="docutils literal notranslate"><span class="pre">[(224966,</span> <span class="pre">437657),</span> <span class="pre">(225195,</span> <span class="pre">437940)]</span></code></p></li>
+<li><p><strong>in_edges</strong> – (bool): set to True to get edges coming into the node, and False to edges leaving the node</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>a dict containing segment codes and their associated network edge</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.13)">dict</a></p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="wayfarer.functions.get_edges_by_attribute">
+<span class="sig-prename descclassname"><span class="pre">wayfarer.functions.</span></span><span class="sig-name descname"><span class="pre">get_edges_by_attribute</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">net</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">attribute_field</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/wayfarer/functions.html#get_edges_by_attribute"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#wayfarer.functions.get_edges_by_attribute" title="Link to this definition">¶</a></dt>
+<dd><p>Go through all edge property dicts until the relevant attribute is found.
+Edges can have different attribute dicts, so add a check that the key exists
+If the attribute_field does not exist for a particular edge then it is ignored.
+Returns an iterator</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Iterable" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Iterable</span></code></a>[<a class="reference internal" href="wayfarer.html#wayfarer.Edge" title="wayfarer.Edge"><code class="xref py py-class docutils literal notranslate"><span class="pre">Edge</span></code></a>]</span></p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="wayfarer.functions.get_edges_from_node_pair">
+<span class="sig-prename descclassname"><span class="pre">wayfarer.functions.</span></span><span class="sig-name descname"><span class="pre">get_edges_from_node_pair</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">net</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hide_log_output</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/wayfarer/functions.html#get_edges_from_node_pair"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#wayfarer.functions.get_edges_from_node_pair" title="Link to this definition">¶</a></dt>
+<dd><p>Get all edges between two nodes</p>
+<p>This function can return multiple edges when there is more than
+one edge between two nodes</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://networkx.org/documentation/stable/reference/classes/generated/networkx.classes.coreviews.AtlasView.html#networkx.classes.coreviews.AtlasView" title="(in NetworkX v3.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">AtlasView</span></code></a> | <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a></span></p>
+</dd>
+</dl>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">net</span> <span class="o">=</span> <span class="n">networkx</span><span class="o">.</span><span class="n">MultiGraph</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">net</span><span class="o">.</span><span class="n">add_edges_from</span><span class="p">([(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">"A"</span><span class="p">,</span> <span class="p">{</span><span class="s1">'val'</span><span class="p">:</span> <span class="s1">'foo'</span><span class="p">}),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">"B"</span><span class="p">,</span> <span class="p">{</span><span class="s1">'val'</span><span class="p">:</span> <span class="s1">'bar'</span><span class="p">})])</span>
+<span class="go">['A', 'B']</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">get_edges_from_node_pair</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="n">start_node</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">end_node</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="go">AtlasView({'A': {'val': 'foo'}, 'B': {'val': 'bar'}})</span>
+</pre></div>
+</div>
+</dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="wayfarer.functions.get_edges_from_nodes">
+<span class="sig-prename descclassname"><span class="pre">wayfarer.functions.</span></span><span class="sig-name descname"><span class="pre">get_edges_from_nodes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">net</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">with_direction_flag</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">length_field</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'LEN_'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_unique</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shortest_path_only</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/wayfarer/functions.html#get_edges_from_nodes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#wayfarer.functions.get_edges_from_nodes" title="Link to this definition">¶</a></dt>
+<dd><p>From a list of nodes, create pairs and then get all the edges between the two nodes.
+By default only the shortest edges between the edges will be returned, but setting
+<code class="docutils literal notranslate"><span class="pre">shortest_path_only</span></code> to <code class="docutils literal notranslate"><span class="pre">False</span></code> will return all edges ignoring the <code class="docutils literal notranslate"><span class="pre">length_field</span></code>.
+Set <code class="docutils literal notranslate"><span class="pre">with_direction_flag</span></code> to add a new attribute to the edge to show if it is matching the
+direction of the path.
+<code class="docutils literal notranslate"><span class="pre">return_unique</span></code> ensures only one copy of each edge is returned in the case of loops</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference internal" href="wayfarer.html#wayfarer.Edge" title="wayfarer.Edge"><code class="xref py py-class docutils literal notranslate"><span class="pre">Edge</span></code></a>]</span></p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="wayfarer.functions.get_end_nodes">
+<span class="sig-prename descclassname"><span class="pre">wayfarer.functions.</span></span><span class="sig-name descname"><span class="pre">get_end_nodes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">edges</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ordered</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/wayfarer/functions.html#get_end_nodes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#wayfarer.functions.get_end_nodes" title="Link to this definition">¶</a></dt>
+<dd><p>Find the end nodes of a graph</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a></span></p>
+</dd>
+</dl>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">edges</span> <span class="o">=</span> <span class="p">[</span><span class="n">Edge</span><span class="p">(</span><span class="mi">0</span> <span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">"A"</span><span class="p">,</span> <span class="p">{}),</span> <span class="n">Edge</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">"B"</span><span class="p">,</span> <span class="p">{})]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">get_end_nodes</span><span class="p">(</span><span class="n">edges</span><span class="p">)</span>
+<span class="go">[0, 2]</span>
+</pre></div>
+</div>
+</dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="wayfarer.functions.get_multiconnected_nodes">
+<span class="sig-prename descclassname"><span class="pre">wayfarer.functions.</span></span><span class="sig-name descname"><span class="pre">get_multiconnected_nodes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">edges</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">connections</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/wayfarer/functions.html#get_multiconnected_nodes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#wayfarer.functions.get_multiconnected_nodes" title="Link to this definition">¶</a></dt>
+<dd><p>Get all nodes which have at least n connections</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">edges</span> <span class="o">=</span> <span class="p">[</span><span class="n">Edge</span><span class="p">(</span><span class="mi">0</span> <span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">"A"</span><span class="p">,</span> <span class="p">{}),</span> <span class="n">Edge</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">"B"</span><span class="p">,</span> <span class="p">{})]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">get_multiconnected_nodes</span><span class="p">(</span><span class="n">edges</span><span class="p">,</span> <span class="n">connections</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="go">[1]</span>
+</pre></div>
+</div>
+</dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="wayfarer.functions.get_nodes_from_edges">
+<span class="sig-prename descclassname"><span class="pre">wayfarer.functions.</span></span><span class="sig-name descname"><span class="pre">get_nodes_from_edges</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">edges</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/wayfarer/functions.html#get_nodes_from_edges"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#wayfarer.functions.get_nodes_from_edges" title="Link to this definition">¶</a></dt>
+<dd><p>From a list of edges return a unique, ordered list
+of nodes along the path</p>
+</dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="wayfarer.functions.get_ordered_end_nodes">
+<span class="sig-prename descclassname"><span class="pre">wayfarer.functions.</span></span><span class="sig-name descname"><span class="pre">get_ordered_end_nodes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">edges</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_nodes</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/wayfarer/functions.html#get_ordered_end_nodes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#wayfarer.functions.get_ordered_end_nodes" title="Link to this definition">¶</a></dt>
+<dd><p>Ensures the end nodes are returned in the same order as the input edges</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>]</span></p>
+</dd>
+</dl>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">edges</span> <span class="o">=</span> <span class="p">[</span><span class="n">Edge</span><span class="p">(</span><span class="mi">1</span> <span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">"A"</span><span class="p">,</span> <span class="p">{}),</span> <span class="n">Edge</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">"B"</span><span class="p">,</span> <span class="p">{})]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">nodes</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">get_ordered_end_nodes</span><span class="p">(</span><span class="n">edges</span><span class="p">,</span> <span class="n">nodes</span><span class="p">)</span>
+<span class="go">[1, 0]</span>
+</pre></div>
+</div>
+</dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="wayfarer.functions.get_shortest_edge">
+<span class="sig-prename descclassname"><span class="pre">wayfarer.functions.</span></span><span class="sig-name descname"><span class="pre">get_shortest_edge</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">edges</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">length_field</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'LEN_'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/wayfarer/functions.html#get_shortest_edge"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#wayfarer.functions.get_shortest_edge" title="Link to this definition">¶</a></dt>
+<dd><p>From a dictionary of edges, get the shortest edge
+by its length
+If two edges have identical lengths then the edge with the higher Id
+will be returned</p>
+</dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="wayfarer.functions.get_sink_edges">
+<span class="sig-prename descclassname"><span class="pre">wayfarer.functions.</span></span><span class="sig-name descname"><span class="pre">get_sink_edges</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">net</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/wayfarer/functions.html#get_sink_edges"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#wayfarer.functions.get_sink_edges" title="Link to this definition">¶</a></dt>
+<dd><p>Get all the sinks edges in the network. These are edges which have no edges attached
+at their downstream end</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>net</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.13)"><em>object</em></a>) – a networkx network</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>a dict containing sink segment codes and their associated network edge</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.13)">dict</a></p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="wayfarer.functions.get_sink_nodes">
+<span class="sig-prename descclassname"><span class="pre">wayfarer.functions.</span></span><span class="sig-name descname"><span class="pre">get_sink_nodes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">net</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/wayfarer/functions.html#get_sink_nodes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#wayfarer.functions.get_sink_nodes" title="Link to this definition">¶</a></dt>
+<dd><p>Get all the sinks in the network.</p>
+<p>out_degree_iter is the number of edges pointing out of the node
+<a class="reference external" href="http://networkx.lanl.gov/reference/generated/networkx.DiGraph.out_degree_iter.html">http://networkx.lanl.gov/reference/generated/networkx.DiGraph.out_degree_iter.html</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>net</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.13)"><em>object</em></a>) – a networkx network</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>a list of sink nodes [(0,1), (1,0)]</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)">list</a></p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="wayfarer.functions.get_source_edges">
+<span class="sig-prename descclassname"><span class="pre">wayfarer.functions.</span></span><span class="sig-name descname"><span class="pre">get_source_edges</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">net</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/wayfarer/functions.html#get_source_edges"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#wayfarer.functions.get_source_edges" title="Link to this definition">¶</a></dt>
+<dd><p>Get all the source edges in the network. These are edges which have no edges attached
+at their upstream end</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>net</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.13)"><em>object</em></a>) – a networkx network</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>a dict containing source segment codes and their associated network edge</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.13)">dict</a></p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="wayfarer.functions.get_source_nodes">
+<span class="sig-prename descclassname"><span class="pre">wayfarer.functions.</span></span><span class="sig-name descname"><span class="pre">get_source_nodes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">net</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/wayfarer/functions.html#get_source_nodes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#wayfarer.functions.get_source_nodes" title="Link to this definition">¶</a></dt>
+<dd><p>Get all the source in the network.</p>
+<p>in_degree_iter is the number of edges pointing into of the node
+<a class="reference external" href="http://networkx.lanl.gov/reference/generated/networkx.DiGraph.in_degree_iter.html">http://networkx.lanl.gov/reference/generated/networkx.DiGraph.in_degree_iter.html</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>net</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.13)"><em>object</em></a>) – a networkx network</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>a list of sink nodes [(0,1), (1,0)]</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)">list</a></p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="wayfarer.functions.get_unattached_node">
+<span class="sig-prename descclassname"><span class="pre">wayfarer.functions.</span></span><span class="sig-name descname"><span class="pre">get_unattached_node</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">net</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">edge</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/wayfarer/functions.html#get_unattached_node"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#wayfarer.functions.get_unattached_node" title="Link to this definition">¶</a></dt>
+<dd><p>Given an edge find which end is unattached on the
+network
+If the edge is part of a loop then return the start node
+If the edge is attached at both ends then None is returned</p>
+</dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="wayfarer.functions.get_unique_ordered_list">
+<span class="sig-prename descclassname"><span class="pre">wayfarer.functions.</span></span><span class="sig-name descname"><span class="pre">get_unique_ordered_list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">items</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/wayfarer/functions.html#get_unique_ordered_list"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#wayfarer.functions.get_unique_ordered_list" title="Link to this definition">¶</a></dt>
+<dd><p>An order-preserving function to get a unique list of edges or nodes</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">get_unique_ordered_list</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
+<span class="go">[1, 2, 3, 4, 5, 6]</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>items</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Iterable" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Iterable</span></code></a></span>) – Any iterable</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A list of unique values</p>
+</dd>
+</dl>
+</dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="wayfarer.functions.has_overlaps">
+<span class="sig-prename descclassname"><span class="pre">wayfarer.functions.</span></span><span class="sig-name descname"><span class="pre">has_overlaps</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">edges</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/wayfarer/functions.html#has_overlaps"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#wayfarer.functions.has_overlaps" title="Link to this definition">¶</a></dt>
+<dd><p>Checks if the provided list of edges has overlaps
+If an edge is split but the measures don’t overlap then this will return False
+The same edge id can be found at the start and end of the sequence if there is
+no overlap of measures</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span></p>
+</dd>
+</dl>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">edges</span> <span class="o">=</span> <span class="p">[</span><span class="n">Edge</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">"A"</span><span class="p">,</span> <span class="p">{</span><span class="s2">"EDGE_ID"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">"OFFSET"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">"LEN_"</span><span class="p">:</span> <span class="mi">10</span><span class="p">}),</span> <span class="n">Edge</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">"B"</span><span class="p">,</span> <span class="p">{</span><span class="s2">"EDGE_ID"</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">"OFFSET"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">"LEN_"</span><span class="p">:</span> <span class="mi">10</span><span class="p">})]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">has_overlaps</span><span class="p">(</span><span class="n">edges</span><span class="p">)</span>
+<span class="go">False</span>
+</pre></div>
+</div>
+</dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="wayfarer.functions.pairwise">
+<span class="sig-prename descclassname"><span class="pre">wayfarer.functions.</span></span><span class="sig-name descname"><span class="pre">pairwise</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">iterable</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/wayfarer/functions.html#pairwise"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#wayfarer.functions.pairwise" title="Link to this definition">¶</a></dt>
+<dd><p>Loops through the iterable, returning adjacent pairs
+each time. Useful for returning point coordinates.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Iterable" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Iterable</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>]</span></p>
+</dd>
+</dl>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">list</span><span class="p">(</span><span class="n">pairwise</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">)))</span>
+<span class="go">[(0, 10), (10, 20), (20, 30)]</span>
+</pre></div>
+</div>
+</dd></dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="wayfarer.functions.remove_edge_by_key">
+<span class="sig-prename descclassname"><span class="pre">wayfarer.functions.</span></span><span class="sig-name descname"><span class="pre">remove_edge_by_key</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">net</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/wayfarer/functions.html#remove_edge_by_key"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#wayfarer.functions.remove_edge_by_key" title="Link to this definition">¶</a></dt>
+<dd><p>Remove an edge from a network using its unique key.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>net</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://networkx.org/documentation/stable/reference/classes/multigraph.html#networkx.MultiGraph" title="(in NetworkX v3.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">MultiGraph</span></code></a> | <a class="reference external" href="https://networkx.org/documentation/stable/reference/classes/multidigraph.html#networkx.MultiDiGraph" title="(in NetworkX v3.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">MultiDiGraph</span></code></a></span>) – A network</p></li>
+<li><p><strong>key</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a> | <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>) – The unique key of the edge</p></li>
+</ul>
+</dd>
+</dl>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">net</span> <span class="o">=</span> <span class="n">networkx</span><span class="o">.</span><span class="n">MultiGraph</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">add_edge</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">"A"</span><span class="p">,</span> <span class="p">{</span><span class="s2">"LEN_"</span><span class="p">:</span> <span class="mi">10</span><span class="p">})</span>
+<span class="go">Edge(start_node=1, end_node=2, key='A', attributes={'LEN_': 10})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">net</span><span class="o">.</span><span class="n">edges</span><span class="p">()))</span>
+<span class="go">1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">remove_edge_by_key</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="s2">"A"</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">net</span><span class="o">.</span><span class="n">edges</span><span class="p">()))</span>
+<span class="go">0</span>
+</pre></div>
+</div>
+</dd></dl>
+</section>
+
+
+          </article>
+        </div>
+      </div>
+    </main>
+  </div>
+  <footer class="md-footer">
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+          
+            <a href="wayfarer.html" title="Wayfarer Module API"
+               class="md-flex md-footer-nav__link md-footer-nav__link--prev"
+               rel="prev">
+              <div class="md-flex__cell md-flex__cell--shrink">
+                <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+              </div>
+              <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+                <span class="md-flex__ellipsis">
+                  <span
+                      class="md-footer-nav__direction"> "Previous" </span> Wayfarer Module API </span>
+              </div>
+            </a>
+          
+          
+            <a href="linearref.html" title="Linear Referencing Module API"
+               class="md-flex md-footer-nav__link md-footer-nav__link--next"
+               rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title"><span
+                class="md-flex__ellipsis"> <span
+                class="md-footer-nav__direction"> "Next" </span> Linear Referencing Module API </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink"><i
+                class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          
+        </a>
+        
+      </nav>
+    </div>
+    <div class="md-footer-meta md-typeset">
+      <div class="md-footer-meta__inner md-grid">
+        <div class="md-footer-copyright">
+          <div class="md-footer-copyright__highlight">
+              &#169; Copyright 2025, Compass Informatics.
+              
+          </div>
+            Created using
+            <a href="http://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+             and
+            <a href="https://github.com/bashtage/sphinx-material/">Material for
+              Sphinx</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script src="../_static/javascripts/application.js"></script>
+  <script>app.initialize({version: "1.0.4", url: {base: ".."}})</script>
+  </body>
+</html>
