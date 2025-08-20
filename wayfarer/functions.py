@@ -5,6 +5,7 @@ This module contains functions related to networks and routing
 from __future__ import annotations
 import itertools
 import marshal
+import copy
 import logging
 from collections import OrderedDict
 import networkx
@@ -325,8 +326,7 @@ def get_all_paths_from_nodes(net, node_list, with_direction_flag=False):
                 for key, attributes in edges.items():
                     # make a copy so client programs can modify without
                     # affecting the original edge dict
-                    # atts_copy = copy.deepcopy(attributes)
-                    atts_copy = marshal.loads(marshal.dumps(attributes))
+                    atts_copy = copy_attributes(attributes)
                     edge = Edge(start_node=u, end_node=v, key=key, attributes=atts_copy)
                     if with_direction_flag:
                         add_direction_flag(
@@ -378,6 +378,20 @@ def get_edges_from_node_pair(
     return edges
 
 
+def copy_attributes(attributes: dict) -> dict:
+    """
+    Make a copy of the attributes dictionary.
+    Using ``marshal`` is much faster, but fails on dictionary values such as classes
+    """
+
+    try:
+        atts_copy = marshal.loads(marshal.dumps(attributes))
+    except Exception:
+        atts_copy = copy.deepcopy(attributes)
+
+    return atts_copy
+
+
 def get_edges_from_nodes(
     net: networkx.MultiGraph | networkx.MultiDiGraph,
     node_list: list[int | str],
@@ -404,13 +418,13 @@ def get_edges_from_nodes(
         if edges:
             if shortest_path_only:
                 key, attributes = get_shortest_edge(edges, length_field)
-                atts_copy = marshal.loads(marshal.dumps(attributes))
+                atts_copy = copy_attributes(attributes)
                 edge = Edge(start_node=u, end_node=v, key=key, attributes=atts_copy)
                 node_edges.append(edge)
             else:
                 # get all edges between the nodes, ignoring the length_field
                 for key, attributes in edges.items():
-                    atts_copy = marshal.loads(marshal.dumps(attributes))
+                    atts_copy = copy_attributes(attributes)
                     node_edges.append(
                         Edge(start_node=u, end_node=v, key=key, attributes=atts_copy)
                     )
@@ -547,7 +561,7 @@ def get_sink_nodes(net):
         net (object): a networkx network
 
     Returns:
-        sinks (list): a list of sink nodes [(0,1), (1,0)]
+        list: a list of sink nodes [(0,1), (1,0)]
     """
     sinks = [node for node, degree in net.out_degree() if degree == 0]
     return sinks
@@ -562,7 +576,7 @@ def get_sink_edges(net):
         net (object): a networkx network
 
     Returns:
-        end_edges (dict): a dict containing sink segment codes and their associated network edge
+        dict: a dict containing sink segment codes and their associated network edge
     """
     sinks = get_sink_nodes(net)
 
@@ -580,7 +594,7 @@ def get_source_nodes(net):
         net (object): a networkx network
 
     Returns:
-        sinks (list): a list of sink nodes [(0,1), (1,0)]
+        list: a list of sink nodes [(0,1), (1,0)]
     """
     sources = [node for node, degree in net.in_degree() if degree == 0]
     return sources
@@ -595,7 +609,7 @@ def get_source_edges(net):
         net (object): a networkx network
 
     Returns:
-        end_edges (dict): a dict containing source segment codes and their associated network edge
+        dict: a dict containing source segment codes and their associated network edge
     """
     sources = get_source_nodes(net)
 
@@ -613,7 +627,7 @@ def get_edges(net, nodes, in_edges=True):
         in_edges: (bool): set to True to get edges coming into the node, and False to edges leaving the node
 
     Returns:
-        end_edges (dict): a dict containing segment codes and their associated network edge
+        dict: a dict containing segment codes and their associated network edge
     """
 
     end_edges = {}
