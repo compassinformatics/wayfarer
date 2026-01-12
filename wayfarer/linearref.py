@@ -462,6 +462,7 @@ def get_nearest_vertex(point: Point, line: LineString) -> tuple[Point, float]:
     Get the point on the line that is closest to the input point
     Based on code from `gis.stackexchange.com <http://gis.stackexchange.com/questions/396/nearest-neighbor-between-a-point-layer-and-a-line-layer>`_
 
+    TODO Check if we can use ``from shapely.ops import nearest_points``
     Args:
         point: The input point to place along a line
         line: The input line
