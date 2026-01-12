@@ -6,6 +6,7 @@ import logging
 import pytest
 from wayfarer import splitter, functions, loader, routing
 from tests.helper import simple_features
+from shapely import LineString
 
 
 @pytest.mark.parametrize("use_reverse_lookup", [(True), (False)])
@@ -252,6 +253,37 @@ def test_unsplit_network_edges():
     assert unsplit_edge == original_edge
 
 
+def test_get_split_attributes():
+    """
+    Test the updating of attributes
+    """
+
+    atts = {"OFFSET": 20, "LEN_": 100}
+    new_atts = splitter.get_split_attributes(atts, 50, 70)
+    assert new_atts["OFFSET"] == 70
+    assert new_atts["LEN_"] == 20
+    assert new_atts["IS_SPLIT"] is True
+
+
+def test_get_split_attributes_with_geometry():
+    """
+    Test the updating of attributes
+    """
+
+    atts = {
+        "EDGE_ID": 1,
+        "OFFSET": 20,
+        "LEN_": 100,
+        splitter.GEOMETRY_FIELD: LineString([(0, 0), (100, 0)]),
+    }
+    new_atts = splitter.get_split_attributes(atts, 50, 70)
+
+    assert new_atts["OFFSET"] == 70
+    assert new_atts["LEN_"] == 20
+    assert new_atts["IS_SPLIT"] is True
+    assert new_atts["geometry"].wkt == "LINESTRING (50 0, 70 0)"
+
+
 def test_doctest():
     import doctest
 
@@ -261,13 +293,15 @@ def test_doctest():
 if __name__ == "__main__":
     logging.basicConfig(level=logging.DEBUG)
     # test_multiple_split_network_edge(True)
-    test_split_invalid_measure(True)
-    test_split_invalid_measure2(True)
-    test_split_invalid_measure3(True)
+    # test_split_invalid_measure(True)
+    # test_split_invalid_measure2(True)
+    # test_split_invalid_measure3(True)
     # test_multiple_split_network_edge(True)
     # test_multiple_split_network_edge(True)
     # test_double_split_network_edge(True)
     # test_split_with_points(True)
     # test_split_network_edge(True)
     # test_unsplit_network_edges()
+    test_get_split_attributes()
+    test_get_split_attributes_with_geometry()
     print("Done!")
