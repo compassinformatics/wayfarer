@@ -9,6 +9,8 @@ Wayfarer
 
 Wayfarer is Python library for creating and analysing geospatial networks using `NetworkX <https://networkx.org/>`_.
 
+See the `Documentation <https://compassinformatics.github.io/wayfarer/>`_ for full details of the library.
+
 See the `Online Demo <https://compassinformatics.github.io/wayfarer-demo/>`_ to see examples of use cases for the library.
 
 See the `Wayfarer Presentation <https://compassinformatics.github.io/wayfarer-presentation/>`_ for an overview presentation.
