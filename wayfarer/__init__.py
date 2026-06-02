@@ -2,7 +2,7 @@ from __future__ import annotations
 from typing import NamedTuple
 
 
-__version__ = "0.13.2"
+__version__ = "0.13.3"
 
 LENGTH_FIELD = "LEN_"
 EDGE_ID_FIELD = "EDGE_ID"
