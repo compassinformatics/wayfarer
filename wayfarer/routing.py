@@ -110,30 +110,35 @@ def solve_shortest_path_from_edges(
             f"Updated edge id {edge_id} to have length 0 from {original_length:.2f}"
         )
 
-        if edge.start_node == edge.end_node:
-            # self-loop
-            edges.extend(functions.get_edges_from_nodes(net, end_nodes))
-        else:
-            try:
-                nodes = solve_shortest_path_from_nodes(net, node_list)
-            except NetworkXNoPath as ex:
-                log.warning(f"No path found using node_list: {node_list}")
-                log.warning(ex)
-                raise
+        try:
+            if edge.start_node == edge.end_node:
+                # self-loop
+                edges.extend(functions.get_edges_from_nodes(net, end_nodes))
+            else:
+                try:
+                    nodes = solve_shortest_path_from_nodes(net, node_list)
+                except NetworkXNoPath as ex:
+                    log.warning(f"No path found using node_list: {node_list}")
+                    log.warning(ex)
+                    raise
 
-            edges.extend(functions.get_edges_from_nodes(net, nodes))
+                edges.extend(functions.get_edges_from_nodes(net, nodes))
+                edge.attributes[LENGTH_FIELD] = original_length
 
-            # reset original length - note not in original implementation
-            # ensure this is only reset after get_edges_from_nodes has been called
+            if sorted(previous_edge_nodes) == sorted(end_nodes):
+                # a loop of two edges - get all edges between the nodes
+                loop_edges = functions.get_edges_from_nodes(
+                    net, [edge.start_node, edge.end_node]
+                )
+                if loop_edges:
+                    edges.extend(loop_edges)
+        finally:
             edge.attributes[LENGTH_FIELD] = original_length
-
-        if sorted(previous_edge_nodes) == sorted(end_nodes):
-            # a loop of two edges - get all edges between the nodes
-            loop_edges = functions.get_edges_from_nodes(
-                net, [edge.start_node, edge.end_node]
-            )
-            if loop_edges:
-                edges.extend(loop_edges)
+            # reset original length
+            # this should only be reset after get_edges_from_nodes has been called
+            for e in edges:
+                if e.key == edge.key:
+                    e.attributes[LENGTH_FIELD] = original_length
 
         previous_edge_nodes = end_nodes
 

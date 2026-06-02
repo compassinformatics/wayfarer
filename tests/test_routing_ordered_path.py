@@ -446,6 +446,33 @@ def test_bottle_network():
     assert [e.key for e in edges] == [1, 2, 3]
 
 
+def test_solve_shortest_path_from_edges_length_restored():
+    """
+    Ensure that edges returned by solve_shortest_path_from_edges have their
+    original LENGTH_FIELD values restored after routing.
+    LENGTH_FIELD is temporarily set to 0 to force their inclusion when
+    alternative paths exist.
+    """
+    from wayfarer import LENGTH_FIELD
+
+    net = (
+        networks.dual_path_middle_network()
+    )  # has parallel edges 2 and 3 between same nodes
+
+    edge_id_list = [1, 2, 4]
+    edges = routing.solve_shortest_path_from_edges(net, edge_id_list)
+
+    assert [e.key for e in edges] == [1, 2, 4]
+
+    for edge in edges:
+        length = edge.attributes.get(LENGTH_FIELD)
+        assert length is not None, f"Edge {edge.key} is missing LENGTH_FIELD attribute"
+        assert length > 0, (
+            f"Edge {edge.key} has LENGTH_FIELD={length}. "
+            "The temporary 0 length used during routing was not restored in the copied attributes."
+        )
+
+
 if __name__ == "__main__":
     logging.basicConfig(level=logging.DEBUG)
     # test_get_path_ends()
@@ -457,10 +484,11 @@ if __name__ == "__main__":
     # test_t_network()
     # test_p_network()
     # test_double_loop_network()
-    test_dual_path_middle_network()
+    # test_dual_path_middle_network()
     # test_circle_network()
     # test_dual_path()
     # test_loop_middle_network()
     # test_triple_loop_network()
     # test_bottle_network()
+    test_solve_shortest_path_from_edges_length_restored()
     print("Done!")
