@@ -110,6 +110,46 @@ def test_solve_shortest_path_split_network():
     ]
 
 
+def test_solve_shortest_path_from_edges_directed():
+    """
+    solve_shortest_path_from_edges should return edges in the correct
+    directed order
+    """
+    net = networks.simple_network_directed()
+    assert net.is_directed()
+
+    edges = routing.solve_shortest_path_from_edges(net, [1, 2, 3, 4])
+    edge_ids = [edge.key for edge in edges]
+    assert edge_ids == [1, 2, 3, 4]
+
+
+def test_solve_shortest_path_from_edges_directed_random_order():
+    """
+    Input edge_id_list order shouldn't affect the resulting directed path
+    """
+
+    net = networks.simple_network_directed()
+    edges = routing.solve_shortest_path_from_edges(net, [4, 3, 1, 2])
+    edge_ids = [edge.key for edge in edges]
+    assert edge_ids == [1, 2, 3, 4]
+
+
+def test_solve_shortest_path_from_edges_with_undirected_net_param():
+    """
+    Pass a pre-built undirected_net
+    """
+
+    net = networks.simple_network_directed()
+    undirected_net = net.to_undirected()
+
+    edges_default = routing.solve_shortest_path_from_edges(net, [1, 2, 3, 4])
+    edges_with_param = routing.solve_shortest_path_from_edges(
+        net, [1, 2, 3, 4], undirected_net=undirected_net
+    )
+
+    assert [e.key for e in edges_default] == [e.key for e in edges_with_param]
+
+
 def test_doctest():
     import doctest
 
