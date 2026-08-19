@@ -531,9 +531,15 @@ to ignore any weightings (faster).</p>
 </dd></dl>
 <dl class="py function">
 <dt class="sig sig-object py" id="wayfarer.routing.solve_shortest_path_from_edges">
-<span class="sig-prename descclassname"><span class="pre">wayfarer.routing.</span></span><span class="sig-name descname"><span class="pre">solve_shortest_path_from_edges</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">net</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">edge_id_list</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/wayfarer/routing.html#solve_shortest_path_from_edges"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#wayfarer.routing.solve_shortest_path_from_edges" title="Link to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">wayfarer.routing.</span></span><span class="sig-name descname"><span class="pre">solve_shortest_path_from_edges</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">net</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">edge_id_list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">undirected_net</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/wayfarer/routing.html#solve_shortest_path_from_edges"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#wayfarer.routing.solve_shortest_path_from_edges" title="Link to this definition">¶</a></dt>
 <dd><p>Return a path routing from edge to edge, rather than
 from node to node</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">net</span></code> is directed routing is run on an undirected
+copy internally, and the final result is re-solved against the
+original directed graph to get the correct direction</p>
+<p>Building the undirected copy can take a long time, so if using
+this function in a loop, then build the undirected network outside
+the loop and use the <code class="docutils literal notranslate"><span class="pre">undirected_net</span></code> parameter</p>
 </dd></dl>
 <dl class="py function">
 <dt class="sig sig-object py" id="wayfarer.routing.solve_shortest_path_from_nodes">
@@ -585,7 +591,7 @@ to ignore any weightings (faster).</p>
               
           </div>
             Created using
-            <a href="http://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
+            <a href="http://www.sphinx-doc.org/">Sphinx</a> 9.0.4.
              and
             <a href="https://github.com/bashtage/sphinx-material/">Material for
               Sphinx</a>

@@ -343,14 +343,40 @@
 <div class="viewcode-block" id="solve_shortest_path_from_edges">
 <a class="viewcode-back" href="../../api/routing.html#wayfarer.routing.solve_shortest_path_from_edges">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">solve_shortest_path_from_edges</span><span class="p">(</span>
-    <span class="n">net</span><span class="p">:</span> <span class="n">networkx</span><span class="o">.</span><span class="n">MultiGraph</span> <span class="o">|</span> <span class="n">networkx</span><span class="o">.</span><span class="n">MultiDiGraph</span><span class="p">,</span> <span class="n">edge_id_list</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span> <span class="o">|</span> <span class="nb">str</span><span class="p">]</span>
+    <span class="n">net</span><span class="p">:</span> <span class="n">networkx</span><span class="o">.</span><span class="n">MultiGraph</span> <span class="o">|</span> <span class="n">networkx</span><span class="o">.</span><span class="n">MultiDiGraph</span><span class="p">,</span>
+    <span class="n">edge_id_list</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span> <span class="o">|</span> <span class="nb">str</span><span class="p">],</span>
+    <span class="n">undirected_net</span><span class="p">:</span> <span class="n">networkx</span><span class="o">.</span><span class="n">MultiGraph</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
 <span class="p">):</span>
 <span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Return a path routing from edge to edge, rather than</span>
 <span class="sd">    from node to node</span>
+
+<span class="sd">    If ``net`` is directed routing is run on an undirected</span>
+<span class="sd">    copy internally, and the final result is re-solved against the</span>
+<span class="sd">    original directed graph to get the correct direction</span>
+
+<span class="sd">    Building the undirected copy can take a long time, so if using</span>
+<span class="sd">    this function in a loop, then build the undirected network outside</span>
+<span class="sd">    the loop and use the ``undirected_net`` parameter</span>
 <span class="sd">    """</span>
 
     <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Edge ids used for path solve: </span><span class="si">{</span><span class="n">edge_id_list</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+    <span class="n">is_directed</span> <span class="o">=</span> <span class="n">net</span><span class="o">.</span><span class="n">is_directed</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="n">is_directed</span><span class="p">:</span>
+        <span class="n">original_net</span> <span class="o">=</span> <span class="n">net</span>
+        <span class="k">if</span> <span class="n">undirected_net</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">undirected_net</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">net</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"undirected_net does not match net"</span><span class="p">)</span>
+
+            <span class="n">net</span> <span class="o">=</span> <span class="n">undirected_net</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+                <span class="s2">"Building an undirected network. Consider using the undirected_net parameter to avoid this"</span>
+            <span class="p">)</span>
+            <span class="n">net</span> <span class="o">=</span> <span class="n">net</span><span class="o">.</span><span class="n">to_undirected</span><span class="p">()</span>
 
     <span class="c1"># remove any duplicates</span>
     <span class="n">edge_id_list</span> <span class="o">=</span> <span class="n">functions</span><span class="o">.</span><span class="n">get_unique_ordered_list</span><span class="p">(</span><span class="n">edge_id_list</span><span class="p">)</span>
@@ -455,7 +481,17 @@
     <span class="c1"># start_edge = functions.get_edge_by_key(net, start_key)</span>
     <span class="c1"># start_node = start_edge.start_node</span>
 
-    <span class="k">return</span> <span class="n">find_ordered_path</span><span class="p">(</span><span class="n">solved_edges</span><span class="p">,</span> <span class="n">start_node</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></div>
+    <span class="n">ordered_path</span> <span class="o">=</span> <span class="n">find_ordered_path</span><span class="p">(</span><span class="n">solved_edges</span><span class="p">,</span> <span class="n">start_node</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">is_directed</span><span class="p">:</span>
+        <span class="c1"># solve on the original directed graph so edge directions are correct</span>
+        <span class="n">start_node</span><span class="p">,</span> <span class="n">end_node</span> <span class="o">=</span> <span class="n">get_path_ends</span><span class="p">(</span><span class="n">ordered_path</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">ordered_path</span> <span class="o">=</span> <span class="n">solve_shortest_path</span><span class="p">(</span><span class="n">original_net</span><span class="p">,</span> <span class="n">start_node</span><span class="p">,</span> <span class="n">end_node</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">NetworkXNoPath</span><span class="p">:</span>
+            <span class="n">ordered_path</span> <span class="o">=</span> <span class="n">solve_shortest_path</span><span class="p">(</span><span class="n">original_net</span><span class="p">,</span> <span class="n">end_node</span><span class="p">,</span> <span class="n">start_node</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">ordered_path</span></div>
 
 
 
@@ -772,7 +808,7 @@
               
           </div>
             Created using
-            <a href="http://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
+            <a href="http://www.sphinx-doc.org/">Sphinx</a> 9.0.4.
              and
             <a href="https://github.com/bashtage/sphinx-material/">Material for
               Sphinx</a>
