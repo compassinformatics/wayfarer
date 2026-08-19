@@ -61,14 +61,40 @@ def solve_shortest_path_from_nodes(
 
 
 def solve_shortest_path_from_edges(
-    net: networkx.MultiGraph | networkx.MultiDiGraph, edge_id_list: list[int | str]
+    net: networkx.MultiGraph | networkx.MultiDiGraph,
+    edge_id_list: list[int | str],
+    undirected_net: networkx.MultiGraph | None = None,
 ):
     """
     Return a path routing from edge to edge, rather than
     from node to node
+
+    If ``net`` is directed routing is run on an undirected
+    copy internally, and the final result is re-solved against the
+    original directed graph to get the correct direction
+
+    Building the undirected copy can take a long time, so if using
+    this function in a loop, then build the undirected network outside
+    the loop and use the ``undirected_net`` parameter
     """
 
     log.debug(f"Edge ids used for path solve: {edge_id_list}")
+
+    is_directed = net.is_directed()
+
+    if is_directed:
+        original_net = net
+        if undirected_net is not None:
+
+            if len(undirected_net) != len(net):
+                raise ValueError("undirected_net does not match net")
+
+            net = undirected_net
+        else:
+            log.info(
+                "Building an undirected network. Consider using the undirected_net parameter to avoid this"
+            )
+            net = net.to_undirected()
 
     # remove any duplicates
     edge_id_list = functions.get_unique_ordered_list(edge_id_list)
@@ -173,7 +199,17 @@ def solve_shortest_path_from_edges(
     # start_edge = functions.get_edge_by_key(net, start_key)
     # start_node = start_edge.start_node
 
-    return find_ordered_path(solved_edges, start_node=None)
+    ordered_path = find_ordered_path(solved_edges, start_node=None)
+
+    if is_directed:
+        # solve on the original directed graph so edge directions are correct
+        start_node, end_node = get_path_ends(ordered_path)
+        try:
+            ordered_path = solve_shortest_path(original_net, start_node, end_node)
+        except NetworkXNoPath:
+            ordered_path = solve_shortest_path(original_net, end_node, start_node)
+
+    return ordered_path
 
 
 def solve_matching_path(

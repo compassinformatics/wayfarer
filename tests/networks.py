@@ -2,6 +2,7 @@
 This file contains a collection of various network forms
 """
 
+from networkx import MultiDiGraph, MultiGraph
 from wayfarer import (
     EDGE_ID_FIELD,
     LENGTH_FIELD,
@@ -11,7 +12,7 @@ from wayfarer import (
 )
 
 
-def tuples_to_net(tuples):
+def tuples_to_net(tuples, graph_type=MultiGraph):
     """
     Takes in a list of tuples in the form (1, 1, 2, 10) and
     converts to {'EDGE_ID': 1, 'NODEID_FROM': 1, 'NODEID_TO': 2, 'LEN_': 10}
@@ -21,7 +22,7 @@ def tuples_to_net(tuples):
     fields = [EDGE_ID_FIELD, NODEID_FROM_FIELD, NODEID_TO_FIELD, LENGTH_FIELD]
     recs = [dict(zip(fields, t)) for t in tuples]
     # print(recs)
-    return loader.load_network_from_records(recs)
+    return loader.load_network_from_records(recs, graph_type=graph_type)
 
 
 def simple_network():
@@ -31,6 +32,14 @@ def simple_network():
 
     data = [(1, 1, 2, 10), (2, 2, 3, 10), (3, 3, 4, 10), (4, 4, 5, 10)]
     return tuples_to_net(data)
+
+
+def simple_network_directed():
+    """
+    Same as simple_network, but as a MultiDiGraph
+    """
+    data = [(1, 1, 2, 10), (2, 2, 3, 10), (3, 3, 4, 10), (4, 4, 5, 10)]
+    return tuples_to_net(data, graph_type=MultiDiGraph)
 
 
 def reverse_network():
